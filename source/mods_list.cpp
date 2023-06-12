@@ -57,7 +57,7 @@ void ModsList::createList(){
                 currentMod.files.push_back(file);
             }
             
-            brls::PopupFrame::open(fmt::format("Mod : {}", currentMod.title), new ModsPage(currentMod, this->currentGame, this->search));
+            brls::PopupFrame::open(fmt::format("Mod : {}", currentMod.title), new ModsPage(currentMod, this->currentGame, this->search, this->page));
         });
 
         list->addView(listItem);
@@ -95,14 +95,14 @@ void ModsList::createList(){
     //brls::Application::pushView(this);
 }
 
-ModsPage::ModsPage(Mod &mod, Game& game, const std::string& search) : AppletFrame(true, true), currentMod(mod), currentGame(game) {
+ModsPage::ModsPage(Mod &mod, Game& game, const std::string& search, const int& page) : AppletFrame(true, true), currentMod(mod), currentGame(game), page(page) {
     this->updateActionHint(brls::Key::B, "");
     this->updateActionHint(brls::Key::PLUS, "");
 
     this->list = new brls::List();
     this->label = new brls::Label(
         brls::LabelStyle::REGULAR,
-        fmt::format("menu/mods/links"_i18n),
+        "menu/mods/links"_i18n,
         true);
 
     this->list->addView(this->label);
@@ -160,9 +160,9 @@ ModsPage::ModsPage(Mod &mod, Game& game, const std::string& search) : AppletFram
         this->currentMod.images = utils::getModsImages(this->currentMod.json, 0, this->currentMod.sizeBigImage);
         this->currentMod.currentBigImage = 0;
         if (search !="")
-            brls::Application::pushView(new ImagesViewer(this->currentMod, this->currentGame, search));
+            brls::Application::pushView(new ImagesViewer(this->currentMod, this->currentGame, search, this->page));
         else
-            brls::Application::pushView(new ImagesViewer(this->currentMod, this->currentGame));
+            brls::Application::pushView(new ImagesViewer(this->currentMod, this->currentGame, this->page));
     });
 
     this->list->addView(this->listItem);

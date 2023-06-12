@@ -18,10 +18,10 @@ int main() {
 
     //Init translation and app
     const std::string currentLocale = i18n::getCurrentLocale();
-    if (currentLocale != "fr" && currentLocale != "en-US" && currentLocale != "es") 
+    if (currentLocale != "fr" && currentLocale != "en-US" && currentLocale != "es" && currentLocale != "de" && currentLocale != "it") 
         i18n::loadTranslations("en-US");
     else 
-        i18n::loadTranslations();
+        i18n::loadTranslations("en-US");
 
     init();
     //Use debug log level

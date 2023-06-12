@@ -19,7 +19,8 @@ DownloadTab::DownloadTab() : brls::List() {
 
             //Creat one item with the game
             listItem = new brls::ListItem(fmt::format("{} ({})", title, tid));
-            listItem->setHeight(50);
+            listItem->setHeight(100);
+            listItem->setSubLabel(fmt::format("{}", tid));
 
             auto* icon = utils::getIconFromTitleId(tid);
 
@@ -36,7 +37,7 @@ DownloadTab::DownloadTab() : brls::List() {
                         this->game_selection = new brls::List();
                         for (auto i : games_found.at("_aRecords")) {
                             game = new brls::ListItem(i.at("_sName").get<std::string>());
-                            game->setHeight(50);
+                            game->setHeight(100);
                             game->getClickEvent()->subscribe([i, tid](brls::View* view) {
                                 //TODO : Create the download view with the id which is getable with std::to_string(i.at("_idRow").get<int>());
                                 Game game;

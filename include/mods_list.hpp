@@ -29,7 +29,7 @@ private:
 
 class ModsPage : public brls::AppletFrame {
 public:
-    ModsPage(Mod &mod, Game &game, const std::string& search);
+    ModsPage(Mod &mod, Game &game, const std::string& search, const int& page);
     /*~ModsPage() {
         delete this->list;
         delete this->listItem;
@@ -41,4 +41,5 @@ private:
     brls::List* list;
     brls::ListItem* listItem;
     brls::Label* label;
+    int page;
 };

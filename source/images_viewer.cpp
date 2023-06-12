@@ -7,11 +7,11 @@ constexpr int IMAGES_VIEWER_WIDTH = 100;
 constexpr int IMAGES_VIEWER_HEIGHT = 56;
 constexpr int IMAGES_VIEWER_PADDING = 4;
 
-ImagesViewer::ImagesViewer(Mod& mod, Game& game): currentMod(mod), currentGame(game) {
+ImagesViewer::ImagesViewer(Mod& mod, Game& game, const int& page): currentMod(mod), currentGame(game), page(page) {
     init();
 }
 
-ImagesViewer::ImagesViewer(Mod &mod, Game& game, const std::string& search): currentMod(mod), currentGame(game), search(search) {
+ImagesViewer::ImagesViewer(Mod &mod, Game& game, const std::string& search, const int& page): currentMod(mod), currentGame(game), search(search), page(page) {
     init();
 }
 
@@ -32,7 +32,7 @@ void ImagesViewer::init() {
     });
 
     left->getClickEvent()->subscribe([this](brls::View* view){
-        if (this->currentMod.currentBigImage > 1) {
+        if (this->currentMod.currentBigImage > 0) {
             this->currentMod.currentBigImage--;
             this->currentMod.images.clear();
             this->currentMod.images = utils::getModsImages(this->currentMod.json, this->currentMod.currentBigImage, this->currentMod.sizeBigImage);
@@ -45,9 +45,9 @@ void ImagesViewer::init() {
 
     this->registerAction("", brls::Key::B, [this] { 
         if (this->search!="")  
-            brls::Application::pushView(new ModsList(this->currentGame, this->search));
+            brls::Application::pushView(new ModsList(this->currentGame, this->search, this->page));
         else 
-            brls::Application::pushView(new ModsList(this->currentGame));
+            brls::Application::pushView(new ModsList(this->currentGame, this->page));
         return 0;
     });
 }
@@ -76,15 +76,17 @@ void ImagesViewer::layout(NVGcontext* vg, brls::Style* style, brls::FontStash* s
     images[this->currentMod.currentBigImage]->setHeight(BIG_IMAGE_HEIGHT);
 
     brls::Image* currentBigImage = new brls::Image(images[this->currentMod.currentBigImage]->copyImgBuf(), this->currentMod.sizeBigImage);
-    this->addView(currentBigImage);
-    currentBigImage->setWidth(BIG_IMAGE_WIDTH);
-    currentBigImage->setHeight(BIG_IMAGE_HEIGHT);
+    currentBigImage->setScaleType(brls::ImageScaleType::FIT);
+    currentBigImage->setCornerRadius(15);
     currentBigImage->setBoundaries(
         this->getWidth() / 2 - BIG_IMAGE_WIDTH / 2,
         IMAGES_VIEWER_PADDING * 10,
         BIG_IMAGE_WIDTH,
         BIG_IMAGE_HEIGHT
     );
+    this->addView(currentBigImage);
+
+    brls::Logger::warning("images height : {}, width : {}", currentBigImage->getHeight(), currentBigImage->getWidth());
 
     int numImages = this->images.size();
 
