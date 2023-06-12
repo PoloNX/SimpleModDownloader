@@ -1,0 +1,55 @@
+{
+    "main": {
+        "app_name": "SimpleModDownloader"
+    },
+
+    "title": {
+        "downloading_smm": "Download di SimpleModManager",
+        "downloading": "Download"
+    },
+
+    "tabs": {
+        "downloads": "Download",
+        "install": "Installazione",
+        "about": "Informazioni"
+    },
+
+    "notify": {
+        "no_games_gamebanana": "Nessun gioco trovato nel database di Gamebanana"
+    },
+
+    "worker": {
+        "of": "di",
+        "cancel": "Annulla"
+    },
+
+    "about": {
+        "title": "Informazioni su SimpleModDownloader",
+        "description": "SimpleModDownloader è un'applicazione che consente di scaricare e installare mod per i giochi di Nintendo Switch, creata da...",
+        "thanks": "\u25c6 Ringraziamenti a @nadrino per SimpleModManager\n\u25c6 Ringraziamenti a Natinusala e HamletDuFromage per borealis"
+    },
+
+    "label": {
+        "no_games": "Nessun gioco trovato sulla Switch",
+        "install": "Installazione",
+        "desc_install": "Per installare le mod, è necessario utilizzare l'applicazione SimpleModManager creata da @nadrino."
+    },
+
+    "item": {
+        "launch_smm": "Avvia SimpleModManager",
+        "download_smm": "Scarica SimpleModManager"
+    },
+
+    "mods": {
+        "mods_list_title": "Lista delle mod",
+        "search": "Cerca",
+        "search_placeholder": "Inserisci il nome della mod",
+        "cancel": "Annulla",
+        "links": "Link di download",
+        "size": "Dimensioni",
+        "date": "Data",
+        "images": "Visualizza immagini",
+        "browser": "Apri nel browser",
+        "author": "Autore"
+    }
+}

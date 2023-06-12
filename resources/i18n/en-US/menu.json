@@ -1,0 +1,55 @@
+{
+    "main": {
+    "app_name": "SimpleModDownloader"
+    },
+
+    "title": {
+        "downloading_smm": "Downloading SimpleModManager",
+        "downloading": "Downloading"
+    },
+    
+    "tabs": {
+        "downloads": "Downloads",
+        "install": "Installation",
+        "about": "About"
+    },
+    
+    "notify": {
+        "no_games_gamebanana": "No games found in the Gamebanana database"
+    },
+    
+    "worker": {
+        "of": "of",
+        "cancel": "Cancel"
+    },
+    
+    "about": {
+        "title": "About SimpleModDownloader",
+        "description": "SimpleModDownloader is an application that allows you to download and install mods for Nintendo Switch games created by...",
+        "thanks": "\u25c6 Thanks to @nadrino for SimpleModManager\n\u25c6 Thanks to Natinusala and HamletDuFromage for borealis"
+    },
+    
+    "label": {
+        "no_games": "No games found on the switch",
+        "install": "Installation",
+        "desc_install": "To install the mods, you need to use the SimpleModManager application created by @nadrino."
+    },
+    
+    "item": {
+        "launch_smm": "Launch SimpleModManager",
+        "download_smm": "Download SimpleModManager"
+    },
+    
+    "mods": {
+        "mods_list_title": "Mods List",
+        "search": "Search",
+        "search_placeholder": "Enter the mod name",
+        "cancel": "Cancel",
+        "links": "Download Link(s)",
+        "size": "Size",
+        "date": "Date",
+        "images": "View Images",
+        "browser": "Open in Browser",
+        "author": "Author"
+    }
+}

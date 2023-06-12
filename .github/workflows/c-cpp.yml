@@ -1,0 +1,27 @@
+name: Build SimpleModDownloader
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  SimpleModDownloader:
+    runs-on: ubuntu-latest
+    container: devkitpro/devkita64
+    steps:
+    - uses: actions/checkout@v1
+    
+    - name: update repo
+      run: |
+        git config --global --add safe.directory /__w/SimpleModDownloader/SimpleModDownloader/lib/borealis
+        git config --global --add safe.directory /__w/SimpleModDownloader/SimpleModDownloader
+        git submodule update --init --recursive
+  
+    - name: build SimpleModDownloader
+      run: | 
+        make
+      
+    - uses: actions/upload-artifact@master
+      with:
+        name: SimpleModDownloader
+        path: SimpleModDownloader.nro
