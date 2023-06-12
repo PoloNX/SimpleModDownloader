@@ -32,10 +32,10 @@
 
 ## Screenshot
 
-![2023061220222000](https://github.com/PoloNX/SimpleModDownloader/assets/57038157/262768b9-b8a5-443f-a345-a90abb6ec063)
+![2023061221010600](https://github.com/PoloNX/SimpleModDownloader/assets/57038157/b1a28035-2521-48de-92c0-6baa5724a958)
 
 <details>
-  <summary><b>Spoiler: More Screenshots</b></summary>
+  <summary><b>More Screenshots</b></summary>
 
 ![2023061220054900](https://github.com/PoloNX/SimpleModDownloader/assets/57038157/58cab1c0-bd61-4336-8022-5023f7cccca9)
 ![2023061220060000](https://github.com/PoloNX/SimpleModDownloader/assets/57038157/44dceec9-1fcd-4b02-8238-f1712e9c32a6)
