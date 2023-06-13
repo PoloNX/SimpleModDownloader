@@ -90,9 +90,8 @@ void ModsList::createList(){
         brls::Application::pushView(new ModsList(this->currentGame, search, 1));
         return 0;
     });
-    this->registerAction("", brls::Key::B, [] { brls::Application::pushView(new MainFrame()); return 0;});
+    this->registerAction("", brls::Key::B, [] { brls::Application::pushView(new MainFrame()); return 0;});3
 
-    //brls::Application::pushView(this);
 }
 
 ModsPage::ModsPage(Mod &mod, Game& game, const std::string& search, const int& page) : AppletFrame(true, true), currentMod(mod), currentGame(game), page(page) {
@@ -120,7 +119,7 @@ ModsPage::ModsPage(Mod &mod, Game& game, const std::string& search, const int& p
                 if(extension == "zip" || extension == "rar" || extension == "7z"){
                     auto* stagedFrame = new brls::StagedAppletFrame();
 
-                    stagedFrame->setTitle("menu/worker/downloading"_i18n);
+                    stagedFrame->setTitle(fmt::format("{} {}","menu/worker/install"_i18n, i.name));
 
                     stagedFrame->addStage(new WorkerPage(stagedFrame, "menu/title/downloading"_i18n, [this, i]() {
                         net::downloadFile( i.url, fmt::format("sdmc:/config/SimpleModDownloader/{}", i.name));

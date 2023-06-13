@@ -46,7 +46,6 @@ namespace extract {
             archive_read_support_format_7zip(archive);
         }
 
-   
         archive_read_support_format_zip(archive);
 
         int result = archive_read_open_filename(archive, archiveFile.c_str(), 10240);
@@ -56,7 +55,6 @@ namespace extract {
             std::filesystem::remove(archiveFile);
             return false;
         }
-
         struct archive_entry* entry;
         ProgressEvent::instance().setTotalSteps(getFileCount(archiveFile));
         ProgressEvent::instance().setStep(0);
@@ -69,14 +67,18 @@ namespace extract {
                 return false;
             }
             const char* entryName = archive_entry_pathname(entry);
+            std::cout << entryName << std::endl;
 
             // Extract the contents of the 'romfs' directory only
             if (std::string(entryName).find("romfs/") != std::string::npos || std::string(entryName).find("exefs/") != std::string::npos) {
+                
                 std::string outputFilePath;
                 if (std::string(entryName).find("romfs/") != std::string::npos)
-                    outputFilePath = outputDir + "/" + std::string(entryName).substr(std::string(entryName).find("romfs/") + 7);
+                    outputFilePath = outputDir + "/" + std::string(entryName).substr(std::string(entryName).find("romfs/") + 6);
                 else
-                    outputFilePath = outputDir + "/" + std::string(entryName).substr(std::string(entryName).find("exefs/") + 7);
+                    outputFilePath = outputDir + "/" + std::string(entryName).substr(std::string(entryName).find("exefs/") + 6);
+
+                std::cout << outputFilePath << std::endl;
                 std::filesystem::path outputPath(outputFilePath);
                 std::filesystem::create_directories(outputPath.parent_path());
 
@@ -85,6 +87,7 @@ namespace extract {
                     // Skip directories
                     continue;
                 }
+
 
                 std::ofstream outputFile(outputFilePath, std::ios::binary);
                 if (!outputFile) {

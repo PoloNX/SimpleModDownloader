@@ -5,7 +5,8 @@
 
     "title": {
         "downloading_smm": "Téléchargement de SimpleModManager",
-        "downloading": "Téléchargement"
+        "downloading": "Téléchargement",
+        "extracting": "Extreaction"
     },
 
     "tabs": {
@@ -20,7 +21,8 @@
 
     "worker": {
         "of": "sur",
-        "cancel": "Annuler"
+        "cancel": "Annuler",
+        "install": "Installation de"
     },
 
     "about": {
@@ -42,7 +44,7 @@
 
     "mods": {
         "mods_list_title" : "Liste des mods",
-        "search": "Rechercher",
+        "search": "Rechercher (3 caractères minimum)",
         "search_placeholder": "Entrer le nom du mod",
         "cancel": "Annuler",
         "links": "Lien(s) de téléchargement",
