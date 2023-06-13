@@ -3,6 +3,7 @@
 #include "images_viewer.hpp"
 #include "worker_page.hpp"
 #include "download.hpp"
+#include "confirm_page.hpp"
 #include "extract.hpp"
 #include <filesystem>
 #include <regex>
@@ -84,13 +85,13 @@ void ModsList::createList(){
     });
 
 
-    this->registerAction("Search", brls::Key::Y, [this] { 
+    this->registerAction("menu/mods/search"_i18n, brls::Key::Y, [this] { 
         std::string search;
         brls::Swkbd::openForText([&search](std::string text) {search = text;}, "menu/mods/search"_i18n, "menu/mods/search_placeholder"_i18n, 100, "", 0, "menu/mods/search"_i18n, "menu/mods/cancel"_i18n);
         brls::Application::pushView(new ModsList(this->currentGame, search, 1));
         return 0;
     });
-    this->registerAction("", brls::Key::B, [] { brls::Application::pushView(new MainFrame()); return 0;});3
+    this->registerAction("", brls::Key::B, [] { brls::Application::pushView(new MainFrame()); return 0;});
 
 }
 
@@ -132,6 +133,8 @@ ModsPage::ModsPage(Mod &mod, Game& game, const std::string& search, const int& p
 
                         extract::extractEntry(fmt::format("sdmc:/config/SimpleModDownloader/{}", i.name), fmt::format("sdmc:/mods/{}/{}/contents/{}/romfs",resultat, this->currentMod.title, this->currentGame.tid));
                     }));
+                    
+                    stagedFrame->addStage(new ConfirmPage(stagedFrame, "menu/label/extract"_i18n));
 
                     brls::Application::pushView(stagedFrame);
                 }

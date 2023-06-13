@@ -46,8 +46,8 @@ std::string formatLabelText( double speed, double fileSizeCurrent, double fileSi
     int minutes = static_cast<int>((timeRemaining - hours * 3600) / 60);
     int seconds = static_cast<int>(timeRemaining - hours * 3600 - minutes * 60);
 
-    std::string labelText = fmt::format("({:.1f} MB menu/worker/of {:.1f} MB - {:.1f} MB/s) - Time Remaining: ", 
-                                        fileSizeCurrentMB, fileSizeFinalMB, speedMB);
+    std::string labelText = fmt::format("({:.1f} MB {} {:.1f} MB - {:.1f} MB/s) - Time Remaining: ", 
+                                        fileSizeCurrentMB, "menu/worker/of"_i18n, fileSizeFinalMB, speedMB);
 
     if (hours > 0)
         labelText += fmt::format("{}h ", hours);
@@ -65,7 +65,7 @@ void WorkerPage::draw(NVGcontext* vg, int x, int y, unsigned width, unsigned hei
         if (!this->workStarted) {
             this->workStarted = true;
             appletSetMediaPlaybackState(true);
-            //appletBeginBlockingHomeButton(0);
+            appletBeginBlockingHomeButton(0);
             ProgressEvent::instance().reset();
             workerThread = new std::thread(&WorkerPage::doWork, this);
         }
@@ -105,7 +105,7 @@ void WorkerPage::layout(NVGcontext* vg, brls::Style* style, brls::FontStash* sta
 
     this->label->setBoundaries(
         this->x + this->width / 2 - this->label->getWidth() / 2,
-        this->y + (this->height - style->AppletFrame.footerHeight) / 2,
+        this->y + (this->height - style->AppletFrame.footerHeight) / 2 - 50,
         this->label->getWidth(),
         this->label->getHeight());
 

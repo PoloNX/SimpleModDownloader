@@ -46,8 +46,6 @@ namespace extract {
             archive_read_support_format_7zip(archive);
         }
 
-        archive_read_support_format_zip(archive);
-
         int result = archive_read_open_filename(archive, archiveFile.c_str(), 10240);
         if (result != ARCHIVE_OK) {
             std::cout << "Failed to open zip file: " << archiveFile << std::endl;

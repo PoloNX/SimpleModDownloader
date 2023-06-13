@@ -1,11 +1,12 @@
 {
     "main": {
-    "app_name": "SimpleModDownloader"
+    "app_name" : "SimpleModDownloader"
     },
 
     "title": {
         "downloading_smm": "Downloading SimpleModManager",
-        "downloading": "Downloading"
+        "downloading": "Downloading",
+        "extracting": "Extracting in progress (do not close the application)"
     },
     
     "tabs": {
@@ -14,36 +15,39 @@
         "about": "About"
     },
     
-    "notify": {
-        "no_games_gamebanana": "No games found in the Gamebanana database"
+    "notify" : {
+        "no_games_gamebanana" : "No games found in the GameBanana database",
+        "not_supported": "This format is not supported: "
     },
     
     "worker": {
         "of": "of",
-        "cancel": "Cancel"
+        "cancel": "Cancel",
+        "install": "Installing"
     },
     
     "about": {
         "title": "About SimpleModDownloader",
-        "description": "SimpleModDownloader is an application that allows you to download and install mods for Nintendo Switch games created by...",
+        "description": "SimpleModDownloader is an application that allows you to download and install mods for Nintendo Switch games created by PoloNX.",
         "thanks": "\u25c6 Thanks to @nadrino for SimpleModManager\n\u25c6 Thanks to Natinusala and HamletDuFromage for borealis"
     },
     
     "label": {
-        "no_games": "No games found on the switch",
+        "no_games" : "No games found on the switch",
         "install": "Installation",
-        "desc_install": "To install the mods, you need to use the SimpleModManager application created by @nadrino."
+        "desc_install": "To install mods, you need to use the SimpleModManager application created by @nadrino.",
+        "extract": "Extraction completed. To install the mod, go to the Installation tab"
     },
     
-    "item": {
-        "launch_smm": "Launch SimpleModManager",
+    "item" : {
+        "launch_smm" : "Launch SimpleModManager",
         "download_smm": "Download SimpleModManager"
     },
     
     "mods": {
-        "mods_list_title": "Mods List",
+        "mods_list_title" : "Mods List",
         "search": "Search",
-        "search_placeholder": "Enter the mod name",
+        "search_placeholder": "Enter the mod name (minimum 3 characters)",
         "cancel": "Cancel",
         "links": "Download Link(s)",
         "size": "Size",

@@ -21,7 +21,7 @@ int main() {
     if (currentLocale != "fr" && currentLocale != "en-US" && currentLocale != "es" && currentLocale != "de" && currentLocale != "it") 
         i18n::loadTranslations("en-US");
     else 
-        i18n::loadTranslations("en-US");
+        i18n::loadTranslations();
 
     init();
     //Use debug log level
