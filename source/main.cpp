@@ -2,6 +2,7 @@
 #include <string>
 #include <borealis.hpp>
 
+#include "games_tab.hpp"
 #include "main_activity.hpp"
 
 using namespace brls::literals;

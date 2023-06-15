@@ -255,6 +255,7 @@ main.o: \
  /home/charlie/Documents/repos/C++/switch/SimpleModDownloader/lib/borealis/library/include/borealis/core/touch/pan_gesture.hpp \
  /home/charlie/Documents/repos/C++/switch/SimpleModDownloader/lib/borealis/library/include/borealis/core/touch/scroll_gesture.hpp \
  /home/charlie/Documents/repos/C++/switch/SimpleModDownloader/lib/borealis/library/include/borealis/core/touch/tap_gesture.hpp \
+ /home/charlie/Documents/repos/C++/switch/SimpleModDownloader/include/games_tab.hpp \
  /home/charlie/Documents/repos/C++/switch/SimpleModDownloader/include/main_activity.hpp
 /opt/devkitpro/libnx/include/switch.h:
 /opt/devkitpro/libnx/include/switch/types.h:
@@ -511,4 +512,5 @@ main.o: \
 /home/charlie/Documents/repos/C++/switch/SimpleModDownloader/lib/borealis/library/include/borealis/core/touch/pan_gesture.hpp:
 /home/charlie/Documents/repos/C++/switch/SimpleModDownloader/lib/borealis/library/include/borealis/core/touch/scroll_gesture.hpp:
 /home/charlie/Documents/repos/C++/switch/SimpleModDownloader/lib/borealis/library/include/borealis/core/touch/tap_gesture.hpp:
+/home/charlie/Documents/repos/C++/switch/SimpleModDownloader/include/games_tab.hpp:
 /home/charlie/Documents/repos/C++/switch/SimpleModDownloader/include/main_activity.hpp:

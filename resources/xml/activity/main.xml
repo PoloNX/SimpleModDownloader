@@ -2,22 +2,15 @@
     iconInterpolation="linear"
     footerHidden="false">
     <brls:TabFrame
-        title="@i18n/demo/title"
-        icon="@res/img/borealis_96.png">
+        title="i18n/demo/title">
 
         <!-- Dynamic tab - required to get references to the views in the code -->
-        <brls:Tab label="@i18n/tabs/components" >
+        <brls:Tab label="i18n/tabs/components" >
             <GameTab />
-        </brls:Tab>
-        
-        <brls:Tab label="@i18n/tabs/containers" >
-            <InstallTab />
         </brls:Tab>
 
         <brls:Separator />
 
-        <brls:Tab label="@i18n/tabs/about">
-            <brls:View xml="@res/xml/tabs/about.xml">
-        </brls:Tab>
+
     </brls:TabFrame>
 </brls:AppletFrame>
