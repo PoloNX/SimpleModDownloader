@@ -16,7 +16,7 @@ RecyclerCell* RecyclerCell::create() {
 // DATA SOURCE
 
 int DataSource::numberOfSections(brls::RecyclerFrame* recycler) {
-    return 1;
+    return 2;
 }
 
 int DataSource::numberOfRows(brls::RecyclerFrame* recyclern, int section) {
