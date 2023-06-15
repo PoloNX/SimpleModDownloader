@@ -1,0 +1,19 @@
+<brls:Box
+    width="auto"
+    height="auto"
+    axis="column"
+    paddingTop="@style/about/padding_top_bottom"
+    paddingBottom="@style/about/padding_top_bottom"
+    paddingLeft="@style/about/padding_sides"
+    paddingRight="@style/about/padding_sides">
+
+    <brls:Label
+        width="40%"
+        height="auto"
+        text="credit"
+        fontSize="36"
+        horizontalAlign="right"
+        verticalAlign="tob"/>
+
+
+</brls:Box>
