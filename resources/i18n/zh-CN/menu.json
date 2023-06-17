@@ -37,7 +37,7 @@
         "no_games": "在 Switch 上没有找到游戏",
         "install": "安装",
         "desc_install": "要安装模组, 你需要使用由 @nadrino 创建的 SimpleModManager。",
-        "extract": "解压完毕。要安装模组，请前往安装页面"
+        "extract": "解压完毕。要安装模组，请前往安装页面。"
     },
     
     "item": {
