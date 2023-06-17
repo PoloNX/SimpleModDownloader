@@ -68,5 +68,6 @@ If you want to help me open an issue when you encounter a bug and a pull request
 - Thanks to [Natinusala](https://github.com/natinusala) and [HamletDuFromage](https://github.com/HamletDuFromage) for [borealis](https://github.com/HamletDuFromage/borealis)
 - Thanks to [nadrino](https://github.com/nadrino) for [SimpleModManager](https://github.com/nadrino/SimpleModManager)
 - Thanks to [GameBanana](https://gamebanana.com/) for their API
+- Thanks to [Pikatsuto](https://github.com/Pikatsuto) for the logo and SuperButterScotch for the typo
 
 
