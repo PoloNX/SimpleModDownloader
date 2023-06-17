@@ -5,6 +5,8 @@
 #include "download.hpp"
 #include "confirm_page.hpp"
 #include "extract.hpp"
+
+#include "SimpleIniParser.hpp"
 #include <filesystem>
 #include <regex>
 
@@ -131,7 +133,9 @@ ModsPage::ModsPage(Mod &mod, Game& game, const std::string& search, const int& p
                         std::regex pattern(":");
                         std::string resultat = std::regex_replace(this->currentGame.title, pattern, " -");
 
-                        extract::extractEntry(fmt::format("sdmc:/config/SimpleModDownloader/{}", i.name), fmt::format("sdmc:/mods/{}/{}/contents/{}/romfs",resultat, this->currentMod.title, this->currentGame.tid));
+                        
+
+                        extract::extractEntry(fmt::format("sdmc:/config/SimpleModDownloader/{}", i.name), fmt::format("sdmc:{}{}/{}/contents/{}/romfs",utils::getModInstallPath(),resultat, this->currentMod.title, this->currentGame.tid));
                     }));
                     
                     stagedFrame->addStage(new ConfirmPage(stagedFrame, "menu/label/extract"_i18n));

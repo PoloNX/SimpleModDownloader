@@ -48,9 +48,10 @@ namespace extract {
 
         int result = archive_read_open_filename(archive, archiveFile.c_str(), 10240);
         if (result != ARCHIVE_OK) {
-            std::cout << "Failed to open zip file: " << archiveFile << std::endl;
+            std::cout << "Failed to open archive: " << archiveFile << std::endl;
             archive_read_free(archive);
             std::filesystem::remove(archiveFile);
+            ProgressEvent::instance().setStep(ProgressEvent::instance().getMax());
             return false;
         }
         struct archive_entry* entry;
@@ -62,6 +63,7 @@ namespace extract {
                 archive_read_close(archive);
                 archive_read_free(archive);
                 std::filesystem::remove(archiveFile);
+                ProgressEvent::instance().setStep(ProgressEvent::instance().getMax());
                 return false;
             }
             const char* entryName = archive_entry_pathname(entry);
@@ -92,6 +94,7 @@ namespace extract {
                     std::cout << "Failed to create output file: " << outputFilePath << std::endl;
                     archive_read_free(archive);
                     std::filesystem::remove(archiveFile);
+                    ProgressEvent::instance().setStep(ProgressEvent::instance().getMax());
                     return false;
                 }
 
