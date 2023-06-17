@@ -1,6 +1,6 @@
 {
     "main": {
-    "app_name" : "SimpleModDownloader"
+        "app_name": "SimpleModDownloader"
     },
 
     "title": {
@@ -15,8 +15,8 @@
         "about": "About"
     },
     
-    "notify" : {
-        "no_games_gamebanana" : "No games found in the GameBanana database",
+    "notify": {
+        "no_games_gamebanana": "No games found in the GameBanana database",
         "not_supported": "This format is not supported: "
     },
     
@@ -34,19 +34,19 @@
     },
     
     "label": {
-        "no_games" : "No games found on the Switch",
+        "no_games": "No games found on the Switch",
         "install": "Installation",
         "desc_install": "To install mods, you need to use the SimpleModManager application created by @nadrino.",
         "extract": "Extraction is complete. To install the mod, go to the Installation tab."
     },
     
-    "item" : {
-        "launch_smm" : "Launch SimpleModManager",
+    "item": {
+        "launch_smm": "Launch SimpleModManager",
         "download_smm": "Download SimpleModManager"
     },
     
     "mods": {
-        "mods_list_title" : "Mod List",
+        "mods_list_title": "Mod List",
         "search": "Search",
         "search_placeholder": "Enter the mod name (minimum 3 characters)",
         "cancel": "Cancel",
