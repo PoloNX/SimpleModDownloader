@@ -30,7 +30,7 @@
     "about": {
         "title": "About SimpleModDownloader",
         "description": "SimpleModDownloader is an application that allows you to download and install mods for Nintendo Switch games created by PoloNX.",
-        "thanks": "\u25c6 Thanks to @nadrino for SimpleModManager\n\u25c6 Thanks to Natinusala and HamletDuFromage for borealis\n\u25c6 Thanks to Pikatsuto for the logo and SuperButterScotch for the typography"
+        "thanks": "\u25c6 Thanks to @nadrino for SimpleModManager\n\u25c6 Thanks to Natinusala and HamletDuFromage for borealis\n\u25c6 Thanks to Pikatsuto for the logo and SuperButterScotch for the typography\n\u25c6 Thanks to NicholeMattera for Simple-INI-Parser"
     },
     
     "label": {

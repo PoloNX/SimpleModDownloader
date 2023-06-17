@@ -32,15 +32,14 @@
 
 ## Screenshot
 
-![2023061221010600](https://github.com/PoloNX/SimpleModDownloader/assets/57038157/b1a28035-2521-48de-92c0-6baa5724a958)
+![](./screenshots/1.jpg)
 
 <details>
   <summary><b>More Screenshots</b></summary>
 
-![2023061220054900](https://github.com/PoloNX/SimpleModDownloader/assets/57038157/58cab1c0-bd61-4336-8022-5023f7cccca9)
-![2023061220060000](https://github.com/PoloNX/SimpleModDownloader/assets/57038157/44dceec9-1fcd-4b02-8238-f1712e9c32a6)
-![2023061220061600](https://github.com/PoloNX/SimpleModDownloader/assets/57038157/cadbb7ad-09ec-482b-99e0-4d82fe59f164)
-![2023061220062400](https://github.com/PoloNX/SimpleModDownloader/assets/57038157/cff156e9-f9fe-4f03-a77f-8f04eab94737)
+![](./screenshots/2.jpg)
+![](./screenshots/3.jpg)
+![](./screenshots/4.jpg)
 
 </details>
 
@@ -69,5 +68,6 @@ If you want to help me open an issue when you encounter a bug and a pull request
 - Thanks to [nadrino](https://github.com/nadrino) for [SimpleModManager](https://github.com/nadrino/SimpleModManager)
 - Thanks to [GameBanana](https://gamebanana.com/) for their API
 - Thanks to [Pikatsuto](https://github.com/Pikatsuto) for the logo and SuperButterScotch for the typo
+- Thanks to [NicholeMattera](https://github.com/NicholeMattera) for [Simple-INI-Parser](https://github.com/NicholeMattera/Simple-INI-Parser)
 
 
