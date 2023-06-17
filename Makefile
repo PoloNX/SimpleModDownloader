@@ -19,6 +19,7 @@ BUILD		:=	build
 SOURCES		:=	source
 RESOURCES	:=	resources
 DATA		:=	data
+ICON        :=  resources/icon/icon-256.jpg
 INCLUDES	:=	include /lib/borealis/library/include/borealis/extern/nlohmann
 APP_TITLE	:=	SimpleModDownloader
 APP_AUTHOR	:=	PoloNX

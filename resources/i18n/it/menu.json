@@ -5,48 +5,53 @@
 
     "title": {
         "downloading_smm": "Download di SimpleModManager",
-        "downloading": "Download"
+        "downloading": "Download",
+        "extracting": "Estrazione in corso (non chiudere l'applicazione)"
     },
-
+    
     "tabs": {
         "downloads": "Download",
         "install": "Installazione",
         "about": "Informazioni"
     },
-
-    "notify": {
-        "no_games_gamebanana": "Nessun gioco trovato nel database di Gamebanana"
+    
+    "notify" : {
+        "no_games_gamebanana" : "Nessun gioco trovato nel database di GameBanana",
+        "not_supported": "Questo formato non è supportato: "
     },
-
+    
     "worker": {
         "of": "di",
-        "cancel": "Annulla"
+        "cancel": "Annulla",
+        "install": "Installazione di",
+        "remaining": "Tempo rimanente"
     },
-
+    
     "about": {
         "title": "Informazioni su SimpleModDownloader",
-        "description": "SimpleModDownloader è un'applicazione che consente di scaricare e installare mod per i giochi di Nintendo Switch, creata da PoloNX",
-        "thanks": "\u25c6 Ringraziamenti a @nadrino per SimpleModManager\n\u25c6 Ringraziamenti a Natinusala e HamletDuFromage per borealis"
+        "description": "SimpleModDownloader è un'applicazione che consente di scaricare e installare mod per i giochi di Nintendo Switch, creata da PoloNX.",
+        "thanks": "\u25c6 Ringraziamenti a @nadrino per SimpleModManager\n\u25c6 Ringraziamenti a Natinusala e HamletDuFromage per borealis\n\u25c6 Ringraziamenti a Pikatsuto per il logo e a SuperButterScotch per la tipografia"
     },
-
+    
     "label": {
-        "no_games": "Nessun gioco trovato sulla Switch",
+        "no_games" : "Nessun gioco trovato sulla Switch",
         "install": "Installazione",
-        "desc_install": "Per installare le mod, è necessario utilizzare l'applicazione SimpleModManager creata da @nadrino."
+        "desc_install": "Per installare le mod, devi utilizzare l'applicazione SimpleModManager creata da @nadrino.",
+        "extract": "L'estrazione è completata. Per installare la mod, vai alla scheda Installazione."
     },
-
-    "item": {
-        "launch_smm": "Avvia SimpleModManager",
+    
+    "item" : {
+        "launch_smm" : "Avvia SimpleModManager",
         "download_smm": "Scarica SimpleModManager"
     },
-
+    
     "mods": {
-        "mods_list_title": "Lista delle mod",
+        "mods_list_title" : "Elenco delle mod",
         "search": "Cerca",
-        "search_placeholder": "Inserisci il nome della mod",
+        "search_placeholder": "Inserisci il nome della mod (minimo 3 caratteri)",
         "cancel": "Annulla",
         "links": "Link di download",
-        "size": "Dimensioni",
+        "size": "Dimensione",
         "date": "Data",
         "images": "Visualizza immagini",
         "browser": "Apri nel browser",

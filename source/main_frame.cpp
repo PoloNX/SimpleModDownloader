@@ -11,7 +11,7 @@ MainFrame::MainFrame() {
     this->setTitle("menu/main/app_name"_i18n);
 
     //TODO : Create one icon
-    //this->setIcon(BOREALIS_ASSET("icon/icon.jpg")); 
+    this->setIcon(BOREALIS_ASSET("icon/icon.png")); 
 
     //Here we add tabs to the main frame
     this->addTab("menu/tabs/downloads"_i18n, new DownloadTab());

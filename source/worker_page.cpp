@@ -46,8 +46,8 @@ std::string formatLabelText( double speed, double fileSizeCurrent, double fileSi
     int minutes = static_cast<int>((timeRemaining - hours * 3600) / 60);
     int seconds = static_cast<int>(timeRemaining - hours * 3600 - minutes * 60);
 
-    std::string labelText = fmt::format("({:.1f} MB {} {:.1f} MB - {:.1f} MB/s) - Time Remaining: ", 
-                                        fileSizeCurrentMB, "menu/worker/of"_i18n, fileSizeFinalMB, speedMB);
+    std::string labelText = fmt::format("({:.1f} MB {} {:.1f} MB - {:.1f} MB/s) - {}: ", 
+                                        fileSizeCurrentMB, "menu/worker/of"_i18n, fileSizeFinalMB, speedMB, "menu/worker/remaining"_i18n);
 
     if (hours > 0)
         labelText += fmt::format("{}h ", hours);

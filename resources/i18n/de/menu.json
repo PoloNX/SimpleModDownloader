@@ -5,34 +5,39 @@
 
     "title": {
         "downloading_smm": "SimpleModManager herunterladen",
-        "downloading": "Herunterladen"
+        "downloading": "Herunterladen",
+        "extracting": "Extrahieren läuft (Bitte die Anwendung nicht schließen)"
     },
     
     "tabs": {
         "downloads": "Downloads",
         "install": "Installation",
-        "about": "Über"
+        "about": "Über uns"
     },
     
     "notify" : {
-        "no_games_gamebanana" : "Keine Spiele in der Gamebanana-Datenbank gefunden"
+        "no_games_gamebanana" : "Keine Spiele in der GameBanana-Datenbank gefunden",
+        "not_supported": "Dieses Format wird nicht unterstützt: "
     },
     
     "worker": {
         "of": "von",
-        "cancel": "Abbrechen"
+        "cancel": "Abbrechen",
+        "install": "Installation von",
+        "remaining": "Verbleibende Zeit"
     },
     
     "about": {
         "title": "Über SimpleModDownloader",
-        "description": "SimpleModDownloader ist eine Anwendung zum Herunterladen und Installieren von Mods für Nintendo Switch-Spiele, entwickelt von PoloNX",
-        "thanks": "\u25c6 Vielen Dank an @nadrino für SimpleModManager\n\u25c6 Vielen Dank an Natinusala und HamletDuFromage für borealis"
+        "description": "SimpleModDownloader ist eine Anwendung, die es ermöglicht, Mods für Nintendo Switch-Spiele herunterzuladen und zu installieren. Sie wurde von PoloNX erstellt.",
+        "thanks": "\u25c6 Vielen Dank an @nadrino für SimpleModManager\n\u25c6 Vielen Dank an Natinusala und HamletDuFromage für borealis\n\u25c6 Vielen Dank an Pikatsuto für das Logo und SuperButterScotch für die Typografie"
     },
     
     "label": {
         "no_games" : "Keine Spiele auf der Switch gefunden",
         "install": "Installation",
-        "desc_install": "Um Mods zu installieren, müssen Sie die Anwendung SimpleModManager verwenden, entwickelt von @nadrino."
+        "desc_install": "Um Mods zu installieren, müssen Sie die Anwendung SimpleModManager von @nadrino verwenden.",
+        "extract": "Die Extraktion ist abgeschlossen. Gehen Sie zur Installation im Installations-Tab."
     },
     
     "item" : {
@@ -43,7 +48,7 @@
     "mods": {
         "mods_list_title" : "Mod-Liste",
         "search": "Suchen",
-        "search_placeholder": "Mod-Namen eingeben",
+        "search_placeholder": "Geben Sie den Mod-Namen ein (mindestens 3 Zeichen)",
         "cancel": "Abbrechen",
         "links": "Download-Link(s)",
         "size": "Größe",
@@ -51,5 +56,5 @@
         "images": "Bilder anzeigen",
         "browser": "Im Browser öffnen",
         "author": "Autor"
-    }   
+    }
 }
