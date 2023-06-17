@@ -20,4 +20,5 @@ namespace utils {
     std::string getDescription(const int& mod_id);
     std::string convertTimestampToString(int timestamp);
     std::string formatFileSize(int size);
+    std::string getModInstallPath();
 };

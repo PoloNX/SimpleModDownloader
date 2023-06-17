@@ -1,6 +1,8 @@
 #include "utils.hpp"
 #include "download.hpp"
 #include "extract.hpp"
+#include "SimpleIniParser.hpp"
+
 #include <sstream>
 #include <iomanip>
 #include <filesystem>
@@ -10,6 +12,8 @@
 
 namespace i18n = brls::i18n;
 using namespace i18n::literals;
+
+using namespace simpleIniParser;
 
 namespace utils {
 
@@ -226,5 +230,72 @@ namespace utils {
         }
 
         return oss.str();
+    }
+
+    void writeOption(IniOption * option, bool withTab) {
+    switch (option->type) {
+        case IniOptionType::SemicolonComment:
+            std::cout << ((withTab) ? "\t" : "") << "Type: Semicolon Comment, Value: \"" << option->value << "\"\n";
+            break;
+
+        case IniOptionType::HashtagComment:
+            std::cout << ((withTab) ? "\t" : "") << "Type: Hashtag Comment, Value: \"" << option->value << "\"\n";
+            break;
+
+        default:
+            std::cout << ((withTab) ? "\t" : "") << "Type: Option, Key: \"" << option->key << "\", Value: \"" << option->value << "\"\n";
+            break;
+        }
+    }
+
+    void writeSection(IniSection * section) {
+        switch (section->type) {
+            case IniSectionType::SemicolonComment:
+                std::cout << "Type: Semicolon Comment, Value: \"" << section->value << "\"\n";
+                break;
+
+            case IniSectionType::HashtagComment:
+                std::cout << "Type: Hashtag Comment, Value: \"" << section->value << "\"\n";
+                break;
+
+            case IniSectionType::HekateCaption:
+                std::cout << "Type: Hekate Caption, Value: \"" << section->value << "\"\n";
+                break;
+
+            default:
+                std::cout << "Type: Section, Value: \"" << section->value << "\"\n";
+                break;
+        }
+
+        for (auto const& option : section->options) {
+            writeOption(option, true);
+        }
+
+        std::cout << "\n";
+    }
+
+    std::string getModInstallPath() {
+        std::filesystem::path path(std::string("sdmc:/config/SimpleModManager/parameters.ini"));
+        if(std::filesystem::exists(path)) {
+            Ini * config = Ini::parseFile(path.string());
+
+            for(auto const& option : config->options) {
+                writeOption(option, false);
+            }
+
+            if (config->options.size() > 0) {
+                std::cout << "\n";
+            }
+
+            for (auto const& section : config->sections) {
+                writeSection(section);
+            }
+
+            IniOption * path = config->findFirstOption("stored-mods-base-folder");
+
+            std::cout << path->key << " = " << path->value << "\n";
+            return path->value;
+        }
+        return "/mods/";
     }
 }
