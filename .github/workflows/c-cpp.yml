@@ -14,6 +14,7 @@ jobs:
     - name: update repo
       run: |
         git config --global --add safe.directory /__w/SimpleModDownloader/SimpleModDownloader/lib/borealis
+        git config --global --add safe.directory /__w/SimpleModDownloader/SimpleModDownloader/lib/ini
         git config --global --add safe.directory /__w/SimpleModDownloader/SimpleModDownloader
         git submodule update --init --recursive
   
