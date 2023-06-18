@@ -5,6 +5,7 @@
 
     "title": {
         "downloading_smm": "Downloading SimpleModManager",
+        "downloading_smd": "Downloading SimpleModDownloader",
         "downloading": "Downloading",
         "extracting": "Extracting in progress (do not close the application)"
     },
@@ -12,6 +13,7 @@
     "tabs": {
         "downloads": "Downloads",
         "install": "Installation",
+        "update": "Update App",
         "about": "About"
     },
     
@@ -37,12 +39,19 @@
         "no_games": "No games found on the Switch",
         "install": "Installation",
         "desc_install": "To install mods, you need to use the SimpleModManager application created by @nadrino.",
-        "extract": "Extraction is complete. To install the mod, go to the Installation tab."
+        "extract": "Extraction is complete. To install the mod, go to the Installation tab.",
+        "update": "Update App",
+        "new_update": "\u25c6Current version :",
+        "available_version" : "\u25c6 Available version :",
+        "restart_smd": "Restart SimpleModDownloader to apply the update.",
+        "no_internet": "No internet connection.",
+        "desc_smd": "\u25c6 You can update the app you're using on your switch"
     },
     
     "item": {
         "launch_smm": "Launch SimpleModManager",
-        "download_smm": "Download SimpleModManager"
+        "download_smm": "Download SimpleModManager",
+        "download_smd": "Download SimpleModDownloader"
     },
     
     "mods": {

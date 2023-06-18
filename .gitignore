@@ -4,3 +4,7 @@ SimpleModDownloader.nro
 SimpleModDownloader.nacp
 SimpleModDownloader.lst
 .vscode
+forwarder/forwarder.nro
+forwarder/forwarder.nacp
+forwarder/forwarder.elf
+forwarder\build

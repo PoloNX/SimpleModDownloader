@@ -298,4 +298,74 @@ namespace utils {
         }
         return "/mods/";
     }
+
+    std::vector<int> split_version(const std::string& version) {
+        std::vector<int> components;
+        std::string::size_type pos = 0;
+        while (pos < version.size()) {
+            std::string::size_type next_pos = version.find('.', pos);
+            if (next_pos == std::string::npos) {
+                next_pos = version.size();
+            }
+            std::string component_str = version.substr(pos, next_pos - pos);
+            int component = std::stoi(component_str);
+            components.push_back(component);
+            pos = next_pos + 1;
+        }
+        return components;
+    }
+
+    bool is_older_version(const std::string& version1, const std::string version2) {
+        std::vector<int> components1 = split_version(version1);
+        std::vector<int> components2 = split_version(version2);
+
+        // Compare the components of the versions
+        for (size_t i = 0; i < components1.size(); i++) {
+            if (components1[i] < components2[i]) {
+                return true;
+            } else if (components1[i] > components2[i]) {
+                return false;
+            }
+        }
+
+        // If all components are equal, the versions are the same
+        return false;
+    }
+    
+    bool cp(char *filein, char *fileout) {
+        FILE *exein, *exeout;
+        exein = fopen(filein, "rb");
+        if (exein == NULL) {
+            /* handle error */
+            perror("file open for reading");
+            return false;
+        }
+        exeout = fopen(fileout, "wb");
+        if (exeout == NULL) {
+            /* handle error */
+            perror("file open for writing");
+            return false;
+        }
+        size_t n, m;
+        unsigned char buff[8192];
+        do {
+            n = fread(buff, 1, sizeof buff, exein);
+            if (n) m = fwrite(buff, 1, n, exeout);
+            else   m = 0;
+        }
+        while ((n > 0) && (n == m));
+        if (m) {
+            perror("copy");
+            return false;
+        }
+        if (fclose(exeout)) {
+            perror("close output file");
+            return false;
+        }
+        if (fclose(exein)) {
+            perror("close input file");
+            return false;
+        }
+        return true;
+    }
 }

@@ -1,10 +1,13 @@
 #include "confirm_page.hpp"
 #include "main_frame.hpp"
+#include "utils.hpp"
+#include "constants.hpp"
+#include <switch.h>
 
 namespace i18n = brls::i18n;
 using namespace i18n::literals;
 
-ConfirmPage::ConfirmPage(brls::StagedAppletFrame* frame, const std::string& text) : frame(frame), text(text) {
+ConfirmPage::ConfirmPage(brls::StagedAppletFrame* frame, const std::string& text, const bool& restart) : frame(frame), text(text) {
     this->button = new brls::Button(brls::ButtonStyle::REGULAR);
     this->button->setLabel("brls/hints/ok"_i18n);
     this->button->setParent(this);
@@ -13,8 +16,14 @@ ConfirmPage::ConfirmPage(brls::StagedAppletFrame* frame, const std::string& text
     this->label->setHorizontalAlign(NVG_ALIGN_CENTER);
     this->label->setParent(this);
 
-    this->button->getClickEvent()->subscribe([this](brls::View* view){
-        if(!this->frame->isLastStage()) {
+    this->button->getClickEvent()->subscribe([this, restart](brls::View* view){
+        if(restart) {
+            utils::cp("romfs:/forwarder/forwarder.nro", "sdmc:/config/SimpleModDownloader/forwarder.nro");
+            envSetNextLoad(FORWARDER_PATH.c_str(), fmt::format("\"{}\"", FORWARDER_PATH).c_str());
+            romfsExit();
+            brls::Application::quit();
+        }
+        else if(!this->frame->isLastStage()) {
             this->frame->nextStage();
         }
         else {
