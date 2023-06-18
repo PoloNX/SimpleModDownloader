@@ -1,0 +1,60 @@
+{
+    "main": {
+        "app_name": "SimpleModDownloader"
+    },
+
+    "title": {
+        "downloading_smm": "SimpleModManager se descarcă",
+        "downloading": "În curs de descărcare",
+        "extracting": "În curs de extragere (nu închide aplicația)"
+    },
+    
+    "tabs": {
+        "downloads": "Descărcări",
+        "install": "Instalare",
+        "about": "Despre"
+    },
+    
+    "notify": {
+        "no_games_gamebanana": "Niciun joc nu a fost găsit în baza de date GameBanana",
+        "not_supported": "Acest format nu este susținut: "
+    },
+    
+    "worker": {
+        "of": "din",
+        "cancel": "Anulează",
+        "install": "În curs de instalare",
+        "remaining": "Timp rămas"
+    },
+    
+    "about": {
+        "title": "Despre SimpleModDownloader",
+        "description": "SimpleModDownloader este o aplicație care îți permite să descarci și instalezi mod-uri de jocuri de Nintendo Switch creat de PoloNX.",
+        "thanks": "\u25c6 Mulțumim @nadrino pentru SimpleModManager\n\u25c6 Mulțumim Natinusala și HamletDuFromage pentru borealis\n\u25c6 Mulțumim Pikatsuto pentru logo și SuperButterScotch pentru tipografie\n\u25c6 Mulțumim NicholeMattera pentru Simple-INI-Parser"
+    },
+    
+    "label": {
+        "no_games": "Niciun joc găsit în Switch",
+        "install": "Instalare",
+        "desc_install": "Pentru a instala mod-uri, trebuie să folosești aplicația SimpleModManager creată de @nadrino.",
+        "extract": "Extragerea este completă. Pentru a instala mod-ul, mergi la fila de Instalare."
+    },
+    
+    "item": {
+        "launch_smm": "Deschide SimpleModManager",
+        "download_smm": "Descarcă SimpleModManager"
+    },
+    
+    "mods": {
+        "mods_list_title": "Listă de Mod-uri",
+        "search": "Caută",
+        "search_placeholder": "Scrie numele mod-ului (minim 3 caractere)",
+        "cancel": "Anulează",
+        "links": "Link(uri) de Instalare",
+        "size": "Mărime",
+        "date": "Dată",
+        "images": "Vezi Imagini",
+        "browser": "Deschide în Browser",
+        "author": "Autor"
+    }
+}
