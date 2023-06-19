@@ -38,21 +38,6 @@ namespace utils {
 
         *langentry = NULL;
 
-        rc = setInitialize();
-        if (R_FAILED(rc))
-            return rc;
-
-        if (Language < 0)
-            rc = MAKERESULT(Module_Libnx, LibnxError_BadInput);
-
-        if (R_SUCCEEDED(rc) && Language >= 15)
-            Language = SetLanguage_ENUS;//Use ENUS for unsupported system languages.
-
-        setExit();
-
-        if (R_FAILED(rc))
-            return rc;
-
         entry = &nacp->lang[SetLanguage_ENUS];
 
         if (entry->name[0]==0 && entry->author[0]==0) {
