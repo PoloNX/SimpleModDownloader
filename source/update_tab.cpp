@@ -30,7 +30,7 @@ UpdateTab::UpdateTab() {
         this->label = new brls::Label(brls::LabelStyle::DESCRIPTION, fmt::format("{}\n{} {}\n{} {}", "menu/label/desc_smd"_i18n,"menu/label/new_update"_i18n, APP_VER, "menu/label/available_version"_i18n, this->version), true);
         this->addView(label);
 
-        item = new brls::ListItem("menu/item/download_smd"_i18n, "", fmt::format("url : {}", this->nro_url));
+        item = new brls::ListItem("menu/item/download_smd"_i18n, "", fmt::format("{} : {}","menu/label/url"_i18n ,this->nro_url));
         item->setHeight(100);
 
         item->getClickEvent()->subscribe([this](brls::View* view){

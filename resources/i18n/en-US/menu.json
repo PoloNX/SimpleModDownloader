@@ -46,7 +46,8 @@
         "restart_smd": "Restart SimpleModDownloader to apply the update.",
         "no_internet": "No internet connection.",
         "desc_smd": "\u25c6 You can update the app you're using on your switch",
-        "path": "Path"
+        "path": "Path",
+        "url": "Url"
     },
     
     "item": {
