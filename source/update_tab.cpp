@@ -17,8 +17,8 @@ UpdateTab::UpdateTab() {
     this->label->setHorizontalAlign(NVG_ALIGN_CENTER);
     this->addView(label);
 
-    this->label = new brls::Label(brls::LabelStyle::DESCRIPTION, "menu/label/desc_smd"_i18n, true);
-    this->addView(label);
+    //this->label = new brls::Label(brls::LabelStyle::DESCRIPTION, "menu/label/desc_smd"_i18n, true);
+    //this->addView(label);
 
     this->json = net::downloadRequest(SimpleModDownloader_API);
     
@@ -27,35 +27,30 @@ UpdateTab::UpdateTab() {
     if(this->json.size()) {
         this->version = this->json.at("tag_name").get<std::string>();
         this->nro_url = this->json.at("assets")[0].at("browser_download_url").get<std::string>();
-        if (utils::is_older_version(APP_VER, version)) {
-            this->label = new brls::Label(brls::LabelStyle::DESCRIPTION, fmt::format("{} {}\n{} {}","menu/label/new_update"_i18n, APP_VER, "menu/label/available_version"_i18n, this->version), true);
-            this->addView(label);
+        this->label = new brls::Label(brls::LabelStyle::DESCRIPTION, fmt::format("{}\n{} {}\n{} {}", "menu/label/desc_smd"_i18n,"menu/label/new_update"_i18n, APP_VER, "menu/label/available_version"_i18n, this->version), true);
+        this->addView(label);
 
-            item = new brls::ListItem("menu/item/download_smd"_i18n, "", fmt::format("url : {}", this->nro_url));
-            item->setHeight(100);
+        item = new brls::ListItem("menu/item/download_smd"_i18n, "", fmt::format("url : {}", this->nro_url));
+        item->setHeight(100);
 
-            item->getClickEvent()->subscribe([this](brls::View* view){
-                brls::StagedAppletFrame* staggedFrame = new brls::StagedAppletFrame();
-                staggedFrame->setTitle("menu/title/downloading_smd"_i18n);
+        item->getClickEvent()->subscribe([this](brls::View* view){
+            brls::StagedAppletFrame* staggedFrame = new brls::StagedAppletFrame();
+            staggedFrame->setTitle("menu/title/downloading_smd"_i18n);
 
-                staggedFrame->addStage(new WorkerPage(staggedFrame, "menu/title/downloading_smd"_i18n, [this](){
-                    net::downloadFile(this->nro_url, SimpleModDownloader_PATH);
-                }));
+            staggedFrame->addStage(new WorkerPage(staggedFrame, "menu/title/downloading_smd"_i18n, [this](){
+                net::downloadFile(this->nro_url, SimpleModDownloader_PATH);
+            }));
 
-                staggedFrame->addStage(new ConfirmPage(staggedFrame, "menu/label/restart_smd"_i18n, true));
+            staggedFrame->addStage(new ConfirmPage(staggedFrame, "menu/label/restart_smd"_i18n, true));
 
-                brls::Application::pushView(staggedFrame);
-            });
+            brls::Application::pushView(staggedFrame);
+        });
 
-            this->addView(item);
-        }
-        else {
-            this->label = new brls::Label(brls::LabelStyle::DESCRIPTION, fmt::format("{} {}\n{} {}","menu/label/new_update"_i18n, APP_VER, "menu/label/available_version"_i18n, this->version), true);
-            this->addView(label);
-        }
+        this->addView(item);
+        
     }
     else {
-        this->label = new brls::Label(brls::LabelStyle::REGULAR, "menu/label/no_internet"_i18n, true);
+        this->label = new brls::Label(brls::LabelStyle::DESCRIPTION, fmt::format("{}\n{}","menu/label/desc_smd"_i18n ,"menu/label/no_internet"_i18n), true);
         this->addView(label);
     }
 

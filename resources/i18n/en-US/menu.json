@@ -41,11 +41,12 @@
         "desc_install": "To install mods, you need to use the SimpleModManager application created by @nadrino.",
         "extract": "Extraction is complete. To install the mod, go to the Installation tab.",
         "update": "Update App",
-        "new_update": "\u25c6Current version :",
+        "new_update": "\u25c6 Current version :",
         "available_version" : "\u25c6 Available version :",
         "restart_smd": "Restart SimpleModDownloader to apply the update.",
         "no_internet": "No internet connection.",
-        "desc_smd": "\u25c6 You can update the app you're using on your switch"
+        "desc_smd": "\u25c6 You can update the app you're using on your switch",
+        "path": "Path"
     },
     
     "item": {
