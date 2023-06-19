@@ -138,6 +138,10 @@ namespace utils {
     }
 
     nlohmann::json getMods(const int& gameID, const std::string&search, const int& page) {
+        if (search.size() < 3) {
+            brls::Application::notify("menu/notify/string_to_short"_i18n);
+            return getMods(gameID, page);
+        }
         std::string search_term = replaceSpacesWithPlus(search);
         const std::string api_url = fmt::format("https://gamebanana.com/apiv11/Game/{}/Subfeed?_nPage={}&_nPerpage=50&_sName={}&_csvModelInclusions=Mod", std::to_string(gameID),std::to_string(page), search_term);
         nlohmann::json mods = net::downloadRequest(api_url);
