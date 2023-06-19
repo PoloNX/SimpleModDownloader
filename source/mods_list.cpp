@@ -109,6 +109,8 @@ ModsPage::ModsPage(Mod &mod, Game& game, const std::string& search, const int& p
 
     this->list->addView(this->label);
 
+    //Prevent "/" in the name of the mod (for example : "Sonic/Shadow")
+    this->currentMod.title.erase(std::remove(this->currentMod.title.begin(), this->currentMod.title.end(), '/'), this->currentMod.title.end());
 
     /*-------------------------------------------------*/
     //Create one item for downloading
@@ -119,11 +121,13 @@ ModsPage::ModsPage(Mod &mod, Game& game, const std::string& search, const int& p
 
             this->listItem->getClickEvent()->subscribe([this, i](brls::View* view) {
                 std::string extension = i.name.substr(i.name.find_last_of(".") + 1);
-                if(extension == "zip" || extension == "rar" || extension == "7z"){
+                if(extension == "zip" || extension == "7z"){
+                    
+                    
                     auto* stagedFrame = new brls::StagedAppletFrame();
 
                     stagedFrame->setTitle(fmt::format("{} {}","menu/worker/install"_i18n, i.name));
-
+                    
                     stagedFrame->addStage(new WorkerPage(stagedFrame, "menu/title/downloading"_i18n, [this, i]() {
                         net::downloadFile( i.url, fmt::format("sdmc:/config/SimpleModDownloader/{}", i.name));
                     }));

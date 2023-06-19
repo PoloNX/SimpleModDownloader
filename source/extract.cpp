@@ -35,7 +35,7 @@ namespace extract {
         chdir("sdmc:/");
         struct archive* archive = archive_read_new();
 
-        std::string extension = archiveFile.substr(archiveFile.find_last_of(".") + 1);
+        /*std::string extension = archiveFile.substr(archiveFile.find_last_of(".") + 1);
         if (extension == "zip") {
             archive_read_support_format_zip(archive);
         }
@@ -44,10 +44,11 @@ namespace extract {
         }
         else if (extension == "7z") {
             archive_read_support_format_7zip(archive);
-        }
-
+        }*/
+        archive_read_support_format_all(archive);
         int result = archive_read_open_filename(archive, archiveFile.c_str(), 10240);
         if (result != ARCHIVE_OK) {
+            std::cout << result << std::endl;
             std::cout << "Failed to open archive: " << archiveFile << std::endl;
             archive_read_free(archive);
             std::filesystem::remove(archiveFile);
