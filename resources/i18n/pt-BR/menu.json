@@ -1,0 +1,72 @@
+{
+    "main": {
+        "app_name": "SimpleModDownloader"
+    },
+
+    "title": {
+        "downloading_smm": "Baixando o SimpleModManager",
+        "downloading_smd": "Baixando o SimpleModDownloader",
+        "downloading": "Baixando",
+        "extracting": "Extração em andamento (não feche o aplicativo)"
+    },
+
+    "tabs": {
+        "downloads": "Downloads",
+        "install": "Instalação",
+        "update": "Atualizar Aplicativo",
+        "about": "Sobre"
+    },
+
+    "notify": {
+        "no_games_gamebanana": "Nenhum jogo encontrado no banco de dados GameBanana",
+        "not_supported": "Este formato não é suportado: ",
+        "string_to_short": "A frase de pesquisa deve ter pelo menos 3 caracteres"
+    },
+
+    "worker": {
+        "of": "de",
+        "cancel": "Cancelar",
+        "install": "Instalando",
+        "remaining": "Tempo restante"
+    },
+
+    "about": {
+        "title": "Sobre o SimpleModDownloader",
+        "description": "SimpleModDownloader é um aplicativo que permite baixar e instalar mods para jogos do Nintendo Switch criado por PoloNX.",
+        "thanks": "\u25c6 Agradecimentos a @nadrino pelo SimpleModManager\n\u25c6 Agradecimentos a Natinusala e HamletDuFromage pelo borealis\n\u25c6 Agradecimentos a Pikatsuto pelo logotipo e SuperButterScotch pela tipografia\n\u25c6 Agradecimentos a NicholeMattera pelo Simple-INI-Parser"
+    },
+
+    "label": {
+        "no_games": "Nenhum jogo encontrado no Switch",
+        "install": "Instalação",
+        "desc_install": "Para instalar mods, você precisa usar o aplicativo SimpleModManager criado por @nadrino.",
+        "extract": "Extração concluída. Para instalar o mod, vá para a guia Instalação.",
+        "update": "Atualizar Aplicativo",
+        "new_update": "\u25c6 Versão atual:",
+        "available_version": "\u25c6 Versão disponível:",
+        "restart_smd": "Reinicie o SimpleModDownloader para aplicar a atualização.",
+        "no_internet": "Sem conexão com a internet.",
+        "desc_smd": "\u25c6 Você pode atualizar o aplicativo que você está usando no seu Switch",
+        "path": "Caminho",
+        "url": "URL"
+    },
+
+    "item": {
+        "launch_smm": "Iniciar o SimpleModManager",
+        "download_smm": "Baixar o SimpleModManager",
+        "download_smd": "Baixar o SimpleModDownloader"
+    },
+
+    "mods": {
+        "mods_list_title": "Lista de Mods",
+        "search": "Pesquisar",
+        "search_placeholder": "Digite o nome do mod (mínimo de 3 caracteres)",
+        "cancel": "Cancelar",
+        "links": "Link(s) de Download",
+        "size": "Tamanho",
+        "date": "Data",
+        "images": "Ver Imagens",
+        "browser": "Abrir no Navegador",
+        "author": "Autor"
+    }
+}
