@@ -5,7 +5,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  SimpleModDownloader:
+  build:
+    name: SimpleModDownloader
+    
     runs-on: ubuntu-latest
     container: devkitpro/devkita64
     steps:
