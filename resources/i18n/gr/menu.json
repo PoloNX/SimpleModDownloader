@@ -1,0 +1,72 @@
+{
+    "main": {
+        "app_name": "SimpleModDownloader"
+    },
+
+    "title": {
+        "downloading_smm": "Λήψη SimpleModManager",
+        "downloading_smd": "Λήψη SimpleModDownloader",
+        "downloading": "Λήψη",
+        "extracting": "Εξαγωγή (μην κλείσετε την εφαρμογή)"
+    },
+    
+    "tabs": {
+        "downloads": "Λήψεις",
+        "install": "Εγκατάσταση",
+        "update": "Ενημέρωση Εφαρμογής",
+        "about": "Σχετικά"
+    },
+    
+    "notify": {
+        "no_games_gamebanana": "Δεν βρέθηκαν παιχνίδια στη βάση δεδομένων GameBanana",
+        "not_supported": "Αυτή η μορφή αρχείου δεν υποστηρίζεται: ",
+        "string_to_short": "Η λέξη αναζήτησης πρέπει να αποτελείται τουλάχιστον από 3 χαρακτήρες"
+    },
+    
+    "worker": {
+        "of": "του",
+        "cancel": "Ακύρωση",
+        "install": "Εγκατάσταση",
+        "remaining": "Υπολειπόμενος χρόνος"
+    },
+    
+    "about": {
+        "title": "Πληροφορίες για το SimpleModDownloader",
+        "description": "Το SimpleModDownloader είναι μια εφαρμογή που σας επιτρέπει να κάνετε λήψη και εγκατάσταση mods για παιχνίδια του Nintendo Switch και έχει δημιουργηθεί από τον PoloNX.",
+        "thanks": "\u25c6 Ευχαριστώ τον @nadrino για το SimpleModManager\n\u25c6 Ευχαριστώ τον Natinusala και τον HamletDuFromage για το borealis\n\u25c6 Ευχαριστώ τον Pikatsuto για το λογότυπο και τον SuperButterScotch για την τυπογραφία\n\u25c6 Ευχαριστώ τη NicholeMattera για το Simple-INI-Parser"
+    },
+    
+    "label": {
+        "no_games": "Δεν βρέθηκαν παιχνίδια στο Switch",
+        "install": "Εγκατάσταση",
+        "desc_install": "Για να εγκαταστήσετε τα mods, πρέπει να χρησιμοποιήσετε την εφαρμογή SimpleModManager του @nadrino.",
+        "extract": "Η εξαγωγή έχει ολοκληρωθεί. Για να εγκαταστήσετε το mod, μεταβείτε στην επιλογή Εγκατάσταση.",
+        "update": "Ενημέρωση Εφαρμογής",
+        "new_update": "\u25c6 Τρέχουσα έκδοση :",
+        "available_version" : "\u25c6 Διαθέσιμη έκδοση :",
+        "restart_smd": "Επανεκκινήστε το SimpleModDownloader για να εφαρμόσετε την ενημέρωση.",
+        "no_internet": "Δεν υπάρχει σύνδεση στο διαδίκτυο.",
+        "desc_smd": "\u25c6 Μπορείτε να ενημερώσετε την εφαρμογή που χρησιμοποιείτε στο switch σας",
+        "path": "Διαδρομή",
+        "url": "Url"
+    },
+    
+    "item": {
+        "launch_smm": "Εκκίνηση του SimpleModManager",
+        "download_smm": "Λήψη SimpleModManager",
+        "download_smd": "Λήψη SimpleModDownloader"
+    },
+    
+    "mods": {
+        "mods_list_title": "Λίστα Mod",
+        "search": "Αναζήτηση",
+        "search_placeholder": "Εισαγάγετε το όνομα του mod (τουλάχιστον 3 χαρακτήρες)",
+        "cancel": "Ακύρωση",
+        "links": "Σύνδεσμος λήψης",
+        "size": "Μέγεθος",
+        "date": "Ημερομηνία",
+        "images": "Προβολή εικόνων",
+        "browser": "Άνοιγμα σε πρόγραμμα περιήγησης",
+        "author": "Δημιουργός"
+    }
+}
