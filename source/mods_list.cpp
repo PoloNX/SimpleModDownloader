@@ -95,6 +95,8 @@ void ModsList::createList(){
     });
     this->registerAction("", brls::Key::B, [] { brls::Application::pushView(new MainFrame()); return 0;});
 
+    this->setFooterText(fmt::format("{} : {}", "menu/mods/page",  this->page));
+
 }
 
 ModsPage::ModsPage(Mod &mod, Game& game, const std::string& search, const int& page) : AppletFrame(true, true), currentMod(mod), currentGame(game), page(page) {
