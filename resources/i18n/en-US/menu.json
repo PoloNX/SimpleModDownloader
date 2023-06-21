@@ -67,6 +67,7 @@
         "date": "Date",
         "images": "View Images",
         "browser": "Open in Browser",
-        "author": "Author"
+        "author": "Author",
+        "page": "Page"
     }
 }
