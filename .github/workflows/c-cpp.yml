@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     container: devkitpro/devkita64
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     
     - name: update repo
       run: |
@@ -26,7 +26,26 @@ jobs:
       run: | 
         make
       
-    - uses: actions/upload-artifact@master
+    - name: Set check status
+      uses: actions/github-script@v4
+      with:
+        script: |
+          const token = process.env.GITHUB_TOKEN;
+          const octokit = github.getOctokit(token);
+          octokit.checks.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            name: 'Build Status',
+            head_sha: context.sha,
+            status: 'completed',
+            conclusion: 'success',
+            output: {
+              title: 'Build Successful',
+              summary: 'The project compiled successfully.'
+            }
+          });
+      
+    - uses: actions/upload-artifact@v2
       with:
         name: SimpleModDownloader
         path: SimpleModDownloader.nro
