@@ -173,15 +173,15 @@ ModsPage::ModsPage(Mod &mod, Game& game, const std::string& search, const int& p
     this->listItem->setHeight(50);
 
     this->listItem->getClickEvent()->subscribe([this, search](brls::View* view) {
-            std::cout << this->currentMod.json.dump(4) << std::endl;
+        std::cout << this->currentMod.json.dump(4) << std::endl;
         //auto imagesArray = this->currentMod.json.at("_aRecords").at("_aPreviewMedia").at("_aImages");
         //brls::Logger::debug("imagesArray : {}", imagesArray.size());
         if(this->currentMod.json.at("_aPreviewMedia").contains("_aMetadata")) {
             if(this->currentMod.json.at("_aPreviewMedia").at("_aMetadata").contains("_sAudioUrl")) {
                 std::string url = this->currentMod.json.at("_aPreviewMedia").at("_aMetadata").at("_sAudioUrl").get<std::string>();
-                //std::vector<unsigned char> buffer;
-                //net::downloadImage(url, buffer);
-                brls::Application::pushView(new AudioPreview());
+                std::vector<unsigned char> buffer;
+                net::downloadImage(url, buffer);
+                brls::Application::pushView(new AudioPreview(buffer));
                 return 0;
             }
         }
@@ -192,6 +192,7 @@ ModsPage::ModsPage(Mod &mod, Game& game, const std::string& search, const int& p
                 brls::Application::pushView(new ImagesViewer(this->currentMod, this->currentGame, search, this->page));
             else
                 brls::Application::pushView(new ImagesViewer(this->currentMod, this->currentGame, this->page));
+            return 0;
         }
     });
 
