@@ -5,10 +5,12 @@
 #include "download.hpp"
 #include "confirm_page.hpp"
 #include "extract.hpp"
+#include "audio_preview.hpp"
 
 #include "SimpleIniParser.hpp"
 #include <filesystem>
 #include <regex>
+#include <iostream>
 
 namespace i18n = brls::i18n;
 using namespace i18n::literals;
@@ -95,11 +97,13 @@ void ModsList::createList(){
     });
     this->registerAction("", brls::Key::B, [] { brls::Application::pushView(new MainFrame()); return 0;});
 
-    this->setFooterText(fmt::format("{} : {}", "menu/mods/page",  this->page));
+    this->setFooterText(fmt::format("{} : {}", "menu/mods/page"_i18n,  this->page));
 
 }
 
 ModsPage::ModsPage(Mod &mod, Game& game, const std::string& search, const int& page) : AppletFrame(true, true), currentMod(mod), currentGame(game), page(page) {
+
+    
     this->updateActionHint(brls::Key::B, "");
     this->updateActionHint(brls::Key::PLUS, "");
 
@@ -169,12 +173,26 @@ ModsPage::ModsPage(Mod &mod, Game& game, const std::string& search, const int& p
     this->listItem->setHeight(50);
 
     this->listItem->getClickEvent()->subscribe([this, search](brls::View* view) {
-        this->currentMod.images = utils::getModsImages(this->currentMod.json, 0, this->currentMod.sizeBigImage);
-        this->currentMod.currentBigImage = 0;
-        if (search !="")
-            brls::Application::pushView(new ImagesViewer(this->currentMod, this->currentGame, search, this->page));
-        else
-            brls::Application::pushView(new ImagesViewer(this->currentMod, this->currentGame, this->page));
+            std::cout << this->currentMod.json.dump(4) << std::endl;
+        //auto imagesArray = this->currentMod.json.at("_aRecords").at("_aPreviewMedia").at("_aImages");
+        //brls::Logger::debug("imagesArray : {}", imagesArray.size());
+        if(this->currentMod.json.at("_aPreviewMedia").contains("_aMetadata")) {
+            if(this->currentMod.json.at("_aPreviewMedia").at("_aMetadata").contains("_sAudioUrl")) {
+                std::string url = this->currentMod.json.at("_aPreviewMedia").at("_aMetadata").at("_sAudioUrl").get<std::string>();
+                //std::vector<unsigned char> buffer;
+                //net::downloadImage(url, buffer);
+                brls::Application::pushView(new AudioPreview());
+                return 0;
+            }
+        }
+        else if (this->currentMod.json.at("_aPreviewMedia").contains("_aImages")) {
+            this->currentMod.images = utils::getModsImages(this->currentMod.json, 0, this->currentMod.sizeBigImage);
+            this->currentMod.currentBigImage = 0;
+            if (search !="")
+                brls::Application::pushView(new ImagesViewer(this->currentMod, this->currentGame, search, this->page));
+            else
+                brls::Application::pushView(new ImagesViewer(this->currentMod, this->currentGame, this->page));
+        }
     });
 
     this->list->addView(this->listItem);
