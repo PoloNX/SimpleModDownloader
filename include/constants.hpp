@@ -22,7 +22,7 @@ const std::vector<std::pair<std::string, std::string>> goodGamesName = {
     {"Pokémon Scarlet", "Pokemon Scarlet & Violet"},
     {"Pokémon Violet", "Pokemon Scarlet & Violet"},
     {"Miitopia", "Miitopia (Switch)"},
-    {"Super Meat Boy", "Super Meat Boy (Nintendo Switch)"}    
+    {"Super Meat Boy", "Super Meat Boy (Nintendo Switch)"},  
     {"UNDERTAILE", "UNDERTALE (Switch)"},
     {"Fairy Tail", "Fairy Tail (Switch)"},
     {"Sonic Frontiers", "Sonic Frontiers (Switch)"},
