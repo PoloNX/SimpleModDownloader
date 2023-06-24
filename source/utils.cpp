@@ -99,6 +99,14 @@ namespace utils {
     }
 
     nlohmann::json searchGames(std::string gameTitle) {
+        for (auto i : goodGamesName) {
+            if (i.first == gameTitle) {
+                gameTitle = i.second;
+                break;
+            }
+        }
+        brls::Logger::info("Game title: {}", gameTitle);
+
         gameTitle = replaceSpacesWithPlus(gameTitle);
 
         const std::string api_url = fmt::format("https://gamebanana.com/apiv11/Util/Game/NameMatch?_sName={}", gameTitle);

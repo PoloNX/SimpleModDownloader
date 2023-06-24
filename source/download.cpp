@@ -126,6 +126,7 @@ namespace net {
             jsonResponse = nlohmann::json::parse(response);
         
         curl_easy_cleanup(curl);
+        curl_global_cleanup();
         return jsonResponse;
     }
 
