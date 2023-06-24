@@ -3,9 +3,9 @@
 #include <string>
 #include <vector>
 #include <borealis.hpp>
+#include <chrono>
 
-#include <AL/al.h>
-#include <AL/alc.h>
+#include <SDL2/SDL_mixer.h>
 class AudioPreview : public brls::View {
     public:
         AudioPreview(std::vector<unsigned char>& buffer);
@@ -24,10 +24,14 @@ class AudioPreview : public brls::View {
         void play();
         void stop();
 
-        float currentTime;
-
-        ALuint sourceID;
+        Mix_Music* music;
         int volume;
-        bool playing;
-        bool paused;
+
+        bool paused = true;
+
+        std::chrono::_V2::steady_clock::time_point start;
+        std::chrono::_V2::steady_clock::time_point end;
+        std::chrono::duration<float> currentTime;
+
+        float totalTime;
 };

@@ -3,9 +3,9 @@
 #include <stdexcept>
 #include <iostream>
 #include <fstream>
+#include <chrono>
 
-
-
+#include <mpg123.h>
 
 constexpr int BUTTON_WIDTH = 200;
 constexpr int BUTTON_HEIGHT = 100;
@@ -49,57 +49,44 @@ AudioPreview::AudioPreview(std::vector<unsigned char>& buffer) {
     tempFile.write(reinterpret_cast<const char*>(buffer.data()), buffer.size());
     tempFile.close();
 
-    ALCdevice* device = alcOpenDevice(nullptr);
-    if (!device) {
-        // Gestion de l'erreur en cas d'échec de l'ouverture du périphérique audio
-        brls::Logger::error("Failed to open audio device");
-        return;
-    }
+    Mix_Init(MIX_INIT_MP3);
 
-    ALCcontext* context = alcCreateContext(device, nullptr);
-    if (!context) {
-        // Gestion de l'erreur en cas d'échec de la création du contexte audio
-        brls::Logger::error("Failed to create audio context");
-        alcCloseDevice(device);
-        return;
-    }
+    Mix_OpenAudio(22050, AUDIO_S16SYS, 2, 640);
+    music = Mix_LoadMUS(tempFilePath.c_str());
 
-    if (!alcMakeContextCurrent(context)) {
-        // Gestion de l'erreur en cas d'échec de la définition du contexte audio actuel
-        brls::Logger::error("Failed to make audio context current");
-        alcDestroyContext(context);
-        alcCloseDevice(device);
-        return;
-    }
+    mpg123_init();
+    mpg123_handle* handle = mpg123_new(nullptr, nullptr);
+    mpg123_open(handle, tempFilePath.c_str());
 
-    ALenum alError = alGetError();
-    if (alError != AL_NO_ERROR) {
-        // Gestion de l'erreur en cas d'erreur OpenAL
-        brls::Logger::error("OpenAL error: {}", alGetString(alError));
-        alcMakeContextCurrent(nullptr);
-        alcDestroyContext(context);
-        alcCloseDevice(device);
-        return;
-    }
+    int channel, encoding;
+    long rate;
 
-    ALuint bufferID;
-    alGenBuffers(1, &bufferID);
-    alBufferData(bufferID, AL_FORMAT_MONO16, buffer.data(), buffer.size(), 44100);
+    mpg123_getformat(handle, &rate, &channel, &encoding);
 
-    alGenSources(1, &sourceID);
-    alSourcei(sourceID, AL_BUFFER, bufferID);
+    off_t totalFrames = mpg123_length(handle);
+    totalTime = (float)totalFrames/rate;
 
-    this->progressDisplay = new brls::ProgressDisplay();
+    mpg123_close(handle);
+    mpg123_delete(handle);
+    mpg123_exit();
+
+    this->progressDisplay = new brls::ProgressDisplay(brls::PERCENTAGE_ONLY_PROGRESS_DISPLAY_FLAGS);
     this->progressDisplay->setParent(this);
 }
 
 void AudioPreview::play() {
-    alSourcePlay(this->sourceID);
-    //brls::Logger::debug("Failed to play audio");
+    if(music != nullptr) {
+        start = std::chrono::steady_clock::now();
+        Mix_PlayMusic(music, 1);
+        paused = false;
+    }       
+    else    
+        brls::Logger::info("music is null");
 }
 
 void AudioPreview::stop() {
-
+    Mix_HaltMusic();
+    paused = true;
 }
 
 void AudioPreview::draw(NVGcontext* vg, int x, int y, unsigned width, unsigned height, brls::Style* style, brls::FrameContext* ctx) {
@@ -108,9 +95,14 @@ void AudioPreview::draw(NVGcontext* vg, int x, int y, unsigned width, unsigned h
     this->playButton->frame(ctx);
     this->stopButton->frame(ctx);
 
-    brls::Logger::debug("currentTime : {}", currentTime);
+    if (!paused)
+        end = std::chrono::steady_clock::now();
 
-    this->progressDisplay->setProgress(currentTime, 10);
+    currentTime = end - this->start;
+
+    brls::Logger::debug("currentTime : {}", currentTime.count());
+
+    this->progressDisplay->setProgress(currentTime.count(), totalTime);
     this->progressDisplay->frame(ctx);
 
 }
@@ -151,5 +143,7 @@ brls::View* AudioPreview::getNextFocus(brls::FocusDirection direction, brls::Vie
 }
 
 AudioPreview::~AudioPreview() {
-
+    Mix_FreeMusic(music);
+    Mix_CloseAudio();
+    Mix_Quit();
 }

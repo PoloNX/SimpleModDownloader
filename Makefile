@@ -56,7 +56,7 @@ CXXFLAGS	:= $(CFLAGS) -std=gnu++20 -fexceptions -Wno-reorder
 ASFLAGS	:=	-g $(ARCH)
 LDFLAGS	=	-specs=$(DEVKITPRO)/libnx/switch.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
 
-LIBS := -lm -lcurl -lnx -lz -lstdc++fs -lmbedx509 -lmbedcrypto -lminizip -larchive -lbz2 -llzma -llz4 `$(PREFIX)pkg-config --libs openal` 
+LIBS := -lm -lcurl -lnx -lz -lstdc++fs -lmbedx509 -lmbedcrypto -lminizip -larchive -lbz2 -llzma -llz4 `$(PREFIX)pkg-config --libs SDL2_Mixer` 
 
 
 #---------------------------------------------------------------------------------
