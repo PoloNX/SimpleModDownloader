@@ -21,7 +21,8 @@ const std::vector<std::pair<std::string, std::string>> goodGamesName = {
     {"Pokémon Shield", "Pokemon Sword & Shield"},
     {"Pokémon Scarlet", "Pokemon Scarlet & Violet"},
     {"Pokémon Violet", "Pokemon Scarlet & Violet"},
-    {"Miitopia", "Miitopia (Switch)"}
+    {"Miitopia", "Miitopia (Switch)"},
+    {"Super Meat Boy", "Super Meat Boy (Nintendo Switch)"}    
 };
 
 struct File {
