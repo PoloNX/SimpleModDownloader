@@ -97,6 +97,8 @@ namespace net {
     }
 
     nlohmann::json downloadRequest(const std::string& url) {
+        curl_global_init(CURL_GLOBAL_ALL);
+
         auto curl = curl_easy_init();
 
         if (!curl) 
@@ -104,6 +106,8 @@ namespace net {
         
         curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
         curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+        curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
+
 
         std::string response;
 
