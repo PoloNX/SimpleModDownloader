@@ -20,7 +20,17 @@ const std::vector<std::pair<std::string, std::string>> goodGamesName = {
     {"Pokémon Sword", "Pokemon Sword & Shield"},
     {"Pokémon Shield", "Pokemon Sword & Shield"},
     {"Pokémon Scarlet", "Pokemon Scarlet & Violet"},
-    {"Pokémon Violet", "Pokemon Scarlet & Violet"}
+    {"Pokémon Violet", "Pokemon Scarlet & Violet"},
+    {"Miitopia", "Miitopia (Switch)"},
+    {"Super Meat Boy", "Super Meat Boy (Nintendo Switch)"},  
+    {"UNDERTAILE", "UNDERTALE (Switch)"},
+    {"Fairy Tail", "Fairy Tail (Switch)"},
+    {"Sonic Frontiers", "Sonic Frontiers (Switch)"},
+    {"Stardew Valley", "Stardew Valley (Switch)"},
+    {"Dragon Ball FighterZ", "Dragon Ball FighterZ (Switch)"},
+    {"The Legend of Zelda: Link's Awakening", "The Legend of Zelda: Link's Awakening (Switch)"},
+    {"The Binding of Isaac: Afterbirth+", "The Binding of Isaac: Afterbirth+ (Switch)"},
+    {"The Legend of Zelda: Breath of the Wild", "The Legend of Zelda: Breath of the Wild (Switch)"}
 };
 
 struct File {
