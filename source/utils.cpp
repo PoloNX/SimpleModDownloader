@@ -341,7 +341,13 @@ namespace utils {
             IniOption * path = config->findFirstOption("stored-mods-base-folder");
 
             std::cout << path->key << " = " << path->value << "\n";
-            return path->value;
+
+            std::string pathString = path->value;
+
+            if (!pathString.ends_with("/")) {
+                pathString += "/";
+            }
+            return pathString;
         }
         return "/mods/";
     }
