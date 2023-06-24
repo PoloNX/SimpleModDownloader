@@ -169,12 +169,17 @@ ModsPage::ModsPage(Mod &mod, Game& game, const std::string& search, const int& p
     this->listItem->setHeight(50);
 
     this->listItem->getClickEvent()->subscribe([this, search](brls::View* view) {
-        this->currentMod.images = utils::getModsImages(this->currentMod.json, 0, this->currentMod.sizeBigImage);
-        this->currentMod.currentBigImage = 0;
-        if (search !="")
-            brls::Application::pushView(new ImagesViewer(this->currentMod, this->currentGame, search, this->page));
-        else
-            brls::Application::pushView(new ImagesViewer(this->currentMod, this->currentGame, this->page));
+        if (this->currentMod.json.at("_aPreviewMedia").contains("_aImages")) {
+            this->currentMod.images = utils::getModsImages(this->currentMod.json, 0, this->currentMod.sizeBigImage);
+            this->currentMod.currentBigImage = 0;
+            if (search !="")
+                brls::Application::pushView(new ImagesViewer(this->currentMod, this->currentGame, search, this->page));
+            else
+                brls::Application::pushView(new ImagesViewer(this->currentMod, this->currentGame, this->page));
+        }
+        else {
+            brls::Application::notify("menu/notify/no_images"_i18n);
+        }
     });
 
     this->list->addView(this->listItem);
