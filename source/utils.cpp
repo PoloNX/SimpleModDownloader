@@ -124,21 +124,32 @@ namespace utils {
         return resultString;
     }
 
-    nlohmann::json getMods(const int& gameID, const int& page) {
-        const std::string api_url = fmt::format("https://gamebanana.com/apiv11/Game/{}/Subfeed?_nPage={}?_nPerpage=50", std::to_string(gameID), std::to_string(page));
+    nlohmann::json getMods(const int& gameID, int& page) {
+        std::string api_url = fmt::format("https://gamebanana.com/apiv11/Game/{}/Subfeed?_nPage={}?_nPerpage=50&_csvModelInclusions=Mod", std::to_string(gameID), std::to_string(page));
         nlohmann::json mods = net::downloadRequest(api_url);
+
+        if(mods.at("_aRecords").empty()) {
+            api_url = fmt::format("https://gamebanana.com/apiv11/Game/{}/Subfeed?_nPage={}&_nPerpage=50&_csvModelInclusions=Mod", std::to_string(gameID),std::to_string(page-1));
+            mods = net::downloadRequest(api_url);
+            page -= 1;
+        }
 
         return mods;
     }
 
-    nlohmann::json getMods(const int& gameID, const std::string&search, const int& page) {
+    nlohmann::json getMods(const int& gameID, const std::string&search, int& page) {
         if (search.size() < 3) {
             brls::Application::notify("menu/notify/string_to_short"_i18n);
             return getMods(gameID, page);
         }
         std::string search_term = replaceSpacesWithPlus(search);
-        const std::string api_url = fmt::format("https://gamebanana.com/apiv11/Game/{}/Subfeed?_nPage={}&_nPerpage=50&_sName={}&_csvModelInclusions=Mod", std::to_string(gameID),std::to_string(page), search_term);
+        std::string api_url = fmt::format("https://gamebanana.com/apiv11/Game/{}/Subfeed?_nPage={}&_nPerpage=50&_sName={}&_csvModelInclusions=Mod", std::to_string(gameID),std::to_string(page), search_term);
         nlohmann::json mods = net::downloadRequest(api_url);
+        if(mods.at("_aRecords").empty()) {
+            api_url = fmt::format("https://gamebanana.com/apiv11/Game/{}/Subfeed?_nPage={}&_nPerpage=50&_sName={}&_csvModelInclusions=Mod", std::to_string(gameID),std::to_string(page-1), search_term);
+            mods = net::downloadRequest(api_url);
+            page -= 1;
+        }
         std::cout<< api_url << std::endl;
         std::cout << mods << std::endl;
         return mods;

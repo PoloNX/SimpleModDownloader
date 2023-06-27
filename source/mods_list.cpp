@@ -9,11 +9,12 @@
 #include "SimpleIniParser.hpp"
 #include <filesystem>
 #include <regex>
+#include <iostream>
 
 namespace i18n = brls::i18n;
 using namespace i18n::literals;
 
-ModsList::ModsList(Game game, int page) : AppletFrame(true, true), currentGame(game), page(page) {
+ModsList::ModsList(Game game, int page_f) : AppletFrame(true, true), currentGame(game), page(page_f) {
     //Create a json with all the 1 page of mods  we can do a loop to fetch a number of pages
     mods = utils::getMods(currentGame.gamebananaID, page);
     this->setTitle("menu/mods/mods_list_title"_i18n);
@@ -21,7 +22,7 @@ ModsList::ModsList(Game game, int page) : AppletFrame(true, true), currentGame(g
     createList();
 }
 
-ModsList::ModsList(Game game, const std::string& search, int page) : AppletFrame(true, true), currentGame(game), search(search), page(page) {
+ModsList::ModsList(Game game, const std::string& search, int page_f) : AppletFrame(true, true), currentGame(game), search(search), page(page_f) {
     //Create a json with all the 1 page of mods  we can do a loop to fetch a number of pages
     mods = utils::getMods(currentGame.gamebananaID, search, page);
     this->setTitle("menu/mods/mods_list_title"_i18n);
@@ -32,12 +33,9 @@ ModsList::ModsList(Game game, const std::string& search, int page) : AppletFrame
 void ModsList::createList(){
     list = new brls::List();
 
-    if(mods.at("_aRecords").empty()) {
-        if (search != "")
-            brls::Application::pushView(new ModsList(this->currentGame, this->search, this->page-1));
-        else
-            brls::Application::pushView(new ModsList(this->currentGame, this->page-1));
-    }
+    brls::Logger::debug("json : {}", mods.dump(4));
+
+
 
     for (auto i : mods.at("_aRecords")) {
         //Check if the mod can be downloaded or no
@@ -103,7 +101,6 @@ void ModsList::createList(){
     this->registerAction("", brls::Key::B, [] { brls::Application::pushView(new MainFrame()); return 0;});
 
     this->setFooterText(fmt::format("{} : {}", "menu/mods/page"_i18n,  this->page));
-
 }
 
 ModsPage::ModsPage(Mod &mod, Game& game, const std::string& search, const int& page) : AppletFrame(true, true), currentMod(mod), currentGame(game), page(page) {
