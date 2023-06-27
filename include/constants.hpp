@@ -13,6 +13,7 @@ const std::string SimpleModDownloader_PATH = "sdmc:/config/SimpleModDownloader/a
 
 const std::string FORWARDER_PATH = "sdmc:/config/SimpleModDownloader/forwarder.nro";
 
+const std::vector<std::string> langVector ={"de", "en-US", "es", "fr", "gr", "it", "ja", "pt-BR", "ro", "zh-CN"};
 
 const std::vector<std::pair<std::string, std::string>> goodGamesName = {
     {"Pokémon Brillant Diamond", "Pokemon Brilliant Diamond and Shining Pearl"},
