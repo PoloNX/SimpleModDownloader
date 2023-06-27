@@ -23,4 +23,6 @@ namespace utils {
     std::string getModInstallPath();
     bool is_older_version(const std::string& version1, const std::string version2);
     bool cp(char *filein, char *fileout);
+    std::string getCurrentLang();
+    bool isLangAuto();
 };

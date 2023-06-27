@@ -14,7 +14,8 @@
         "downloads": "Downloads",
         "install": "Installation",
         "update": "Update App",
-        "about": "About"
+        "about": "About",
+        "settings": "Settings"
     },
     
     "notify": {
@@ -69,5 +70,9 @@
         "browser": "Open in Browser",
         "author": "Author",
         "page": "Page"
+    },
+
+    "settings_tab" : {
+        "language" : "Select language"
     }
 }

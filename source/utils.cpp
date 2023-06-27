@@ -7,6 +7,7 @@
 #include <iomanip>
 #include <filesystem>
 #include <regex>
+#include <fstream>
 #include <ctime>
 #include <iostream>
 #include <switch.h>
@@ -420,5 +421,35 @@ namespace utils {
             return false;
         }
         return true;
+    }
+
+    std::string getCurrentLang() {
+        nlohmann::json settings;
+        std::ifstream file("sdmc:/config/SimpleModDownloader/settings.json");
+        file >> settings;
+        file.close();
+        
+        if(settings.at("language") == "auto"){
+            const std::string currentLocale = i18n::getCurrentLocale();
+            if (currentLocale != "fr" && currentLocale != "en-US" && currentLocale != "es" && currentLocale != "de" && currentLocale != "it" && currentLocale != "zh-CN" && currentLocale != "ja" && currentLocale != "ro" && currentLocale != "pt-BR" && currentLocale != "gr" && currentLocale != "hu")
+                return "en-US";
+            else 
+                return currentLocale;
+        }
+        else {
+             return settings.at("language").get<std::string>();
+        }
+    }
+
+    bool isLangAuto() {
+        nlohmann::json settings;
+        std::ifstream file("sdmc:/config/SimpleModDownloader/settings.json");
+        file >> settings;
+        file.close();
+
+        if (settings.at("language") == "auto") {
+            return true;
+        }
+        return false;
     }
 }

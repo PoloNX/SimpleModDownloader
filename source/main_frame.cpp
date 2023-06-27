@@ -3,6 +3,7 @@
 #include "install_tab.hpp"
 #include "about_tab.hpp"
 #include "update_tab.hpp"
+#include "settings_tab.hpp"
 
 namespace i18n = brls::i18n;
 using namespace i18n::literals;
@@ -22,6 +23,8 @@ MainFrame::MainFrame() {
     this->addTab("menu/tabs/update"_i18n, new UpdateTab());
 
     this->addSeparator();
+
+    this->addTab("menu/tabs/settings"_i18n, new SettingsTab());
 
     this->addTab("menu/tabs/about"_i18n, new AboutTab());
 

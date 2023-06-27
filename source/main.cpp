@@ -2,6 +2,7 @@
 #include <switch.h>
 #include <iostream>
 #include <filesystem>
+#include <fstream>
 #include "constants.hpp"
 #include "main_frame.hpp"
 #include "utils.hpp"
@@ -26,17 +27,8 @@ int main() {
         utils::cp("romfs:/json/settings.json", "sdmc:/config/SimpleModDownloader/settings.json");
     }    
 
-    nlohmann::json settings = nlohmann::json::parse(jsonPath);
-    if(settings.at("language") == "auto"){
-        const std::string currentLocale = i18n::getCurrentLocale();
-        if (currentLocale != "fr" && currentLocale != "en-US" && currentLocale != "es" && currentLocale != "de" && currentLocale != "it" && currentLocale != "zh-CN" && currentLocale != "ja" && currentLocale != "ro" && currentLocale != "pt-BR" && currentLocale != "gr" && currentLocale != "hu")
-            i18n::loadTranslations("en-US");
-        else 
-            i18n::loadTranslations();
-    }
-    else {
-        i18n::loadTranslations(settings.at("language"));
-    }
+    std::string lang = utils::getCurrentLang();
+    i18n::loadTranslations(lang);
 
     //Use debug log level
     brls::Logger::setLogLevel(brls::LogLevel::DEBUG);
