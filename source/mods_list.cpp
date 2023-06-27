@@ -32,6 +32,13 @@ ModsList::ModsList(Game game, const std::string& search, int page) : AppletFrame
 void ModsList::createList(){
     list = new brls::List();
 
+    if(mods.at("_aRecords").empty()) {
+        if (search != "")
+            brls::Application::pushView(new ModsList(this->currentGame, this->search, this->page-1));
+        else
+            brls::Application::pushView(new ModsList(this->currentGame, this->page-1));
+    }
+
     for (auto i : mods.at("_aRecords")) {
         //Check if the mod can be downloaded or no
         if(!i.at("_bHasFiles").get<bool>()) continue;
@@ -95,7 +102,7 @@ void ModsList::createList(){
     });
     this->registerAction("", brls::Key::B, [] { brls::Application::pushView(new MainFrame()); return 0;});
 
-    this->setFooterText(fmt::format("{} : {}", "menu/mods/page",  this->page));
+    this->setFooterText(fmt::format("{} : {}", "menu/mods/page"_i18n,  this->page));
 
 }
 
