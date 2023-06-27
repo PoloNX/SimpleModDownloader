@@ -18,27 +18,12 @@ int main() {
         return EXIT_FAILURE;
     }
 
-    init();
-
-    std::filesystem::path settingsPath("sdmc:/config/SimpleModDownloader/settings.json");
-    if (!std::filesystem::exists(settingsPath)) {
-        utils::cp("romfs:/json/settings.json", "sdmc:/config/SimpleModDownloader/settings.json");
-    }
-
-    nlohmann::json settings = nlohmann::json::parse(settingsPath);
-
-    if(settings.at("language").get<std::string>() == "auto") {
-        //Init translation and app
-        const std::string currentLocale = i18n::getCurrentLocale();
-        if (currentLocale != "fr" && currentLocale != "en-US" && currentLocale != "es" && currentLocale != "de" && currentLocale != "it" && currentLocale != "zh-CN" && currentLocale != "ja" && currentLocale != "ro" && currentLocale != "pt-BR" && currentLocale != "gr")
-            i18n::loadTranslations("en-US");
-        else 
-            i18n::loadTranslations();
-    }
-    else {
-        i18n::loadTranslations(settings.at("language").get<std::string>());
-    }
-
+    //Init translation and app
+    const std::string currentLocale = i18n::getCurrentLocale();
+    if (currentLocale != "fr" && currentLocale != "en-US" && currentLocale != "es" && currentLocale != "de" && currentLocale != "it" && currentLocale != "zh-CN" && currentLocale != "ja" && currentLocale != "ro" && currentLocale != "pt-BR" && currentLocale != "gr" && currentLocale != "hu")
+        i18n::loadTranslations("en-US");
+    else 
+        i18n::loadTranslations();
 
     //Use debug log level
     brls::Logger::setLogLevel(brls::LogLevel::DEBUG);
