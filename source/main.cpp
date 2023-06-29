@@ -24,6 +24,7 @@ int main() {
     //Init translation and app
     std::filesystem::path jsonPath("sdmc:/config/SimpleModDownloader/settings.json");
     if(!std::filesystem::exists(jsonPath)) {
+        std::filesystem::create_directories("sdmc:/config/SimpleModDownloader");
         utils::cp("romfs:/json/settings.json", "sdmc:/config/SimpleModDownloader/settings.json");
     }    
 
