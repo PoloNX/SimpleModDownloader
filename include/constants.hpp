@@ -13,15 +13,15 @@ const std::string SimpleModDownloader_PATH = "sdmc:/config/SimpleModDownloader/a
 
 const std::string FORWARDER_PATH = "sdmc:/config/SimpleModDownloader/forwarder.nro";
 
-const std::vector<std::string> langVector ={"de", "en-US", "es", "fr", "gr", "it", "ja", "pt-BR", "ro", "zh-CN", "auto"};
+const std::vector<std::string> langVector ={"de", "en-US", "es", "fr", "gr", "it", "ja", "ko","pt-BR", "ro", "zh-CN", "auto"};
 
 const std::vector<std::pair<std::string, std::string>> goodGamesName = {
     {"Pokémon Brillant Diamond", "Pokemon Brilliant Diamond and Shining Pearl"},
     {"Pokémon Shining Pearl", "Pokemon Brilliant Diamond and Shining Pearl"},
-    {"Pokémon Sword", "Pokemon Sword & Shield"},
-    {"Pokémon Shield", "Pokemon Sword & Shield"},
-    {"Pokémon Scarlet", "Pokemon Scarlet & Violet"},
-    {"Pokémon Violet", "Pokemon Scarlet & Violet"},
+    {"Pokémon Sword", "Pokemon Sword  Shield"},
+    {"Pokémon Shield", "Pokemon Sword  Shield"},
+    {"Pokémon Scarlet", "Pokemon Scarlet  Violet"},
+    {"Pokémon Violet", "Pokemon Scarlet  Violet"},
     {"Miitopia", "Miitopia (Switch)"},
     {"Super Meat Boy", "Super Meat Boy (Nintendo Switch)"},  
     {"UNDERTAILE", "UNDERTALE (Switch)"},
