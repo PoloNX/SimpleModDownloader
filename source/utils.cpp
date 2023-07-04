@@ -442,7 +442,7 @@ namespace utils {
         
         if(settings.at("language") == "auto"){
             const std::string currentLocale = i18n::getCurrentLocale();
-            if (currentLocale != "fr" && currentLocale != "en-US" && currentLocale != "es" && currentLocale != "de" && currentLocale != "it" && currentLocale != "zh-CN" && currentLocale != "ja" && currentLocale != "ro" && currentLocale != "pt-BR" && currentLocale != "gr" && currentLocale != "hu")
+            if (currentLocale != "fr" && currentLocale != "en-US" && currentLocale != "es" && currentLocale != "de" && currentLocale != "it" && currentLocale != "zh-CN" && currentLocale != "ja" && currentLocale != "ro" && currentLocale != "pt-BR" && currentLocale != "gr" && currentLocale != "hu" && currentLocale != "ko")
                 return "en-US";
             else 
                 return currentLocale;
