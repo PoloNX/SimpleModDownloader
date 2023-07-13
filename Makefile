@@ -23,7 +23,7 @@ ICON        :=  resources/icon/icon-256.jpg
 INCLUDES	:=	include /lib/borealis/library/include/borealis/extern/nlohmann /lib/ini/include /lib/ini/include/SimpleIniParser
 APP_TITLE	:=	SimpleModDownloader
 APP_AUTHOR	:=	PoloNX
-APP_VERSION :=  1.0.2
+APP_VERSION :=  1.0.3
 TARGET		:=	$(notdir $(CURDIR))
 
 ROMFS				:=	resources
