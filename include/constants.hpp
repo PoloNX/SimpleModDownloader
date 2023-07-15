@@ -5,10 +5,10 @@
 #include <borealis.hpp>
 #include <nlohmann/json.hpp>
 
-const std::string APP_VER = "1.0.3";
+const std::string APP_VER = "1.0.4";
 const std::string SimpleModManager_URL = "https://github.com/nadrino/SimpleModManager/releases/latest/download/SimpleModManager.nro";
 
-const std::string SimpleModDownloader_API = "https://api.github.com/repos/PoloNX/SimpleModDownloader/releases/latest";
+const std::string SimpleModDownloader_API = "https://api.github.com/repos/Derro8/SimpleModDownloader/releases/latest";
 const std::string SimpleModDownloader_PATH = "sdmc:/config/SimpleModDownloader/app.nro";
 
 const std::string FORWARDER_PATH = "sdmc:/config/SimpleModDownloader/forwarder.nro";
