@@ -53,7 +53,7 @@
 
 ```bash
 sudo pacman -S switch-curl switch-zlib switch-glfw switch-mesa switch-glm switch-libarchive  
-git clone --recursive https://github.com/PoloNX/SimpleModDownloader/
+git clone --recursive https://github.com/Derro8/SimpleModDownloader/
 cd SimpleModDownloader
 make
 ```
