@@ -107,6 +107,16 @@ ModsPage::ModsPage(Mod &mod, Game& game, const std::string& search, const int& p
     this->updateActionHint(brls::Key::B, "");
     this->updateActionHint(brls::Key::PLUS, "");
 
+    this->registerAction("", brls::Key::B, [this] {
+        this->collapse();
+        return 0;
+    });
+
+    this->registerAction("", brls::Key::PLUS, [this] {
+        this->collapse();
+        return 0;
+    });
+
     this->list = new brls::List();
     this->label = new brls::Label(
         brls::LabelStyle::REGULAR,
@@ -120,12 +130,20 @@ ModsPage::ModsPage(Mod &mod, Game& game, const std::string& search, const int& p
 
     /*-------------------------------------------------*/
     //Create one item for downloading
+
+    brls::View *return_menu;
+
+    if(search != "")
+        return_menu = new ModsList(currentGame, search, page);
+    else
+        return_menu = new ModsList(currentGame, page);
+    
     for (auto i : this->currentMod.files) {
             this->listItem = new brls::ListItem(i.name);
             this->listItem->setHeight(100);
             this->listItem->setSubLabel(fmt::format("{} : {} | {} : {}","menu/mods/size"_i18n, i.size,"menu/mods/size"_i18n, i.date));
 
-            this->listItem->getClickEvent()->subscribe([this, i](brls::View* view) {
+            this->listItem->getClickEvent()->subscribe([this, i, return_menu](brls::View* view) {
                 std::string extension = i.name.substr(i.name.find_last_of(".") + 1);
                 if(extension == "zip" || extension == "7z"){
                     
@@ -147,8 +165,8 @@ ModsPage::ModsPage(Mod &mod, Game& game, const std::string& search, const int& p
 
                         extract::extractEntry(fmt::format("sdmc:/config/SimpleModDownloader/{}", i.name), fmt::format("sdmc:{}{}/{}/contents/{}/romfs",utils::getModInstallPath(),resultat, this->currentMod.title, this->currentGame.tid));
                     }));
-                    
-                    stagedFrame->addStage(new ConfirmPage(stagedFrame, "menu/label/extract"_i18n));
+
+                    stagedFrame->addStage(new ConfirmPage(stagedFrame, "menu/label/extract"_i18n, return_menu));
 
                     brls::Application::pushView(stagedFrame);
                 }

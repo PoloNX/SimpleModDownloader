@@ -7,7 +7,7 @@
 namespace i18n = brls::i18n;
 using namespace i18n::literals;
 
-ConfirmPage::ConfirmPage(brls::StagedAppletFrame* frame, const std::string& text, const bool& restart) : frame(frame), text(text) {
+ConfirmPage::ConfirmPage(brls::StagedAppletFrame* frame, const std::string& text, brls::View *return_view, const bool& restart) : frame(frame), text(text) {
     this->button = new brls::Button(brls::ButtonStyle::REGULAR);
     this->button->setLabel("brls/hints/ok"_i18n);
     this->button->setParent(this);
@@ -16,7 +16,7 @@ ConfirmPage::ConfirmPage(brls::StagedAppletFrame* frame, const std::string& text
     this->label->setHorizontalAlign(NVG_ALIGN_CENTER);
     this->label->setParent(this);
 
-    this->button->getClickEvent()->subscribe([this, restart](brls::View* view){
+    this->button->getClickEvent()->subscribe([this, restart, return_view](brls::View* view){
         if(restart) {
             utils::cp("romfs:/forwarder/forwarder.nro", "sdmc:/config/SimpleModDownloader/forwarder.nro");
             envSetNextLoad(FORWARDER_PATH.c_str(), fmt::format("\"{}\"", FORWARDER_PATH).c_str());
@@ -27,7 +27,7 @@ ConfirmPage::ConfirmPage(brls::StagedAppletFrame* frame, const std::string& text
             this->frame->nextStage();
         }
         else {
-            brls::Application::pushView(new MainFrame());
+            brls::Application::pushView(return_view);
         }
     });
 

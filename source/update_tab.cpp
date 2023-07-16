@@ -41,7 +41,7 @@ UpdateTab::UpdateTab() {
                 net::downloadFile(this->nro_url, SimpleModDownloader_PATH);
             }));
 
-            staggedFrame->addStage(new ConfirmPage(staggedFrame, "menu/label/restart_smd"_i18n, true));
+            staggedFrame->addStage(new ConfirmPage(staggedFrame, "menu/label/restart_smd"_i18n, this, true));
 
             brls::Application::pushView(staggedFrame);
         });
