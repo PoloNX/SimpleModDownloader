@@ -19,7 +19,7 @@ ModsList::ModsList(Game game, int page_f) : AppletFrame(true, true), currentGame
     mods = utils::getMods(currentGame.gamebananaID, page);
     this->setTitle("menu/mods/mods_list_title"_i18n);
     //We create a list
-    createList(this);
+    createList();
 }
 
 ModsList::ModsList(Game game, const std::string& search, int page_f) : AppletFrame(true, true), currentGame(game), search(search), page(page_f) {
@@ -27,15 +27,13 @@ ModsList::ModsList(Game game, const std::string& search, int page_f) : AppletFra
     mods = utils::getMods(currentGame.gamebananaID, search, page);
     this->setTitle("menu/mods/mods_list_title"_i18n);
     //We create a list
-    createList(this);
+    createList();
 }
 
-void ModsList::createList(brls::View* return_view){
+void ModsList::createList(){
     list = new brls::List();
 
     brls::Logger::debug("json : {}", mods.dump(4));
-
-
 
     for (auto i : mods.at("_aRecords")) {
         //Check if the mod can be downloaded or no
@@ -43,7 +41,7 @@ void ModsList::createList(brls::View* return_view){
 
         listItem = new brls::ListItem(i.at("_sName").get<std::string>());
 
-        listItem->getClickEvent()->subscribe([i, this, return_view](brls::View* view) {
+        listItem->getClickEvent()->subscribe([i, this](brls::View* view) {
             Mod currentMod;
             //initialize a struct which contains all importants informations for one mod
             currentMod.title = i.at("_sName").get<std::string>();
@@ -65,7 +63,7 @@ void ModsList::createList(brls::View* return_view){
                 currentMod.files.push_back(file);
             }
             
-            brls::PopupFrame::open(fmt::format("Mod : {}", currentMod.title), new ModsPage(return_view, currentMod, this->currentGame, this->search, this->page));
+            brls::PopupFrame::open(fmt::format("Mod : {}", currentMod.title), new ModsPage(currentMod, this->currentGame, this->search, this->page));
         });
 
         list->addView(listItem);
@@ -98,12 +96,12 @@ void ModsList::createList(brls::View* return_view){
         brls::Application::pushView(new ModsList(this->currentGame, search, 1));
         return 0;
     });
-    this->registerAction("", brls::Key::B, [] { brls::Application::pushView(new MainFrame()); return 0;});
+    this->registerAction("", brls::Key::B, [&] { brls::Application::pushView(new MainFrame());  return 0;});
 
     this->setFooterText(fmt::format("{} : {}", "menu/mods/page"_i18n,  this->page));
 }
 
-ModsPage::ModsPage(brls::View* return_view, Mod &mod, Game& game, const std::string& search, const int& page) : AppletFrame(true, true), currentMod(mod), currentGame(game), page(page) {
+ModsPage::ModsPage(Mod &mod, Game& game, const std::string& search, const int& page) : AppletFrame(true, true), currentMod(mod), currentGame(game), page(page) {
     this->updateActionHint(brls::Key::B, "");
     this->updateActionHint(brls::Key::PLUS, "");
 
@@ -135,7 +133,7 @@ ModsPage::ModsPage(brls::View* return_view, Mod &mod, Game& game, const std::str
             this->listItem->setHeight(100);
             this->listItem->setSubLabel(fmt::format("{} : {} | {} : {}","menu/mods/size"_i18n, i.size,"menu/mods/size"_i18n, i.date));
 
-            this->listItem->getClickEvent()->subscribe([this, i, return_view](brls::View* view) {
+            this->listItem->getClickEvent()->subscribe([this, i](brls::View* view) {
                 std::string extension = i.name.substr(i.name.find_last_of(".") + 1);
                 if(extension == "zip" || extension == "7z"){
                     
@@ -153,12 +151,10 @@ ModsPage::ModsPage(brls::View* return_view, Mod &mod, Game& game, const std::str
                         std::regex pattern(":");
                         std::string resultat = std::regex_replace(this->currentGame.title, pattern, " -");
 
-                        
-
                         extract::extractEntry(fmt::format("sdmc:/config/SimpleModDownloader/{}", i.name), fmt::format("sdmc:{}{}/{}/contents/{}/romfs",utils::getModInstallPath(),resultat, this->currentMod.title, this->currentGame.tid));
                     }));
 
-                    stagedFrame->addStage(new ConfirmPage(stagedFrame, "menu/label/extract"_i18n, return_view));
+                    stagedFrame->addStage(new ConfirmPage(stagedFrame, "menu/label/extract"_i18n));
 
                     brls::Application::pushView(stagedFrame);
                 }

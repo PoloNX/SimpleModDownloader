@@ -34,6 +34,7 @@ InstallTab::InstallTab() {
         install = new brls::ListItem("menu/item/launch_smm"_i18n, "", fmt::format("{} : {}", "menu/label/path"_i18n ,SimpleModManagerPath));
         install->setHeight(100);
         install->getClickEvent()->subscribe([this](brls::View* view) {
+            brls::Logger::debug(fmt::format("Launching SimpleModManager from {}", SimpleModManagerPath));
             envSetNextLoad(SimpleModManagerPath.c_str(), fmt::format("\"{}\"", SimpleModManagerPath).c_str());
             brls::Application::quit();
         });
