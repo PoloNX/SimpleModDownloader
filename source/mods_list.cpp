@@ -130,7 +130,6 @@ ModsPage::ModsPage(brls::View* return_view, Mod &mod, Game& game, const std::str
 
     /*-------------------------------------------------*/
     //Create one item for downloading
-
     for (auto i : this->currentMod.files) {
             this->listItem = new brls::ListItem(i.name);
             this->listItem->setHeight(100);
