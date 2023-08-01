@@ -17,7 +17,7 @@ public:
     }*/
     ModsList(Game game, const std::string& search, int page = 1);
 
-    void createList(brls::View* return_view);
+    void createList();
 private:
     Game currentGame;
     brls::List* list;
@@ -29,7 +29,7 @@ private:
 
 class ModsPage : public brls::AppletFrame {
 public:
-    ModsPage(brls::View* return_view, Mod &mod, Game &game, const std::string& search, const int& page);
+    ModsPage(Mod &mod, Game &game, const std::string& search, const int& page);
     /*~ModsPage() {
         delete this->list;
         delete this->listItem;
