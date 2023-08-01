@@ -3,6 +3,7 @@
 #include "extract.hpp"
 #include "SimpleIniParser.hpp"
 
+#include <curl/curl.h>
 #include <sstream>
 #include <iomanip>
 #include <filesystem>
@@ -99,13 +100,30 @@ namespace utils {
         return games;
     }
 
+    std::string formatTitle(std::string& title) {
+        std::string resultString;
+        std::remove_copy_if(title.begin(), title.end(),
+                            std::back_inserter(resultString),
+                            [](char c) { return !std::isalnum(c) && c != ' '; });
+        return resultString;
+    }
+
     nlohmann::json searchGames(std::string gameTitle) {
+        bool trigger = false;
         for (auto i : goodGamesName) {
             if (i.first == gameTitle) {
                 gameTitle = i.second;
+                trigger = true;
                 break;
             }
         }
+        if(trigger == false) {
+            auto curl = curl_easy_init();
+            if(curl) {
+                gameTitle = curl_easy_escape(curl, gameTitle.c_str(), 0);
+            }
+        }
+            
         brls::Logger::info("Game title: {}", gameTitle);
 
         gameTitle = replaceSpacesWithPlus(gameTitle);
@@ -125,10 +143,11 @@ namespace utils {
     }
 
     nlohmann::json getMods(const int& gameID, int& page) {
+        if(page < 1) page = 1;
         std::string api_url = fmt::format("https://gamebanana.com/apiv11/Game/{}/Subfeed?_nPage={}?_nPerpage=50&_csvModelInclusions=Mod", std::to_string(gameID), std::to_string(page));
         nlohmann::json mods = net::downloadRequest(api_url);
 
-        if(mods.at("_aRecords").empty()) {
+        if(mods.at("_aRecords").empty() && page > 1) {
             api_url = fmt::format("https://gamebanana.com/apiv11/Game/{}/Subfeed?_nPage={}&_nPerpage=50&_csvModelInclusions=Mod", std::to_string(gameID),std::to_string(page-1));
             mods = net::downloadRequest(api_url);
             page -= 1;
@@ -138,6 +157,7 @@ namespace utils {
     }
 
     nlohmann::json getMods(const int& gameID, const std::string&search, int& page) {
+        if(page < 1) page = 1;
         if (search.size() < 3) {
             brls::Application::notify("menu/notify/string_to_short"_i18n);
             return getMods(gameID, page);

@@ -18,10 +18,10 @@ const std::vector<std::string> langVector ={"de", "en-US", "es", "fr", "gr", "it
 const std::vector<std::pair<std::string, std::string>> goodGamesName = {
     {"Pokémon Brillant Diamond", "Pokemon Brilliant Diamond and Shining Pearl"},
     {"Pokémon Shining Pearl", "Pokemon Brilliant Diamond and Shining Pearl"},
-    {"Pokémon Sword", "Pokemon Sword  Shield"},
-    {"Pokémon Shield", "Pokemon Sword  Shield"},
-    {"Pokémon Scarlet", "Pokemon Scarlet  Violet"},
-    {"Pokémon Violet", "Pokemon Scarlet  Violet"},
+    {"Pokémon Sword", "Pokemon Sword Shield"},
+    {"Pokémon Shield", "Pokemon Sword Shield"},
+    {"Pokémon Scarlet", "Pokemon Scarlet Violet"},
+    {"Pokémon Violet", "Pokemon Scarlet Violet"},
     {"Miitopia", "Miitopia (Switch)"},
     {"Super Meat Boy", "Super Meat Boy (Nintendo Switch)"},  
     {"UNDERTAILE", "UNDERTALE (Switch)"},
@@ -29,10 +29,10 @@ const std::vector<std::pair<std::string, std::string>> goodGamesName = {
     {"Sonic Frontiers", "Sonic Frontiers (Switch)"},
     {"Stardew Valley", "Stardew Valley (Switch)"},
     {"Dragon Ball FighterZ", "Dragon Ball FighterZ (Switch)"},
-    {"The Legend of Zelda: Link's Awakening", "The Legend of Zelda: Link's Awakening (Switch)"},
+    {"The Legend of Zelda: Link's Awakening", "The Legend of Zelda: Link%27s Awakening (Switch)"},
     {"The Binding of Isaac: Afterbirth+", "The Binding of Isaac: Afterbirth+ (Switch)"},
     {"The Legend of Zelda: Breath of the Wild", "The Legend of Zelda: Breath of the Wild (Switch)"},
-    {"LAYTON’S MYSTERY JOURNEY™: Katrielle and the Millionaires’ Conspiracy - Deluxe Edition", "LAYTON’S MYSTERY JOURNEY: Katrielle and the Millionaires’ Conspiracy - Deluxe Edition"}
+    {"LAYTON’S MYSTERY JOURNEY™: Katrielle and the Millionaires’ Conspiracy - Deluxe Edition", "LAYTON%27S MYSTERY JOURNEY: Katrielle and the Millionaires%27 Conspiracy - Deluxe Edition"},
 };
 
 struct File {

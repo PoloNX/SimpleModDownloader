@@ -103,7 +103,7 @@ namespace net {
 
         if (!curl) 
             brls::Logger::error("Error while initializing libcurl");
-        
+    
         curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
         curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
         curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
