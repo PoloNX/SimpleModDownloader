@@ -145,7 +145,7 @@ namespace utils {
         std::string search_term = replaceSpacesWithPlus(search);
         std::string api_url = fmt::format("https://gamebanana.com/apiv11/Game/{}/Subfeed?_nPage={}&_nPerpage=50&_sName={}&_csvModelInclusions=Mod", std::to_string(gameID),std::to_string(page), search_term);
         nlohmann::json mods = net::downloadRequest(api_url);
-        if(mods.at("_aRecords").empty()) {
+        if(mods.at("_aRecords").empty() && page > 1) {
             api_url = fmt::format("https://gamebanana.com/apiv11/Game/{}/Subfeed?_nPage={}&_nPerpage=50&_sName={}&_csvModelInclusions=Mod", std::to_string(gameID),std::to_string(page-1), search_term);
             mods = net::downloadRequest(api_url);
             page -= 1;
