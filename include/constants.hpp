@@ -33,6 +33,7 @@ const std::vector<std::pair<std::string, std::string>> goodGamesName = {
     {"The Binding of Isaac: Afterbirth+", "The Binding of Isaac: Afterbirth+ (Switch)"},
     {"The Legend of Zelda: Breath of the Wild", "The Legend of Zelda: Breath of the Wild (Switch)"},
     {"LAYTON’S MYSTERY JOURNEY™: Katrielle and the Millionaires’ Conspiracy - Deluxe Edition", "LAYTON%27S MYSTERY JOURNEY: Katrielle and the Millionaires%27 Conspiracy - Deluxe Edition"},
+    {"Hatsune Miku: Project DIVA Mega Mix", "Hatsune Miku: Project Diva Mega39/Mega Mix"}
 };
 
 struct File {
