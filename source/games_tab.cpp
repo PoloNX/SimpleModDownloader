@@ -50,7 +50,7 @@ DownloadTab::DownloadTab() : brls::List() {
                             this->game_selection->addView(game);
                         }
 
-                        this->game_selection->registerAction("", brls::Key::B, [] { brls::Application::pushView(new MainFrame()); return 0; });
+                        this->game_selection->registerAction("", brls::Key::B, [] { brls::Application::popView(); return 0; });
                         brls::Application::pushView(game_selection);
                     }
                     
