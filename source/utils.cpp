@@ -157,6 +157,7 @@ namespace utils {
     }
 
     nlohmann::json getMods(const int& gameID, const std::string&search, int& page) {
+        if(search.size() == 0) return getMods(gameID, page);
         if(page < 1) page = 1;
         if (search.size() < 3) {
             brls::Application::notify("menu/notify/string_to_short"_i18n);

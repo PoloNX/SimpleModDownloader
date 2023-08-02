@@ -74,18 +74,12 @@ void ModsList::createList(){
 
     this->registerAction("<", brls::Key::L, [this] { 
         if (page > 1) {
-            if (search != "")
-                brls::Application::pushView(new ModsList(this->currentGame, this->search, this->page-1));
-            else
-                brls::Application::pushView(new ModsList(this->currentGame, this->page-1));
+            brls::Application::pushView(new ModsList(this->currentGame, this->search, this->page-1));
         }
         return 0;
     });
     this->registerAction(">", brls::Key::R, [this] { 
-        if(search != "")
             brls::Application::pushView(new ModsList(this->currentGame, this->search, this->page+1));
-        else
-            brls::Application::pushView(new ModsList(this->currentGame, this->page+1));
         return 0;
     });
 
@@ -96,7 +90,7 @@ void ModsList::createList(){
         brls::Application::pushView(new ModsList(this->currentGame, search, 1));
         return 0;
     });
-    this->registerAction("", brls::Key::B, [&] { brls::Application::pushView(new MainFrame());  return 0;});
+    this->registerAction("", brls::Key::B, [&] {brls::Application::pushView(new MainFrame());  return 0;});
 
     this->setFooterText(fmt::format("{} : {}", "menu/mods/page"_i18n,  this->page));
 }
@@ -182,10 +176,7 @@ ModsPage::ModsPage(Mod &mod, Game& game, const std::string& search, const int& p
         if (this->currentMod.json.at("_aPreviewMedia").contains("_aImages")) {
             this->currentMod.images = utils::getModsImages(this->currentMod.json, 0, this->currentMod.sizeBigImage);
             this->currentMod.currentBigImage = 0;
-            if (search !="")
-                brls::Application::pushView(new ImagesViewer(this->currentMod, this->currentGame, search, this->page));
-            else
-                brls::Application::pushView(new ImagesViewer(this->currentMod, this->currentGame, this->page));
+            brls::Application::pushView(new ImagesViewer(this->currentMod, this->currentGame));
         }
         else {
             brls::Application::notify("menu/notify/no_images"_i18n);

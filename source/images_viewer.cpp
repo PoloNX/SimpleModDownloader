@@ -7,11 +7,7 @@ constexpr int IMAGES_VIEWER_WIDTH = 100;
 constexpr int IMAGES_VIEWER_HEIGHT = 56;
 constexpr int IMAGES_VIEWER_PADDING = 4;
 
-ImagesViewer::ImagesViewer(Mod& mod, Game& game, const int& page): currentMod(mod), currentGame(game), page(page) {
-    init();
-}
-
-ImagesViewer::ImagesViewer(Mod &mod, Game& game, const std::string& search, const int& page): currentMod(mod), currentGame(game), search(search), page(page) {
+ImagesViewer::ImagesViewer(Mod& mod, Game& game): currentMod(mod), currentGame(game) {
     init();
 }
 
@@ -44,10 +40,7 @@ void ImagesViewer::init() {
     this->navigationMap.add(this->left, brls::FocusDirection::RIGHT, this->right);
 
     this->registerAction("", brls::Key::B, [this] { 
-        if (this->search!="")  
-            brls::Application::pushView(new ModsList(this->currentGame, this->search, this->page));
-        else 
-            brls::Application::pushView(new ModsList(this->currentGame, this->page));
+        brls::Application::popView();
         return 0;
     });
 }
