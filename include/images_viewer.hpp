@@ -7,8 +7,7 @@
 
 class ImagesViewer : public brls::AbsoluteLayout{
 public:
-    ImagesViewer(Mod &mod, Game& game, const std::string& search, const int& page = 1);
-    ImagesViewer(Mod& mod, Game& game, const int& page = 1);
+    ImagesViewer(Mod& mod, Game& game);
     brls::View* getDefaultFocus() override;
     brls::View* getNextFocus(brls::FocusDirection direction, brls::View* currentView) override;
     void init();
@@ -20,8 +19,6 @@ private:
     brls::Button* left;
     std::vector<brls::Image*> images;
     std::string search;
-
-    int page;
 
     Mod &currentMod; 
     Game& currentGame;
