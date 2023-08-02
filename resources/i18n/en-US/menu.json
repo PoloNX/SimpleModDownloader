@@ -55,7 +55,8 @@
     "item": {
         "launch_smm": "Launch SimpleModManager",
         "download_smm": "Download SimpleModManager",
-        "download_smd": "Download SimpleModDownloader"
+        "download_smd": "Download SimpleModDownloader",
+        "check_update": "Check for updates"
     },
     
     "mods": {
@@ -74,5 +75,9 @@
 
     "settings_tab" : {
         "language" : "Select language"
+    },
+
+    "crash" : {
+        "sd_full" : "The SD card is full. Please free up space and restart the application."
     }
 }

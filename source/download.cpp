@@ -9,7 +9,8 @@
 
 #define _1MiB 0x100000
 
-
+namespace i18n = brls::i18n;
+using namespace i18n::literals;
 namespace net {
 
     std::chrono::_V2::steady_clock::time_point time_old;
@@ -177,6 +178,9 @@ namespace net {
         if (!res) {
             s64 freeStorage;
             if (R_SUCCEEDED(nsGetFreeSpaceSize(NcmStorageId_SdCard, &freeStorage)) && dl * 1.1 > freeStorage) {
+                brls::Application::crash("menu/crash/sd_full"_i18n);
+                std::this_thread::sleep_for(std::chrono::microseconds(2000000));
+                brls::Application::quit();
                 return false;
             }
         }

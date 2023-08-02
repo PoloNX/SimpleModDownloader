@@ -4,13 +4,17 @@
 
 #include "extract.hpp"
 #include "progress_event.hpp"
+#include "main_frame.hpp"
 
 #include <archive.h>
 #include <archive_entry.h>
 #include <filesystem>
 #include <borealis.hpp>
+#include <switch.h>
+#include <thread>
 
-
+namespace i18n = brls::i18n;
+using namespace i18n::literals;
 namespace extract {
     int getFileCount(const std::string& archiveFile) {
         struct archive *archive;
@@ -31,6 +35,27 @@ namespace extract {
         archive_read_free(archive);
         return fileCount;
     }
+
+    s64 getTotalArchiveSize(const std::string& archiveFile) {
+        struct archive *archive;
+        struct archive_entry *entry;
+        s64 totalSize = 0;
+
+        archive = archive_read_new();
+        archive_read_support_format_all(archive);
+        archive_read_support_filter_all(archive);
+
+        if (archive_read_open_filename(archive, archiveFile.c_str(), 10240) == ARCHIVE_OK) {
+            while (archive_read_next_header(archive, &entry) == ARCHIVE_OK) {
+                totalSize += archive_entry_size(entry);
+            }
+            archive_read_close(archive);
+        }
+
+        archive_read_free(archive);
+        return totalSize;
+    }
+
     bool extractEntry(const std::string& archiveFile, const std::string& outputDir) {
         chdir("sdmc:/");
         struct archive* archive = archive_read_new();
@@ -58,6 +83,18 @@ namespace extract {
         struct archive_entry* entry;
         ProgressEvent::instance().setTotalSteps(getFileCount(archiveFile));
         ProgressEvent::instance().setStep(0);
+
+        s64 freeStorage;
+        if(R_SUCCEEDED(nsGetFreeSpaceSize(NcmStorageId_SdCard, &freeStorage)) && getTotalArchiveSize(archiveFile) * 1.1 > freeStorage) {
+            brls::Logger::error("sd is full");
+            archive_read_free(archive);
+            std::filesystem::remove(archiveFile);
+            ProgressEvent::instance().setStep(ProgressEvent::instance().getMax());
+            brls::Application::crash("menu/crash/sd_full"_i18n);
+            std::this_thread::sleep_for(std::chrono::microseconds(2000000));
+            brls::Application::quit();
+            return false;
+        }
 
         while (archive_read_next_header(archive, &entry) == ARCHIVE_OK) {
             if (ProgressEvent::instance().getInterupt()) {
