@@ -484,4 +484,42 @@ namespace utils {
         }
         return false;
     }
+
+    bool fileHasSmashOption() {
+        brls::Logger::debug("fileHasSmashOption");
+        nlohmann::json settings;
+        std::ifstream file("sdmc:/config/SimpleModDownloader/settings.json");
+        file >> settings;
+        file.close();
+        if (settings.contains("use_arcropolis")) {
+            return true;
+        }
+        return false;
+    }
+
+    bool useARCropolis() {
+        nlohmann::json settings;
+        std::ifstream file("sdmc:/config/SimpleModDownloader/settings.json");
+        file >> settings;
+        file.close();
+
+        if (settings.at("use_arcropolis") == "true") {
+            return true;
+        }
+        return false;
+    }
+
+    nlohmann::json getSettings() {
+        nlohmann::json settings;
+        std::ifstream file("sdmc:/config/SimpleModDownloader/settings.json");
+        file >> settings;
+        file.close();
+        return settings;
+    }
+
+    void writeSettings(nlohmann::json settings) {
+        std::ofstream outFile("sdmc:/config/SimpleModDownloader/settings.json");
+        outFile << settings.dump(4);
+        outFile.close();
+    }
 }

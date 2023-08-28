@@ -5,6 +5,7 @@
 #include "extract.hpp"
 #include "progress_event.hpp"
 #include "main_frame.hpp"
+#include "utils.hpp"
 
 #include <archive.h>
 #include <archive_entry.h>
@@ -56,8 +57,10 @@ namespace extract {
         return totalSize;
     }
 
-    bool extractEntry(const std::string& archiveFile, const std::string& outputDir) {
+    bool extractEntry(const std::string& archiveFile, const std::string& outputDir, const std::string& tid) {
         chdir("sdmc:/");
+        std::string smash_tid = "01006A800016E000";
+        brls::Logger::debug("tid 2: {}",tid);
         struct archive* archive = archive_read_new();
 
         /*std::string extension = archiveFile.substr(archiveFile.find_last_of(".") + 1);
@@ -106,26 +109,69 @@ namespace extract {
             }
             const char* entryName = archive_entry_pathname(entry);
             std::cout << entryName << std::endl;
+            
+            if ((tid != smash_tid) || (utils::useARCropolis() == false)) {
+                if (std::string(entryName).find("romfs/") != std::string::npos || std::string(entryName).find("exefs/") != std::string::npos) {
+                    
+                    std::string outputFilePath;
+                    if (std::string(entryName).find("romfs/") != std::string::npos)
+                        outputFilePath = outputDir + "/" + std::string(entryName).substr(std::string(entryName).find("romfs/") + 6);
+                    else
+                        outputFilePath = outputDir + "/" + std::string(entryName).substr(std::string(entryName).find("exefs/") + 6);
 
-            // Extract the contents of the 'romfs' directory only
-            if (std::string(entryName).find("romfs/") != std::string::npos || std::string(entryName).find("exefs/") != std::string::npos) {
-                
-                std::string outputFilePath;
-                if (std::string(entryName).find("romfs/") != std::string::npos)
-                    outputFilePath = outputDir + "/" + std::string(entryName).substr(std::string(entryName).find("romfs/") + 6);
-                else
-                    outputFilePath = outputDir + "/" + std::string(entryName).substr(std::string(entryName).find("exefs/") + 6);
+                    std::cout << outputFilePath << std::endl;
+                    std::filesystem::path outputPath(outputFilePath);
+                    std::filesystem::create_directories(outputPath.parent_path());
 
+                    if (archive_entry_filetype(entry) == AE_IFDIR) {
+                        ProgressEvent::instance().incrementStep(1);
+                        // Skip directories
+                        continue;
+                    }
+
+
+                    std::ofstream outputFile(outputFilePath, std::ios::binary);
+                    if (!outputFile) {
+                        std::cout << "Failed to create output file: " << outputFilePath << std::endl;
+                        archive_read_free(archive);
+                        std::filesystem::remove(archiveFile);
+                        ProgressEvent::instance().setStep(ProgressEvent::instance().getMax());
+                        return false;
+                    }
+
+                    const size_t bufferSize = 100000;
+                    char buffer[bufferSize];
+                    ssize_t bytesRead;
+                    while ((bytesRead = archive_read_data(archive, buffer, bufferSize)) > 0) {
+                        outputFile.write(buffer, bytesRead);
+                    }
+
+                    outputFile.close();
+
+                    std::cout << "Extracted file: " << outputFilePath << std::endl;
+                    ProgressEvent::instance().incrementStep(1);
+                }
+            } else {
+                // Smash bros mods
+                std::string nameWithoutExtension = "";
+                size_t extensionPos = archiveFile.find_last_of("."); // Find last dot position
+                if (extensionPos != std::string::npos && archiveFile.substr(extensionPos) == ".zip") {
+                    nameWithoutExtension = archiveFile.substr(0, extensionPos); // Extract substring
+                } else {
+                    std::cout << "No .zip extension found in the filename." << std::endl;
+                }
+                std::string outputFilePath = fmt::format("sdmc:/ultimate/mods/{}",std::string(entryName));
                 std::cout << outputFilePath << std::endl;
                 std::filesystem::path outputPath(outputFilePath);
                 std::filesystem::create_directories(outputPath.parent_path());
-
                 if (archive_entry_filetype(entry) == AE_IFDIR) {
+                    // Create the directory
+                    if (!std::filesystem::create_directory(outputPath)) {
+                        std::cout << "Failed to create directory: " << outputFilePath << std::endl;
+                    }
                     ProgressEvent::instance().incrementStep(1);
-                    // Skip directories
                     continue;
                 }
-
 
                 std::ofstream outputFile(outputFilePath, std::ios::binary);
                 if (!outputFile) {
