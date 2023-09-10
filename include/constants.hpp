@@ -16,6 +16,8 @@ const std::string FORWARDER_PATH = "sdmc:/config/SimpleModDownloader/forwarder.n
 const std::vector<std::string> langVector ={"de", "en-US", "es", "fr", "gr", "it", "ja", "ko","pt-BR", "ro", "zh-CN", "auto"};
 const std::vector<std::string> arcVector ={"true", "false"};
 
+const std::string smash_tid = "01006A800016E000";
+
 const std::vector<std::pair<std::string, std::string>> goodGamesName = {
     {"Pokémon Brillant Diamond", "Pokemon Brilliant Diamond and Shining Pearl"},
     {"Pokémon Shining Pearl", "Pokemon Brilliant Diamond and Shining Pearl"},

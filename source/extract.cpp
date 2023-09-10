@@ -59,7 +59,6 @@ namespace extract {
 
     bool extractEntry(const std::string& archiveFile, const std::string& outputDir, const std::string& tid) {
         chdir("sdmc:/");
-        std::string smash_tid = "01006A800016E000";
         brls::Logger::debug("tid 2: {}",tid);
         struct archive* archive = archive_read_new();
 
