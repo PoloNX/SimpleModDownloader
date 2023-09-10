@@ -155,10 +155,10 @@ namespace extract {
                 // Smash bros mods
                 std::string nameWithoutExtension = "";
                 size_t extensionPos = archiveFile.find_last_of("."); // Find last dot position
-                if (extensionPos != std::string::npos && archiveFile.substr(extensionPos) == ".zip") {
+                if (extensionPos != std::string::npos && (archiveFile.substr(extensionPos) == ".zip" || archiveFile.substr(extensionPos) == ".zip")) {
                     nameWithoutExtension = archiveFile.substr(0, extensionPos); // Extract substring
                 } else {
-                    std::cout << "No .zip extension found in the filename." << std::endl;
+                    std::cout << "No .zip or .7z extension found in the filename." << std::endl;
                 }
                 std::string outputFilePath = fmt::format("sdmc:/ultimate/mods/{}",std::string(entryName));
                 std::cout << outputFilePath << std::endl;
