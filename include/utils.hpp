@@ -25,4 +25,8 @@ namespace utils {
     bool cp(char *filein, char *fileout);
     std::string getCurrentLang();
     bool isLangAuto();
+    bool useARCropolis();
+    bool fileHasSmashOption();
+    nlohmann::json getSettings();
+    void writeSettings(nlohmann::json settings);
 };

@@ -74,7 +74,8 @@
     },
 
     "settings_tab" : {
-        "language" : "Select language"
+        "language" : "Select language",
+        "arc" : "Use ARCropolis for Smash mods"
     },
 
     "crash" : {

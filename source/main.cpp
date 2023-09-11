@@ -33,7 +33,6 @@ int main() {
 
     //Use debug log level
     brls::Logger::setLogLevel(brls::LogLevel::DEBUG);
-
     brls::Application::pushView(new MainFrame());
 
     while(brls::Application::mainLoop()) {

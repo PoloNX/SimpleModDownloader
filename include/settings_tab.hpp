@@ -7,4 +7,5 @@ public:
     SettingsTab();
 private:
     brls::SelectListItem* item;
+    brls::SelectListItem* arcropolisItem;
 };
