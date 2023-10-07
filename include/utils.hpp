@@ -9,7 +9,6 @@
 namespace utils {
     nlohmann::json getInstalledGames();
     nlohmann::json searchGames(std::string gameTitle);
-    std::string replaceSpacesWithPlus(const std::string& str);
     nlohmann::json getMods(const int& gameID, int& page);
     nlohmann::json getMods(const int& gameID, const std::string& search, int& page);
     nlohmann::json getDownloadLinks(const std::string& ModelName, const int& idRow);

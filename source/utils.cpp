@@ -121,12 +121,11 @@ namespace utils {
             auto curl = curl_easy_init();
             if(curl) {
                 gameTitle = curl_easy_escape(curl, gameTitle.c_str(), 0);
+                curl_easy_cleanup(curl);
             }
         }
             
         brls::Logger::info("Game title: {}", gameTitle);
-
-        gameTitle = replaceSpacesWithPlus(gameTitle);
 
         const std::string api_url = fmt::format("https://gamebanana.com/apiv11/Util/Game/NameMatch?_sName={}", gameTitle);
         brls::Logger::debug("API URL: {}", api_url);
@@ -134,12 +133,6 @@ namespace utils {
         nlohmann::json games = net::downloadRequest(api_url);
 
         return games;
-    }
-
-    std::string replaceSpacesWithPlus(const std::string& str) {
-        std::string resultString = str;
-        std::ranges::replace(resultString, ' ', '+');
-        return resultString;
     }
 
     nlohmann::json getMods(const int& gameID, int& page) {
@@ -163,7 +156,13 @@ namespace utils {
             brls::Application::notify("menu/notify/string_to_short"_i18n);
             return getMods(gameID, page);
         }
-        std::string search_term = replaceSpacesWithPlus(search);
+
+        std::string search_term = search;
+        auto curl = curl_easy_init();
+        if(curl){
+            search_term =  curl_easy_escape(curl, search.c_str(), 0);
+            curl_easy_cleanup(curl);
+        }
         std::string api_url = fmt::format("https://gamebanana.com/apiv11/Game/{}/Subfeed?_nPage={}&_nPerpage=50&_sName={}&_csvModelInclusions=Mod", std::to_string(gameID),std::to_string(page), search_term);
         nlohmann::json mods = net::downloadRequest(api_url);
         if(mods.at("_aRecords").empty() && page > 1) {
