@@ -2,10 +2,20 @@
 #include "main_frame.hpp"
 #include "utils.hpp"
 #include "constants.hpp"
+#include <filesystem>
 #include <switch.h>
 
 namespace i18n = brls::i18n;
 using namespace i18n::literals;
+
+
+std::string removePrefix(std::string path) {
+    std::string prefix = "sdmc:/";
+    if(path.find(prefix) != std::string::npos) {
+        path.erase(0, prefix.length());
+    }
+    return path;
+}
 
 ConfirmPage::ConfirmPage(brls::StagedAppletFrame* frame, const std::string& text, const bool& restart) : frame(frame), text(text) {
     this->button = new brls::Button(brls::ButtonStyle::REGULAR);
@@ -17,19 +27,20 @@ ConfirmPage::ConfirmPage(brls::StagedAppletFrame* frame, const std::string& text
     this->label->setParent(this);
 
     this->button->getClickEvent()->subscribe([this, restart](brls::View* view){
-        if(restart) {
-            utils::cp("romfs:/forwarder/forwarder.nro", "sdmc:/config/SimpleModDownloader/forwarder.nro");
-            envSetNextLoad(FORWARDER_PATH.c_str(), fmt::format("\"{}\"", FORWARDER_PATH).c_str());
-            romfsExit();
-            brls::Application::quit();
-        }
-        else if(!this->frame->isLastStage()) {
+    if(restart) {
+        utils::cp("romfs:/forwarder/forwarder.nro", "sdmc:/config/SimpleModDownloader/forwarder.nro");
+        envSetNextLoad(FORWARDER_PATH.c_str(), fmt::format("\"{}\"").c_str());
+        romfsExit();
+        brls::Application::quit();
+    }
+        
+    else if(!this->frame->isLastStage()) {
             this->frame->nextStage();
-        }
-        else {
+    }
+    else {
             brls::Application::popView();
             //brls::Application::pushView(return_view);
-        }
+    }
     });
 
     this->registerAction("", brls::Key::B, [this] { return true; });

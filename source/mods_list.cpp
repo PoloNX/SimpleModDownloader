@@ -129,7 +129,7 @@ ModsPage::ModsPage(Mod &mod, Game& game, const std::string& search, const int& p
 
             this->listItem->getClickEvent()->subscribe([this, i](brls::View* view) {
                 std::string extension = i.name.substr(i.name.find_last_of(".") + 1);
-                if(extension == "zip" || extension == "7z"){
+                if(extension == "zip" || extension == "7z" || extension == "rar"){
                     
                     
                     auto* stagedFrame = new brls::StagedAppletFrame();

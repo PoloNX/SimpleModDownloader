@@ -30,7 +30,8 @@
     "about": {
         "title": "SimpleModDownloaderについて",
         "description": "SimpleModDownloaderは、PoloNXによって作成されたNintendo Switchゲーム用のMODをダウンロードしてインストールするためのHomebrewアプリです。",
-		"thanks": "\u25c6 SimpleModManagerには@nadrinoさんへの感謝を捧げます\n\u25c6 borealisにはNatinusalaとHamletDuFromageへの感謝を捧げます\n\u25c6 ロゴにはPikatsuto、タイポグラフィにはSuperButterScotchへの感謝を捧げます\n\u25c6 Simple-INI-ParserにはNicholeMatteraへの感謝を捧げます"
+		"thanks": "\u25c6 SimpleModManagerには@nadrinoさんへの感謝を捧げます\n\u25c6 borealisにはNatinusalaとHamletDuFromageへの感謝を捧げます\n\u25c6 ロゴにはPikatsuto、タイポグラフィにはSuperButterScotchへの感謝を捧げます\n\u25c6 Simple-INI-ParserにはNicholeMatteraへの感謝を捧げます",
+        "translator:": "\u25c6 iGlitchさん、翻訳ありがとうございます。"
     },
     
     "label": {

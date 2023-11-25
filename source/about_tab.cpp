@@ -23,7 +23,14 @@ AboutTab::AboutTab() {
         true
     );
 
+    traductors = new brls::Label(
+        brls::LabelStyle::SMALL,
+        "menu/about/translator"_i18n,
+        true
+    );
+
     this->addView(title);
     this->addView(description);
     this->addView(thanks);
+    this->addView(traductors);
 }

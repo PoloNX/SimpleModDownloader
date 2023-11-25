@@ -13,7 +13,11 @@ using namespace i18n::literals;
 void init();
 void exit();
 
-int main() {
+std::string CURRENT_APP_PATH = "";
+
+int main(int argc, char** argv) {
+    
+
     if (!brls::Application::init(fmt::format("{} v{}", "menu/main/app_name"_i18n, APP_VER))) {
         brls::Logger::error("Unable to init borealis application");
         return EXIT_FAILURE;
@@ -34,6 +38,14 @@ int main() {
     //Use debug log level
     brls::Logger::setLogLevel(brls::LogLevel::DEBUG);
     brls::Application::pushView(new MainFrame());
+    for(auto i = 0; i < argc; i++) {
+        brls::Logger::debug("argv[{}] : {}", i, argv[i]);
+    }
+
+    CURRENT_APP_PATH = argv[0];
+
+    brls::Logger::info("Current App path : {}", argv[0]);
+    
 
     while(brls::Application::mainLoop()) {
         ;
@@ -53,6 +65,7 @@ void init() {
     pmdmntInitialize();
     pminfoInitialize();
     splInitialize();
+    fsInitialize();
     romfsInit();
 }
 
@@ -64,5 +77,6 @@ void exit() {
     socketExit();
     nsExit();
     setsysExit();
+    fsExit();
     plExit();
 }

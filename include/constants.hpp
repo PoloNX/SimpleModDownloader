@@ -5,7 +5,7 @@
 #include <borealis.hpp>
 #include <nlohmann/json.hpp>
 
-const std::string APP_VER = "1.0.3";
+const std::string APP_VER = "1.0.4";
 const std::string SimpleModManager_URL = "https://github.com/nadrino/SimpleModManager/releases/latest/download/SimpleModManager.nro";
 
 const std::string SimpleModDownloader_API = "https://api.github.com/repos/PoloNX/SimpleModDownloader/releases/latest";
@@ -21,8 +21,8 @@ const std::string smash_tid = "01006A800016E000";
 const std::vector<std::pair<std::string, std::string>> goodGamesName = {
     {"Pokémon Brillant Diamond", "Pokemon Brilliant Diamond and Shining Pearl"},
     {"Pokémon Shining Pearl", "Pokemon Brilliant Diamond and Shining Pearl"},
-    {"Pokémon Sword", "Pokemon Sword Shield"},
-    {"Pokémon Shield", "Pokemon Sword Shield"},
+    {"Pokémon Sword", "Pokemon Sword & Shield"},
+    {"Pokémon Shield", "Pokemon Sword & Shield"},
     {"Pokémon Scarlet", "Pokemon Scarlet Violet"},
     {"Pokémon Violet", "Pokemon Scarlet Violet"},
     {"Miitopia", "Miitopia (Switch)"},

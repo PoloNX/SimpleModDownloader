@@ -14,7 +14,7 @@
         "downloads": "Διαθέσιμες Λήψεις",
         "install": "Εγκατάσταση",
         "update": "Ενημέρωση Εφαρμογής",
-        "about": "Σχετικά"
+        "about": "Σχετικά",
         "settings": "Ρυθμίσεις"
     },
     
@@ -34,7 +34,8 @@
     "about": {
         "title": "Σχετικά με το SimpleModDownloader",
         "description": "Το SimpleModDownloader είναι μία εφαρμογή που επιτρέπει τη λήξη και εγκατάσταση mods για παιχνίδια του Nintendo Switch και δημιουργήθηκε από τον PoloNX.",
-        "thanks": "\u25c6 Ευχαριστίες σε @nadrino για το SimpleModManager\n\u25c6 Ευχαριστίες σε Natinusala και σε HamletDuFromage για το borealis\n\u25c6 Ευχαριστίες σε Pikatsuto για το λογότυπο και σε SuperButterScotch για την τυπογραφική επιμέλεια\n\u25c6 Ευχαριστίες σε NicholeMattera για το Simple-INI-Parser"
+        "thanks": "\u25c6 Ευχαριστίες σε @nadrino για το SimpleModManager\n\u25c6 Ευχαριστίες σε Natinusala και σε HamletDuFromage για το borealis\n\u25c6 Ευχαριστίες σε Pikatsuto για το λογότυπο και σε SuperButterScotch για την τυπογραφική επιμέλεια\n\u25c6 Ευχαριστίες σε NicholeMattera για το Simple-INI-Parser",
+        "translator": "\u25c6 Ευχαριστούμε τους tsamerman και spkats1 για τη μετάφραση"
     },
     
     "label": {
@@ -68,7 +69,7 @@
         "date": "Ημερομηνία",
         "images": "Προβολή Εικόνων",
         "browser": "Άνοιγμα μέσω Browser",
-        "author": "Δημιουργός"
+        "author": "Δημιουργός",
         "page": "Σελίδα"
     },
 

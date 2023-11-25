@@ -521,4 +521,24 @@ namespace utils {
         outFile << settings.dump(4);
         outFile.close();
     }
+
+    std::string getAppPath() {
+        if(envHasArgv()) {
+            std::smatch match;
+            std::string argv = (char*)envGetArgv();
+            if(std::regex_match(argv, match, std::regex(".*(/switch/.*AtmoPackUpdater.nro).*"))) {
+                if (match.size() >= 2) {
+                    return match[1].str();
+                }
+            }
+        }
+    }
+
+    void restartApp() {
+        std::string appPath = fmt::format("sdmc:{}", getAppPath());
+        std::string argv = "\"" + appPath + "\"";
+        envSetNextLoad(appPath.c_str(), argv.c_str());
+        romfsExit();
+        brls::Application::quit();
+    }
 }

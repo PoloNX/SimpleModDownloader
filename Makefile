@@ -23,7 +23,7 @@ ICON        :=  resources/icon/icon-256.jpg
 INCLUDES	:=	include /lib/borealis/library/include/borealis/extern/nlohmann /lib/ini/include /lib/ini/include/SimpleIniParser
 APP_TITLE	:=	SimpleModDownloader
 APP_AUTHOR	:=	PoloNX
-APP_VERSION :=  1.0.3
+APP_VERSION :=  1.0.4
 TARGET		:=	$(notdir $(CURDIR))
 
 ROMFS				:=	resources
@@ -51,7 +51,7 @@ CFLAGS	+=	$(INCLUDE) -D__SWITCH__ \
 			-DAPP_TITLE="\"$(APP_TITLE)\"" -DAPP_TITLE_LOWER="\"$(TARGET)\""
 
 
-CXXFLAGS	:= $(CFLAGS) -std=gnu++20 -fexceptions -Wno-reorder
+CXXFLAGS	:= $(CFLAGS) -std=gnu++20 -fexceptions -Wno-reorder 
 
 ASFLAGS	:=	-g $(ARCH)
 LDFLAGS	=	-specs=$(DEVKITPRO)/libnx/switch.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)

@@ -34,7 +34,8 @@
     "about": {
         "title": "关于 SimpleModDownloader",
         "description": "SimpleModDownloader 是一款允许您下载和安装 Nintendo Switch 游戏模组的应用程序，由 PoloNX 开发。",
-        "thanks": "\u25c6 感谢 @nadrino 提供的 SimpleModManager\n\u25c6 感谢 Natinusala 和 HamletDuFromage 提供的 borealis\n\u25c6 感谢 Pikatsuto 提供的应用程序图标，感谢 SuperButterScotch 排版\n\u25c6 感谢 NicholeMattera 提供的 Simple-INI-Parser"
+        "thanks": "\u25c6 感谢 @nadrino 提供的 SimpleModManager\n\u25c6 感谢 Natinusala 和 HamletDuFromage 提供的 borealis\n\u25c6 感谢 Pikatsuto 提供的应用程序图标，感谢 SuperButterScotch 排版\n\u25c6 感谢 NicholeMattera 提供的 Simple-INI-Parser",
+        "translator": "\u25c6 感谢JerryWn12的翻译。"
     },
     
     "label": {

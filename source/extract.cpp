@@ -71,6 +71,8 @@ namespace extract {
         else if (extension == "7z") {
             archive_read_support_format_7zip(archive);
         }*/
+        brls::Logger::info("Libarchive version : {}", archive_version_string());
+
         archive_read_support_format_all(archive);
         int result = archive_read_open_filename(archive, archiveFile.c_str(), 10240);
         if (result != ARCHIVE_OK) {

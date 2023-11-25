@@ -28,4 +28,6 @@ namespace utils {
     bool fileHasSmashOption();
     nlohmann::json getSettings();
     void writeSettings(nlohmann::json settings);
+    std::string getAppPath();
+    void restartApp();
 };

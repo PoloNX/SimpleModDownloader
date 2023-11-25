@@ -34,7 +34,8 @@
     "about": {
         "title": "SimpleModDownloader 정보",
         "description": "SimpleModDownloader는 PoloNX에서 만든 닌텐도 스위치 게임용 Mod를 다운로드하고 설치할 수 있는 응용 프로그램입니다.",
-        "thanks": "\u25c6 SimpleModManager의 @nadrino에게 감사\n\u25c6 borealis의 Natinusala와 HamletDuFromage에게 감사\n\u25c6 로고의 Pikatsuto와 타이포그래피의 SuperButterScotch에게 감사\n\u25c6 Simple-INI-Parser의 NicholeMattera에게 감사"
+        "thanks": "\u25c6 SimpleModManager의 @nadrino에게 감사\n\u25c6 borealis의 Natinusala와 HamletDuFromage에게 감사\n\u25c6 로고의 Pikatsuto와 타이포그래피의 SuperButterScotch에게 감사\n\u25c6 Simple-INI-Parser의 NicholeMattera에게 감사",
+        "translator": "\u25c6 DDinghoya님, 번역에 감사드립니다."
     },
     
     "label": {

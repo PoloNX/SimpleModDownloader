@@ -12,4 +12,5 @@ private:
     brls::Label* title;
     brls::Label* description;
     brls::Label* thanks;
+    brls::Label* traductors;
 };
