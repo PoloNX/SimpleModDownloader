@@ -5,7 +5,7 @@
 #include <borealis.hpp>
 #include <nlohmann/json.hpp>
 
-const std::string APP_VER = "1.0.4";
+const std::string APP_VER = "1.1.0";
 const std::string SimpleModManager_URL = "https://github.com/nadrino/SimpleModManager/releases/latest/download/SimpleModManager.nro";
 
 const std::string SimpleModDownloader_API = "https://api.github.com/repos/PoloNX/SimpleModDownloader/releases/latest";
@@ -23,8 +23,8 @@ const std::vector<std::pair<std::string, std::string>> goodGamesName = {
     {"Pokémon Shining Pearl", "Pokemon Brilliant Diamond and Shining Pearl"},
     {"Pokémon Sword", "Pokemon Sword & Shield"},
     {"Pokémon Shield", "Pokemon Sword & Shield"},
-    {"Pokémon Scarlet", "Pokemon Scarlet Violet"},
-    {"Pokémon Violet", "Pokemon Scarlet Violet"},
+    {"Pokémon Scarlet", "Pokemon Scarlet & Violet"},
+    {"Pokémon Violet", "Pokemon Scarlet & Violet"},
     {"Miitopia", "Miitopia (Switch)"},
     {"Super Meat Boy", "Super Meat Boy (Nintendo Switch)"},  
     {"UNDERTAILE", "UNDERTALE (Switch)"},
@@ -35,7 +35,6 @@ const std::vector<std::pair<std::string, std::string>> goodGamesName = {
     {"The Legend of Zelda: Link's Awakening", "The Legend of Zelda: Link%27s Awakening (Switch)"},
     {"The Binding of Isaac: Afterbirth+", "The Binding of Isaac: Afterbirth+ (Switch)"},
     {"The Legend of Zelda: Breath of the Wild", "The Legend of Zelda: Breath of the Wild (Switch)"},
-    {"LAYTON’S MYSTERY JOURNEY™: Katrielle and the Millionaires’ Conspiracy - Deluxe Edition", "LAYTON%27S MYSTERY JOURNEY: Katrielle and the Millionaires%27 Conspiracy - Deluxe Edition"},
     {"Hatsune Miku: Project DIVA Mega Mix", "Hatsune Miku: Project Diva Mega39/Mega Mix"}
 };
 
@@ -63,5 +62,6 @@ struct Game {
     std::string title;
     int gamebananaID;
     std::string tid;
+    brls::Image* icon;
 };
 

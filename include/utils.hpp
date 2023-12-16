@@ -13,6 +13,7 @@ namespace utils {
     nlohmann::json getMods(const int& gameID, const std::string& search, int& page);
     nlohmann::json getDownloadLinks(const std::string& ModelName, const int& idRow);
     uint8_t* getIconFromTitleId(const std::string& titleId);
+    brls::Image* getIconFromUrl(const std::string& url);
     std::vector<brls::Image*> getModsImages(const nlohmann::json& mod_json, const int& bigImage, size_t& sizeOfArray);
     int openWebBrowser(const std::string url);
     void showDialogBoxInfo(const std::string& text);

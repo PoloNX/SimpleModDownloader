@@ -31,9 +31,9 @@ ModsList::ModsList(Game game, const std::string& search, int page_f) : AppletFra
 }
 
 void ModsList::createList(){
+    this->setIcon(currentGame.icon);
+    
     list = new brls::List();
-
-    brls::Logger::debug("json : {}", mods.dump(4));
 
     for (auto i : mods.at("_aRecords")) {
         //Check if the mod can be downloaded or no

@@ -38,11 +38,11 @@ namespace net {
     }
 
     int progress_callback(void *clientp, double dltotal, double dlnow, double ultotal, double ulnow) {
-        brls::Logger::info("Downloaded {} of {} bytes", dlnow, dltotal);
+        //brls::Logger::info("Downloaded {} of {} bytes", dlnow, dltotal);
 
         std::string progress = fmt::format("Downloaded {} of {} bytes", dlnow, dltotal);
 
-        svcOutputDebugString(progress.c_str(), progress.size());
+        //svcOutputDebugString(progress.c_str(), progress.size());
         return 0;
     }
 
@@ -114,7 +114,7 @@ namespace net {
 
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response);
-        curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
+        //curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
         curl_easy_setopt(curl, CURLOPT_USERAGENT, "SimpleModDownloader");
 
         auto res = curl_easy_perform(curl);
@@ -132,17 +132,21 @@ namespace net {
     }
 
     void downloadImage(const std::string& url, std::vector<unsigned char>& buffer)
-    {
-
+    {   
+        brls::Logger::info("Downloading image {}", url);
+        curl_global_init(CURL_GLOBAL_ALL);
         CURL* curl = curl_easy_init();
         if (curl)
-        {
+        {   
+            brls::Logger::info("Curl init");
+            
             curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
             curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallbackImages);
             curl_easy_setopt(curl, CURLOPT_WRITEDATA, &buffer);
             curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 0L);
             curl_easy_setopt(curl, CURLOPT_PROGRESSFUNCTION, progress_callback);
 
+            curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
             curl_easy_setopt(curl, CURLOPT_USERAGENT, "SimpleModDownloader");
             curl_easy_setopt(curl, CURLOPT_BUFFERSIZE, 120000L);
             curl_easy_setopt(curl, CURLOPT_TCP_KEEPALIVE, 1L);
@@ -155,6 +159,11 @@ namespace net {
             }
             curl_easy_cleanup(curl);
         }
+        else {
+            CURLcode result = curl_easy_perform(curl);
+            brls::Logger::error("Curl init failed : {}", curl_easy_strerror(result));
+        }
+        curl_global_cleanup();
         return;
     }
 

@@ -44,7 +44,7 @@ DownloadTab::DownloadTab() : brls::List() {
                                 game.title = i.at("_sName").get<std::string>();
                                 game.tid = tid;
                                 game.gamebananaID = i.at("_idRow").get<int>();
-                                
+                                game.icon = utils::getIconFromUrl(i.at("_sIconUrl").get<std::string>());
                                 brls::Application::pushView(new ModsList(game));
                             });
                             this->game_selection->addView(game);
@@ -60,6 +60,7 @@ DownloadTab::DownloadTab() : brls::List() {
                         game.title = games_found.at("_aRecords")[0].at("_sName").get<std::string>();
                         game.tid = tid;
                         game.gamebananaID = games_found.at("_aRecords")[0].at("_idRow").get<int>();
+                        game.icon = utils::getIconFromUrl(games_found.at("_aRecords")[0].at("_sIconUrl").get<std::string>());
                         brls::Application::pushView(new ModsList(game));
                     }
                     

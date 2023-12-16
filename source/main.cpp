@@ -38,14 +38,7 @@ int main(int argc, char** argv) {
     //Use debug log level
     brls::Logger::setLogLevel(brls::LogLevel::DEBUG);
     brls::Application::pushView(new MainFrame());
-    for(auto i = 0; i < argc; i++) {
-        brls::Logger::debug("argv[{}] : {}", i, argv[i]);
-    }
 
-    CURRENT_APP_PATH = argv[0];
-
-    brls::Logger::info("Current App path : {}", argv[0]);
-    
 
     while(brls::Application::mainLoop()) {
         ;

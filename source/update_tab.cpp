@@ -27,7 +27,6 @@ UpdateTab::UpdateTab() {
     item->setHeight(50);
     item->getClickEvent()->subscribe([this](auto* view) {
         this->json = net::downloadRequest(SimpleModDownloader_API);
-        std::cout << this->json << std::endl;
 
         if(this->json.size()) {
             this->version = this->json.at("tag_name").get<std::string>();

@@ -109,22 +109,20 @@ namespace utils {
     }
 
     nlohmann::json searchGames(std::string gameTitle) {
-        bool trigger = false;
         for (auto i : goodGamesName) {
-            if (i.first == gameTitle) {
+            std::regex regexPattern(i.first);
+
+            if (std::regex_search(gameTitle, regexPattern)) {
                 gameTitle = i.second;
-                trigger = true;
                 break;
             }
         }
-        if(trigger == false) {
-            auto curl = curl_easy_init();
-            if(curl) {
-                gameTitle = curl_easy_escape(curl, gameTitle.c_str(), 0);
-                curl_easy_cleanup(curl);
-            }
+
+        auto curl = curl_easy_init();
+        if(curl) {
+            gameTitle = curl_easy_escape(curl, gameTitle.c_str(), 0);
+            curl_easy_cleanup(curl);
         }
-            
         brls::Logger::info("Game title: {}", gameTitle);
 
         const std::string api_url = fmt::format("https://gamebanana.com/apiv11/Util/Game/NameMatch?_sName={}", gameTitle);
@@ -170,8 +168,8 @@ namespace utils {
             mods = net::downloadRequest(api_url);
             page -= 1;
         }
-        std::cout<< api_url << std::endl;
-        std::cout << mods << std::endl;
+        //std::cout<< api_url << std::endl;
+        //std::cout << mods << std::endl;
         return mods;
     }
 
@@ -200,6 +198,18 @@ namespace utils {
         return icon;
     }
 
+    brls::Image* getIconFromUrl(const std::string& url) {
+        brls::Logger::debug("Icon URL: {}", url);
+        std::vector<unsigned char> buffer;
+        
+        net::downloadImage(url, buffer);
+
+        brls::Image* icon = new brls::Image(buffer.data(), buffer.size());
+        brls::Logger::debug("Icon size: {}", buffer.size());
+
+        return icon;
+    }
+
     std::vector<brls::Image*> getModsImages(const nlohmann::json& mod_json, const int& BigPage, size_t& sizeOfArray) {
         nlohmann::json preview_json = mod_json.at("_aPreviewMedia").at("_aImages");
 
@@ -212,8 +222,11 @@ namespace utils {
 
         for (auto i : preview_json) {
             std::vector<unsigned char> buffer;
-            if (compteur == BigPage)
+            if (compteur == BigPage) {
+               
                 url = fmt::format("https://images.gamebanana.com/img/ss/mods/{}", i.at("_sFile"));
+                 brls::Logger::debug(url);
+            }
             else 
                 url = fmt::format("https://images.gamebanana.com/img/ss/mods/{}", i.at("_sFile100"));
             net::downloadImage(url, buffer);
@@ -227,8 +240,6 @@ namespace utils {
             compteur++;         
             if (compteur > 5)
                 break;
-        
-            svcOutputDebugString("0", 1);
         }
         return images;
     }

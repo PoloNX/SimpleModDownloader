@@ -60,17 +60,6 @@ namespace extract {
     bool extractEntry(const std::string& archiveFile, const std::string& outputDir, const std::string& tid) {
         chdir("sdmc:/");
         struct archive* archive = archive_read_new();
-
-        /*std::string extension = archiveFile.substr(archiveFile.find_last_of(".") + 1);
-        if (extension == "zip") {
-            archive_read_support_format_zip(archive);
-        }
-        else if (extension == "rar") {
-            archive_read_support_format_rar(archive);
-        }
-        else if (extension == "7z") {
-            archive_read_support_format_7zip(archive);
-        }*/
         brls::Logger::info("Libarchive version : {}", archive_version_string());
 
         archive_read_support_format_all(archive);
@@ -148,8 +137,10 @@ namespace extract {
 
                     outputFile.close();
 
-                    std::cout << "Extracted file: " << outputFilePath << std::endl;
+                    brls::Logger::info("Extracted file: ", outputFilePath);
                     ProgressEvent::instance().incrementStep(1);
+                } else {
+                    brls::Logger::info("Skipping {}", entryName);
                 }
             } else {
                 // Smash bros mods
