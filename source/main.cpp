@@ -53,8 +53,8 @@ void init() {
     setsysInitialize();
     plInitialize(PlServiceType_User);
     nsInitialize();
-    socketInitializeDefault();
-    nxlinkStdio();
+    //socketInitializeDefault();
+    //nxlinkStdio();
     pmdmntInitialize();
     pminfoInitialize();
     splInitialize();

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <filesystem>
+#include <regex>
 
 #include "extract.hpp"
 #include "progress_event.hpp"
@@ -103,10 +104,16 @@ namespace extract {
                 if (std::string(entryName).find("romfs/") != std::string::npos || std::string(entryName).find("exefs/") != std::string::npos) {
                     
                     std::string outputFilePath;
+
+
                     if (std::string(entryName).find("romfs/") != std::string::npos)
                         outputFilePath = outputDir + "/" + std::string(entryName).substr(std::string(entryName).find("romfs/") + 6);
                     else
                         outputFilePath = outputDir + "/" + std::string(entryName).substr(std::string(entryName).find("exefs/") + 6);
+
+                    if (std::string(entryName).find("|") != std::string::npos)
+                        outputFilePath = outputFilePath.substr(0, outputFilePath.find("|"));
+                  
 
                     std::cout << outputFilePath << std::endl;
                     std::filesystem::path outputPath(outputFilePath);
