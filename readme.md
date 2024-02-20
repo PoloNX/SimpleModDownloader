@@ -62,6 +62,10 @@ make
 
 If you want to help me open an issue when you encounter a bug and a pull request if you have a fix.
 
+## TODO
+
+Rewrite the app with [borealis](https://github.com/xfangfang/borealis) because the current app is unstable. No eta for this.
+
 ## Credits 
 
 - Thanks to [Natinusala](https://github.com/natinusala) and [HamletDuFromage](https://github.com/HamletDuFromage) for [borealis](https://github.com/HamletDuFromage/borealis)
