@@ -146,7 +146,9 @@ ModsPage::ModsPage(Mod &mod, Game& game, const std::string& search, const int& p
                         std::string resultat = std::regex_replace(this->currentGame.title, pattern, " -");
 
                         pattern = std::regex("|");
-                        resultat = std::regex_replace(this->currentGame.title, pattern, "");
+                        resultat = std::regex_replace(resultat, pattern, "");
+
+                        brls::Logger::debug("resultat : {}",resultat);
 
                         extract::extractEntry(fmt::format("sdmc:/config/SimpleModDownloader/{}", i.name), fmt::format("sdmc:{}{}/{}/contents/{}/romfs",utils::getModInstallPath(),resultat, this->currentMod.title, this->currentGame.tid), this->currentGame.tid);
                     }));

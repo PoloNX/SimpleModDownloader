@@ -146,7 +146,7 @@ namespace net {
             curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 0L);
             curl_easy_setopt(curl, CURLOPT_PROGRESSFUNCTION, progress_callback);
 
-            curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
+            //curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
             curl_easy_setopt(curl, CURLOPT_USERAGENT, "SimpleModDownloader");
             curl_easy_setopt(curl, CURLOPT_BUFFERSIZE, 120000L);
             curl_easy_setopt(curl, CURLOPT_TCP_KEEPALIVE, 1L);
@@ -236,7 +236,7 @@ namespace net {
                 curl_easy_setopt(curl, CURLOPT_URL, real_url.c_str());
                 curl_easy_setopt(curl, CURLOPT_USERAGENT, "SimpleModDownloader");
                 curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
-                curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
+                //curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
                 curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
                 curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
                 curl_easy_setopt(curl, CURLOPT_NOBODY, 0L);
