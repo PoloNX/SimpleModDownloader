@@ -1,6 +1,0 @@
-[submodule "lib/ini"]
-	path = lib/ini
-	url = https://github.com/NicholeMattera/Simple-INI-Parser.git
-[submodule "lib/borealis"]
-	path = lib/borealis
-	url = https://github.com/xfangfang/borealis
