@@ -1,0 +1,14 @@
+<brls:AppletFrame
+    iconInterpolation="linear"
+    footerHidden="false">
+
+    <brls:TabFrame
+        title="@i18n/app/title">
+
+        <brls:Tab label="@i18n/app/tabs/upcoming">
+            <GamesListTab />
+        </brls:Tab>
+
+    </brls:TabFrame>
+
+</brls:AppletFrame>

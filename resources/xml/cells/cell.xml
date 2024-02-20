@@ -1,0 +1,34 @@
+<brls:Box
+    width="auto"
+    height="auto"
+    focusable="true"
+    paddingTop="12.5"
+    axis="column"
+    paddingBottom="12.5">
+
+    <brls:Label
+        id="title"
+        width="auto"
+        height="auto"
+        grow="1.0"
+        fontSize="@style/brls/sidebar/item_font_size"
+        marginTop="@style/brls/sidebar/item_accent_margin_top_bottom"
+        marginBottom="@style/brls/sidebar/item_accent_margin_top_bottom"
+        marginLeft="@style/brls/sidebar/item_accent_margin_sides"
+        marginRight="@style/brls/sidebar/item_accent_margin_sides" />
+    <brls:Box
+        width="auto"
+        height="auto"
+        alignItems="flexStart">
+        <brls:Label
+            id="subtitle"
+            width="auto"
+            height="auto"
+            grow="1.0"
+            fontSize="12"
+            marginTop="@style/brls/sidebar/item_accent_margin_top_bottom"
+            marginBottom="@style/brls/sidebar/item_accent_margin_top_bottom"
+            marginLeft="@style/brls/sidebar/item_accent_margin_sides"
+            marginRight="@style/brls/sidebar/item_accent_margin_sides"/>
+    </brls:Box>
+</brls:Box>

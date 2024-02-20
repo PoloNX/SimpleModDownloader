@@ -14,20 +14,537 @@
 # EXTERNAL cache entries
 ########################
 
-//No help, variable specified on the command line.
-CMAKE_BUILD_TYPE:UNINITIALIZED=Debug
+//Built in NSP forwarder
+BUILTIN_NSP:BOOL=OFF
+
+//Path to a program.
+CMAKE_ADDR2LINE:FILEPATH=/opt/devkitpro/devkitA64/bin/aarch64-none-elf-addr2line
+
+//Path to a program.
+CMAKE_AR:FILEPATH=/opt/devkitpro/devkitA64/bin/aarch64-none-elf-gcc-ar
+
+//Path to a program.
+CMAKE_ASM_COMPILER:FILEPATH=/opt/devkitpro/devkitA64/bin/aarch64-none-elf-gcc
+
+CMAKE_ASM_STANDARD_INCLUDE_DIRECTORIES:STRING=/opt/devkitpro/libnx/include
+
+CMAKE_ASM_STANDARD_LIBRARIES:STRING=-lnx -lm
+
+//Choose the type of build, options are: None Debug Release RelWithDebInfo
+// MinSizeRel ...
+CMAKE_BUILD_TYPE:STRING=Debug
+
+//CXX compiler
+CMAKE_CXX_COMPILER:STRING=/opt/devkitpro/devkitA64/bin/aarch64-none-elf-g++
+
+//A wrapper around 'ar' adding the appropriate '--plugin' option
+// for the GCC compiler
+CMAKE_CXX_COMPILER_AR:FILEPATH=/opt/devkitpro/devkitA64/bin/aarch64-none-elf-gcc-ar
+
+//A wrapper around 'ranlib' adding the appropriate '--plugin' option
+// for the GCC compiler
+CMAKE_CXX_COMPILER_RANLIB:FILEPATH=/opt/devkitpro/devkitA64/bin/aarch64-none-elf-gcc-ranlib
+
+//Flags used by the CXX compiler during all build types.
+CMAKE_CXX_FLAGS:STRING=-march=armv8-a+crc+crypto -mtune=cortex-a57 -mtp=soft -ftls-model=local-exec -ffunction-sections -fdata-sections -D__SWITCH__
+
+//Flags used by the CXX compiler during DEBUG builds.
+CMAKE_CXX_FLAGS_DEBUG:STRING=-g -Og -DDEBUG
+
+//Flags used by the CXX compiler during MINSIZEREL builds.
+CMAKE_CXX_FLAGS_MINSIZEREL:STRING=-g -Oz -DNDEBUG
+
+//Flags used by the CXX compiler during RELEASE builds.
+CMAKE_CXX_FLAGS_RELEASE:STRING=-g -O2 -DNDEBUG
+
+//Flags used by the CXX compiler during RELWITHDEBINFO builds.
+CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=-g -O2 -DNDEBUG
+
+CMAKE_CXX_STANDARD_INCLUDE_DIRECTORIES:STRING=/opt/devkitpro/libnx/include
+
+CMAKE_CXX_STANDARD_LIBRARIES:STRING=-lnx -lm
+
+//C compiler
+CMAKE_C_COMPILER:STRING=/opt/devkitpro/devkitA64/bin/aarch64-none-elf-gcc
+
+//A wrapper around 'ar' adding the appropriate '--plugin' option
+// for the GCC compiler
+CMAKE_C_COMPILER_AR:FILEPATH=/opt/devkitpro/devkitA64/bin/aarch64-none-elf-gcc-ar
+
+//A wrapper around 'ranlib' adding the appropriate '--plugin' option
+// for the GCC compiler
+CMAKE_C_COMPILER_RANLIB:FILEPATH=/opt/devkitpro/devkitA64/bin/aarch64-none-elf-gcc-ranlib
+
+//Flags used by the C compiler during all build types.
+CMAKE_C_FLAGS:STRING=-march=armv8-a+crc+crypto -mtune=cortex-a57 -mtp=soft -ftls-model=local-exec -ffunction-sections -fdata-sections -D__SWITCH__
+
+//Flags used by the C compiler during DEBUG builds.
+CMAKE_C_FLAGS_DEBUG:STRING=-g -Og -DDEBUG
+
+//Flags used by the C compiler during MINSIZEREL builds.
+CMAKE_C_FLAGS_MINSIZEREL:STRING=-g -Oz -DNDEBUG
+
+//Flags used by the C compiler during RELEASE builds.
+CMAKE_C_FLAGS_RELEASE:STRING=-g -O2 -DNDEBUG
+
+//Flags used by the C compiler during RELWITHDEBINFO builds.
+CMAKE_C_FLAGS_RELWITHDEBINFO:STRING=-g -O2 -DNDEBUG
+
+CMAKE_C_STANDARD_INCLUDE_DIRECTORIES:STRING=/opt/devkitpro/libnx/include
+
+CMAKE_C_STANDARD_LIBRARIES:STRING=-lnx -lm
+
+//Path to a program.
+CMAKE_DLLTOOL:FILEPATH=CMAKE_DLLTOOL-NOTFOUND
+
+//Flags used by the linker during all build types.
+CMAKE_EXE_LINKER_FLAGS:STRING=-march=armv8-a+crc+crypto -mtune=cortex-a57 -mtp=soft -ftls-model=local-exec -L/opt/devkitpro/libnx/lib -L/opt/devkitpro/portlibs/switch/lib -fPIE -specs=/opt/devkitpro/libnx/switch.specs
+
+//Flags used by the linker during DEBUG builds.
+CMAKE_EXE_LINKER_FLAGS_DEBUG:STRING=
+
+//Flags used by the linker during MINSIZEREL builds.
+CMAKE_EXE_LINKER_FLAGS_MINSIZEREL:STRING=
+
+//Flags used by the linker during RELEASE builds.
+CMAKE_EXE_LINKER_FLAGS_RELEASE:STRING=
+
+//Flags used by the linker during RELWITHDEBINFO builds.
+CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO:STRING=
+
+//Enable/Disable output of compile commands during generation.
+CMAKE_EXPORT_COMPILE_COMMANDS:BOOL=
 
 //Value Computed by CMake.
 CMAKE_FIND_PACKAGE_REDIRECTS_DIR:STATIC=/home/charlie/Documents/repos/C++/switch/SimpleModDownloader/cmake-build-switch/CMakeFiles/pkgRedirects
 
-//No help, variable specified on the command line.
-PLATFORM_SWITCH:UNINITIALIZED=ON
+//User executables (bin)
+CMAKE_INSTALL_BINDIR:PATH=bin
+
+//Read-only architecture-independent data (DATAROOTDIR)
+CMAKE_INSTALL_DATADIR:PATH=
+
+//Read-only architecture-independent data root (share)
+CMAKE_INSTALL_DATAROOTDIR:PATH=share
+
+//Documentation root (DATAROOTDIR/doc/PROJECT_NAME)
+CMAKE_INSTALL_DOCDIR:PATH=
+
+//C header files (include)
+CMAKE_INSTALL_INCLUDEDIR:PATH=include
+
+//Info documentation (DATAROOTDIR/info)
+CMAKE_INSTALL_INFODIR:PATH=
+
+//Object code libraries (lib)
+CMAKE_INSTALL_LIBDIR:PATH=lib
+
+//Program executables (libexec)
+CMAKE_INSTALL_LIBEXECDIR:PATH=libexec
+
+//Locale-dependent data (DATAROOTDIR/locale)
+CMAKE_INSTALL_LOCALEDIR:PATH=
+
+//Modifiable single-machine data (var)
+CMAKE_INSTALL_LOCALSTATEDIR:PATH=var
+
+//Man documentation (DATAROOTDIR/man)
+CMAKE_INSTALL_MANDIR:PATH=
+
+//C header files for non-gcc (/usr/include)
+CMAKE_INSTALL_OLDINCLUDEDIR:PATH=/usr/include
+
+//Install path prefix, prepended onto install directories.
+CMAKE_INSTALL_PREFIX:PATH=/opt/devkitpro/portlibs/switch
+
+//Run-time variable data (LOCALSTATEDIR/run)
+CMAKE_INSTALL_RUNSTATEDIR:PATH=
+
+//System admin executables (sbin)
+CMAKE_INSTALL_SBINDIR:PATH=sbin
+
+//Modifiable architecture-independent data (com)
+CMAKE_INSTALL_SHAREDSTATEDIR:PATH=com
+
+//Read-only single-machine data (etc)
+CMAKE_INSTALL_SYSCONFDIR:PATH=etc
+
+//Path to a program.
+CMAKE_LINKER:FILEPATH=/opt/devkitpro/devkitA64/bin/aarch64-none-elf-ld
+
+//Program used to build from build.ninja files.
+CMAKE_MAKE_PROGRAM:FILEPATH=/usr/bin/ninja
+
+//Flags used by the linker during the creation of modules during
+// all build types.
+CMAKE_MODULE_LINKER_FLAGS:STRING=
+
+//Flags used by the linker during the creation of modules during
+// DEBUG builds.
+CMAKE_MODULE_LINKER_FLAGS_DEBUG:STRING=
+
+//Flags used by the linker during the creation of modules during
+// MINSIZEREL builds.
+CMAKE_MODULE_LINKER_FLAGS_MINSIZEREL:STRING=
+
+//Flags used by the linker during the creation of modules during
+// RELEASE builds.
+CMAKE_MODULE_LINKER_FLAGS_RELEASE:STRING=
+
+//Flags used by the linker during the creation of modules during
+// RELWITHDEBINFO builds.
+CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO:STRING=
+
+//Path to a program.
+CMAKE_NM:FILEPATH=/opt/devkitpro/devkitA64/bin/aarch64-none-elf-nm
+
+//Path to a program.
+CMAKE_OBJCOPY:FILEPATH=/opt/devkitpro/devkitA64/bin/aarch64-none-elf-objcopy
+
+//Path to a program.
+CMAKE_OBJDUMP:FILEPATH=/opt/devkitpro/devkitA64/bin/aarch64-none-elf-objdump
+
+//Value Computed by CMake
+CMAKE_PROJECT_DESCRIPTION:STATIC=
+
+//Value Computed by CMake
+CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
+
+//Value Computed by CMake
+CMAKE_PROJECT_NAME:STATIC=SimpleModDownloader
+
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION:STATIC=3.2.0
+
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION_MAJOR:STATIC=3
+
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION_MINOR:STATIC=2
+
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION_PATCH:STATIC=0
+
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION_TWEAK:STATIC=
+
+//Path to a program.
+CMAKE_RANLIB:FILEPATH=/opt/devkitpro/devkitA64/bin/aarch64-none-elf-gcc-ranlib
+
+//Path to a program.
+CMAKE_READELF:FILEPATH=/opt/devkitpro/devkitA64/bin/aarch64-none-elf-readelf
+
+//Flags used by the linker during the creation of shared libraries
+// during all build types.
+CMAKE_SHARED_LINKER_FLAGS:STRING=
+
+//Flags used by the linker during the creation of shared libraries
+// during DEBUG builds.
+CMAKE_SHARED_LINKER_FLAGS_DEBUG:STRING=
+
+//Flags used by the linker during the creation of shared libraries
+// during MINSIZEREL builds.
+CMAKE_SHARED_LINKER_FLAGS_MINSIZEREL:STRING=
+
+//Flags used by the linker during the creation of shared libraries
+// during RELEASE builds.
+CMAKE_SHARED_LINKER_FLAGS_RELEASE:STRING=
+
+//Flags used by the linker during the creation of shared libraries
+// during RELWITHDEBINFO builds.
+CMAKE_SHARED_LINKER_FLAGS_RELWITHDEBINFO:STRING=
+
+//If set, runtime paths are not added when installing shared libraries,
+// but are added when building.
+CMAKE_SKIP_INSTALL_RPATH:BOOL=NO
+
+//If set, runtime paths are not added when using shared libraries.
+CMAKE_SKIP_RPATH:BOOL=NO
+
+//Flags used by the linker during the creation of static libraries
+// during all build types.
+CMAKE_STATIC_LINKER_FLAGS:STRING=
+
+//Flags used by the linker during the creation of static libraries
+// during DEBUG builds.
+CMAKE_STATIC_LINKER_FLAGS_DEBUG:STRING=
+
+//Flags used by the linker during the creation of static libraries
+// during MINSIZEREL builds.
+CMAKE_STATIC_LINKER_FLAGS_MINSIZEREL:STRING=
+
+//Flags used by the linker during the creation of static libraries
+// during RELEASE builds.
+CMAKE_STATIC_LINKER_FLAGS_RELEASE:STRING=
+
+//Flags used by the linker during the creation of static libraries
+// during RELWITHDEBINFO builds.
+CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO:STRING=
+
+//Path to a program.
+CMAKE_STRIP:FILEPATH=/opt/devkitpro/devkitA64/bin/aarch64-none-elf-strip
+
+//Path to a program.
+CMAKE_TAPI:FILEPATH=CMAKE_TAPI-NOTFOUND
+
+//If this value is on, makefiles will be generated without the
+// .SILENT directive, and all commands will be echoed to the console
+// during the make.  This is useful for debugging only. With Visual
+// Studio IDE projects all commands are done without /nologo.
+CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
+
+//The directory containing a CMake configuration file for CURL.
+CURL_DIR:PATH=CURL_DIR-NOTFOUND
+
+//Path to a file.
+CURL_INCLUDE_DIR:PATH=/opt/devkitpro/portlibs/switch/include
+
+//Path to a library.
+CURL_LIBRARY_DEBUG:FILEPATH=CURL_LIBRARY_DEBUG-NOTFOUND
+
+//Path to a library.
+CURL_LIBRARY_RELEASE:FILEPATH=/opt/devkitpro/portlibs/switch/lib/libcurl.a
+
+//Custom resources dir
+CUSTOM_RESOURCES_DIR:BOOL=OFF
+
+//DEVKITPRO
+DEVKITPRO:BOOL=/opt/devkitpro
+
+//Path to a program.
+DKP_BIN2S:FILEPATH=/opt/devkitpro/tools/bin/bin2s
+
+//Path to a program.
+DKP_NM:FILEPATH=/opt/devkitpro/devkitA64/bin/aarch64-none-elf-nm
+
+//Path to a program.
+DKP_OBJCOPY:FILEPATH=/opt/devkitpro/devkitA64/bin/aarch64-none-elf-objcopy
+
+//Value Computed by CMake
+FMT_BINARY_DIR:STATIC=/home/charlie/Documents/repos/C++/switch/SimpleModDownloader/cmake-build-switch/lib/borealis/library/lib/extern/fmt
+
+//Installation directory for cmake files, a relative path that
+// will be joined with /opt/devkitpro/portlibs/switch or an absolute
+// path.
+FMT_CMAKE_DIR:STRING=lib/cmake/fmt
+
+//Generate the cuda-test target.
+FMT_CUDA_TEST:BOOL=OFF
+
+//Debug library postfix.
+FMT_DEBUG_POSTFIX:STRING=d
+
+//Generate the doc target.
+FMT_DOC:BOOL=OFF
+
+//Generate the fuzz target.
+FMT_FUZZ:BOOL=OFF
+
+//Installation directory for include files, a relative path that
+// will be joined with /opt/devkitpro/portlibs/switch or an absolute
+// path.
+FMT_INC_DIR:STRING=include
+
+//Generate the install target.
+FMT_INSTALL:BOOL=ON
+
+//Value Computed by CMake
+FMT_IS_TOP_LEVEL:STATIC=OFF
+
+//Installation directory for libraries, a relative path that will
+// be joined to /opt/devkitpro/portlibs/switch or an absolute path.
+FMT_LIB_DIR:STRING=lib
+
+//Build a module instead of a traditional library.
+FMT_MODULE:BOOL=OFF
+
+//Include core requiring OS (Windows/Posix) 
+FMT_OS:BOOL=ON
+
+//Enable extra warnings and expensive tests.
+FMT_PEDANTIC:BOOL=OFF
+
+//Installation directory for pkgconfig (.pc) files, a relative
+// path that will be joined with /opt/devkitpro/portlibs/switch
+// or an absolute path.
+FMT_PKGCONFIG_DIR:PATH=lib/pkgconfig
+
+//Value Computed by CMake
+FMT_SOURCE_DIR:STATIC=/home/charlie/Documents/repos/C++/switch/SimpleModDownloader/lib/borealis/library/lib/extern/fmt
+
+//Expose headers with marking them as system.
+FMT_SYSTEM_HEADERS:BOOL=OFF
+
+//Generate the test target.
+FMT_TEST:BOOL=OFF
+
+//Halt the compilation with an error on compiler warnings.
+FMT_WERROR:BOOL=OFF
+
+//Install to system.
+INSTALL:BOOL=OFF
+
+//The code sign identity to use when building the IPA.
+IOS_CODE_SIGN_IDENTITY:STRING=
+
+//Package name.
+IOS_GUI_IDENTIFIER:STRING=
+
+//Path to a program.
+NX_BUILD_PFS0_EXE:FILEPATH=/opt/devkitpro/tools/bin/build_pfs0
+
+//Path to a file.
+NX_DEFAULT_ICON:FILEPATH=/opt/devkitpro/libnx/default_icon.jpg
+
+//Path to a program.
+NX_ELF2KIP_EXE:FILEPATH=/opt/devkitpro/tools/bin/elf2kip
+
+//Path to a program.
+NX_ELF2NRO_EXE:FILEPATH=/opt/devkitpro/tools/bin/elf2nro
+
+//Path to a program.
+NX_ELF2NSO_EXE:FILEPATH=/opt/devkitpro/tools/bin/elf2nso
+
+//Path to a program.
+NX_NACPTOOL_EXE:FILEPATH=/opt/devkitpro/tools/bin/nacptool
+
+//Path to a program.
+NX_NPDMTOOL_EXE:FILEPATH=/opt/devkitpro/tools/bin/npdmtool
+
+//Path to a program.
+NX_UAM_EXE:FILEPATH=/opt/devkitpro/tools/bin/uam
+
+//Arguments to supply to pkg-config
+PKG_CONFIG_ARGN:STRING=
+
+//Path to a program.
+PKG_CONFIG_EXECUTABLE:FILEPATH=/opt/devkitpro/portlibs/switch/bin/aarch64-none-elf-pkg-config
+
+//build for Android
+PLATFORM_ANDROID:BOOL=OFF
+
+//build for desktop (Linux, macOS, Windows)
+PLATFORM_DESKTOP:BOOL=OFF
+
+//build for iOS
+PLATFORM_IOS:BOOL=OFF
+
+//build for ps4
+PLATFORM_PS4:BOOL=OFF
+
+//build for psv
+PLATFORM_PSV:BOOL=OFF
+
+//build for switch
+PLATFORM_SWITCH:BOOL=ON
+
+//The directory containing a CMake configuration file for PkgConfig.
+PkgConfig_DIR:PATH=PkgConfig_DIR-NOTFOUND
+
+//Value Computed by CMake
+SimpleModDownloader_BINARY_DIR:STATIC=/home/charlie/Documents/repos/C++/switch/SimpleModDownloader/cmake-build-switch
+
+//Value Computed by CMake
+SimpleModDownloader_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+SimpleModDownloader_SOURCE_DIR:STATIC=/home/charlie/Documents/repos/C++/switch/SimpleModDownloader
+
+//Attempts to build the documentation. You'll need doxygen and
+// graphviz installed
+TWEENY_BUILD_DOCUMENTATION:BOOL=OFF
+
+//Adds a 'sandbox' target that links to tweeny. Useful when exploring
+// tweeny
+TWEENY_BUILD_SANDBOX:BOOL=OFF
+
+//Joins together all header files in a single one. Needs Python
+// 3.6 and quom installed
+TWEENY_BUILD_SINGLE_HEADER:BOOL=OFF
+
+//The directory containing a CMake configuration file for Threads.
+Threads_DIR:PATH=Threads_DIR-NOTFOUND
+
+//Value Computed by CMake
+Tweeny_BINARY_DIR:STATIC=/home/charlie/Documents/repos/C++/switch/SimpleModDownloader/cmake-build-switch/lib/borealis/library/lib/extern/tweeny
+
+//Value Computed by CMake
+Tweeny_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+Tweeny_SOURCE_DIR:STATIC=/home/charlie/Documents/repos/C++/switch/SimpleModDownloader/lib/borealis/library/lib/extern/tweeny
+
+//Whether to use the boost::filesystem instead of std::filesystem
+USE_BOOST_FILESYSTEM:BOOL=OFF
+
+//Using deko3d instead of OpenGL.
+USE_DEKO3D:BOOL=OFF
+
+//using OpenGL 2.1
+USE_GL2:BOOL=OFF
+
+//using OpenGL 3.2+
+USE_GL3:BOOL=OFF
+
+//using OpenGL ES 2.0
+USE_GLES2:BOOL=OFF
+
+//using OpenGL ES 3.0
+USE_GLES3:BOOL=OFF
+
+//using glfw for input and create window
+USE_GLFW:BOOL=OFF
+
+//using libromfs to bundle resources
+USE_LIBROMFS:BOOL=OFF
+
+//using sdl2 for input and create window
+USE_SDL2:BOOL=OFF
+
+//The directory containing a CMake configuration file for ZLIB.
+ZLIB_DIR:PATH=ZLIB_DIR-NOTFOUND
+
+//Path to a file.
+ZLIB_INCLUDE_DIR:PATH=/opt/devkitpro/portlibs/switch/include
+
+//Path to a library.
+ZLIB_LIBRARY_DEBUG:FILEPATH=ZLIB_LIBRARY_DEBUG-NOTFOUND
+
+//Path to a library.
+ZLIB_LIBRARY_RELEASE:FILEPATH=/opt/devkitpro/portlibs/switch/lib/libz.a
+
+//Dependencies for the target
+borealis_LIB_DEPENDS:STATIC=general;fmt;general;yogacore;general;tinyxml2;general;glfw3;general;EGL;general;glapi;general;drm_nouveau;general;nx;general;m;
+
+//Path to a library.
+pkgcfg_lib_PC_CURL_curl:FILEPATH=/opt/devkitpro/portlibs/switch/lib/libcurl.a
+
+//Path to a library.
+pkgcfg_lib_PC_CURL_nx:FILEPATH=/opt/devkitpro/libnx/lib/libnx.a
+
+//Path to a library.
+pkgcfg_lib_PC_CURL_z:FILEPATH=/opt/devkitpro/portlibs/switch/lib/libz.a
+
+//Value Computed by CMake
+yogacore_BINARY_DIR:STATIC=/home/charlie/Documents/repos/C++/switch/SimpleModDownloader/cmake-build-switch/lib/borealis/library/lib/extern/yoga/yoga
+
+//Value Computed by CMake
+yogacore_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+yogacore_SOURCE_DIR:STATIC=/home/charlie/Documents/repos/C++/switch/SimpleModDownloader/lib/borealis/library/lib/extern/yoga/yoga
 
 
 ########################
 # INTERNAL cache entries
 ########################
 
+//Shared libs not available
+BUILD_SHARED_LIBS:INTERNAL=OFF
+//ADVANCED property for variable: CMAKE_ADDR2LINE
+CMAKE_ADDR2LINE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_AR
+CMAKE_AR-ADVANCED:INTERNAL=1
 //This is the directory where this CMakeCache.txt was created
 CMAKE_CACHEFILE_DIR:INTERNAL=/home/charlie/Documents/repos/C++/switch/SimpleModDownloader/cmake-build-switch
 //Major version of cmake used to create the current loaded cache
@@ -42,8 +559,56 @@ CMAKE_COMMAND:INTERNAL=/usr/bin/cmake
 CMAKE_CPACK_COMMAND:INTERNAL=/usr/bin/cpack
 //Path to ctest program executable.
 CMAKE_CTEST_COMMAND:INTERNAL=/usr/bin/ctest
+//ADVANCED property for variable: CMAKE_CXX_COMPILER
+CMAKE_CXX_COMPILER-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_CXX_COMPILER_AR
+CMAKE_CXX_COMPILER_AR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_CXX_COMPILER_RANLIB
+CMAKE_CXX_COMPILER_RANLIB-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_CXX_FLAGS
+CMAKE_CXX_FLAGS-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_CXX_FLAGS_DEBUG
+CMAKE_CXX_FLAGS_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_CXX_FLAGS_MINSIZEREL
+CMAKE_CXX_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_CXX_FLAGS_RELEASE
+CMAKE_CXX_FLAGS_RELEASE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_CXX_FLAGS_RELWITHDEBINFO
+CMAKE_CXX_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_C_COMPILER
+CMAKE_C_COMPILER-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_C_COMPILER_AR
+CMAKE_C_COMPILER_AR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_C_COMPILER_RANLIB
+CMAKE_C_COMPILER_RANLIB-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_C_FLAGS
+CMAKE_C_FLAGS-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_C_FLAGS_DEBUG
+CMAKE_C_FLAGS_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_C_FLAGS_MINSIZEREL
+CMAKE_C_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_C_FLAGS_RELEASE
+CMAKE_C_FLAGS_RELEASE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_C_FLAGS_RELWITHDEBINFO
+CMAKE_C_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_DLLTOOL
+CMAKE_DLLTOOL-ADVANCED:INTERNAL=1
 //Path to cache edit program executable.
 CMAKE_EDIT_COMMAND:INTERNAL=/usr/bin/cmake-gui
+//Executable file format
+CMAKE_EXECUTABLE_FORMAT:INTERNAL=ELF
+//ADVANCED property for variable: CMAKE_EXE_LINKER_FLAGS
+CMAKE_EXE_LINKER_FLAGS-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_EXE_LINKER_FLAGS_DEBUG
+CMAKE_EXE_LINKER_FLAGS_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_EXE_LINKER_FLAGS_MINSIZEREL
+CMAKE_EXE_LINKER_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_EXE_LINKER_FLAGS_RELEASE
+CMAKE_EXE_LINKER_FLAGS_RELEASE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO
+CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_EXPORT_COMPILE_COMMANDS
+CMAKE_EXPORT_COMPILE_COMMANDS-ADVANCED:INTERNAL=1
 //Name of external makefile project generator.
 CMAKE_EXTRA_GENERATOR:INTERNAL=
 //Name of generator.
@@ -54,11 +619,177 @@ CMAKE_GENERATOR_INSTANCE:INTERNAL=
 CMAKE_GENERATOR_PLATFORM:INTERNAL=
 //Name of generator toolset.
 CMAKE_GENERATOR_TOOLSET:INTERNAL=
+//Test CMAKE_HAVE_LIBC_PTHREAD
+CMAKE_HAVE_LIBC_PTHREAD:INTERNAL=1
 //Source directory with the top level CMakeLists.txt file for this
 // project
 CMAKE_HOME_DIRECTORY:INTERNAL=/home/charlie/Documents/repos/C++/switch/SimpleModDownloader
+//ADVANCED property for variable: CMAKE_INSTALL_BINDIR
+CMAKE_INSTALL_BINDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_DATADIR
+CMAKE_INSTALL_DATADIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_DATAROOTDIR
+CMAKE_INSTALL_DATAROOTDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_DOCDIR
+CMAKE_INSTALL_DOCDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_INCLUDEDIR
+CMAKE_INSTALL_INCLUDEDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_INFODIR
+CMAKE_INSTALL_INFODIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_LIBDIR
+CMAKE_INSTALL_LIBDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_LIBEXECDIR
+CMAKE_INSTALL_LIBEXECDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_LOCALEDIR
+CMAKE_INSTALL_LOCALEDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_LOCALSTATEDIR
+CMAKE_INSTALL_LOCALSTATEDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_MANDIR
+CMAKE_INSTALL_MANDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_OLDINCLUDEDIR
+CMAKE_INSTALL_OLDINCLUDEDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_RUNSTATEDIR
+CMAKE_INSTALL_RUNSTATEDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_SBINDIR
+CMAKE_INSTALL_SBINDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_SHAREDSTATEDIR
+CMAKE_INSTALL_SHAREDSTATEDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_SYSCONFDIR
+CMAKE_INSTALL_SYSCONFDIR-ADVANCED:INTERNAL=1
+//abi
+CMAKE_LIBRARY_ARCHITECTURE:INTERNAL=pic
+//ADVANCED property for variable: CMAKE_LINKER
+CMAKE_LINKER-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_MAKE_PROGRAM
+CMAKE_MAKE_PROGRAM-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_MODULE_LINKER_FLAGS
+CMAKE_MODULE_LINKER_FLAGS-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_MODULE_LINKER_FLAGS_DEBUG
+CMAKE_MODULE_LINKER_FLAGS_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_MODULE_LINKER_FLAGS_MINSIZEREL
+CMAKE_MODULE_LINKER_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_MODULE_LINKER_FLAGS_RELEASE
+CMAKE_MODULE_LINKER_FLAGS_RELEASE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO
+CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_NM
+CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=1
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=6
+//ADVANCED property for variable: CMAKE_OBJCOPY
+CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_OBJDUMP
+CMAKE_OBJDUMP-ADVANCED:INTERNAL=1
+//Platform information initialized
+CMAKE_PLATFORM_INFO_INITIALIZED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_RANLIB
+CMAKE_RANLIB-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_READELF
+CMAKE_READELF-ADVANCED:INTERNAL=1
 //Path to CMake installation.
 CMAKE_ROOT:INTERNAL=/usr/share/cmake
+//ADVANCED property for variable: CMAKE_SHARED_LINKER_FLAGS
+CMAKE_SHARED_LINKER_FLAGS-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_SHARED_LINKER_FLAGS_DEBUG
+CMAKE_SHARED_LINKER_FLAGS_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_SHARED_LINKER_FLAGS_MINSIZEREL
+CMAKE_SHARED_LINKER_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_SHARED_LINKER_FLAGS_RELEASE
+CMAKE_SHARED_LINKER_FLAGS_RELEASE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_SHARED_LINKER_FLAGS_RELWITHDEBINFO
+CMAKE_SHARED_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_SKIP_INSTALL_RPATH
+CMAKE_SKIP_INSTALL_RPATH-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_SKIP_RPATH
+CMAKE_SKIP_RPATH-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_STATIC_LINKER_FLAGS
+CMAKE_STATIC_LINKER_FLAGS-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_STATIC_LINKER_FLAGS_DEBUG
+CMAKE_STATIC_LINKER_FLAGS_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_STATIC_LINKER_FLAGS_MINSIZEREL
+CMAKE_STATIC_LINKER_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_STATIC_LINKER_FLAGS_RELEASE
+CMAKE_STATIC_LINKER_FLAGS_RELEASE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO
+CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_STRIP
+CMAKE_STRIP-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_TAPI
+CMAKE_TAPI-ADVANCED:INTERNAL=1
+//uname command
+CMAKE_UNAME:INTERNAL=/usr/bin/uname
+//ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
+CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CURL_DIR
+CURL_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CURL_INCLUDE_DIR
+CURL_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CURL_LIBRARY_DEBUG
+CURL_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CURL_LIBRARY_RELEASE
+CURL_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
+//Details about finding CURL
+FIND_PACKAGE_MESSAGE_DETAILS_CURL:INTERNAL=[/opt/devkitpro/portlibs/switch/lib/libcurl.a][/opt/devkitpro/portlibs/switch/include][c ][v7.69.1()]
+//Details about finding PkgConfig
+FIND_PACKAGE_MESSAGE_DETAILS_PkgConfig:INTERNAL=[/opt/devkitpro/portlibs/switch/bin/aarch64-none-elf-pkg-config][v2.1.0()]
+//Details about finding Threads
+FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
+//Details about finding ZLIB
+FIND_PACKAGE_MESSAGE_DETAILS_ZLIB:INTERNAL=[/opt/devkitpro/portlibs/switch/lib/libz.a][/opt/devkitpro/portlibs/switch/include][c ][v1.3()]
+PC_CURL_CFLAGS:INTERNAL=-I/opt/devkitpro/portlibs/switch/include;-DCURL_STATICLIB
+PC_CURL_CFLAGS_I:INTERNAL=
+PC_CURL_CFLAGS_OTHER:INTERNAL=-DCURL_STATICLIB
+PC_CURL_FOUND:INTERNAL=1
+PC_CURL_INCLUDEDIR:INTERNAL=/opt/devkitpro/portlibs/switch/include
+PC_CURL_INCLUDE_DIRS:INTERNAL=/opt/devkitpro/portlibs/switch/include
+PC_CURL_LDFLAGS:INTERNAL=-L/opt/devkitpro/portlibs/switch/lib;-lcurl;-lnx;-lz;-lnx
+PC_CURL_LDFLAGS_OTHER:INTERNAL=
+PC_CURL_LIBDIR:INTERNAL=/opt/devkitpro/portlibs/switch/lib
+PC_CURL_LIBRARIES:INTERNAL=curl;nx;z;nx
+PC_CURL_LIBRARY_DIRS:INTERNAL=/opt/devkitpro/portlibs/switch/lib
+PC_CURL_LIBS:INTERNAL=
+PC_CURL_LIBS_L:INTERNAL=
+PC_CURL_LIBS_OTHER:INTERNAL=
+PC_CURL_LIBS_PATHS:INTERNAL=
+PC_CURL_MODULE_NAME:INTERNAL=libcurl
+PC_CURL_PREFIX:INTERNAL=/opt/devkitpro/portlibs/switch
+PC_CURL_STATIC_CFLAGS:INTERNAL=-I/opt/devkitpro/portlibs/switch/include;-DCURL_STATICLIB
+PC_CURL_STATIC_CFLAGS_I:INTERNAL=
+PC_CURL_STATIC_CFLAGS_OTHER:INTERNAL=-DCURL_STATICLIB
+PC_CURL_STATIC_INCLUDE_DIRS:INTERNAL=/opt/devkitpro/portlibs/switch/include
+PC_CURL_STATIC_LDFLAGS:INTERNAL=-L/opt/devkitpro/portlibs/switch/lib;-lcurl;-lnx;-lz;-lnx
+PC_CURL_STATIC_LDFLAGS_OTHER:INTERNAL=
+PC_CURL_STATIC_LIBDIR:INTERNAL=
+PC_CURL_STATIC_LIBRARIES:INTERNAL=curl;nx;z;nx
+PC_CURL_STATIC_LIBRARY_DIRS:INTERNAL=/opt/devkitpro/portlibs/switch/lib
+PC_CURL_STATIC_LIBS:INTERNAL=
+PC_CURL_STATIC_LIBS_L:INTERNAL=
+PC_CURL_STATIC_LIBS_OTHER:INTERNAL=
+PC_CURL_STATIC_LIBS_PATHS:INTERNAL=
+PC_CURL_VERSION:INTERNAL=7.69.1
+PC_CURL_libcurl_INCLUDEDIR:INTERNAL=
+PC_CURL_libcurl_LIBDIR:INTERNAL=
+PC_CURL_libcurl_PREFIX:INTERNAL=
+PC_CURL_libcurl_VERSION:INTERNAL=
+//ADVANCED property for variable: PKG_CONFIG_ARGN
+PKG_CONFIG_ARGN-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PKG_CONFIG_EXECUTABLE
+PKG_CONFIG_EXECUTABLE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: ZLIB_INCLUDE_DIR
+ZLIB_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: ZLIB_LIBRARY_DEBUG
+ZLIB_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: ZLIB_LIBRARY_RELEASE
+ZLIB_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
+//CMAKE_INSTALL_PREFIX during last run
+_GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=/opt/devkitpro/portlibs/switch
+__pkg_config_arguments_PC_CURL:INTERNAL=QUIET;libcurl
+__pkg_config_checked_PC_CURL:INTERNAL=1
+//ADVANCED property for variable: pkgcfg_lib_PC_CURL_curl
+pkgcfg_lib_PC_CURL_curl-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: pkgcfg_lib_PC_CURL_nx
+pkgcfg_lib_PC_CURL_nx-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: pkgcfg_lib_PC_CURL_z
+pkgcfg_lib_PC_CURL_z-ADVANCED:INTERNAL=1
+prefix_result:INTERNAL=SSL;libz
 
