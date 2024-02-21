@@ -1,5 +1,9 @@
 #include <borealis.hpp>
 
+#include "views/game_list_tab.hpp"
+#include "activity/main_activity.hpp"
+
+
 int main(int argc, char* argv[]) {
     brls::Logger::setLogLevel(brls::LogLevel::LOG_DEBUG);
 
@@ -14,6 +18,8 @@ int main(int argc, char* argv[]) {
     brls::Application::setGlobalQuit(false);
 
     //XML View
+    brls::Application::registerXMLView("GameListTab", GameListTab::create);
+    
 
     // Add custom values to the theme
     brls::Theme::getLightTheme().addColor("captioned_image/caption", nvgRGB(2, 176, 183));

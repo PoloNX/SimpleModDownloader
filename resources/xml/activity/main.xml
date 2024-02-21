@@ -5,8 +5,8 @@
     <brls:TabFrame
         title="@i18n/app/title">
 
-        <brls:Tab label="@i18n/app/tabs/upcoming">
-            <GamesListTab />
+        <brls:Tab label ="gametab">
+            <GameListTab/>
         </brls:Tab>
 
     </brls:TabFrame>
