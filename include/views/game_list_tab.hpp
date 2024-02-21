@@ -16,7 +16,7 @@ class RecyclerCell
     BRLS_BIND(brls::Rectangle, accent, "brls/sidebar/item_accent");
     BRLS_BIND(brls::Label, label, "title");
     BRLS_BIND(brls::Label, subtitle, "subtitle");
-    //BRLS_BIND(brls::Image, image, "image");
+    BRLS_BIND(brls::Image, image, "image");
 
     static RecyclerCell* create();
 };

@@ -20,6 +20,12 @@
         width="auto"
         height="auto"
         alignItems="flexStart">
+
+        <brls:Image
+            id="image"
+            width="100px"
+            height="100px"/>
+
         <brls:Label
             id="subtitle"
             width="auto"

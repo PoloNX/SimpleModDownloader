@@ -20,6 +20,9 @@ brls::RecyclerCell* DataSource::cellForRow(brls::RecyclerFrame* recycler, brls::
     auto cell = (RecyclerCell*)recycler->dequeueReusableCell("Cell");
     cell->label->setText(games[indexPath.row].first);
     cell->subtitle->setText(games[indexPath.row].second);
+    uint8_t* icon = utils::getIconFromTitleId(games[indexPath.row].second);
+    if(icon != nullptr)
+        cell->image->setImageFromMem(icon, );
     return cell;
 }
 

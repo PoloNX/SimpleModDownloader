@@ -1,8 +1,11 @@
 #include <borealis.hpp>
+#include <switch.h>
 
 #include "views/game_list_tab.hpp"
 #include "activity/main_activity.hpp"
 
+void init();
+void exit();
 
 int main(int argc, char* argv[]) {
     brls::Logger::setLogLevel(brls::LogLevel::LOG_DEBUG);
@@ -10,6 +13,8 @@ int main(int argc, char* argv[]) {
     if(!brls::Application::init()) {
         brls::Logger::error("Unable to init Borealis application");
     }
+
+    init();
 
     brls::loadTranslations();
 
@@ -34,5 +39,32 @@ int main(int argc, char* argv[]) {
 
     while(brls::Application::mainLoop()) ;
 
+    exit();
+
     return -1;
+}
+
+void init() {
+    setsysInitialize();
+    plInitialize(PlServiceType_User);
+    nsInitialize();
+    //socketInitializeDefault();
+    //nxlinkStdio();
+    pmdmntInitialize();
+    pminfoInitialize();
+    splInitialize();
+    fsInitialize();
+    romfsInit();
+}
+
+void exit() {
+    romfsExit();
+    splExit();
+    pminfoExit();
+    pmdmntExit();
+    socketExit();
+    nsExit();
+    setsysExit();
+    fsExit();
+    plExit();
 }
