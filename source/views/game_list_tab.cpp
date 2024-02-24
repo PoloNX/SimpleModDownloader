@@ -31,8 +31,7 @@ void GameData::didSelectRowAt(brls::RecyclerFrame* recycler, brls::IndexPath ind
 { 
     Game game(games[indexPath.row].first, games[indexPath.row].second);
 
-    auto modListTab = new ModListTab();
-    modListTab->setGame(game);
+    auto modListTab = new ModListTab(game);
     recycler->present(modListTab);    
 }
 

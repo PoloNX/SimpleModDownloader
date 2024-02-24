@@ -50,7 +50,7 @@ class Mod {
 
 class ModList {
     public:
-        ModList(Game& game);
+        ModList(Game game);
         ModList();
         std::vector<Mod> getMods() { return mods; }
 

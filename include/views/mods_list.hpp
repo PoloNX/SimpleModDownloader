@@ -11,8 +11,8 @@ class ModCell : public brls::RecyclerCell
     ModCell();
 
     BRLS_BIND(brls::Rectangle, accent, "brls/sidebar/item_accent");
-    BRLS_BIND(brls::Label, label, "title");
-    BRLS_BIND(brls::Label, subtitle, "subtitle");
+    BRLS_BIND(brls::Label, label, "modtitle");
+    BRLS_BIND(brls::Label, subtitle, "modsubtitle");
     
     //TODO : Multithreaded image loading
     //BRLS_BIND(brls::Image, image, "image");
@@ -30,6 +30,8 @@ public:
     brls::RecyclerCell* cellForRow(brls::RecyclerFrame* recycler, brls::IndexPath index) override;
     void didSelectRowAt(brls::RecyclerFrame* recycler, brls::IndexPath indexPath) override;
     std::string titleForHeader(brls::RecyclerFrame* recycler, int section) override;
+
+    std::unique_ptr<ModList>& getModList() { return modList; }
 private:
     Game& game;
     std::unique_ptr<ModList> modList;
@@ -38,14 +40,13 @@ private:
 
 class ModListTab : public brls::Box {
 public:
+    ModListTab(const Game& game);
     ModListTab();
-
-    void setGame(const Game& game);
 
     static brls::View* create();
 
 private:
-    BRLS_BIND(brls::RecyclerFrame, recycler, "recycler");
+    BRLS_BIND(brls::RecyclerFrame, recycler, "modrecycler");
 
     std::unique_ptr<ModData> modData;
 

@@ -24,12 +24,14 @@ File::File(const std::string &name, const std::string &path, const std::string &
     this->date = date;
 }
 
-ModList::ModList(Game& game): game(game) {
+ModList::ModList(Game game): game(game) {
     updatePage();
 }
 
 void ModList::updatePage() {
-    nlohmann::json mod_json = net::downloadRequest(fmt::format("https://gamebanana.com/apiv11/Game/{}/Subfeed?_nPage={}?_nPerpage=50&_csvModelInclusions=Mod", game.getGamebananaID(), currentPage));
+    nlohmann::json mod_json = net::downloadRequest(fmt::format("https://gamebanana.com/apiv11/Game/{}/Subfeed?_nPage={}?_nPerpage=50&_csvModelInclusions=Mod", "18604", currentPage));
+
+    mods.clear();
 
     for(auto mod : mod_json.at("_aRecords")) {
         std::string name = mod.at("_sName");
@@ -51,10 +53,12 @@ void ModList::updatePage() {
 
 void ModList::nextPage() {
     currentPage++;
+    updatePage();
 }
 
 void ModList::previousPage() {
     if(currentPage > 1) {
         currentPage--;
+        updatePage();
     }
 }

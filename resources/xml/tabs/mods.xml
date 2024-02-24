@@ -1,13 +1,18 @@
-<brls:Box>
+<brls:Box    
+    width="auto"
+    height="auto"
+    axis="column">
 
     <brls:RecyclerFrame
-        id="recycler"
+        id="modrecycler"
+        grow="1.0"
         width="auto"
         height="auto"
         paddingTop="@style/brls/sidebar/padding_top"
         paddingRight="@style/brls/sidebar/padding_right"
         paddingBottom="@style/brls/sidebar/padding_bottom"
-        paddingLeft="@style/brls/sidebar/padding_left"/>
+        paddingLeft="@style/brls/sidebar/padding_left"
+        wireframe="true"/>
     
 
 </brls:Box>

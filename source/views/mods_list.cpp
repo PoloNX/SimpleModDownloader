@@ -18,6 +18,7 @@ ModCell* ModCell::create()
 brls::RecyclerCell* ModData::cellForRow(brls::RecyclerFrame* recycler, brls::IndexPath indexPath)
 {
     auto cell = (ModCell*)recycler->dequeueReusableCell("Cell");
+    brls::Logger::debug("Mod name : {}", modList->getMods()[indexPath.row].getName());
     cell->label->setText(modList->getMods()[indexPath.row].getName());
     cell->subtitle->setText(fmt::format("Author : {}", modList->getMods()[indexPath.row].getAuthor()));
     return cell;
@@ -42,27 +43,29 @@ int ModData::numberOfSections(brls::RecyclerFrame* recycler)
 
 int ModData::numberOfRows(brls::RecyclerFrame* recycler, int section)
 {
-    brls::Logger::debug("Number of rows : {}", modList->getMods().size());
     return modList->getMods().size();
 }
 
 std::string ModData::titleForHeader(brls::RecyclerFrame* recycler, int section)
 {
-    return "1";
+    return "";
 }
 
-ModListTab::ModListTab() {
-    this->inflateFromXMLRes("xml/activity/mods.xml");
+ModListTab::ModListTab(const Game& game) {
+    this->inflateFromXMLRes("xml/tabs/mods.xml");
+
+    modData = std::make_unique<ModData>(game);
+
+    this->registerAction("next", brls::ControllerButton::BUTTON_RT, [this](brls::View* view){
+        brls::Logger::debug("Next button pressed");
+        this->modData->getModList()->nextPage();
+        this->recycler->reloadData();
+        return true;
+    });
 
     recycler->estimatedRowHeight = 100;
     recycler->registerCell("Cell", []() { return ModCell::create();});
     recycler->setDataSource(modData.get());
-}
-
-void ModListTab::setGame(const Game& game)
-{
-    modData = std::make_unique<ModData>(game);
-    recycler->reloadData();
 }
 
 brls::View* ModListTab::create() {
