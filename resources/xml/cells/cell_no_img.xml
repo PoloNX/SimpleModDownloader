@@ -10,11 +10,6 @@
         height="auto"
         axis="row"
         alignItems="flexStart">
-
-        <brls:Image
-        id="image"
-        width="100px"
-        height="100px"/>
         
         <brls:Box
         width="auto"

@@ -1,5 +1,6 @@
 #include <borealis.hpp>
 #include <switch.h>
+#include <curl/curl.h>
 
 #include "views/game_list_tab.hpp"
 #include "activity/main_activity.hpp"
@@ -24,7 +25,7 @@ int main(int argc, char* argv[]) {
 
     //XML View
     brls::Application::registerXMLView("GameListTab", GameListTab::create);
-    
+    //brls::Application::registerXMLView("ModListTab", ModListTab::create);
 
     // Add custom values to the theme
     brls::Theme::getLightTheme().addColor("captioned_image/caption", nvgRGB(2, 176, 183));
@@ -55,6 +56,7 @@ void init() {
     splInitialize();
     fsInitialize();
     romfsInit();
+    curl_global_init(CURL_GLOBAL_ALL);
 }
 
 void exit() {
@@ -67,4 +69,5 @@ void exit() {
     setsysExit();
     fsExit();
     plExit();
+    curl_global_cleanup();
 }

@@ -1,62 +1,67 @@
 #include "views/game_list_tab.hpp"
 #include "utils/utils.hpp"
+#include "views/mods_list.hpp"
 
 #include <borealis.hpp>
 
 using namespace brls::literals;
 
-RecyclerCell::RecyclerCell()
+GameCell::GameCell()
 {
     this->inflateFromXMLRes("xml/cells/cell.xml");
 }
 
-RecyclerCell* RecyclerCell::create()
+GameCell* GameCell::create()
 {
-    return new RecyclerCell();
+    return new GameCell();
 }
 
-brls::RecyclerCell* DataSource::cellForRow(brls::RecyclerFrame* recycler, brls::IndexPath indexPath)
+brls::RecyclerCell* GameData::cellForRow(brls::RecyclerFrame* recycler, brls::IndexPath indexPath)
 {
-    auto cell = (RecyclerCell*)recycler->dequeueReusableCell("Cell");
+    auto cell = (GameCell*)recycler->dequeueReusableCell("Cell");
     cell->label->setText(games[indexPath.row].first);
-    cell->subtitle->setText(games[indexPath.row].second);
+    cell->subtitle->setText(fmt::format("TitleID : {}",games[indexPath.row].second));
     uint8_t* icon = utils::getIconFromTitleId(games[indexPath.row].second);
     if(icon != nullptr)
-        cell->image->setImageFromMem(icon, );
+        cell->image->setImageFromMem(icon, 0x20000);
     return cell;
 }
 
-void DataSource::didSelectRowAt(brls::RecyclerFrame* recycler, brls::IndexPath indexPath)
+void GameData::didSelectRowAt(brls::RecyclerFrame* recycler, brls::IndexPath indexPath)
 { 
-    //brls::Application::pushActivity(new brls::Activity(new GameView(upcomingGames->getGames()[indexPath.row])));    
+    Game game(games[indexPath.row].first, games[indexPath.row].second);
+
+    auto modListTab = new ModListTab();
+    modListTab->setGame(game);
+    recycler->present(modListTab);    
 }
 
-DataSource::DataSource() {
+GameData::GameData() {
     games = utils::getInstalledGames();
     brls::Logger::debug("{} games found", games.size());
 }
 
-int DataSource::numberOfSections(brls::RecyclerFrame* recycler) {
+int GameData::numberOfSections(brls::RecyclerFrame* recycler) {
     return 1;
 }
 
-int DataSource::numberOfRows(brls::RecyclerFrame* recycler, int section) {
+int GameData::numberOfRows(brls::RecyclerFrame* recycler, int section) {
     return games.size();
 }
 
-std::string DataSource::titleForHeader(brls::RecyclerFrame* recycler, int section) {
+std::string GameData::titleForHeader(brls::RecyclerFrame* recycler, int section) {
     return "";
 }
 
 GameListTab::GameListTab() {
     this->inflateFromXMLRes("xml/tabs/game_list_tab.xml");
 
-    dataSource = new DataSource();
+    gameData = new GameData();
 
 
     recycler->estimatedRowHeight = 100;
-    recycler->registerCell("Cell", []() { return RecyclerCell::create();});
-    recycler->setDataSource(dataSource);
+    recycler->registerCell("Cell", []() { return GameCell::create();});
+    recycler->setDataSource(gameData);
 }
 
 brls::View* GameListTab::create() {
