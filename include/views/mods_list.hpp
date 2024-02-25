@@ -40,14 +40,13 @@ private:
 
 class ModListTab : public brls::Box {
 public:
-    ModListTab(const Game& game);
+    ModListTab(Game& game);
     ModListTab();
 
-    static brls::View* create();
+    //static brls::View* create();
 
 private:
     BRLS_BIND(brls::RecyclerFrame, recycler, "modrecycler");
 
     std::unique_ptr<ModData> modData;
-
 };

@@ -27,7 +27,7 @@
                 width="auto"
                 height="auto"
                 grow="1.0"
-                fontSize="30"
+                fontSize="24"
                 marginTop="@style/brls/sidebar/item_accent_margin_top_bottom"
                 marginBottom="@style/brls/sidebar/item_accent_margin_top_bottom"
                 marginLeft="@style/brls/sidebar/item_accent_margin_sides"

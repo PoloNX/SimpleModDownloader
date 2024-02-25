@@ -1,0 +1,76 @@
+<brls:Box
+    width="auto"
+    height="auto">
+    <brls:ScrollingFrame
+        id="mod_preview_scrolling"
+        width="auto"
+        height="auto"
+        grow="1.0">
+    
+        <brls:Box
+            width="100%"
+            height="100%"
+            axis="column"
+            alignItems="center"
+            paddingTop="@style/brls/tab_frame/content_padding_top_bottom"
+            paddingBottom="@style/brls/tab_frame/content_padding_top_bottom">
+        
+            
+            <!-- TITLE/BANNER -->
+            <brls:Box
+                justifyContent="center"
+                width="90%"
+                height="200px"
+                margin="10"
+                cornerRadius="15">
+                
+                <brls:Rectangle
+                    id="image_overlay"
+                    positionType="absolute"
+                    width="100%"
+                    cornerRadius="15"
+                    height="200px"/>
+
+                <brls:Label
+                    positionType="relative"
+                    id="mod_preview_title"
+                    fontSize="50"
+                    width="auto"
+                    height="auto"
+                    horizontalAlign="center"
+                    marginTop="10px"/>
+            </brls:Box>
+            
+            <brls:Box
+                height="auto"
+                width="auto"
+                axis="column"
+                paddingRight="@style/brls/tab_frame/content_padding_sides"
+                paddingLeft="@style/brls/tab_frame/content_padding_sides">
+
+                <brls:Header
+                    width="auto"
+                    height="auto"
+                    title="desc"
+                    marginBottom="30px"/>
+
+                <brls:Label
+                    positionType="relative"
+                    id="description"
+                    width="auto"
+                    height="auto"
+                    horizontalAlign="left"
+                    singleLine="false"/>
+
+                <brls:Label 
+                    positionType="relative"
+                    id="author"
+                    width="auto"
+                    height="auto"
+                    horizontalAlign="right"
+                    singleLine="false"/>    
+
+            </brls:Box>
+        </brls:Box>
+    </brls:ScrollingFrame>
+</brls:Box>

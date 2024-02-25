@@ -1,4 +1,5 @@
 #include "views/mods_list.hpp"
+#include "views/mod_preview.hpp"
 #include "utils/utils.hpp"
 
 #include <borealis.hpp>
@@ -26,7 +27,11 @@ brls::RecyclerCell* ModData::cellForRow(brls::RecyclerFrame* recycler, brls::Ind
 
 void ModData::didSelectRowAt(brls::RecyclerFrame* recycler, brls::IndexPath indexPath)
 { 
-
+    modList->getMods()[indexPath.row].loadMod();
+    brls::Logger::debug("Mod name : {}", modList->getMods()[indexPath.row].getName());
+    brls::Application::pushActivity(new brls::Activity(new ModPreview(modList->getMods()[indexPath.row])));
+    
+    //recycler->present(new ModPreview(modList->getMods()[indexPath.row]));
 }
 
 ModData::ModData(Game game): game(game)
@@ -51,14 +56,21 @@ std::string ModData::titleForHeader(brls::RecyclerFrame* recycler, int section)
     return "";
 }
 
-ModListTab::ModListTab(const Game& game) {
+ModListTab::ModListTab(Game& game) {
     this->inflateFromXMLRes("xml/tabs/mods.xml");
 
     modData = std::make_unique<ModData>(game);
-
-    this->registerAction("next", brls::ControllerButton::BUTTON_RT, [this](brls::View* view){
+    getAppletFrameItem()->title = fmt::format("Mods for {}", game.getTitle());
+    this->registerAction("next", brls::ControllerButton::BUTTON_RB, [this](brls::View* view){
         brls::Logger::debug("Next button pressed");
         this->modData->getModList()->nextPage();
+        this->recycler->reloadData();
+        return true;
+    });
+
+    this->registerAction("previous", brls::ControllerButton::BUTTON_LB, [this](brls::View* view){
+        brls::Logger::debug("previous button pressed");
+        this->modData->getModList()->previousPage();
         this->recycler->reloadData();
         return true;
     });
@@ -68,6 +80,6 @@ ModListTab::ModListTab(const Game& game) {
     recycler->setDataSource(modData.get());
 }
 
-brls::View* ModListTab::create() {
+/*brls::View* ModListTab::create() {
     return new ModListTab();
-}
+}*/

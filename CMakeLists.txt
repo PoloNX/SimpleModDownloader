@@ -38,7 +38,7 @@ list(APPEND APP_PLATFORM_OPTION
 
 set(BRLS_RESOURCES_DIR ".")
 
-file(GLOB_RECURSE MAIN_SRC "source/**.cpp")
+file(GLOB_RECURSE MAIN_SRC "source/**.cpp" "source/views/mod_preview.cpp")
 if (PLATFORM_SWITCH)
     list(APPEND MAIN_SRC ${BOREALIS_LIBRARY}/lib/platforms/switch/switch_wrapper.c)
 endif()

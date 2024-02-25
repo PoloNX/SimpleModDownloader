@@ -1,4 +1,5 @@
 <brls:AppletFrame
+    id="applet"
     iconInterpolation="linear"
     footerHidden="false">
 

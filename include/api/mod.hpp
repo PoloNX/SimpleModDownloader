@@ -8,25 +8,27 @@
 
 class File {
     public:
-        File(const std::string &name, const std::string &path, const std::string &url, const std::string &checkSum, const std::string &date);
+        File(const std::string &name, const std::string &size, const std::string &url, const std::string &checkSum, const int& date);
 
         std::string getName() { return name; }
-        std::string getPath() { return path; }
         std::string getUrl() { return url; }
         std::string getCheckSum() { return checkSum; }
-        std::string getDate() { return date; }
+        int getDate() { return date; }
+        std::string getSize() { return size; }
+
     private:
         std::string name;
-        std::string path;
+        std::string size;
         std::string url;
         std::string checkSum;
-        std::string date;
+        int date;
 };
 
 
 class Mod {
     public:
         Mod(const std::string &name, int ID, const std::vector<std::string>& imageUrls, const std::string &author);
+        Mod(){}
 
         void downloadImages();
         void loadImages();
@@ -37,9 +39,11 @@ class Mod {
         std::vector<File> getFiles() { return files; }
         std::vector<brls::Image*> getImages() { return images; }
         std::string getAuthor() { return author; }
+
+        void loadMod();
     private:
         std::string name;
-        int ID;
+        int ID = 0;
         std::string description;
         std::vector<File> files;
 
@@ -51,7 +55,7 @@ class Mod {
 class ModList {
     public:
         ModList(Game game);
-        ModList();
+        //ModList();
         std::vector<Mod> getMods() { return mods; }
 
         void nextPage();
@@ -62,5 +66,5 @@ class ModList {
 
         int currentPage = 1;
 
-        Game& game;
+        Game game;
 };
