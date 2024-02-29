@@ -10,13 +10,6 @@ ModPreview::ModPreview(Mod& mod, std::vector<unsigned char>& bannerBuffer): mod(
 
     this->setFocusable(false);
     scrolling->setFocusable(true);
-
-    auto image = new brls::Image();
-    image->setImageFromRes("img/wheel.png");
-    image->setFocusable(false);
-    image->setHeight(298*1.5);
-    image->setWidth(500*1.5);
-    big_image_box->addView(image);
     
     banner->setImageFromMem(bannerBuffer.data(), bannerBuffer.size());
     banner->setHeight(200);

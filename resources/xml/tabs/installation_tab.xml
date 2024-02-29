@@ -1,0 +1,14 @@
+<brls:Box
+    width="auto"
+    height="auto">
+
+    <brls:Label
+        id="smm_desc"
+        text="SimpleModManager"/>
+
+    <brls:RadioCell
+        height="auto"
+        width="auto"
+        id="smm_button"/>
+
+</brls:Box>

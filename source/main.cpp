@@ -4,6 +4,7 @@
 #include <filesystem>
 
 #include "views/game_list_tab.hpp"
+#include "views/installation_view.hpp"
 #include "activity/main_activity.hpp"
 
 void init();
@@ -31,7 +32,7 @@ int main(int argc, char* argv[]) {
 
     //XML View
     brls::Application::registerXMLView("GameListTab", GameListTab::create);
-    //brls::Application::registerXMLView("ModListTab", ModListTab::create);
+    brls::Application::registerXMLView("InstallationTab", InstallationView::create);
 
     // Add custom values to the theme
     brls::Theme::getLightTheme().addColor("captioned_image/caption", nvgRGB(2, 176, 183));

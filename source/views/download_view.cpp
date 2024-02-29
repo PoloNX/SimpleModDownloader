@@ -3,6 +3,8 @@
 #include "api/extract.hpp"
 #include "utils/progress_event.hpp"
 
+#include <regex>
+
 using namespace brls::literals;
 
 DownloadView::DownloadView(File& file): file(file) {
@@ -20,6 +22,9 @@ DownloadView::DownloadView(File& file): file(file) {
     download_text->setText(fmt::format("Downloading : {}", file.getName()));
     extract_text->setText(fmt::format("Extracting {} to {}", file.getName(), "mods/JEUX/" + file.getName()));
 
+    this->setActionAvailable(brls::ControllerButton::BUTTON_B, false);
+    getAppletFrame()->setActionsAvailable(false);
+
     this->setFocusable(true);
     this->setHideHighlightBackground(true);
     this->setHideHighlightBorder(true);
@@ -36,7 +41,10 @@ void DownloadView::downloadFile() {
     this->downloadFinished = true;
     
     ProgressEvent::instance().reset();
-    extract::extractEntry(this->file.getPath(), fmt::format("sdmc:/mods/{}/{}/contents/{}/romfs", this->file.getGame().getTitle(), this->file.getModName(), this->file.getGame().getTid()), this->file.getGame().getTid());
+
+    //Prevent incorrect chars in the path
+    std::regex badChars("[:/|]");
+    extract::extractEntry(this->file.getPath(), fmt::format("sdmc:/mods/{}/{}/contents/{}/romfs", std::regex_replace(this->file.getGame().getTitle(), badChars, "-"), std::regex_replace(this->file.getModName(), badChars, "-"), std::regex_replace(this->file.getGame().getTid(), badChars, "-")), this->file.getGame().getTid());
 }
 
 void DownloadView::updateProgress() {
@@ -94,6 +102,20 @@ void DownloadView::updateProgress() {
         });
     }
 
-    brls::Logger::debug("Finished loading thread");
+    //Add a button to go back after the end of the download
+    ASYNC_RETAIN
+    brls::sync([ASYNC_TOKEN]() {
+        ASYNC_RELEASE
+        auto button = new brls::Button();
+        button->setText("Back");
+        button->setFocusable(true);
+        button->registerClickAction(brls::ActionListener([this](brls::View* view) {
+            this->dismiss();
+            return true;
+        }));
+        this->addView(button);
+        brls::Application::giveFocus(button);
+        getAppletFrame()->setActionsAvailable(false);
+    });
 }
 

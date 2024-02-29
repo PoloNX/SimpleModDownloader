@@ -6,9 +6,6 @@
 
 Game::Game(const std::string& m_title, const std::string& m_tid) {
     title = m_title;
-    std::regex pattern(":");
-    title = std::regex_replace(title, pattern, " -");
-
     tid = m_tid;
     searchGame();
     parseJson();

@@ -70,9 +70,16 @@
                     height="auto"
                     width = "80%"
                     alignItems = "center"
+                    justifyContent = "center"
                     paddingRight="@style/brls/tab_frame/content_padding_sides"
                     paddingLeft="@style/brls/tab_frame/content_padding_sides"
                     marginBottom="30px">
+
+                    <brls:ProgressSpinner
+                        width="300"
+                        height="300"            
+                        margin="10"
+                        size="large"/>
                 
                 </brls:Box>
 
