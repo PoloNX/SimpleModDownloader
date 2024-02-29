@@ -2,8 +2,13 @@
 #include "api/net.hpp"
 #include <curl/curl.h>
 
+#include <regex>
+
 Game::Game(const std::string& m_title, const std::string& m_tid) {
     title = m_title;
+    std::regex pattern(":");
+    title = std::regex_replace(title, pattern, " -");
+
     tid = m_tid;
     searchGame();
     parseJson();
@@ -34,5 +39,9 @@ void Game::parseJson() {
 
     if(json.at("_aRecords")[0].find("_idRow") != json.at("_aRecords")[0].end()) {
         gamebananaID = json.at("_aRecords")[0].at("_idRow").get<int>();
+    }
+
+    if(json.at("_aRecords")[0].find("_sBannerUrl") != json.at("_aRecords")[0].end()) {
+        bannerURL = json.at("_aRecords")[0].at("_sBannerUrl").get<std::string>();
     }
 }

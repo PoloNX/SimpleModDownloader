@@ -4,6 +4,7 @@
 #include <nlohmann/json.hpp>
 #include <sstream>
 #include <iomanip>
+#include <regex>
 
 namespace utils {
 
@@ -110,5 +111,15 @@ namespace utils {
         icon = new uint8_t[0x20000];
         memcpy(icon, controlData.icon, 0x20000);
         return icon;
+    }
+
+    std::string removeHtmlTags(const std::string& input) {
+        //Replace <br> by \n
+        std::regex brRegex("<br>");
+        std::string output = std::regex_replace(input, brRegex, "\n");
+        std::regex nbspRegex("&nbsp;");
+        output = std::regex_replace(output, nbspRegex, " ");
+        std::regex tagsRegex("<.*?>");
+        return std::regex_replace(output, tagsRegex, "");
     }
 }

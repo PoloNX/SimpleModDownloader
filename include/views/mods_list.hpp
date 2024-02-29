@@ -35,6 +35,7 @@ public:
 private:
     Game& game;
     std::unique_ptr<ModList> modList;
+    std::vector<unsigned char> bannerBuffer;
     //ModList* modList;
 };
 

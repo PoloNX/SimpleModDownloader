@@ -13,6 +13,7 @@ class Game {
         int getGamebananaID() { return gamebananaID; }
         std::string getTid() { return tid; }
         brls::Image* getIcon() { return icon; }
+        std::string getBannerUrl() { return bannerURL; }
     private:
         void searchGame();
         void parseJson();
@@ -20,6 +21,7 @@ class Game {
         nlohmann::json json;
 
         std::string title;
+        std::string bannerURL;
         int gamebananaID;
         std::string tid;
         brls::Image* icon;

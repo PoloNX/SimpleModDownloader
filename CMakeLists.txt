@@ -29,6 +29,28 @@ list(APPEND APP_PLATFORM_LIB CURL::libcurl)
 find_package(ZLIB REQUIRED)
 list(APPEND APP_PLATFORM_LIB ZLIB::ZLIB)
 
+find_package(LibArchive REQUIRED)
+list(APPEND APP_PLATFORM_LIB LibArchive::LibArchive)
+
+find_package(BZip2 REQUIRED)
+list(APPEND APP_PLATFORM_LIB BZip2::BZip2)
+
+find_library(LZ4_LIBRARY NAMES lz4)
+find_path(LZ4_INCLUDE_DIR NAMES lz4.h)
+list(APPEND APP_PLATFORM_LIB "${LZ4_LIBRARY}")
+include_directories("${LZ4_INCLUDE_DIR}")
+
+find_library(LZMA_LIBRARY NAMES lzma)
+find_path(LZMA_INCLUDE_DIR NAMES lzma.h)
+list(APPEND APP_PLATFORM_LIB "${LZMA_LIBRARY}")
+include_directories("${LZMA_INCLUDE_DIR}")
+
+find_library(ZSTD_LIBRARY NAMES zstd)
+find_path(ZSTD_INCLUDE_DIR NAMES zstd.h)
+list(APPEND APP_PLATFORM_LIB "${ZSTD_LIBRARY}")
+include_directories("${ZSTD_INCLUDE_DIR}")
+
+
 list(APPEND APP_PLATFORM_OPTION
    -DBUILD_PACKAGE_NAME=${PACKAGE_NAME}
    -DBUILD_VERSION_MAJOR=${VERSION_MAJOR}

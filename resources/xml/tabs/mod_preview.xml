@@ -20,9 +20,17 @@
             <brls:Box
                 justifyContent="center"
                 width="90%"
-                height="200px"
+                height="200"
                 margin="10"
                 cornerRadius="15">
+
+                <brls:Image
+                    positionType="absolute"
+                    imageAlign="center"
+                    width="100%"
+                    scalingType="fill"
+                    cornerRadius="15"
+                    id="banner"/>
                 
                 <brls:Rectangle
                     id="image_overlay"
@@ -41,6 +49,48 @@
                     marginTop="10px"/>
             </brls:Box>
             
+            <!--SCREENSHOTS-->
+            <brls:Box
+                width="auto"
+                height="auto"
+                axis="column"
+                paddingRight="@style/brls/tab_frame/content_padding_sides"
+                paddingLeft="@style/brls/tab_frame/content_padding_sides"
+                justifyContent="center">
+
+                <brls:Header
+                    width="auto"
+                    height="auto"
+                    title="Screenshots"
+                    marginBottom="30px"/>
+
+                <!--big image box-->
+                <brls:Box
+                    id="big_image_box"
+                    height="auto"
+                    width = "80%"
+                    alignItems = "center"
+                    paddingRight="@style/brls/tab_frame/content_padding_sides"
+                    paddingLeft="@style/brls/tab_frame/content_padding_sides"
+                    marginBottom="30px">
+                
+                </brls:Box>
+
+                <!--small image box-->
+                <brls:Box
+                    id="small_image_box"
+                    height="auto"
+                    width = "80%"
+                    alignItems="center"
+                    axis="row"
+                    paddingRight="@style/brls/tab_frame/content_padding_sides"
+                    paddingLeft="@style/brls/tab_frame/content_padding_sides">
+
+                </brls:Box>
+
+            </brls:Box>
+            
+            <!--DESCRIPTION/AUTHORS-->
             <brls:Box
                 height="auto"
                 width="auto"
@@ -70,6 +120,21 @@
                     horizontalAlign="right"
                     singleLine="false"/>    
 
+            </brls:Box>
+
+            <brls:Header
+                width="auto"
+                height="auto"
+                title="Files"
+                marginBottom="30px"/>
+
+            <brls:Box
+                id="files_box"
+                height="auto"
+                width="auto"
+                axis="column"
+                paddingRight="@style/brls/tab_frame/content_padding_sides"
+                paddingLeft="@style/brls/tab_frame/content_padding_sides">
             </brls:Box>
         </brls:Box>
     </brls:ScrollingFrame>

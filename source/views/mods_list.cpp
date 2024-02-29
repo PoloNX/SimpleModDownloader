@@ -1,6 +1,7 @@
 #include "views/mods_list.hpp"
 #include "views/mod_preview.hpp"
 #include "utils/utils.hpp"
+#include "api/net.hpp"
 
 #include <borealis.hpp>
 
@@ -27,9 +28,8 @@ brls::RecyclerCell* ModData::cellForRow(brls::RecyclerFrame* recycler, brls::Ind
 
 void ModData::didSelectRowAt(brls::RecyclerFrame* recycler, brls::IndexPath indexPath)
 { 
-    modList->getMods()[indexPath.row].loadMod();
     brls::Logger::debug("Mod name : {}", modList->getMods()[indexPath.row].getName());
-    brls::Application::pushActivity(new brls::Activity(new ModPreview(modList->getMods()[indexPath.row])));
+    recycler->present(new ModPreview(modList->getMods()[indexPath.row], bannerBuffer));
     
     //recycler->present(new ModPreview(modList->getMods()[indexPath.row]));
 }
@@ -38,6 +38,7 @@ ModData::ModData(Game game): game(game)
 {
     //modList = new ModList(game);
     modList = std::make_unique<ModList>(game);
+    net::downloadImage(game.getBannerUrl(), bannerBuffer);
     brls::Logger::debug("{} mods found", modList->getMods().size());
 }
 

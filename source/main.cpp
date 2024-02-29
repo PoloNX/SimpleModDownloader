@@ -1,6 +1,7 @@
 #include <borealis.hpp>
 #include <switch.h>
 #include <curl/curl.h>
+#include <filesystem>
 
 #include "views/game_list_tab.hpp"
 #include "activity/main_activity.hpp"
@@ -10,6 +11,11 @@ void exit();
 
 int main(int argc, char* argv[]) {
     brls::Logger::setLogLevel(brls::LogLevel::LOG_DEBUG);
+
+    std::filesystem::create_directories("sdmc:/config/SimpleModDownloader");
+    //Using FILE* because brls::Logger::setLogOutput only takes FILE*, not std::ofstream
+    // FILE* logFile = fopen("sdmc:/config/SimpleModDownloader/log.log", "w");
+    // brls::Logger::setLogOutput(logFile);
 
     if(!brls::Application::init()) {
         brls::Logger::error("Unable to init Borealis application");
@@ -49,8 +55,6 @@ void init() {
     setsysInitialize();
     plInitialize(PlServiceType_User);
     nsInitialize();
-    //socketInitializeDefault();
-    //nxlinkStdio();
     pmdmntInitialize();
     pminfoInitialize();
     splInitialize();
@@ -64,7 +68,6 @@ void exit() {
     splExit();
     pminfoExit();
     pmdmntExit();
-    socketExit();
     nsExit();
     setsysExit();
     fsExit();

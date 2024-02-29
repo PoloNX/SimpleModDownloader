@@ -8,36 +8,43 @@
 
 class File {
     public:
-        File(const std::string &name, const std::string &size, const std::string &url, const std::string &checkSum, const int& date);
-
+        File(const std::string &name, const int &size, const std::string &url, const std::string &checkSum, const std::string& modName, const int& date, const Game& game);
+        std::string getPath() { return path; }
         std::string getName() { return name; }
         std::string getUrl() { return url; }
         std::string getCheckSum() { return checkSum; }
         int getDate() { return date; }
-        std::string getSize() { return size; }
+        int getSize() { return size; }
+        Game getGame() { return game; }
+        std::string getModName() { return modName; }
 
     private:
         std::string name;
-        std::string size;
+        int size;
         std::string url;
         std::string checkSum;
         int date;
+        std::string path;
+        const Game& game;
+        std::string modName;
 };
-
 
 class Mod {
     public:
-        Mod(const std::string &name, int ID, const std::vector<std::string>& imageUrls, const std::string &author);
-        Mod(){}
+        Mod(const std::string &name, int ID, const std::vector<std::string>& imageUrls, const std::string &author, const Game& game);
 
-        void downloadImages();
-        void loadImages();
+        brls::Image* getImage(const int& index);
+        std::vector<unsigned char> getImageBuffer(const int& index) { return imageBuffers[index]; }
+
+        //Separate the download and load image functions because borealis isn't thread safe, loadImage must be called from the main thread
+        std::vector<unsigned char> downloadImage(const int& index);
+        void loadImage(const int& index);
 
         std::string getName() { return name; }
         int getID() { return ID; }
         std::string getDescription() { return description; }
         std::vector<File> getFiles() { return files; }
-        std::vector<brls::Image*> getImages() { return images; }
+        std::vector<std::string> getImagesUrl() { return imageUrls; }
         std::string getAuthor() { return author; }
 
         void loadMod();
@@ -48,8 +55,14 @@ class Mod {
         std::vector<File> files;
 
         std::vector<std::string> imageUrls;
+
         std::vector<brls::Image*> images;
+        std::vector<std::vector<unsigned char>> imageBuffers;
+
+        std::vector<unsigned char> imageBuffer;
         std::string author;
+
+        const Game& game;
 };  
 
 class ModList {
