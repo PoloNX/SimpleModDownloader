@@ -2,6 +2,7 @@
 #include "api/net.hpp"
 #include "api/extract.hpp"
 #include "utils/progress_event.hpp"
+#include "utils/utils.hpp"
 
 #include <regex>
 
@@ -23,7 +24,6 @@ DownloadView::DownloadView(File& file): file(file) {
     extract_text->setText(fmt::format("Extracting {} to {}", file.getName(), "mods/JEUX/" + file.getName()));
 
     this->setActionAvailable(brls::ControllerButton::BUTTON_B, false);
-    getAppletFrame()->setActionsAvailable(false);
 
     this->setFocusable(true);
     this->setHideHighlightBackground(true);
@@ -31,6 +31,9 @@ DownloadView::DownloadView(File& file): file(file) {
 
     downloadThread = std::thread(&DownloadView::downloadFile, this);
     updateThread = std::thread(&DownloadView::updateProgress, this);
+
+    brls::sync([this]() {getAppletFrame()->setActionAvailable(brls::ControllerButton::BUTTON_B, false);});
+    
 }
 
 void DownloadView::downloadFile() {
@@ -44,15 +47,15 @@ void DownloadView::downloadFile() {
 
     //Prevent incorrect chars in the path
     std::regex badChars("[:/|]");
-    extract::extractEntry(this->file.getPath(), fmt::format("sdmc:/mods/{}/{}/contents/{}/romfs", std::regex_replace(this->file.getGame().getTitle(), badChars, "-"), std::regex_replace(this->file.getModName(), badChars, "-"), std::regex_replace(this->file.getGame().getTid(), badChars, "-")), this->file.getGame().getTid());
+    extract::extractEntry(this->file.getPath(), fmt::format("sdmc:/{}/{}/{}/contents/{}/romfs", utils::getModInstallPath(), std::regex_replace(this->file.getGame().getTitle(), badChars, "-"), std::regex_replace(this->file.getModName(), badChars, "-"), std::regex_replace(this->file.getGame().getTid(), badChars, "-")), this->file.getGame().getTid());
 }
 
 void DownloadView::updateProgress() {
     {
         std::unique_lock<std::mutex> lock(threadMutex);
     }
+    //DOWNLOAD
     {
-        //DOWNLOAD
         while(ProgressEvent::instance().getTotal() == 0) {
             if(downloadFinished)
                 break;
@@ -115,7 +118,7 @@ void DownloadView::updateProgress() {
         }));
         this->addView(button);
         brls::Application::giveFocus(button);
-        getAppletFrame()->setActionsAvailable(false);
+        getAppletFrame()->setActionAvailable(brls::ControllerButton::BUTTON_B, true);
     });
 }
 

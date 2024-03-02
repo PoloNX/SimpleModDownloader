@@ -103,10 +103,10 @@ namespace net {
     }
 
     void downloadFile(const std::string& url, const std::string& path) {
+        brls::Logger::debug("Downloading file: {}, in the location : {}", url, path);
+
         auto curl = curl_easy_init();
         std::ofstream ofs(path, std::ios::binary);
-        
-        brls::Logger::debug("Downloading file: {}, in the location : {}", url, path);
 
         if(!curl) {
             brls::Logger::error("Failed to initialize curl");

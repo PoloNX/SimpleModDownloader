@@ -1,14 +1,18 @@
 <brls:Box
     width="auto"
-    height="auto">
+    height="auto"
+    axis="column"
+    alignItems="center">
 
     <brls:Label
         id="smm_desc"
-        text="SimpleModManager"/>
+        text="SimpleModManager"
+        margin="30px"/>
 
     <brls:RadioCell
         height="auto"
         width="auto"
-        id="smm_button"/>
+        id="smm_button"
+        margin="30px"/>
 
 </brls:Box>

@@ -5,6 +5,10 @@
 #include <sstream>
 #include <iomanip>
 #include <regex>
+#include <borealis.hpp>
+#include <SimpleIniParser.hpp>
+
+using namespace simpleIniParser;
 
 namespace utils {
 
@@ -121,5 +125,35 @@ namespace utils {
         output = std::regex_replace(output, nbspRegex, " ");
         std::regex tagsRegex("<.*?>");
         return std::regex_replace(output, tagsRegex, "");
+    }
+
+    bool ends_with(const std::string& str, const std::string& suffix) {
+        if (suffix.length() > str.length()) {
+            return false;
+        }
+        return str.compare(str.length() - suffix.length(), suffix.length(), suffix) == 0;
+    }
+
+    bool starts_with(const std::string& str, const std::string& prefix) {
+        if (prefix.length() > str.length()) {
+            return false;
+        }
+        return str.compare(0, prefix.length(), prefix) == 0;
+    }
+
+    std::string getModInstallPath() {
+        std::filesystem::path path(std::string("sdmc:/config/SimpleModManager/parameters.ini"));
+        if(!std::filesystem::exists(path)) {
+            return "mods";
+        }
+        Ini* config = Ini::parseFile(path.string());
+        IniOption* path_mods = config->findFirstOption("stored-mods-base-folder");
+        std::string pathString = path_mods->value;
+        brls::Logger::debug("Mod install path: {}", pathString);
+        if(ends_with(pathString, "/"))
+            pathString.pop_back();
+        if(starts_with(pathString, "/"))
+            pathString.erase(0, 1);
+        return pathString;
     }
 }

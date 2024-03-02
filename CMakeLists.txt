@@ -60,7 +60,7 @@ list(APPEND APP_PLATFORM_OPTION
 
 set(BRLS_RESOURCES_DIR ".")
 
-file(GLOB_RECURSE MAIN_SRC "source/**.cpp" "source/views/mod_preview.cpp")
+file(GLOB_RECURSE MAIN_SRC "source/**.cpp" "source/views/mod_preview.cpp" "lib/ini/source/**.cpp")
 if (PLATFORM_SWITCH)
     list(APPEND MAIN_SRC ${BOREALIS_LIBRARY}/lib/platforms/switch/switch_wrapper.c)
 endif()
@@ -84,7 +84,7 @@ if (PLATFORM_SWITCH)
     )
 endif()
 
-target_include_directories(${PROJECT_NAME} PRIVATE include ${APP_PLATFORM_INCLUDE})
+target_include_directories(${PROJECT_NAME} PRIVATE include lib/ini/include lib/ini/include/SimpleIniParser ${APP_PLATFORM_INCLUDE})
 target_compile_options(${PROJECT_NAME} PRIVATE -ffunction-sections -fdata-sections -Wunused-variable ${APP_PLATFORM_OPTION})
 target_link_libraries(${PROJECT_NAME} PRIVATE borealis z ${APP_PLATFORM_LIB})
 target_link_options(${PROJECT_NAME} PRIVATE ${APP_PLATFORM_LINK_OPTION})
