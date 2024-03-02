@@ -4,6 +4,18 @@
 
 #include "api/mod.hpp"
 
+class FileBox : public brls::Box {
+    public:
+        FileBox(File& file);
+        brls::Button* getDownloadButton() { return download.getView(); }
+    private:
+        BRLS_BIND(brls::Label, title, "title");
+        BRLS_BIND(brls::Label, date, "date");
+        BRLS_BIND(brls::Label, size, "size");
+        BRLS_BIND(brls::Label, compatible, "compatible");
+        BRLS_BIND(brls::Button, download, "download");
+};
+
 class ModPreview : public brls::Box {
 public:
     ModPreview(Mod& mod, std::vector<unsigned char>& bannerBuffer);

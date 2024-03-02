@@ -55,8 +55,9 @@ void Mod::loadMod() {
         int size = file.at("_nFilesize");
         std::string checkSum = file.at("_sMd5Checksum");
         int date = file.at("_tsDateAdded");
+        std::string id = std::to_string(file.at("_idRow").get<int>());
 
-        files.push_back(File(name, size, url, checkSum, this->getName(), date, game));
+        files.push_back(File(name, size, url, checkSum, this->getName(), date, id, game));
     }
 
     nlohmann::json images_json = net::downloadRequest(fmt::format("https://gamebanana.com/apiv11/Mod/{}?_csvProperties=_aPreviewMedia", std::to_string(this->ID)));
@@ -67,7 +68,7 @@ void Mod::loadMod() {
     }
 }
 
-File::File(const std::string &name, const int &size, const std::string &url, const std::string &checkSum, const std::string& modName,const int& date, const Game& game): game(game) {            
+File::File(const std::string &name, const int &size, const std::string &url, const std::string &checkSum, const std::string& modName,const int& date, const std::string& fileID,const Game& game): game(game) {            
     this->name = name;
     this->size = size;
     this->url = url;
@@ -75,6 +76,14 @@ File::File(const std::string &name, const int &size, const std::string &url, con
     this->date = date;
     this->path = fmt::format("sdmc:/config/SimpleModDownloader/{}", name);
     this->modName = modName;
+    this->fileID = fileID;
+
+    auto json = net::downloadRequest(fmt::format("https://gamebanana.com/apiv11/File/{}", fileID));
+    if(json.at("_aMetadata").at("_aArchiveFileTree").is_object()) {
+        if(json.at("_aMetadata").at("_aArchiveFileTree").find("romfs") != json.at("_aMetadata").at("_aArchiveFileTree").end()) {
+            romfs = true;
+        }
+    }
 }
 
 ModList::ModList(Game m_game): game(m_game) {

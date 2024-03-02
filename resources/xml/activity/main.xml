@@ -4,13 +4,13 @@
     footerHidden="false">
 
     <brls:TabFrame
-        title="@i18n/app/title">
+        title="@i18n/menu/main/app_name">
 
-        <brls:Tab label ="gametab">
+        <brls:Tab label ="@i18n/menu/tabs/downloads">
             <GameListTab/>
         </brls:Tab>
 
-        <brls:Tab label ="install">
+        <brls:Tab label ="@i18n/menu/tabs/install">
             <InstallationTab/>
         </brls:Tab>
 

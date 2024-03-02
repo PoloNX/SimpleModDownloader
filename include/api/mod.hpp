@@ -8,7 +8,7 @@
 
 class File {
     public:
-        File(const std::string &name, const int &size, const std::string &url, const std::string &checkSum, const std::string& modName, const int& date, const Game& game);
+        File(const std::string &name, const int &size, const std::string &url, const std::string &checkSum, const std::string& modName, const int& date, const std::string& fileID,const Game& game);
         std::string getPath() { return path; }
         std::string getName() { return name; }
         std::string getUrl() { return url; }
@@ -17,6 +17,7 @@ class File {
         int getSize() { return size; }
         Game getGame() { return game; }
         std::string getModName() { return modName; }
+        bool getRomfs() { return romfs; }
 
     private:
         std::string name;
@@ -27,6 +28,8 @@ class File {
         std::string path;
         const Game& game;
         std::string modName;
+        std::string fileID;
+        bool romfs = false;
 };
 
 class Mod {

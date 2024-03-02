@@ -3,6 +3,17 @@
 
 using namespace brls::literals;
 
+FileBox::FileBox(File& file) {
+    this->inflateFromXMLRes("xml/cells/file_cell.xml");
+    this->setFocusable(false);
+    title->setText(file.getName());
+    date->setText(fmt::format("Date : {}", file.getDate()));
+    size->setText(fmt::format("Size : {}", file.getSize()));
+    compatible->setText(fmt::format("Compatible : {}", std::to_string(file.getRomfs())));
+    download->setText("Download");
+    download->setFocusable(true);
+}
+
 ModPreview::ModPreview(Mod& mod, std::vector<unsigned char>& bannerBuffer): mod(mod) {
     this->mod.loadMod();
 
@@ -19,19 +30,6 @@ ModPreview::ModPreview(Mod& mod, std::vector<unsigned char>& bannerBuffer): mod(
     author->setText(fmt::format("Author : {}", this->mod.getAuthor()));
     description->setText(this->mod.getDescription());
 
-    for(auto file : this->mod.getFiles()) {
-        auto button = new brls::Button();
-        button->setText(file.getName());
-        button->setFocusable(false);
-        button->registerClickAction(brls::ActionListener([file = std::move(file), this](brls::View* view) mutable {
-            brls::Logger::debug("File clicked : {}", file.getName());
-            this->present(new DownloadView(file));
-            this->stopThreadFlag = true;
-            return true;
-        }));
-        files_box->addView(button);
-    }
-
     secondThread = std::thread(&ModPreview::loadImages, this);
 }
 
@@ -43,13 +41,16 @@ void ModPreview::loadImages() {
     } 
 
     //Don't give the focus in the constructor of ModPreview() because it will break the focus on the scroller. If you have a better option please tell me
-    ASYNC_RETAIN
-    brls::sync([ASYNC_TOKEN]() {
-    ASYNC_RELEASE
-        for(auto item : this->files_box->getChildren()) {
-            item->setFocusable(true);
-        }
-    });
+    for(auto file : this->mod.getFiles()) {
+        auto fileBox = new FileBox(file);
+        fileBox->getDownloadButton()->registerClickAction(brls::ActionListener([file = std::move(file), this](brls::View* view) mutable {
+            brls::Logger::debug("File clicked : {}", file.getName());
+            this->present(new DownloadView(file));
+            this->stopThreadFlag = true;
+            return true;
+        }));
+        files_box->addView(fileBox);
+    }
 
     std::vector<unsigned char> buffer;
 

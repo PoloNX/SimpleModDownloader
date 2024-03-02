@@ -61,7 +61,7 @@
                 <brls:Header
                     width="auto"
                     height="auto"
-                    title="Screenshots"
+                    title="@i18n/menu/mods/screenshots"
                     marginBottom="30px"/>
 
                 <!--big image box-->
@@ -108,7 +108,7 @@
                 <brls:Header
                     width="auto"
                     height="auto"
-                    title="desc"
+                    title="@i18n/menu/mods/description"
                     marginBottom="30px"/>
 
                 <brls:Label

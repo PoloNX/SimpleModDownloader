@@ -22,7 +22,7 @@ brls::RecyclerCell* ModData::cellForRow(brls::RecyclerFrame* recycler, brls::Ind
     auto cell = (ModCell*)recycler->dequeueReusableCell("Cell");
     brls::Logger::debug("Mod name : {}", modList->getMods()[indexPath.row].getName());
     cell->label->setText(modList->getMods()[indexPath.row].getName());
-    cell->subtitle->setText(fmt::format("Author : {}", modList->getMods()[indexPath.row].getAuthor()));
+    cell->subtitle->setText(fmt::format("{} : {}", "menu/mods/author"_i18n, modList->getMods()[indexPath.row].getAuthor()));
     return cell;
 }
 
@@ -62,16 +62,17 @@ ModListTab::ModListTab(Game& game) {
 
     modData = std::make_unique<ModData>(game);
     getAppletFrameItem()->title = fmt::format("Mods for {}", game.getTitle());
-    this->registerAction("next", brls::ControllerButton::BUTTON_RB, [this](brls::View* view){
-        brls::Logger::debug("Next button pressed");
-        this->modData->getModList()->nextPage();
+
+    this->registerAction("<", brls::ControllerButton::BUTTON_LB, [this](brls::View* view){
+        brls::Logger::debug("previous button pressed");
+        this->modData->getModList()->previousPage();
         this->recycler->reloadData();
         return true;
     });
 
-    this->registerAction("previous", brls::ControllerButton::BUTTON_LB, [this](brls::View* view){
-        brls::Logger::debug("previous button pressed");
-        this->modData->getModList()->previousPage();
+    this->registerAction(">", brls::ControllerButton::BUTTON_RB, [this](brls::View* view){
+        brls::Logger::debug("Next button pressed");
+        this->modData->getModList()->nextPage();
         this->recycler->reloadData();
         return true;
     });

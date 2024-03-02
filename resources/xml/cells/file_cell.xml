@@ -1,0 +1,59 @@
+<brls:Box
+    width="auto"
+    height="auto">
+    <brls:Box
+        width="auto"
+        height="auto"    
+        axis="column">
+        <brls:Label
+            id="title"
+            width="auto"
+            height="auto"
+            fontSize="24"
+            marginTop="@style/brls/sidebar/item_accent_margin_top_bottom"
+            marginBottom="@style/brls/sidebar/item_accent_margin_top_bottom"
+            marginLeft="@style/brls/sidebar/item_accent_margin_sides"
+            marginRight="@style/brls/sidebar/item_accent_margin_sides"/>
+        
+        <brls:Box
+            width="auto"
+            height="auto"
+            axis="row"
+            alignItems="flexStart">
+            <brls:Label
+                id="date"
+                width="auto"
+                height="auto"
+                fontSize="10"
+                marginTop="@style/brls/sidebar/item_accent_margin_top_bottom"
+                marginBottom="@style/brls/sidebar/item_accent_margin_top_bottom"
+                marginLeft="@style/brls/sidebar/item_accent_margin_sides"
+                marginRight="@style/brls/sidebar/item_accent_margin_sides"/>
+
+            <brls:Label
+                id="size"
+                width="auto"
+                height="auto"
+                fontSize="10"
+                marginTop="@style/brls/sidebar/item_accent_margin_top_bottom"
+                marginBottom="@style/brls/sidebar/item_accent_margin_top_bottom"
+                marginLeft="@style/brls/sidebar/item_accent_margin_sides"
+                marginRight="@style/brls/sidebar/item_accent_margin_sides"/>
+
+            <brls:Label
+                id="compatible"
+                width="auto"
+                height="auto"
+                fontSize="10"
+                marginTop="@style/brls/sidebar/item_accent_margin_top_bottom"
+                marginBottom="@style/brls/sidebar/item_accent_margin_top_bottom"
+                marginLeft="@style/brls/sidebar/item_accent_margin_sides"
+                marginRight="@style/brls/sidebar/item_accent_margin_sides"/>
+        </brls:Box>
+
+        <brls:Button
+            height="auto"
+            width="auto"
+            id="download"/>
+    </brls:Box>
+</brls:Box>

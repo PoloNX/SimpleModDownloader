@@ -68,7 +68,8 @@
         "links": "Download Link(s)",
         "size": "Size",
         "date": "Date",
-        "images": "View Images",
+        "screenshots" : "Screenshots",
+        "description": "Description",
         "browser": "Open in Browser",
         "author": "Author",
         "page": "Page"
