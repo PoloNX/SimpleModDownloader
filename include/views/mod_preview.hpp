@@ -12,7 +12,6 @@ class FileBox : public brls::Box {
         BRLS_BIND(brls::Label, title, "title");
         BRLS_BIND(brls::Label, date, "date");
         BRLS_BIND(brls::Label, size, "size");
-        BRLS_BIND(brls::Label, compatible, "compatible");
         BRLS_BIND(brls::Button, download, "download");
 };
 

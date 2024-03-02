@@ -77,11 +77,36 @@ File::File(const std::string &name, const int &size, const std::string &url, con
     this->path = fmt::format("sdmc:/config/SimpleModDownloader/{}", name);
     this->modName = modName;
     this->fileID = fileID;
+}
 
+bool File::findRomfsRecursive(const nlohmann::json& obj) {
+    for (const auto& item : obj.items()) {
+        if (item.key() == "romfs") {
+            brls::Logger::debug("found romfs");
+            return true;
+        }
+
+        if (item.value().is_object()) {
+            if (findRomfsRecursive(item.value())) {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+void File::loadFile() {
     auto json = net::downloadRequest(fmt::format("https://gamebanana.com/apiv11/File/{}", fileID));
     if(json.at("_aMetadata").at("_aArchiveFileTree").is_object()) {
-        if(json.at("_aMetadata").at("_aArchiveFileTree").find("romfs") != json.at("_aMetadata").at("_aArchiveFileTree").end()) {
-            romfs = true;
+        auto archiveFileTree = json.at("_aMetadata").at("_aArchiveFileTree");
+        for (const auto& item : archiveFileTree.items()) {
+            if (item.value().is_object()) {
+                if (findRomfsRecursive(item.value())) {
+                    this->romfs = true;
+                    break;
+                }
+            }
         }
     }
 }
@@ -91,7 +116,14 @@ ModList::ModList(Game m_game): game(m_game) {
 }
 
 void ModList::updatePage() {
-    nlohmann::json mod_json = net::downloadRequest(fmt::format("https://gamebanana.com/apiv11/Game/{}/Subfeed?_nPage={}?_nPerpage=50&_csvModelInclusions=Mod", game.getGamebananaID(), currentPage));
+    
+    nlohmann::json mod_json;
+    
+    if(currentSearch == "") {
+        mod_json = net::downloadRequest(fmt::format("https://gamebanana.com/apiv11/Game/{}/Subfeed?_nPage={}?_nPerpage=50&_csvModelInclusions=Mod", game.getGamebananaID(), currentPage));
+    } else {
+        mod_json = net::downloadRequest(fmt::format("https://gamebanana.com/apiv11/Game/{}/Subfeed?_nPage={}&_nPerpage=50&_sName={}&_csvModelInclusions=Mod", game.getGamebananaID(), currentPage, currentSearch));
+    }
 
     mods.clear();
     
@@ -119,4 +151,10 @@ void ModList::previousPage() {
         currentPage--;
         updatePage();
     }
+}
+
+void ModList::search(const std::string& search) {
+    this->currentSearch = search;
+    currentPage = 1;
+    updatePage();
 }

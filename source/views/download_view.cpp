@@ -13,6 +13,7 @@ DownloadView::DownloadView(File& file): file(file) {
 
     ProgressEvent::instance().reset();
 
+
     extract_progressBar->hidePointer();
     extract_progressBar->setProgress(0);
     download_progressBar->hidePointer();
@@ -42,11 +43,11 @@ void DownloadView::downloadFile() {
     }
     net::downloadFile(this->file.getUrl(), this->file.getPath());
     this->downloadFinished = true;
-    
+
     ProgressEvent::instance().reset();
 
     //Prevent incorrect chars in the path
-    std::regex badChars("[:/|]");
+    std::regex badChars("[:/|*]");
     extract::extractEntry(this->file.getPath(), fmt::format("sdmc:/{}/{}/{}/contents/{}/romfs", utils::getModInstallPath(), std::regex_replace(this->file.getGame().getTitle(), badChars, "-"), std::regex_replace(this->file.getModName(), badChars, "-"), std::regex_replace(this->file.getGame().getTid(), badChars, "-")), this->file.getGame().getTid());
 }
 

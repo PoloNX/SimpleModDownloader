@@ -39,21 +39,11 @@
                 marginBottom="@style/brls/sidebar/item_accent_margin_top_bottom"
                 marginLeft="@style/brls/sidebar/item_accent_margin_sides"
                 marginRight="@style/brls/sidebar/item_accent_margin_sides"/>
-
-            <brls:Label
-                id="compatible"
-                width="auto"
-                height="auto"
-                fontSize="10"
-                marginTop="@style/brls/sidebar/item_accent_margin_top_bottom"
-                marginBottom="@style/brls/sidebar/item_accent_margin_top_bottom"
-                marginLeft="@style/brls/sidebar/item_accent_margin_sides"
-                marginRight="@style/brls/sidebar/item_accent_margin_sides"/>
         </brls:Box>
 
         <brls:Button
             height="auto"
-            width="auto"
+            width="100%"
             id="download"/>
     </brls:Box>
 </brls:Box>

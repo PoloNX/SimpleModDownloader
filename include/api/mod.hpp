@@ -9,6 +9,7 @@
 class File {
     public:
         File(const std::string &name, const int &size, const std::string &url, const std::string &checkSum, const std::string& modName, const int& date, const std::string& fileID,const Game& game);
+        void loadFile();
         std::string getPath() { return path; }
         std::string getName() { return name; }
         std::string getUrl() { return url; }
@@ -20,6 +21,8 @@ class File {
         bool getRomfs() { return romfs; }
 
     private:
+        bool findRomfsRecursive(const nlohmann::json& obj);
+
         std::string name;
         int size;
         std::string url;
@@ -76,11 +79,12 @@ class ModList {
 
         void nextPage();
         void previousPage();
-        void updatePage();
+        void search(const std::string& search);
     private:
+        void updatePage();
+        
         std::vector<Mod> mods;
-
         int currentPage = 1;
-
+        std::string currentSearch = "";
         Game game;
 };

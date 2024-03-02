@@ -9,7 +9,6 @@ FileBox::FileBox(File& file) {
     title->setText(file.getName());
     date->setText(fmt::format("Date : {}", file.getDate()));
     size->setText(fmt::format("Size : {}", file.getSize()));
-    compatible->setText(fmt::format("Compatible : {}", std::to_string(file.getRomfs())));
     download->setText("Download");
     download->setFocusable(true);
 }
@@ -45,8 +44,11 @@ void ModPreview::loadImages() {
         auto fileBox = new FileBox(file);
         fileBox->getDownloadButton()->registerClickAction(brls::ActionListener([file = std::move(file), this](brls::View* view) mutable {
             brls::Logger::debug("File clicked : {}", file.getName());
-            this->present(new DownloadView(file));
-            this->stopThreadFlag = true;
+            file.loadFile();
+            if(file.getRomfs()) {
+                this->present(new DownloadView(file));
+                this->stopThreadFlag = true;
+            }   
             return true;
         }));
         files_box->addView(fileBox);

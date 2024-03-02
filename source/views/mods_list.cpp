@@ -77,6 +77,17 @@ ModListTab::ModListTab(Game& game) {
         return true;
     });
 
+    this->registerAction("Search", brls::ControllerButton::BUTTON_Y, [this](brls::View* view) {
+        brls::Logger::debug("Search button pressed");
+        std::string search;
+        brls::Application::getImeManager()->openForText([&](std::string text){
+            search = text;
+        });
+        this->modData->getModList()->search(search);
+        this->recycler->reloadData();
+        return true;
+    });
+
     recycler->estimatedRowHeight = 100;
     recycler->registerCell("Cell", []() { return ModCell::create();});
     recycler->setDataSource(modData.get());

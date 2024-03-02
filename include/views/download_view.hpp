@@ -8,8 +8,10 @@ class DownloadView : public brls::Box {
 public:
     DownloadView(File& file);
     ~DownloadView() {
-        downloadThread.join();
-        updateThread.join();
+        if(downloadThread.joinable())
+            downloadThread.join();
+        if(updateThread.joinable())
+            updateThread.join();
     }
 private:
     File file;

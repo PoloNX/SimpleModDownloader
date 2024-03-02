@@ -55,8 +55,6 @@ bool extractEntry(const std::string& archiveFile, const std::string& outputDir, 
         chdir("sdmc:/");
         struct archive* archive = archive_read_new();
 
-
-
         brls::Logger::debug("Extracting {} to {}", archiveFile, outputDir);
 
         archive_read_support_format_all(archive);
