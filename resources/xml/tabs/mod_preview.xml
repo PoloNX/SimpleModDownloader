@@ -1,0 +1,163 @@
+<brls:Box
+    width="auto"
+    height="auto">
+    <brls:ScrollingFrame
+        id="mod_preview_scrolling"
+        width="auto"
+        height="auto"
+        grow="1.0">
+    
+        <brls:Box
+            width="100%"
+            height="100%"
+            axis="column"
+            alignItems="center"
+            paddingTop="@style/brls/tab_frame/content_padding_top_bottom"
+            paddingBottom="@style/brls/tab_frame/content_padding_top_bottom">
+        
+            
+            <!-- TITLE/BANNER -->
+            <brls:Box
+                justifyContent="center"
+                width="90%"
+                height="200"
+                margin="10"
+                cornerRadius="15">
+
+                <brls:Image
+                    positionType="absolute"
+                    imageAlign="center"
+                    width="100%"
+                    scalingType="fill"
+                    cornerRadius="15"
+                    id="banner"/>
+                
+                <brls:Rectangle
+                    id="image_overlay"
+                    positionType="absolute"
+                    width="100%"
+                    cornerRadius="15"
+                    height="200px"/>
+
+                <brls:Label
+                    positionType="relative"
+                    id="mod_preview_title"
+                    fontSize="50"
+                    width="auto"
+                    height="auto"
+                    horizontalAlign="center"
+                    marginTop="10px"/>
+            </brls:Box>
+            
+
+            <brls:Box
+                height="auto"
+                width="100%"
+                axis="column"
+                alignItems="flexStart"
+                paddingRight="@style/brls/tab_frame/content_padding_sides"
+                paddingLeft="@style/brls/tab_frame/content_padding_sides">
+
+                <brls:Header
+                width="100%"
+                height="auto"
+                title="@i18n/menu/mods/screenshots"
+                marginBottom="30px"
+                marginTop="30px"/>
+
+            </brls:Box>
+
+            <!--SCREENSHOTS-->
+            <brls:Box
+                width="auto"
+                height="auto"
+                axis="column"
+                paddingRight="@style/brls/tab_frame/content_padding_sides"
+                paddingLeft="@style/brls/tab_frame/content_padding_sides"
+                alignItems="center">
+
+                <!--big image box-->
+                <brls:Box
+                    id="big_image_box"
+                    height="auto"
+                    width = "80%"
+                    alignItems = "center"
+                    justifyContent = "center"
+                    paddingRight="@style/brls/tab_frame/content_padding_sides"
+                    paddingLeft="@style/brls/tab_frame/content_padding_sides"
+                    marginBottom="30px">
+
+                    <brls:ProgressSpinner
+                        width="300"
+                        height="300"            
+                        margin="10"
+                        size="large"/>
+                
+                </brls:Box>
+
+                <!--small image box-->
+                <brls:Box
+                    id="small_image_box"
+                    height="auto"
+                    width = "80%"
+                    alignItems="center"
+                    axis="row"
+                    paddingRight="@style/brls/tab_frame/content_padding_sides"
+                    paddingLeft="@style/brls/tab_frame/content_padding_sides">
+
+                </brls:Box>
+
+            </brls:Box>
+            
+
+
+            <!--DESCRIPTION/AUTHORS-->
+            <brls:Box
+                height="auto"
+                width="auto"
+                axis="column"
+                paddingRight="@style/brls/tab_frame/content_padding_sides"
+                paddingLeft="@style/brls/tab_frame/content_padding_sides">
+
+                <brls:Header
+                    width="auto"
+                    height="auto"
+                    title="@i18n/menu/mods/description"
+                    marginBottom="30px"/>
+
+                <brls:Label
+                    positionType="relative"
+                    id="description"
+                    width="auto"
+                    height="auto"
+                    horizontalAlign="left"
+                    singleLine="false"/>
+
+                <brls:Label 
+                    positionType="relative"
+                    id="author"
+                    width="auto"
+                    height="auto"
+                    horizontalAlign="right"
+                    singleLine="false"/>    
+
+                <brls:Header
+                    width="auto"
+                    height="auto"
+                    title="@i18n/menu/mods/files"
+                    marginTop="30px"/>
+
+            </brls:Box>
+
+
+            <brls:Box
+                id="files_box"
+                height="auto"
+                width="auto"
+                axis="column"
+                paddingRight="@style/brls/tab_frame/content_padding_sides"
+                paddingLeft="@style/brls/tab_frame/content_padding_sides">
+            </brls:Box>
+        </brls:Box>
+    </brls:ScrollingFrame>
+</brls:Box>

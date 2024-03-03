@@ -1,65 +1,78 @@
 #include <borealis.hpp>
 #include <switch.h>
-#include <iostream>
+#include <curl/curl.h>
 #include <filesystem>
-#include <fstream>
-#include "constants.hpp"
-#include "main_frame.hpp"
-#include "utils.hpp"
 
-namespace i18n = brls::i18n;
-using namespace i18n::literals;
+#include "views/game_list_tab.hpp"
+#include "views/installation_view.hpp"
+#include "views/settings_tab.hpp"
+#include "activity/main_activity.hpp"
+#include "utils/config.hpp" 
 
 void init();
 void exit();
 
-std::string CURRENT_APP_PATH = "";
+int main(int argc, char* argv[]) {
+    brls::Logger::setLogLevel(brls::LogLevel::LOG_DEBUG);
 
-int main(int argc, char** argv) {
-    
+    std::filesystem::create_directories("sdmc:/config/SimpleModDownloader");
+    //Using FILE* because brls::Logger::setLogOutput only takes FILE*, not std::ofstream
+    // FILE* logFile = fopen("sdmc:/config/SimpleModDownloader/log.log", "w");
+    // brls::Logger::setLogOutput(logFile);
 
-    if (!brls::Application::init(fmt::format("{} v{}", "menu/main/app_name"_i18n, APP_VER))) {
-        brls::Logger::error("Unable to init borealis application");
-        return EXIT_FAILURE;
+    {
+        cfg::Config config;
+        if(config.getAppLanguage() != "auto") {
+            brls::Platform::APP_LOCALE_DEFAULT = config.getAppLanguage();
+            brls::Logger::debug("Loaded translations for language {}", config.getAppLanguage());
+        }
+    }
+
+    if(!brls::Application::init()) {
+        brls::Logger::error("Unable to init Borealis application");
     }
 
     init();
 
-    //Init translation and app
-    std::filesystem::path jsonPath("sdmc:/config/SimpleModDownloader/settings.json");
-    if(!std::filesystem::exists(jsonPath)) {
-        std::filesystem::create_directories("sdmc:/config/SimpleModDownloader");
-        utils::cp("romfs:/json/settings.json", "sdmc:/config/SimpleModDownloader/settings.json");
-    }    
+    brls::loadTranslations();
 
-    std::string lang = utils::getCurrentLang();
-    i18n::loadTranslations(lang);
+    brls::Application::createWindow(fmt::format("UpcomingSwitchGames"));
+    brls::Application::getPlatform()->setThemeVariant(brls::ThemeVariant::DARK);
+    brls::Application::setGlobalQuit(false);
 
-    //Use debug log level
-    brls::Logger::setLogLevel(brls::LogLevel::DEBUG);
-    brls::Application::pushView(new MainFrame());
+    //XML View
+    brls::Application::registerXMLView("GameListTab", GameListTab::create);
+    brls::Application::registerXMLView("InstallationTab", InstallationView::create);
+    brls::Application::registerXMLView("SettingsTab", SettingsTab::create);
 
+    // Add custom values to the theme
+    brls::Theme::getLightTheme().addColor("captioned_image/caption", nvgRGB(2, 176, 183));
+    brls::Theme::getDarkTheme().addColor("captioned_image/caption", nvgRGB(51, 186, 227));
 
-    while(brls::Application::mainLoop()) {
-        ;
-    }
+    // Add custom values to the style
+    brls::getStyle().addMetric("about/padding_top_bottom", 50);
+    brls::getStyle().addMetric("about/padding_sides", 75);
+    brls::getStyle().addMetric("about/description_margin", 50);
+
+    brls::Application::pushActivity(new MainActivity());
+
+    while(brls::Application::mainLoop()) ;
 
     exit();
-    //nsExit();
-    return 0;
+
+    return -1;
 }
 
 void init() {
     setsysInitialize();
     plInitialize(PlServiceType_User);
     nsInitialize();
-    //socketInitializeDefault();
-    //nxlinkStdio();
     pmdmntInitialize();
     pminfoInitialize();
     splInitialize();
     fsInitialize();
     romfsInit();
+    curl_global_init(CURL_GLOBAL_ALL);
 }
 
 void exit() {
@@ -67,9 +80,9 @@ void exit() {
     splExit();
     pminfoExit();
     pmdmntExit();
-    socketExit();
     nsExit();
     setsysExit();
     fsExit();
     plExit();
+    curl_global_cleanup();
 }

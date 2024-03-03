@@ -1,0 +1,27 @@
+<brls:Box
+    width="auto"
+    height="auto"
+    axis="column"
+    alignItems="center">
+
+    <brls:Label
+        text="@i18n/menu/tabs/install"
+        fontSize="24"
+        horizontalAlign="center"
+        width="auto"
+        height="auto"
+        marginTop="30px"/>
+
+    <brls:Label
+        id="smm_desc"
+        text=""
+        fontSize="15"
+        margin="30px"/>
+
+    <brls:RadioCell
+        height="auto"
+        width="auto"
+        id="smm_button"
+        margin="30px"/>
+
+</brls:Box>

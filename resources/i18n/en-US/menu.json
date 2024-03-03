@@ -7,7 +7,7 @@
         "downloading_smm": "Downloading SimpleModManager",
         "downloading_smd": "Downloading SimpleModDownloader",
         "downloading": "Downloading",
-        "extracting": "Extracting in progress (do not close the application)"
+        "extracting": "Extracting"
     },
     
     "tabs": {
@@ -34,8 +34,9 @@
     "about": {
         "title": "About SimpleModDownloader",
         "description": "SimpleModDownloader is an application that allows you to download and install mods for Nintendo Switch games created by PoloNX.",
-        "thanks": "\u25c6 Thanks to @nadrino for SimpleModManager\n\u25c6 Thanks to Natinusala and HamletDuFromage for borealis\n\u25c6 Thanks to Pikatsuto for the logo and SuperButterScotch for the typography\n\u25c6 Thanks to NicholeMattera for Simple-INI-Parser",
-        "translator": "\u25c6 Thanks to traductors"
+        "thanks": "\u25c6 Thanks to @nadrino for SimpleModManager\n\u25c6 Thanks to Natinusala, xfangfang and XITRIX for borealis\n\u25c6 Thanks to Pikatsuto for the logo and SuperButterScotch for the typography\n\u25c6 Thanks to NicholeMattera for Simple-INI-Parser",
+        "translator": "\u25c6 Thanks to traductors",
+        "_MESSAGE_TO_TRANSLATORS": "Put your name in about/translator please"
     },
     
     "label": {
@@ -68,15 +69,20 @@
         "links": "Download Link(s)",
         "size": "Size",
         "date": "Date",
-        "images": "View Images",
+        "screenshots" : "Screenshots",
+        "description": "Description",
         "browser": "Open in Browser",
         "author": "Author",
-        "page": "Page"
+        "page": "Page",
+        "download": "Download",
+        "to": "to",
+        "mods_for": "Mods for",
+        "files": "Files"
     },
 
     "settings_tab" : {
         "language" : "Select language",
-        "arc" : "Use ARCropolis for Smash mods"
+        "debug" : "Debug layer"
     },
 
     "crash" : {

@@ -40,6 +40,8 @@
 ![](./screenshots/2.jpg)
 ![](./screenshots/3.jpg)
 ![](./screenshots/4.jpg)
+![](./screenshots/5.jpg)
+![](./screenshots/6.jpg)
 
 </details>
 
@@ -68,17 +70,18 @@ Rewrite the app with [borealis](https://github.com/xfangfang/borealis) because t
 
 ## Credits 
 
-- Thanks to [Natinusala](https://github.com/natinusala) and [HamletDuFromage](https://github.com/HamletDuFromage) for [borealis](https://github.com/HamletDuFromage/borealis)
+- Thanks to [Natinusala](https://github.com/natinusala), [xfangfang](https://github.com/xfangfang) and [XITRIX](https://github.com/XITRIX) for [borealis](https://github.com/xfangfang/borealis)
 - Thanks to [nadrino](https://github.com/nadrino) for [SimpleModManager](https://github.com/nadrino/SimpleModManager)
 - Thanks to [GameBanana](https://gamebanana.com/) for their API
 - Thanks to [Pikatsuto](https://github.com/Pikatsuto) for the logo and SuperButterScotch for the typo
 - Thanks to [NicholeMattera](https://github.com/NicholeMattera) for [Simple-INI-Parser](https://github.com/NicholeMattera/Simple-INI-Parser)
+- Special thanks to [xfangfang](https://github.com/xfangfang) for helping me with all the UI stuff
 
 - Thanks to [JerryWn12](https://github.com/JerryWn12) for chinese translation
 - Thanks to [iGlitch](https://github.com/iGlitch)for japanese translation
 - Thanks to [ExFabian](https://github.com/ExFabian) for romanian translation
 - Thanks to [spkats1](https://github.com/spkats1) and [tsamerman](https://github.com/tsamerman) for greek translation
-- Thanks to [pixeldeadlock](https://github.com/pixeldeadlock) for brazilian portuguese translation*
+- Thanks to [pixeldeadlock](https://github.com/pixeldeadlock) for brazilian portuguese translation
 - Thanks to [garobcsi](https://github.com/garobcsi) for hungarian translation
 
 
