@@ -51,13 +51,14 @@
 
 - [devkitPro](https://devkitpro.org/wiki/Getting_Started)
 
-### Build
+### Linux
 
 ```bash
 sudo pacman -S switch-curl switch-zlib switch-glfw switch-mesa switch-glm switch-libarchive  
 git clone --recursive https://github.com/PoloNX/SimpleModDownloader/
 cd SimpleModDownloader
-make
+cmake -B cmake-build-switch -G Ninja -DPLATFORM_SWITCH=ON -DCMAKE_BUILD_TYPE=Debug
+cmake --build cmake-build-switch --target SimpleModDownloader.nro
 ```
 
 ## Help me
