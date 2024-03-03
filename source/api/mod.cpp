@@ -150,6 +150,9 @@ void ModList::previousPage() {
 }
 
 void ModList::search(const std::string& search) {
+    if(search.size() < 3) {
+        return;
+    }
     this->currentSearch = search;
     currentPage = 1;
     updatePage();
