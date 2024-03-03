@@ -50,6 +50,11 @@
 ### Requirements
 
 - [devkitPro](https://devkitpro.org/wiki/Getting_Started)
+- [CMake](https://cmake.org/download/)
+- [Ninja](https://ninja-build.org/)
+- [Docker](https://www.docker.com/) (Windows only)
+
+If you don't want to use docker on windows you can use [MSYS2](https://www.msys2.org/) to build the app.
 
 ### Linux
 
@@ -61,13 +66,19 @@ cmake -B cmake-build-switch -G Ninja -DPLATFORM_SWITCH=ON -DCMAKE_BUILD_TYPE=Deb
 cmake --build cmake-build-switch --target SimpleModDownloader.nro
 ```
 
+### Windows
+
+```bash
+pacman -S switch-curl switch-zlib switch-glfw switch-mesa switch-glm switch-libarchive  
+git clone --recursive https://github.com/PoloNX/SimpleModDownloader/
+cd SimpleModDownloader
+docker run --rm -v ${PWD}:/data devkitpro/devkita64:latest `
+bash -c "cd /data ; cmake -B cmake-build-switch -G Ninja -DPLATFORM_SWITCH=ON -DCMAKE_BUILD_TYPE=Debug ; cmake --build cmake-build-switch --target SimpleModDownloader.nro"
+```
+
 ## Help me
 
 If you want to help me open an issue when you encounter a bug and a pull request if you have a fix.
-
-## TODO
-
-Rewrite the app with [borealis](https://github.com/xfangfang/borealis) because the current app is unstable. No eta for this.
 
 ## Credits 
 
