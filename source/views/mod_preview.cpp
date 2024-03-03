@@ -1,5 +1,7 @@
 #include "views/mod_preview.hpp"
 #include "views/download_view.hpp"
+#include "utils/utils.hpp"
+#include "utils/progress_event.hpp"
 
 using namespace brls::literals;
 
@@ -7,9 +9,9 @@ FileBox::FileBox(File& file) {
     this->inflateFromXMLRes("xml/cells/file_cell.xml");
     this->setFocusable(false);
     title->setText(file.getName());
-    date->setText(fmt::format("Date : {}", file.getDate()));
-    size->setText(fmt::format("Size : {}", file.getSize()));
-    download->setText("Download");
+    date->setText(fmt::format("{} : {}", "menu/mods/date"_i18n, utils::timestamp_to_date(static_cast<time_t>(file.getDate()))));
+    size->setText(fmt::format("{} : {}", "menu/mods/size"_i18n, utils::file_size_to_string(file.getSize())));
+    download->setText("menu/mods/download"_i18n);
     download->setFocusable(true);
 }
 
@@ -26,7 +28,7 @@ ModPreview::ModPreview(Mod& mod, std::vector<unsigned char>& bannerBuffer): mod(
     
     image_overlay->setColor(nvgRGBA(100, 100, 100, 0.8*255));
     title->setText(this->mod.getName());
-    author->setText(fmt::format("Author : {}", this->mod.getAuthor()));
+    author->setText(fmt::format("{} : {}", "menu/mods/author"_i18n, this->mod.getAuthor()));
     description->setText(this->mod.getDescription());
 
     secondThread = std::thread(&ModPreview::loadImages, this);

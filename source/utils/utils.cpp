@@ -8,6 +8,7 @@
 #include <borealis.hpp>
 #include <SimpleIniParser.hpp>
 
+
 using namespace simpleIniParser;
 
 namespace utils {
@@ -155,5 +156,33 @@ namespace utils {
         if(starts_with(pathString, "/"))
             pathString.erase(0, 1);
         return pathString;
+    }
+
+    std::string timestamp_to_date(time_t timestamp) {
+        std::tm* timeinfo = std::gmtime(&timestamp);
+        std::ostringstream os;
+        os << std::setfill('0') << std::setw(2) << timeinfo->tm_mday << "/"
+        << std::setfill('0') << std::setw(2) << (timeinfo->tm_mon + 1) << "/"
+        << (timeinfo->tm_year + 1900);
+        return os.str();
+    }
+
+    std::string file_size_to_string(int file_size) {
+        const double kb = 1024.0;
+        const double mb = std::pow(kb, 2);
+        const double gb = std::pow(kb, 3);
+
+        std::ostringstream os;
+        if (file_size >= gb) {
+            os << std::fixed << std::setprecision(2) << file_size / gb << " GB";
+        } else if (file_size >= mb) {
+            os << std::fixed << std::setprecision(2) << file_size / mb << " MB";
+        } else if (file_size >= kb) {
+            os << std::fixed << std::setprecision(2) << file_size / kb << " KB";
+        } else {
+            os << file_size << " B";
+        }
+
+        return os.str();
     }
 }

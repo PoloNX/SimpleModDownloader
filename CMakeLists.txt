@@ -10,7 +10,7 @@ cmake_dependent_option(BUILTIN_NSP "Built in NSP forwarder" OFF "PLATFORM_SWITCH
 include(${BOREALIS_LIBRARY}/cmake/toolchain.cmake)
 
 project(SimpleModDownloader)
-set(VERSION_MAJOR "1")
+set(VERSION_MAJOR "2")
 set(VERSION_MINOR "0")
 set(VERSION_REVISION "0")
 set(VERSION_BUILD "0")

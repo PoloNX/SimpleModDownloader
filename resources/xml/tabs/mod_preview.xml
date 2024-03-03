@@ -49,6 +49,24 @@
                     marginTop="10px"/>
             </brls:Box>
             
+
+            <brls:Box
+                height="auto"
+                width="100%"
+                axis="column"
+                alignItems="flexStart"
+                paddingRight="@style/brls/tab_frame/content_padding_sides"
+                paddingLeft="@style/brls/tab_frame/content_padding_sides">
+
+                <brls:Header
+                width="100%"
+                height="auto"
+                title="@i18n/menu/mods/screenshots"
+                marginBottom="30px"
+                marginTop="30px"/>
+
+            </brls:Box>
+
             <!--SCREENSHOTS-->
             <brls:Box
                 width="auto"
@@ -56,13 +74,7 @@
                 axis="column"
                 paddingRight="@style/brls/tab_frame/content_padding_sides"
                 paddingLeft="@style/brls/tab_frame/content_padding_sides"
-                justifyContent="center">
-
-                <brls:Header
-                    width="auto"
-                    height="auto"
-                    title="@i18n/menu/mods/screenshots"
-                    marginBottom="30px"/>
+                alignItems="center">
 
                 <!--big image box-->
                 <brls:Box
@@ -97,6 +109,8 @@
 
             </brls:Box>
             
+
+
             <!--DESCRIPTION/AUTHORS-->
             <brls:Box
                 height="auto"
@@ -127,13 +141,14 @@
                     horizontalAlign="right"
                     singleLine="false"/>    
 
+                <brls:Header
+                    width="auto"
+                    height="auto"
+                    title="@i18n/menu/mods/files"
+                    marginTop="30px"/>
+
             </brls:Box>
 
-            <brls:Header
-                width="auto"
-                height="auto"
-                title="Files"
-                marginBottom="30px"/>
 
             <brls:Box
                 id="files_box"

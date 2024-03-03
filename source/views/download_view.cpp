@@ -21,8 +21,10 @@ DownloadView::DownloadView(File& file): file(file) {
     download_percent->setText(fmt::format("{}%", 0));
     extract_percent->setText(fmt::format("{}%", 0));
 
-    download_text->setText(fmt::format("Downloading : {}", file.getName()));
-    extract_text->setText(fmt::format("Extracting {} to {}", file.getName(), "mods/JEUX/" + file.getName()));
+    download_text->setText(fmt::format("{} : {}", "menu/title/downloading"_i18n, file.getName()));
+    
+    std::regex badChars("[:/|*]");
+    extract_text->setText(fmt::format("{} {} {} {}", "menu/title/extracting", file.getName(), "menu/mods/to"_i18n, fmt::format("sdmc:/{}/{}/{}/contents/{}/romfs", utils::getModInstallPath(), std::regex_replace(this->file.getGame().getTitle(), badChars, "-"), std::regex_replace(this->file.getModName(), badChars, "-"), std::regex_replace(this->file.getGame().getTid(), badChars, "-")), this->file.getGame().getTid()));
 
     this->setActionAvailable(brls::ControllerButton::BUTTON_B, false);
 
@@ -33,7 +35,10 @@ DownloadView::DownloadView(File& file): file(file) {
     downloadThread = std::thread(&DownloadView::downloadFile, this);
     updateThread = std::thread(&DownloadView::updateProgress, this);
 
-    brls::sync([this]() {getAppletFrame()->setActionAvailable(brls::ControllerButton::BUTTON_B, false);});
+    brls::sync([this]() {
+        getAppletFrame()->setActionAvailable(brls::ControllerButton::BUTTON_B, false);
+        getAppletFrame()->setTitle(fmt::format("{}/{}", "menu/title/extracting"_i18n, "menu/title/downloading"_i18n));
+    });
     
 }
 
@@ -91,7 +96,7 @@ void DownloadView::updateProgress() {
             ASYNC_RETAIN
             brls::sync([ASYNC_TOKEN](){
                 ASYNC_RELEASE
-                this->extract_percent->setText(fmt::format("{}%", (int)((ProgressEvent::instance().getStep() / ProgressEvent::instance().getMax()) * 100)));
+                this->extract_percent->setText(fmt::format("{}%", (int)((ProgressEvent::instance().getStep() * 100 / ProgressEvent::instance().getMax()))));
                 this->extract_progressBar->setProgress((float)ProgressEvent::instance().getStep() / ProgressEvent::instance().getMax());
             });
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
@@ -111,7 +116,7 @@ void DownloadView::updateProgress() {
     brls::sync([ASYNC_TOKEN]() {
         ASYNC_RELEASE
         auto button = new brls::Button();
-        button->setText("Back");
+        button->setText("hints/back"_i18n);
         button->setFocusable(true);
         button->registerClickAction(brls::ActionListener([this](brls::View* view) {
             this->dismiss();

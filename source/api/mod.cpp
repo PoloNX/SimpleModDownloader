@@ -42,14 +42,12 @@ brls::Image* Mod::getImage(const int& index) {
 }
 
 void Mod::loadMod() {
-    nlohmann::json mod_json = net::downloadRequest(fmt::format("https://gamebanana.com/apiv11/Mod/{}?_csvProperties=_sText", std::to_string(this->ID)));
+    nlohmann::json mod_json = net::downloadRequest(fmt::format("https://gamebanana.com/apiv11/Mod/{}?_csvProperties=_sText,_aFiles,_aPreviewMedia", std::to_string(this->ID)));
 
     this->description = mod_json.at("_sText");
     this->description = utils::removeHtmlTags(this->description);
 
-    nlohmann::json files_json = net::downloadRequest(fmt::format("https://gamebanana.com/apiv11/Mod/{}?_csvProperties=_aFiles", std::to_string(this->ID)));
-
-    for(auto file : files_json.at("_aFiles")) {
+    for(auto file : mod_json.at("_aFiles")) {
         std::string name = file.at("_sFile");
         std::string url = file.at("_sDownloadUrl");
         int size = file.at("_nFilesize");
@@ -60,9 +58,7 @@ void Mod::loadMod() {
         files.push_back(File(name, size, url, checkSum, this->getName(), date, id, game));
     }
 
-    nlohmann::json images_json = net::downloadRequest(fmt::format("https://gamebanana.com/apiv11/Mod/{}?_csvProperties=_aPreviewMedia", std::to_string(this->ID)));
-
-    for(auto image : images_json.at("_aPreviewMedia").at("_aImages")) {
+    for(auto image : mod_json.at("_aPreviewMedia").at("_aImages")) {
         std::string url = image.at("_sFile");
         imageUrls.push_back(url);
     }

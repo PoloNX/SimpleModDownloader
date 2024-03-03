@@ -5,10 +5,12 @@
 #include <filesystem>
 #include <switch.h>
 
+using namespace brls::literals;
+
 InstallationView::InstallationView() {
     this->inflateFromXMLRes("xml/tabs/installation_tab.xml");
 
-    smm_desc->setText("SimpleModDownloader allow you to switch to SimpleModManager, a mod manager for the Nintendo Switch. It will allow you to install mods.");
+    smm_desc->setText("menu/label/desc_install"_i18n);
 
     smm_radio->setSelected(false);
 
@@ -26,7 +28,7 @@ InstallationView::InstallationView() {
     }
 
     if(!smm_path.empty()) {
-        smm_radio->title->setText("Launch SimpleModManager");
+        smm_radio->title->setText("menu/item/launch_smm"_i18n);
         smm_radio->registerClickAction([this, smm_path = std::move(smm_path)](brls::View* view) {
             brls::Logger::debug("Launching SimpleModManager, path: {}", smm_path);
             envSetNextLoad(smm_path.c_str(), fmt::format("\"{}\"", smm_path).c_str());
@@ -35,7 +37,7 @@ InstallationView::InstallationView() {
         });
     } 
     else {
-        smm_radio->title->setText("Download SimpleModManager");
+        smm_radio->title->setText("menu/item/download_smm"_i18n);
         smm_radio->registerClickAction([this](brls::View* view) {
             brls::sync([this]{getAppletFrame()->setActionsAvailable(false);});
             downloadThread = std::thread(&InstallationView::downloadSmm, this);
@@ -93,7 +95,7 @@ void InstallationView::progressDownload() {
         ASYNC_RELEASE
         this->removeView(smm_progressBar);
         this->removeView(smm_percent);
-        this->smm_radio->title->setText("Launch SimpleModManager");
+        this->smm_radio->title->setText("menu/item/launch_smm"_i18n);
         this->smm_radio->registerClickAction([this](brls::View* view) {
             envSetNextLoad("sdmc:/switch/SimpleModManager.nro", "\"sdmc:/switch/SimpleModManager.nro\"");
             brls::Application::quit();

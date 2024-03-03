@@ -5,7 +5,9 @@
 
 #include "views/game_list_tab.hpp"
 #include "views/installation_view.hpp"
+#include "views/settings_tab.hpp"
 #include "activity/main_activity.hpp"
+#include "utils/config.hpp" 
 
 void init();
 void exit();
@@ -17,6 +19,14 @@ int main(int argc, char* argv[]) {
     //Using FILE* because brls::Logger::setLogOutput only takes FILE*, not std::ofstream
     // FILE* logFile = fopen("sdmc:/config/SimpleModDownloader/log.log", "w");
     // brls::Logger::setLogOutput(logFile);
+
+    {
+        cfg::Config config;
+        if(config.getAppLanguage() != "auto") {
+            brls::Platform::APP_LOCALE_DEFAULT = config.getAppLanguage();
+            brls::Logger::debug("Loaded translations for language {}", config.getAppLanguage());
+        }
+    }
 
     if(!brls::Application::init()) {
         brls::Logger::error("Unable to init Borealis application");
@@ -33,6 +43,7 @@ int main(int argc, char* argv[]) {
     //XML View
     brls::Application::registerXMLView("GameListTab", GameListTab::create);
     brls::Application::registerXMLView("InstallationTab", InstallationView::create);
+    brls::Application::registerXMLView("SettingsTab", SettingsTab::create);
 
     // Add custom values to the theme
     brls::Theme::getLightTheme().addColor("captioned_image/caption", nvgRGB(2, 176, 183));

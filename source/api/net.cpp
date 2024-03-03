@@ -48,6 +48,9 @@ namespace net {
     }
 
     size_t WriteCallbackImage(char* ptr, size_t size, size_t nmemb, void* userdata) {
+        if (ProgressEvent::instance().getInterupt()) {
+            return 0;
+        }
         std::vector<unsigned char>* buffer = static_cast<std::vector<unsigned char>*>(userdata);
         size_t total_size = size * nmemb;
         buffer->insert(buffer->end(), ptr, ptr + total_size);

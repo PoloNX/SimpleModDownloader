@@ -61,7 +61,7 @@ ModListTab::ModListTab(Game& game) {
     this->inflateFromXMLRes("xml/tabs/mods.xml");
 
     modData = std::make_unique<ModData>(game);
-    getAppletFrameItem()->title = fmt::format("Mods for {}", game.getTitle());
+    getAppletFrameItem()->title = fmt::format("{} {}", "menu/mods/mods_for"_i18n, game.getTitle());
 
     this->registerAction("<", brls::ControllerButton::BUTTON_LB, [this](brls::View* view){
         brls::Logger::debug("previous button pressed");
@@ -77,7 +77,7 @@ ModListTab::ModListTab(Game& game) {
         return true;
     });
 
-    this->registerAction("Search", brls::ControllerButton::BUTTON_Y, [this](brls::View* view) {
+    this->registerAction("menu/mods/search"_i18n, brls::ControllerButton::BUTTON_Y, [this](brls::View* view) {
         brls::Logger::debug("Search button pressed");
         std::string search;
         brls::Application::getImeManager()->openForText([&](std::string text){
