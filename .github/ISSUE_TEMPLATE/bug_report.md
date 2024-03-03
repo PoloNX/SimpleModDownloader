@@ -13,6 +13,10 @@ A clear and concise description of what the bug is.
 **On which mod**
 Paste the link of the mod here
 
+**Log file**
+Paste the log file here (you can find it at /config/SimpleModDownloader/log.log)
+Don't launch the app again before pasting the log file, it will be overwritten
+
 **To Reproduce**
 Steps to reproduce the behavior:
 1. Go to '...'

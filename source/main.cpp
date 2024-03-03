@@ -17,8 +17,8 @@ int main(int argc, char* argv[]) {
 
     std::filesystem::create_directories("sdmc:/config/SimpleModDownloader");
     //Using FILE* because brls::Logger::setLogOutput only takes FILE*, not std::ofstream
-    // FILE* logFile = fopen("sdmc:/config/SimpleModDownloader/log.log", "w");
-    // brls::Logger::setLogOutput(logFile);
+    FILE* logFile = fopen("sdmc:/config/SimpleModDownloader/log.log", "w");
+    brls::Logger::setLogOutput(logFile);
 
     {
         cfg::Config config;
