@@ -66,6 +66,7 @@ void InstallationView::progressDownload() {
             ASYNC_RELEASE
             this->smm_progressBar = new brls::Slider();
             this->smm_progressBar->hidePointer();
+            this->smm_progressBar->getPointer()->setFocusable(false);
             this->smm_progressBar->setProgress(0);
             this->smm_progressBar->setWidth(800);
             this->smm_progressBar->setHeight(20);

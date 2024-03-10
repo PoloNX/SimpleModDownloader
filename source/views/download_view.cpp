@@ -13,10 +13,11 @@ DownloadView::DownloadView(File& file): file(file) {
 
     ProgressEvent::instance().reset();
 
-
     extract_progressBar->hidePointer();
+    extract_progressBar->getPointer()->setFocusable(false);
     extract_progressBar->setProgress(0);
     download_progressBar->hidePointer();
+    download_progressBar->getPointer()->setFocusable(false);
     download_progressBar->setProgress(0);
     download_percent->setText(fmt::format("{}%", 0));
     extract_percent->setText(fmt::format("{}%", 0));
