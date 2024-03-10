@@ -1,0 +1,49 @@
+name: build
+
+on:
+  push:
+      branches: [ "*" ]
+  pull_request:
+    types: [opened, reopened]
+  workflow_dispatch:
+    inputs:
+      nx:
+        description: build nintendo switch
+        type: boolean
+
+permissions:
+  contents: write
+
+jobs:
+  build-nx:
+    runs-on: ubuntu-latest
+    if: ${{ inputs.nx || github.event_name != 'workflow_dispatch' }}
+    container: devkitpro/devkita64
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        submodules: recursive
+    - name: Set workspace permissions
+      run: |
+        chown $(id -u):$(id -g) -R "$GITHUB_WORKSPACE"
+        git config --system --add safe.directory '*'
+    - name: Update dependencies
+      run: |
+        git config --global --add safe.directory /__w/SimpleModDownloader/SimpleModDownloader/lib/borealis
+        git config --global --add safe.directory /__w/SimpleModDownloader/SimpleModDownloader/lib/ini
+        git config --global --add safe.directory /__w/SimpleModDownloader/SimpleModDownloader
+        git submodule update --init --recursive
+    - name: Build SimpleModDownloader
+      run: |
+        cmake -B cmake-build-switch -DCMAKE_BUILD_TYPE=Release -DPLATFORM_SWITCH=ON
+        cmake --build cmake-build-switch --target SimpleModDownloader.nro
+    - name: Set outputs
+      id: vars
+      run: echo "sha_short=${{ matrix.driver }}-$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+    - name: Upload Assets
+      uses: actions/upload-artifact@v4
+      with:
+        name: UpcomingSwitchGames
+        path: |
+          cmake-build-switch/UpcomingSwitchGames.nro
+          cmake-build-switch/UpcomingSwitchGames.elf
