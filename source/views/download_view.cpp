@@ -25,7 +25,10 @@ DownloadView::DownloadView(File& file): file(file) {
     download_text->setText(fmt::format("{} : {}", "menu/title/downloading"_i18n, file.getName()));
     
     std::regex badChars("[:/|*]");
-    extract_text->setText(fmt::format("{} {} {} {}", "menu/title/extracting", file.getName(), "menu/mods/to"_i18n, fmt::format("sdmc:/{}/{}/{}/contents/{}/romfs", utils::getModInstallPath(), std::regex_replace(this->file.getGame().getTitle(), badChars, "-"), std::regex_replace(this->file.getModName(), badChars, "-"), std::regex_replace(this->file.getGame().getTid(), badChars, "-")), this->file.getGame().getTid()));
+    if (file.getGame().getTid() != "01006A800016E000")
+        extract_text->setText(fmt::format("{} {} {} {}", "menu/title/extracting"_i18n, file.getName(), "menu/mods/to"_i18n, fmt::format("sdmc:/{}/{}/{}/contents/{}/romfs", utils::getModInstallPath(), std::regex_replace(this->file.getGame().getTitle(), badChars, "-"), std::regex_replace(this->file.getModName(), badChars, "-"), std::regex_replace(this->file.getGame().getTid(), badChars, "-")), this->file.getGame().getTid()));
+    else    
+        extract_text->setText(fmt::format("{} {} {} {}", "menu/title/extracting"_i18n, file.getName(), "menu/mods/to"_i18n, fmt::format("sdmc:/ultimate/mods/{}", file.getModName())));
 
     this->setActionAvailable(brls::ControllerButton::BUTTON_B, false);
 
