@@ -47,7 +47,8 @@ void ModPreview::loadImages() {
         fileBox->getDownloadButton()->registerClickAction(brls::ActionListener([file = std::move(file), this](brls::View* view) mutable {
             brls::Logger::debug("File clicked : {}", file.getName());
             file.loadFile();
-            if(file.getRomfs()) {
+            //Smash tid
+            if(file.getRomfs() || this->mod.getGame().getTid() == "01006A800016E000") {
                 this->present(new DownloadView(file));
                 this->stopThreadFlag = true;
             }   
