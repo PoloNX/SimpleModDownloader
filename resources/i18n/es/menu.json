@@ -2,61 +2,80 @@
     "main": {
         "app_name": "SimpleModDownloader"
     },
-
     "title": {
         "downloading_smm": "Descargando SimpleModManager",
+        "downloading_smd": "Downloading SimpleModDownloader",
         "downloading": "Descargando",
         "extracting": "Extracción en progreso (no cierre la aplicación)"
     },
-    
     "tabs": {
         "downloads": "Descargas",
         "install": "Instalación",
-        "about": "Acerca de"
+        "update": "Update App",
+        "about": "Acerca de",
+        "settings": "Settings"
     },
-    
-    "notify" : {
-        "no_games_gamebanana" : "No se encontraron juegos en la base de datos de GameBanana",
-        "not_supported": "Este formato no es compatible: "
+    "notify": {
+        "no_games_gamebanana": "No se encontraron juegos en la base de datos de GameBanana",
+        "not_supported": "Este formato no es compatible: ",
+        "string_to_short": "The search string must be at least 3 characters long"
     },
-    
     "worker": {
         "of": "de",
         "cancel": "Cancelar",
         "install": "Instalando",
         "remaining": "Tiempo restante"
     },
-    
     "about": {
         "title": "Acerca de SimpleModDownloader",
         "description": "SimpleModDownloader es una aplicación que te permite descargar e instalar mods para juegos de Nintendo Switch creada por PoloNX.",
-        "thanks": "\u25c6 Gracias a @nadrino por SimpleModManager\n\u25c6 Gracias a Natinusala y HamletDuFromage por borealis\n\u25c6 Gracias a Pikatsuto por el logotipo y a SuperButterScotch por la tipografía",
-        "traductors": "\u25c6 Gracias a los traductores"
+        "thanks": "◆ Gracias a @nadrino por SimpleModManager\n◆ Gracias a Natinusala y HamletDuFromage por borealis\n◆ Gracias a Pikatsuto por el logotipo y a SuperButterScotch por la tipografía",
+        "translator": "◆ Thanks to traductors",
+        "_MESSAGE_TO_TRANSLATORS": "Put your name in about/translator please"
     },
-    
     "label": {
-        "no_games" : "No se encontraron juegos en la Switch",
+        "no_games": "No se encontraron juegos en la Switch",
         "install": "Instalación",
         "desc_install": "Para instalar mods, debes usar la aplicación SimpleModManager creada por @nadrino.",
-        "extract": "La extracción ha finalizado. Para instalar el mod, ve a la pestaña de Instalación."
+        "extract": "La extracción ha finalizado. Para instalar el mod, ve a la pestaña de Instalación.",
+        "update": "Update App",
+        "new_update": "◆ Current version :",
+        "available_version": "◆ Available version :",
+        "restart_smd": "Restart SimpleModDownloader to apply the update.",
+        "no_internet": "No internet connection.",
+        "desc_smd": "◆ You can update the app you're using on your switch",
+        "path": "Path",
+        "url": "Url"
     },
-    
-    "item" : {
-        "launch_smm" : "Iniciar SimpleModManager",
-        "download_smm": "Descargar SimpleModManager"
+    "item": {
+        "launch_smm": "Iniciar SimpleModManager",
+        "download_smm": "Descargar SimpleModManager",
+        "download_smd": "Download SimpleModDownloader",
+        "check_update": "Check for updates"
     },
-    
     "mods": {
-        "mods_list_title" : "Lista de mods",
+        "mods_list_title": "Lista de mods",
         "search": "Buscar",
         "search_placeholder": "Ingresa el nombre del mod (mínimo 3 caracteres)",
         "cancel": "Cancelar",
         "links": "Enlace(s) de descarga",
         "size": "Tamaño",
         "date": "Fecha",
-        "images": "Ver imágenes",
+        "screenshots": "Screenshots",
+        "description": "Description",
         "browser": "Abrir en el navegador",
-        "author": "Autor"
+        "author": "Autor",
+        "page": "Page",
+        "download": "Download",
+        "to": "to",
+        "mods_for": "Mods for",
+        "files": "Files"
+    },
+    "settings_tab": {
+        "language": "Select language",
+        "debug": "Debug layer"
+    },
+    "crash": {
+        "sd_full": "The SD card is full. Please free up space and restart the application."
     }
-    
 }

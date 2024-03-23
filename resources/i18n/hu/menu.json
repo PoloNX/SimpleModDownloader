@@ -2,62 +2,57 @@
     "main": {
         "app_name": "SimpleModDownloader"
     },
-
     "title": {
         "downloading_smm": "SimpleModManager letöltődik",
         "downloading_smd": "SimpleModDownloader letöltődik",
         "downloading": "Letöltés Folyamatban",
         "extracting": "Kicsomagolás folyamatban (ne zárd be az alkalmazást)"
     },
-    
     "tabs": {
         "downloads": "Letöltések",
         "install": "Telepítés",
         "update": "Alkalmazás Frissitése",
-        "about": "Alkalmazásról"
+        "about": "Alkalmazásról",
+        "settings": "Settings"
     },
-    
     "notify": {
         "no_games_gamebanana": "Nem találtunk játékot a GameBanana adatbázisban",
         "not_supported": "Ez a formátum nincs támogatva: ",
         "string_to_short": "A keresés 3 betünél többnek kell lennie"
     },
-    
     "worker": {
         "of": "nek",
         "cancel": "Mégse",
         "install": "Letöltés Folyamatban",
         "remaining": "Hátralevő idő"
     },
-    
     "about": {
         "title": "SimpleModDownloader Alkalmazásról",
         "description": "A SimpleModDownloader egy olyan alkalmazás, amely lehetővé teszi a PoloNX által létrehozott Nintendo Switch játékok modjainak letöltését és telepítését.",
-        "thanks": "\u25c6 Köszönet @nadrino-nak a SimpleModManagerért\n\u25c6 Köszönet Natinusala-nak és HamletDuFromage-nek a borealisért\n\u25c6 Köszönet Pikatsutonak a logóért és SuperButterScotch-nak a tipográfiáért\n\u25c6 Köszönet NicholeMatterának a Simple-INI-Parserért",
-        "translator": "\u25c6 Köszönet garobcsi-nek a fordításért"
+        "thanks": "◆ Köszönet @nadrino-nak a SimpleModManagerért\n◆ Köszönet Natinusala-nak és HamletDuFromage-nek a borealisért\n◆ Köszönet Pikatsutonak a logóért és SuperButterScotch-nak a tipográfiáért\n◆ Köszönet NicholeMatterának a Simple-INI-Parserért",
+        "translator": "◆ Köszönet garobcsi-nek a fordításért",
+        "_MESSAGE_TO_TRANSLATORS": "Put your name in about/translator please"
     },
-    
     "label": {
         "no_games": "Nem találtunk játékok a switchen",
         "install": "Telepítés",
         "desc_install": "To install mods, you need to use the SimpleModManager application created by @nadrino.",
         "extract": "A modok telepítéséhez a @nadrino által létrehozott SimpleModManager alkalmazást kell használnia.",
         "update": "Alkalmazás Frissitése",
-        "new_update": "\u25c6 Jelenlegi verzió :",
-        "available_version" : "\u25c6 Elérhető verzió :",
+        "new_update": "◆ Jelenlegi verzió :",
+        "available_version": "◆ Elérhető verzió :",
         "restart_smd": "A frissítés alkalmazásához indítsa újra a SimpleModDownloader programot.",
         "no_internet": "Nincs internetkapcsolat.",
-        "desc_smd": "\u25c6 Az alkalmazást switchen is frissíteni tudja",
+        "desc_smd": "◆ Az alkalmazást switchen is frissíteni tudja",
         "path": "Elérési Utvonal",
         "url": "Url"
     },
-    
     "item": {
         "launch_smm": "SimpleModManager Elindítása",
         "download_smm": "SimpleModManager Letöltése",
-        "download_smd": "SimpleModDownloader Letöltése"
+        "download_smd": "SimpleModDownloader Letöltése",
+        "check_update": "Check for updates"
     },
-    
     "mods": {
         "mods_list_title": "Mod Lista",
         "search": "Keresés",
@@ -66,9 +61,21 @@
         "links": "Letöltési link(ek)",
         "size": "Méret",
         "date": "Dátum",
-        "images": "Képek Megnézése",
+        "screenshots": "Screenshots",
+        "description": "Description",
         "browser": "Böngészöben megnyitása",
         "author": "Szerző",
-        "page": "Oldal"
+        "page": "Oldal",
+        "download": "Download",
+        "to": "to",
+        "mods_for": "Mods for",
+        "files": "Files"
+    },
+    "settings_tab": {
+        "language": "Select language",
+        "debug": "Debug layer"
+    },
+    "crash": {
+        "sd_full": "The SD card is full. Please free up space and restart the application."
     }
 }
