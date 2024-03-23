@@ -53,6 +53,8 @@ class Mod {
         std::vector<std::string> getImagesUrl() { return imageUrls; }
         std::string getAuthor() { return author; }
 
+        Game getGame() { return game; }
+
         void loadMod();
     private:
         std::string name;
