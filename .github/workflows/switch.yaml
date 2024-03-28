@@ -45,5 +45,5 @@ jobs:
       with:
         name: UpcomingSwitchGames
         path: |
-          cmake-build-switch/UpcomingSwitchGames.nro
-          cmake-build-switch/UpcomingSwitchGames.elf
+          cmake-build-switch/SimpleModDownloader.nro
+          cmake-build-switch/SimpleModDownloadef.elf
