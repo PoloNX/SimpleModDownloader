@@ -48,7 +48,7 @@ void ModPreview::loadImages() {
             brls::Logger::debug("File clicked : {}", file.getName());
             file.loadFile();
             //Smash tid
-            if(file.getRomfs() || this->mod.getGame().getTid() == "01006A800016E000") {
+            if(file.getRomfs() || file.getGame().getTid() == "01006A800016E000") {
                 this->present(new DownloadView(file));
                 this->stopThreadFlag = true;
             }   
