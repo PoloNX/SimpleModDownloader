@@ -42,25 +42,34 @@ brls::Image* Mod::getImage(const int& index) {
 }
 
 void Mod::loadMod() {
-    nlohmann::json mod_json = net::downloadRequest(fmt::format("https://gamebanana.com/apiv11/Mod/{}?_csvProperties=_sText,_aFiles,_aPreviewMedia", std::to_string(this->ID)));
+    try {
+        nlohmann::json mod_json = net::downloadRequest(fmt::format("https://gamebanana.com/apiv11/Mod/{}?_csvProperties=_sText,_aFiles,_aPreviewMedia", std::to_string(this->ID)));
 
-    this->description = mod_json.at("_sText");
-    this->description = utils::removeHtmlTags(this->description);
+        this->description = mod_json.at("_sText");
+        this->description = utils::removeHtmlTags(this->description);
 
-    for(auto file : mod_json.at("_aFiles")) {
-        std::string name = file.at("_sFile");
-        std::string url = file.at("_sDownloadUrl");
-        int size = file.at("_nFilesize");
-        std::string checkSum = file.at("_sMd5Checksum");
-        int date = file.at("_tsDateAdded");
-        std::string id = std::to_string(file.at("_idRow").get<int>());
+        for(auto file : mod_json.at("_aFiles")) {
+            std::string name = file.at("_sFile");
+            std::string url = file.at("_sDownloadUrl");
+            int size = file.at("_nFilesize");
+            std::string checkSum = file.at("_sMd5Checksum");
+            int date = file.at("_tsDateAdded");
+            std::string id = std::to_string(file.at("_idRow").get<int>());
 
-        files.push_back(File(name, size, url, checkSum, this->getName(), date, id, game));
-    }
+            brls::Logger::debug("File details: Name: {}, URL: {}, Size: {}, Checksum: {}, Date: {}, ID: {}", name, url, size, checkSum, date, id);
 
-    for(auto image : mod_json.at("_aPreviewMedia").at("_aImages")) {
-        std::string url = image.at("_sFile");
-        imageUrls.push_back(url);
+            files.push_back(File(name, size, url, checkSum, this->getName(), date, id, game));
+        }
+
+        for(auto image : mod_json.at("_aPreviewMedia").at("_aImages")) {
+            std::string url = image.at("_sFile");
+
+            brls::Logger::debug("Image URL: {}", url);
+
+            imageUrls.push_back(url);
+        }
+    } catch (const std::exception& e) {
+        brls::Logger::error("Error in loadMod: {}", e.what());
     }
 }
 
