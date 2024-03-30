@@ -45,7 +45,12 @@ void ModPreview::loadButtons() {
             if(file.getRomfs() || file.getGame().getTid() == "01006A800016E000") {  
                 this->present(new DownloadView(file));
                 this->stopThreadFlag = true;
-            }   
+            }  
+            else {
+                auto dialog = new brls::Dialog("menu/notify/mod_unsupported"_i18n);
+                dialog->addButton("hints/ok"_i18n, []() {});
+                dialog->open();
+            } 
             return true;
         }));
         files_box->addView(fileBox);

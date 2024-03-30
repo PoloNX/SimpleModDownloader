@@ -83,6 +83,12 @@ ModListTab::ModListTab(Game& game) {
         brls::Application::getImeManager()->openForText([&](std::string text){
             search = text;
         });
+        if(search.size() < 3) {
+            auto dialog = new brls::Dialog("menu/notify/string_to_short"_i18n);
+            dialog->addButton("hints/ok"_i18n, []() {});
+            dialog->open();
+            return true;
+        }
         this->modData->getModList()->search(search);
         this->recycler->reloadData();
         return true;
