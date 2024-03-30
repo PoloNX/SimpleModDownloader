@@ -60,7 +60,7 @@ GameListTab::GameListTab() {
 
     recycler->estimatedRowHeight = 100;
     recycler->registerCell("Cell", []() { return GameCell::create();});
-    recycler->setDataSource(gameData);
+    recycler->setDataSource(gameData, false);
 }
 
 brls::View* GameListTab::create() {

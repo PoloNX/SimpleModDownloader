@@ -90,7 +90,7 @@ ModListTab::ModListTab(Game& game) {
 
     recycler->estimatedRowHeight = 100;
     recycler->registerCell("Cell", []() { return ModCell::create();});
-    recycler->setDataSource(modData.get());
+    recycler->setDataSource(modData.get(), false);
 }
 
 /*brls::View* ModListTab::create() {
