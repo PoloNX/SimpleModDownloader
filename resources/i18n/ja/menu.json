@@ -3,41 +3,42 @@
         "app_name": "SimpleModDownloader"
     },
     "title": {
-        "downloading_smm": "SimpleModManagerのダウンロード中",
+        "downloading_smm": "Downloading SimpleModManager",
         "downloading_smd": "Downloading SimpleModDownloader",
-        "downloading": "ダウンロード中",
-        "extracting": "展開中 （アプリを閉じないでください）"
+        "downloading": "Downloading",
+        "extracting": "Extracting"
     },
     "tabs": {
-        "downloads": "ダウンロード",
-        "install": "インストール",
+        "downloads": "Downloads",
+        "install": "Installation",
         "update": "Update App",
-        "about": "情報",
+        "about": "About",
         "settings": "Settings"
     },
     "notify": {
-        "no_games_gamebanana": "GameBananaデータベースにゲームが見つかりませんでした",
-        "not_supported": "この形式はサポートされていません: ",
-        "string_to_short": "The search string must be at least 3 characters long"
+        "no_games_gamebanana": "No games found in the GameBanana database",
+        "not_supported": "This format is not supported: ",
+        "string_to_short": "The search string must be at least 3 characters long",
+        "mod_unsupported": "The mod isn't supported by SimpleModDownloader"
     },
     "worker": {
-        "of": "/",
-        "cancel": "キャンセル",
-        "install": "インストール中",
-        "remaining": "残り時間"
+        "of": "of",
+        "cancel": "Cancel",
+        "install": "Installing",
+        "remaining": "Time remaining"
     },
     "about": {
-        "title": "SimpleModDownloaderについて",
-        "description": "SimpleModDownloaderは、PoloNXによって作成されたNintendo Switchゲーム用のMODをダウンロードしてインストールするためのHomebrewアプリです。",
-        "thanks": "◆ SimpleModManagerには@nadrinoさんへの感謝を捧げます\n◆ borealisにはNatinusalaとHamletDuFromageへの感謝を捧げます\n◆ ロゴにはPikatsuto、タイポグラフィにはSuperButterScotchへの感謝を捧げます\n◆ Simple-INI-ParserにはNicholeMatteraへの感謝を捧げます",
+        "title": "About SimpleModDownloader",
+        "description": "SimpleModDownloader is an application that allows you to download and install mods for Nintendo Switch games created by PoloNX.",
+        "thanks": "◆ Thanks to @nadrino for SimpleModManager\n◆ Thanks to Natinusala, xfangfang and XITRIX for borealis\n◆ Thanks to Pikatsuto for the logo and SuperButterScotch for the typography\n◆ Thanks to NicholeMattera for Simple-INI-Parser",
         "translator": "◆ Thanks to traductors",
         "_MESSAGE_TO_TRANSLATORS": "Put your name in about/translator please"
     },
     "label": {
-        "no_games": "ゲームが見つかりませんでした",
-        "install": "インストール",
-        "desc_install": "MODをインストールするには、@nadrinoさんが作成したSimpleModManager Homebrewアプリを使用する必要があります。",
-        "extract": "展開が完了しました。 MODをインストールするには、インストールタブに移動してください。",
+        "no_games": "No games found on the Switch",
+        "install": "Installation",
+        "desc_install": "To install mods, you need to use the SimpleModManager application created by @nadrino.",
+        "extract": "Extraction is complete. To install the mod, go to the Installation tab.",
         "update": "Update App",
         "new_update": "◆ Current version :",
         "available_version": "◆ Available version :",
@@ -48,23 +49,23 @@
         "url": "Url"
     },
     "item": {
-        "launch_smm": "SimpleModManagerを起動",
-        "download_smm": "SimpleModManagerをダウンロード",
+        "launch_smm": "Launch SimpleModManager",
+        "download_smm": "Download SimpleModManager",
         "download_smd": "Download SimpleModDownloader",
         "check_update": "Check for updates"
     },
     "mods": {
-        "mods_list_title": "MOD 一覧",
-        "search": "検索",
-        "search_placeholder": "MOD名を入力 （最低3文字）",
-        "cancel": "キャンセル",
-        "links": "ダウンロードリンク",
-        "size": "サイズ",
-        "date": "日付",
+        "mods_list_title": "Mod List",
+        "search": "Search",
+        "search_placeholder": "Enter the mod name (minimum 3 characters)",
+        "cancel": "Cancel",
+        "links": "Download Link(s)",
+        "size": "Size",
+        "date": "Date",
         "screenshots": "Screenshots",
         "description": "Description",
-        "browser": "ブラウザで開く",
-        "author": "作者",
+        "browser": "Open in Browser",
+        "author": "Author",
         "page": "Page",
         "download": "Download",
         "to": "to",
