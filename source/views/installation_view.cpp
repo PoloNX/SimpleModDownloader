@@ -96,12 +96,24 @@ void InstallationView::progressDownload() {
         ASYNC_RELEASE
         this->removeView(smm_progressBar);
         this->removeView(smm_percent);
-        this->smm_radio->title->setText("menu/item/launch_smm"_i18n);
-        this->smm_radio->registerClickAction([this](brls::View* view) {
-            envSetNextLoad("sdmc:/switch/SimpleModManager.nro", "\"sdmc:/switch/SimpleModManager.nro\"");
-            brls::Application::quit();
-            return true;
-        });
+
+        if(!std::filesystem::exists("sdmc:/switch/SimpleModManager.nro")) {
+            this->smm_radio->title->setText("menu/item/download_smm"_i18n);
+            this->smm_radio->registerClickAction([this](brls::View* view) {
+                brls::sync([this]{getAppletFrame()->setActionsAvailable(false);});
+                downloadThread = std::thread(&InstallationView::downloadSmm, this);
+                progressThread = std::thread(&InstallationView::progressDownload, this);
+                return true;
+            });
+        }
+        else {
+            this->smm_radio->title->setText("menu/item/launch_smm"_i18n);
+            this->smm_radio->registerClickAction([this](brls::View* view) {
+                envSetNextLoad("sdmc:/switch/SimpleModManager.nro", "\"sdmc:/switch/SimpleModManager.nro\"");
+                brls::Application::quit();
+                return true;
+            });
+        }
         brls::Application::giveFocus(this->smm_radio);
         getAppletFrame()->setActionsAvailable(true);
     });

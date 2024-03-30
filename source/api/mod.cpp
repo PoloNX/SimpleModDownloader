@@ -130,6 +130,10 @@ void ModList::updatePage() {
         mod_json = net::downloadRequest(fmt::format("https://gamebanana.com/apiv11/Game/{}/Subfeed?_nPage={}&_nPerpage=50&_sName={}&_csvModelInclusions=Mod", game.getGamebananaID(), currentPage, currentSearch));
     }
 
+    if(mod_json.empty()) {
+        return;
+    }
+
     mods.clear();
     
     for(auto mod : mod_json.at("_aRecords")) {

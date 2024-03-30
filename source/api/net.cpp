@@ -111,7 +111,6 @@ namespace net {
         brls::Logger::debug("Downloading file: {}, in the location : {}", url, path);
 
         auto curl = curl_easy_init();
-        std::ofstream ofs(path, std::ios::binary);
 
         if(!curl) {
             brls::Logger::error("Failed to initialize curl");
@@ -120,8 +119,6 @@ namespace net {
 
         curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
         curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
-        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallbackFile);
-        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &ofs);
         curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 0L);
         curl_easy_setopt(curl, CURLOPT_PROGRESSFUNCTION, downloadFileProgress);
         curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
@@ -129,11 +126,26 @@ namespace net {
 
         auto res = curl_easy_perform(curl);
 
-        if(res != CURLE_OK)
+        if(res != CURLE_OK) {
             brls::Logger::error(curl_easy_strerror(res));
+            return; 
+        }
+
+        std::ofstream ofs(path, std::ios::binary); 
+
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallbackFile);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &ofs);
+
+        res = curl_easy_perform(curl); 
 
         ofs.close();
-        
+
         curl_easy_cleanup(curl);
+
+        if(res != CURLE_OK) {
+            brls::Logger::error(curl_easy_strerror(res));
+            std::filesystem::remove(path); 
+        }
     }
+
 }

@@ -22,7 +22,7 @@ class Game {
 
         std::string title;
         std::string bannerURL;
-        int gamebananaID;
+        int gamebananaID = 0;
         std::string tid;
         brls::Image* icon;
 };
