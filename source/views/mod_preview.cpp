@@ -34,13 +34,7 @@ ModPreview::ModPreview(Mod& mod, std::vector<unsigned char>& bannerBuffer): mod(
     secondThread = std::thread(&ModPreview::loadImages, this);
 }
 
-void ModPreview::loadImages() {
-    {
-        std::unique_lock<std::mutex> lock(threadMutex);
-        if(stopThreadFlag)
-            return;
-    } 
-
+void ModPreview::loadButtons() {
     //Don't give the focus in the constructor of ModPreview() because it will break the focus on the scroller. If you have a better option please tell me
     for(auto file : this->mod.getFiles()) {
         auto fileBox = new FileBox(file);
@@ -48,7 +42,7 @@ void ModPreview::loadImages() {
             brls::Logger::debug("File clicked : {}", file.getName());
             file.loadFile();
             //Smash tid
-            if(file.getRomfs() || file.getGame().getTid() == "01006A800016E000") {
+            if(file.getRomfs() || file.getGame().getTid() == "01006A800016E000") {  
                 this->present(new DownloadView(file));
                 this->stopThreadFlag = true;
             }   
@@ -56,6 +50,15 @@ void ModPreview::loadImages() {
         }));
         files_box->addView(fileBox);
     }
+}
+
+void ModPreview::loadImages() {
+    {
+        std::unique_lock<std::mutex> lock(threadMutex);
+        if(stopThreadFlag)
+            return;
+    } 
+
 
     std::vector<unsigned char> buffer;
 
@@ -81,6 +84,8 @@ void ModPreview::loadImages() {
                 bigImg->setScalingType(brls::ImageScalingType::FILL);
                 this->big_image_box->clearViews();
                 this->big_image_box->addView(bigImg);
+                this->firstImageDownloaded = true;
+                loadButtons();
             }
 
             auto img = this->mod.getImage(i);
@@ -99,8 +104,11 @@ void ModPreview::loadImages() {
                 return true;
             }));
 
+
             this->small_image_box->addView(img);
         });
+
+
     }
 }
 

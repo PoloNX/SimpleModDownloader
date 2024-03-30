@@ -34,12 +34,14 @@ private:
     BRLS_BIND(brls::Box, small_image_box, "small_image_box");
 
     void loadImages();
+    void loadButtons();
     void stopThread();
     std::thread secondThread;
     std::mutex threadMutex;
     std::condition_variable threadCondition;
     bool stopThreadFlag = false;
 
+    bool firstImageDownloaded = false;
 
     brls::Image* bigImg = new brls::Image();
 };
