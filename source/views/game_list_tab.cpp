@@ -29,13 +29,13 @@ brls::RecyclerCell* GameData::cellForRow(brls::RecyclerFrame* recycler, brls::In
 
 void GameData::didSelectRowAt(brls::RecyclerFrame* recycler, brls::IndexPath indexPath)
 { 
-    Game game("Super Smash Bros. Ultimate", games[indexPath.row].second);
+    Game game(games[indexPath.row].first, games[indexPath.row].second);
     if(game.getGamebananaID() == 0) {
         auto dialog = new brls::Dialog("menu/notify/no_games_gamebanana"_i18n);
         dialog->addButton("hints/ok"_i18n, []() {});
         dialog->open();
         return;
-    } 
+    }
     auto modListTab = new ModListTab(game);
     recycler->present(modListTab);    
 }
