@@ -19,7 +19,8 @@
         "no_games_gamebanana": "No games found in the GameBanana database",
         "not_supported": "This format is not supported: ",
         "string_to_short": "The search string must be at least 3 characters long",
-        "mod_unsupported": "The mod isn't supported by SimpleModDownloader"
+        "mod_unsupported": "The mod isn't supported by SimpleModDownloader",
+        "smash_bros": "Super Smash Bros. Ultimate use ARCropolis mod manager. SimpleModDownloader support it, don't use SimpleModManager to install the mod"
     },
     "worker": {
         "of": "of",
