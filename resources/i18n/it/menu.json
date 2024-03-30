@@ -3,41 +3,42 @@
         "app_name": "SimpleModDownloader"
     },
     "title": {
-        "downloading_smm": "Download di SimpleModManager",
+        "downloading_smm": "Downloading SimpleModManager",
         "downloading_smd": "Downloading SimpleModDownloader",
-        "downloading": "Download",
-        "extracting": "Estrazione in corso (non chiudere l'applicazione)"
+        "downloading": "Downloading",
+        "extracting": "Extracting"
     },
     "tabs": {
-        "downloads": "Download",
-        "install": "Installazione",
+        "downloads": "Downloads",
+        "install": "Installation",
         "update": "Update App",
-        "about": "Informazioni",
+        "about": "About",
         "settings": "Settings"
     },
     "notify": {
-        "no_games_gamebanana": "Nessun gioco trovato nel database di GameBanana",
-        "not_supported": "Questo formato non è supportato: ",
-        "string_to_short": "The search string must be at least 3 characters long"
+        "no_games_gamebanana": "No games found in the GameBanana database",
+        "not_supported": "This format is not supported: ",
+        "string_to_short": "The search string must be at least 3 characters long",
+        "mod_unsupported": "The mod isn't supported by SimpleModDownloader"
     },
     "worker": {
-        "of": "di",
-        "cancel": "Annulla",
-        "install": "Installazione di",
-        "remaining": "Tempo rimanente"
+        "of": "of",
+        "cancel": "Cancel",
+        "install": "Installing",
+        "remaining": "Time remaining"
     },
     "about": {
-        "title": "Informazioni su SimpleModDownloader",
-        "description": "SimpleModDownloader è un'applicazione che consente di scaricare e installare mod per i giochi di Nintendo Switch, creata da PoloNX.",
-        "thanks": "◆ Ringraziamenti a @nadrino per SimpleModManager\n◆ Ringraziamenti a Natinusala e HamletDuFromage per borealis\n◆ Ringraziamenti a Pikatsuto per il logo e a SuperButterScotch per la tipografia",
+        "title": "About SimpleModDownloader",
+        "description": "SimpleModDownloader is an application that allows you to download and install mods for Nintendo Switch games created by PoloNX.",
+        "thanks": "◆ Thanks to @nadrino for SimpleModManager\n◆ Thanks to Natinusala, xfangfang and XITRIX for borealis\n◆ Thanks to Pikatsuto for the logo and SuperButterScotch for the typography\n◆ Thanks to NicholeMattera for Simple-INI-Parser",
         "translator": "◆ Thanks to traductors",
         "_MESSAGE_TO_TRANSLATORS": "Put your name in about/translator please"
     },
     "label": {
-        "no_games": "Nessun gioco trovato sulla Switch",
-        "install": "Installazione",
-        "desc_install": "Per installare le mod, devi utilizzare l'applicazione SimpleModManager creata da @nadrino.",
-        "extract": "L'estrazione è completata. Per installare la mod, vai alla scheda Installazione.",
+        "no_games": "No games found on the Switch",
+        "install": "Installation",
+        "desc_install": "To install mods, you need to use the SimpleModManager application created by @nadrino.",
+        "extract": "Extraction is complete. To install the mod, go to the Installation tab.",
         "update": "Update App",
         "new_update": "◆ Current version :",
         "available_version": "◆ Available version :",
@@ -48,23 +49,23 @@
         "url": "Url"
     },
     "item": {
-        "launch_smm": "Avvia SimpleModManager",
-        "download_smm": "Scarica SimpleModManager",
+        "launch_smm": "Launch SimpleModManager",
+        "download_smm": "Download SimpleModManager",
         "download_smd": "Download SimpleModDownloader",
         "check_update": "Check for updates"
     },
     "mods": {
-        "mods_list_title": "Elenco delle mod",
-        "search": "Cerca",
-        "search_placeholder": "Inserisci il nome della mod (minimo 3 caratteri)",
-        "cancel": "Annulla",
-        "links": "Link di download",
-        "size": "Dimensione",
-        "date": "Data",
+        "mods_list_title": "Mod List",
+        "search": "Search",
+        "search_placeholder": "Enter the mod name (minimum 3 characters)",
+        "cancel": "Cancel",
+        "links": "Download Link(s)",
+        "size": "Size",
+        "date": "Date",
         "screenshots": "Screenshots",
         "description": "Description",
-        "browser": "Apri nel browser",
-        "author": "Autore",
+        "browser": "Open in Browser",
+        "author": "Author",
         "page": "Page",
         "download": "Download",
         "to": "to",
