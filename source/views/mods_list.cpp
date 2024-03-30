@@ -40,6 +40,8 @@ ModData::ModData(Game game): game(game)
     modList = std::make_unique<ModList>(game);
     net::downloadImage(game.getBannerUrl(), bannerBuffer);
     brls::Logger::debug("{} mods found", modList->getMods().size());
+
+
 }
 
 int ModData::numberOfSections(brls::RecyclerFrame* recycler)
@@ -97,6 +99,16 @@ ModListTab::ModListTab(Game& game) {
     recycler->estimatedRowHeight = 100;
     recycler->registerCell("Cell", []() { return ModCell::create();});
     recycler->setDataSource(modData.get(), false);
+
+    //BUG : The focus is badly given
+    // if (game.getGamebananaID() == 6498) {
+    //     auto dialog = new brls::Dialog("menu/notify/smash_bros"_i18n);
+    //     dialog->addButton("hints/ok"_i18n, [this]() {});
+    //     dialog->open();
+    //     dialog->
+    //     //brls::Application::giveFocus(dialog);
+    // }
+
 }
 
 /*brls::View* ModListTab::create() {
