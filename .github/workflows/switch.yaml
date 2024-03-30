@@ -43,7 +43,7 @@ jobs:
     - name: Upload Assets
       uses: actions/upload-artifact@v4
       with:
-        name: UpcomingSwitchGames
+        name: SimpleModDownloader
         path: |
           cmake-build-switch/SimpleModDownloader.nro
           cmake-build-switch/SimpleModDownloadef.elf
