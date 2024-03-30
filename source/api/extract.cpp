@@ -62,7 +62,7 @@ bool extractEntry(const std::string& archiveFile, const std::string& outputDir, 
         if (result != ARCHIVE_OK) {
             brls::Logger::error("Failed to open archive: {}", archiveFile);
             archive_read_free(archive);
-            std::filesystem::remove(archiveFile);
+            //std::filesystem::remove(archiveFile);
             ProgressEvent::instance().setStep(ProgressEvent::instance().getMax());
             return false;
         }

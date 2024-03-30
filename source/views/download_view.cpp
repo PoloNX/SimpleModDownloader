@@ -58,6 +58,7 @@ void DownloadView::downloadFile() {
     //Prevent incorrect chars in the path
     std::regex badChars("[:/|*]");
     extract::extractEntry(this->file.getPath(), fmt::format("sdmc:/{}/{}/{}/contents/{}/romfs", utils::getModInstallPath(), std::regex_replace(this->file.getGame().getTitle(), badChars, "-"), std::regex_replace(this->file.getModName(), badChars, "-"), std::regex_replace(this->file.getGame().getTid(), badChars, "-")), this->file.getGame().getTid());
+    this->extractFinished = true;
 }
 
 void DownloadView::updateProgress() {
@@ -69,7 +70,7 @@ void DownloadView::updateProgress() {
         while(ProgressEvent::instance().getTotal() == 0) {
             if(downloadFinished)
                 break;
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+            std::this_thread::sleep_for(std::chrono::milliseconds(10));
         }
         while(ProgressEvent::instance().getNow() < ProgressEvent::instance().getTotal() && !downloadFinished) {
             ASYNC_RETAIN
@@ -78,7 +79,7 @@ void DownloadView::updateProgress() {
                 this->download_percent->setText(fmt::format("{}%", (int)(ProgressEvent::instance().getNow() / ProgressEvent::instance().getTotal() * 100)));
                 this->download_progressBar->setProgress((float)ProgressEvent::instance().getNow() / ProgressEvent::instance().getTotal());
             });
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+            std::this_thread::sleep_for(std::chrono::milliseconds(10));
         }
         ASYNC_RETAIN
         brls::sync([ASYNC_TOKEN](){
@@ -93,7 +94,7 @@ void DownloadView::updateProgress() {
         while(ProgressEvent::instance().getMax() == 0) {
             if(extractFinished)
                 break;
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+            std::this_thread::sleep_for(std::chrono::milliseconds(10));
         }
 
         while(ProgressEvent::instance().getStep() < ProgressEvent::instance().getMax() && !extractFinished) {
@@ -103,7 +104,7 @@ void DownloadView::updateProgress() {
                 this->extract_percent->setText(fmt::format("{}%", (int)((ProgressEvent::instance().getStep() * 100 / ProgressEvent::instance().getMax()))));
                 this->extract_progressBar->setProgress((float)ProgressEvent::instance().getStep() / ProgressEvent::instance().getMax());
             });
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+            std::this_thread::sleep_for(std::chrono::milliseconds(10));
         }
         
         ASYNC_RETAIN
