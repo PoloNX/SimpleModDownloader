@@ -32,6 +32,16 @@ ModPreview::ModPreview(Mod& mod, std::vector<unsigned char>& bannerBuffer): mod(
     description->setText(this->mod.getDescription());
 
     secondThread = std::thread(&ModPreview::loadImages, this);
+
+    brls::sync([this] {
+        getAppletFrame()->setHeaderVisibility(brls::Visibility::GONE);
+    });
+
+    this->registerAction("back", brls::ControllerButton::BUTTON_B, [this](brls::View* view) {
+        brls::sync([this]{ getAppletFrame()->setHeaderVisibility(brls::Visibility::VISIBLE); });
+        this->dismiss();
+        return true;
+    }, true);
 }
 
 void ModPreview::loadButtons() {
@@ -43,6 +53,10 @@ void ModPreview::loadButtons() {
             file.loadFile();
             //Smash tid
             if(file.getRomfs() || file.getGame().getTid() == "01006A800016E000") {  
+                brls::sync([this] {
+                    getAppletFrame()->setHeaderVisibility(brls::Visibility::VISIBLE);
+                });
+                ProgressEvent::instance().setInterupt(true);
                 this->present(new DownloadView(file));
                 this->stopThreadFlag = true;
             }  
