@@ -1,85 +1,83 @@
 {
-  "main": {
-    "app_name": "SimpleModDownloader"
-  },
-
-  "title": {
-    "downloading_smm": "SimpleModManager 다운로드 중",
-    "downloading_smd": "SimpleModDownloader 다운로드 중",
-    "downloading": "다운로드 중",
-    "extracting": "추출 진행 중 (프로그램을 닫지 마세요)"
-  },
-
-  "tabs": {
-    "downloads": "다운로드",
-    "install": "설치",
-    "update": "앱 업데이트",
-    "about": "소개",
-    "settings": "설정"
-  },
-
-  "notify": {
-    "no_games_gamebanana": "GameBanana 데이터베이스에서 게임을 찾을 수 없습니다",
-    "not_supported": "이 형식은 지원되지 않습니다: ",
-    "string_to_short": "검색어는 최소 3자 이상이어야 합니다"
-  },
-
-  "worker": {
-    "of": "중",
-    "cancel": "취소",
-    "install": "설치 중",
-    "remaining": "남은 시간"
-  },
-
-  "about": {
-    "title": "SimpleModDownloader 정보",
-    "description": "SimpleModDownloader는 PoloNX가 만든 닌텐도 스위치 게임을 위한 모드를 다운로드하고 설치할 수 있는 프로그램입니다.",
-    "thanks": "\u25c6 SimpleModManager에 대한 감사를 표합니다. @nadrino\n\u25c6 Borealis에 대한 Natinusala 및 HamletDuFromage에게 감사를 표합니다\n\u25c6 로고에 대한 Pikatsuto 및 글꼴에 대한 SuperButterScotch에게 감사를 표합니다\n\u25c6 Simple-INI-Parser에 대한 NicholeMattera에게 감사를 표합니다",
-    "translator": "\u25c6 번역에 감사드립니다. jshsakura님"
-  },
-
-  "label": {
-    "no_games": "스위치에서 게임을 찾을 수 없습니다",
-    "install": "설치",
-    "desc_install": "모드를 설치하려면 @nadrino가 만든 SimpleModManager를 사용해야 합니다.",
-    "extract": "추출이 완료되었습니다. 모드를 설치하려면 설치 탭으로 이동하세요.",
-    "update": "앱 업데이트",
-    "new_update": "\u25c6 현재 버전 :",
-    "available_version": "\u25c6 사용 가능한 버전 :",
-    "restart_smd": "업데이트를 적용하려면 SimpleModDownloader를 다시 시작하세요.",
-    "no_internet": "인터넷에 연결되어 있지 않습니다.",
-    "desc_smd": "\u25c6 스위치에서 사용 중인 앱을 업데이트할 수 있습니다",
-    "path": "경로",
-    "url": "URL"
-  },
-
-  "item": {
-    "launch_smm": "SimpleModManager 실행",
-    "download_smm": "SimpleModManager 다운로드",
-    "download_smd": "SimpleModDownloader 다운로드",
-    "check_update": "업데이트 확인"
-  },
-
-  "mods": {
-    "mods_list_title": "모드 목록",
-    "search": "검색",
-    "search_placeholder": "모드 이름 입력 (최소 3자 이상 입력)",
-    "cancel": "취소",
-    "links": "다운로드 링크",
-    "size": "크기",
-    "date": "날짜",
-    "images": "이미지 보기",
-    "browser": "브라우저에서 열기",
-    "author": "제작자",
-    "page": "페이지"
-  },
-
-  "settings_tab": {
-    "language": "언어 선택",
-    "arc": "Smash 모드에 ARCropolis 사용"
-  },
-
-  "crash": {
-    "sd_full": "SD 카드의 용량이 가득 찼습니다. 여유 공간을 확보하고 프로그램을 다시 시작하세요."
-  }
+    "main": {
+        "app_name": "SimpleModDownloader"
+    },
+    "title": {
+        "downloading_smm": "Downloading SimpleModManager",
+        "downloading_smd": "Downloading SimpleModDownloader",
+        "downloading": "Downloading",
+        "extracting": "Extracting"
+    },
+    "tabs": {
+        "downloads": "Downloads",
+        "install": "Installation",
+        "update": "Update App",
+        "about": "About",
+        "settings": "Settings"
+    },
+    "notify": {
+        "no_games_gamebanana": "No games found in the GameBanana database",
+        "not_supported": "This format is not supported: ",
+        "string_to_short": "The search string must be at least 3 characters long",
+        "mod_unsupported": "The mod isn't supported by SimpleModDownloader",
+        "smash_bros": "Super Smash Bros. Ultimate use ARCropolis mod manager. SimpleModDownloader support it, don't use SimpleModManager to install the mod"
+    },
+    "worker": {
+        "of": "of",
+        "cancel": "Cancel",
+        "install": "Installing",
+        "remaining": "Time remaining"
+    },
+    "about": {
+        "title": "About SimpleModDownloader",
+        "description": "SimpleModDownloader is an application that allows you to download and install mods for Nintendo Switch games created by PoloNX.",
+        "thanks": "◆ Thanks to @nadrino for SimpleModManager\n◆ Thanks to Natinusala, xfangfang and XITRIX for borealis\n◆ Thanks to Pikatsuto for the logo and SuperButterScotch for the typography\n◆ Thanks to NicholeMattera for Simple-INI-Parser",
+        "translator": "◆ Thanks to traductors",
+        "_MESSAGE_TO_TRANSLATORS": "Put your name in about/translator please"
+    },
+    "label": {
+        "no_games": "No games found on the Switch",
+        "install": "Installation",
+        "desc_install": "To install mods, you need to use the SimpleModManager application created by @nadrino.",
+        "extract": "Extraction is complete. To install the mod, go to the Installation tab.",
+        "update": "Update App",
+        "new_update": "◆ Current version :",
+        "available_version": "◆ Available version :",
+        "restart_smd": "Restart SimpleModDownloader to apply the update.",
+        "no_internet": "No internet connection.",
+        "desc_smd": "◆ You can update the app you're using on your switch",
+        "path": "Path",
+        "url": "Url"
+    },
+    "item": {
+        "launch_smm": "Launch SimpleModManager",
+        "download_smm": "Download SimpleModManager",
+        "download_smd": "Download SimpleModDownloader",
+        "check_update": "Check for updates"
+    },
+    "mods": {
+        "mods_list_title": "Mod List",
+        "search": "Search",
+        "search_placeholder": "Enter the mod name (minimum 3 characters)",
+        "cancel": "Cancel",
+        "links": "Download Link(s)",
+        "size": "Size",
+        "date": "Date",
+        "screenshots": "Screenshots",
+        "description": "Description",
+        "browser": "Open in Browser",
+        "author": "Author",
+        "page": "Page",
+        "download": "Download",
+        "to": "to",
+        "mods_for": "Mods for",
+        "files": "Files"
+    },
+    "settings_tab": {
+        "language": "Select language",
+        "debug": "Debug layer"
+    },
+    "crash": {
+        "sd_full": "The SD card is full. Please free up space and restart the application."
+    }
 }

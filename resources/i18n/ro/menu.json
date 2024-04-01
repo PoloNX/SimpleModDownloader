@@ -2,60 +2,82 @@
     "main": {
         "app_name": "SimpleModDownloader"
     },
-
     "title": {
-        "downloading_smm": "SimpleModManager se descarcă",
-        "downloading": "În curs de descărcare",
-        "extracting": "În curs de extragere (nu închide aplicația)"
+        "downloading_smm": "Downloading SimpleModManager",
+        "downloading_smd": "Downloading SimpleModDownloader",
+        "downloading": "Downloading",
+        "extracting": "Extracting"
     },
-    
     "tabs": {
-        "downloads": "Descărcări",
-        "install": "Instalare",
-        "about": "Despre"
+        "downloads": "Downloads",
+        "install": "Installation",
+        "update": "Update App",
+        "about": "About",
+        "settings": "Settings"
     },
-    
     "notify": {
-        "no_games_gamebanana": "Niciun joc nu a fost găsit în baza de date GameBanana",
-        "not_supported": "Acest format nu este susținut: "
+        "no_games_gamebanana": "No games found in the GameBanana database",
+        "not_supported": "This format is not supported: ",
+        "string_to_short": "The search string must be at least 3 characters long",
+        "mod_unsupported": "The mod isn't supported by SimpleModDownloader",
+        "smash_bros": "Super Smash Bros. Ultimate use ARCropolis mod manager. SimpleModDownloader support it, don't use SimpleModManager to install the mod"
     },
-    
     "worker": {
-        "of": "din",
-        "cancel": "Anulează",
-        "install": "În curs de instalare",
-        "remaining": "Timp rămas"
+        "of": "of",
+        "cancel": "Cancel",
+        "install": "Installing",
+        "remaining": "Time remaining"
     },
-    
     "about": {
-        "title": "Despre SimpleModDownloader",
-        "description": "SimpleModDownloader este o aplicație care îți permite să descarci și instalezi mod-uri de jocuri de Nintendo Switch creat de PoloNX.",
-        "thanks": "\u25c6 Mulțumim @nadrino pentru SimpleModManager\n\u25c6 Mulțumim Natinusala și HamletDuFromage pentru borealis\n\u25c6 Mulțumim Pikatsuto pentru logo și SuperButterScotch pentru tipografie\n\u25c6 Mulțumim NicholeMattera pentru Simple-INI-Parser",
-        "translator": "\u25c6 Mulțumiri lui ExFabian pentru traducere."
+        "title": "About SimpleModDownloader",
+        "description": "SimpleModDownloader is an application that allows you to download and install mods for Nintendo Switch games created by PoloNX.",
+        "thanks": "◆ Thanks to @nadrino for SimpleModManager\n◆ Thanks to Natinusala, xfangfang and XITRIX for borealis\n◆ Thanks to Pikatsuto for the logo and SuperButterScotch for the typography\n◆ Thanks to NicholeMattera for Simple-INI-Parser",
+        "translator": "◆ Thanks to traductors",
+        "_MESSAGE_TO_TRANSLATORS": "Put your name in about/translator please"
     },
-    
     "label": {
-        "no_games": "Niciun joc găsit în Switch",
-        "install": "Instalare",
-        "desc_install": "Pentru a instala mod-uri, trebuie să folosești aplicația SimpleModManager creată de @nadrino.",
-        "extract": "Extragerea este completă. Pentru a instala mod-ul, mergi la fila de Instalare."
+        "no_games": "No games found on the Switch",
+        "install": "Installation",
+        "desc_install": "To install mods, you need to use the SimpleModManager application created by @nadrino.",
+        "extract": "Extraction is complete. To install the mod, go to the Installation tab.",
+        "update": "Update App",
+        "new_update": "◆ Current version :",
+        "available_version": "◆ Available version :",
+        "restart_smd": "Restart SimpleModDownloader to apply the update.",
+        "no_internet": "No internet connection.",
+        "desc_smd": "◆ You can update the app you're using on your switch",
+        "path": "Path",
+        "url": "Url"
     },
-    
     "item": {
-        "launch_smm": "Deschide SimpleModManager",
-        "download_smm": "Descarcă SimpleModManager"
+        "launch_smm": "Launch SimpleModManager",
+        "download_smm": "Download SimpleModManager",
+        "download_smd": "Download SimpleModDownloader",
+        "check_update": "Check for updates"
     },
-    
     "mods": {
-        "mods_list_title": "Listă de Mod-uri",
-        "search": "Caută",
-        "search_placeholder": "Scrie numele mod-ului (minim 3 caractere)",
-        "cancel": "Anulează",
-        "links": "Link(uri) de Instalare",
-        "size": "Mărime",
-        "date": "Dată",
-        "images": "Vezi Imagini",
-        "browser": "Deschide în Browser",
-        "author": "Autor"
+        "mods_list_title": "Mod List",
+        "search": "Search",
+        "search_placeholder": "Enter the mod name (minimum 3 characters)",
+        "cancel": "Cancel",
+        "links": "Download Link(s)",
+        "size": "Size",
+        "date": "Date",
+        "screenshots": "Screenshots",
+        "description": "Description",
+        "browser": "Open in Browser",
+        "author": "Author",
+        "page": "Page",
+        "download": "Download",
+        "to": "to",
+        "mods_for": "Mods for",
+        "files": "Files"
+    },
+    "settings_tab": {
+        "language": "Select language",
+        "debug": "Debug layer"
+    },
+    "crash": {
+        "sd_full": "The SD card is full. Please free up space and restart the application."
     }
 }
