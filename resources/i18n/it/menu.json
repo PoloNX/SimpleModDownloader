@@ -4,58 +4,89 @@
     },
 
     "title": {
-        "downloading_smm": "Download di SimpleModManager",
-        "downloading": "Download",
-        "extracting": "Estrazione in corso (non chiudere l'applicazione)"
+        "downloading_smm": "Scaricando SimpleModManager",
+        "downloading_smd": "Scaricando SimpleModDownloader",
+        "downloading": "Scaricando",
+        "extracting": "Estraendo"
     },
     
     "tabs": {
-        "downloads": "Download",
+        "downloads": "Downloads",
         "install": "Installazione",
-        "about": "Informazioni"
+        "update": "Aggiorna App",
+        "about": "Informazioni",
+        "settings": "Impostazioni"
     },
     
-    "notify" : {
-        "no_games_gamebanana" : "Nessun gioco trovato nel database di GameBanana",
-        "not_supported": "Questo formato non è supportato: "
+    "notify": {
+        "no_games_gamebanana": "No giochi trovati nel database di GameBanana",
+        "not_supported": "Questo formato non è supportato: ",
+        "string_to_short": "La ricerca deve essere lunga almeno 3 caratteri",
+        "mod_unsupported": "La mod non è supportata da SimpleModDownloader",
+        "smash_bros": "Super Smash Bros. Ultimate utilizza ARCropolis mod manager. SimpleModDownloader lo supporta, non utilizzare SimpleModManager per installare la mod"
     },
     
     "worker": {
         "of": "di",
-        "cancel": "Annulla",
-        "install": "Installazione di",
+        "cancel": "Cancella",
+        "install": "Installazione",
         "remaining": "Tempo rimanente"
     },
     
     "about": {
-        "title": "Informazioni su SimpleModDownloader",
-        "description": "SimpleModDownloader è un'applicazione che consente di scaricare e installare mod per i giochi di Nintendo Switch, creata da PoloNX.",
-        "thanks": "\u25c6 Ringraziamenti a @nadrino per SimpleModManager\n\u25c6 Ringraziamenti a Natinusala e HamletDuFromage per borealis\n\u25c6 Ringraziamenti a Pikatsuto per il logo e a SuperButterScotch per la tipografia",
-        "translators": "\u25c6 Grazie a tsamerman per la traduzione"
+        "title": "Riguardo SimpleModDownloader",
+        "description": "SimpleModDownloader è un'applicazione che ti permette di scaricare e installare mods per giochi Nintendo Switch creata da PoloNX.",
+        "thanks": "\u25c6 Grazie a @nadrino per SimpleModManager\n\u25c6 Grazie a Natinusala, xfangfang e XITRIX per borealis\n\u25c6 Grazie a Pikatsuto per il logo e SuperButterScotch per la tipografia\n\u25c6 Grazie a NicholeMattera per Simple-INI-Parser",
+        "translator": "\u25c6 Gabriele73."
     },
     
     "label": {
-        "no_games" : "Nessun gioco trovato sulla Switch",
+        "no_games": "Nessun gioco trovato sulla Switch.",
         "install": "Installazione",
         "desc_install": "Per installare le mod, devi utilizzare l'applicazione SimpleModManager creata da @nadrino.",
-        "extract": "L'estrazione è completata. Per installare la mod, vai alla scheda Installazione."
+        "extract": "L'estrazione è stata completata. Per installare la mod, vai nella scheda installazione.",
+        "update": "Aggiorna App",
+        "new_update": "\u25c6 Versione installata :",
+        "available_version" : "\u25c6 Versione disponibile :",
+        "restart_smd": "Riavvia SimpleModDownloader per applicare l'aggiornamento.",
+        "no_internet": "Nessuna connessione ad internet.",
+        "desc_smd": "\u25c6 Puoi aggiornare l'app in uso sulla tua switch",
+        "path": "Percorso",
+        "url": "Url"
     },
     
-    "item" : {
-        "launch_smm" : "Avvia SimpleModManager",
-        "download_smm": "Scarica SimpleModManager"
+    "item": {
+        "launch_smm": "Avvia SimpleModManager",
+        "download_smm": "Scarica SimpleModManager",
+        "download_smd": "Scarica SimpleModDownloader",
+        "check_update": "Controlla aggiornamenti"
     },
     
     "mods": {
-        "mods_list_title" : "Elenco delle mod",
+        "mods_list_title": "Lista Mod",
         "search": "Cerca",
-        "search_placeholder": "Inserisci il nome della mod (minimo 3 caratteri)",
-        "cancel": "Annulla",
-        "links": "Link di download",
+        "search_placeholder": "Inserisci il nome della mod (mimimo 3 caratteri)",
+        "cancel": "Cancella",
+        "links": "Scarica Link(s)",
         "size": "Dimensione",
         "date": "Data",
-        "images": "Visualizza immagini",
-        "browser": "Apri nel browser",
-        "author": "Autore"
+        "screenshots" : "Screenshot",
+        "description": "Descrizione",
+        "browser": "Apri sul Browser",
+        "author": "Autore",
+        "page": "Pagina",
+        "download": "Download",
+        "to": "a",
+        "mods_for": "Mod per",
+        "files": "File"
+    },
+
+    "settings_tab" : {
+        "language" : "Seleziona lingua",
+        "debug" : "Layer di Debug"
+    },
+
+    "crash" : {
+        "sd_full" : "La scheda SD è piena. Per favore libera un po' di spazio e riavvia l'applicazione."
     }
 }
