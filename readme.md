@@ -96,5 +96,6 @@ If you want to help me open an issue when you encounter a bug and a pull request
 - Thanks to [pixeldeadlock](https://github.com/pixeldeadlock) for brazilian portuguese translation
 - Thanks to [garobcsi](https://github.com/garobcsi) for hungarian translation
 - Thanks to [Gabriele73](https://github.com/Gabriele73) for italian translation
+- [MYusufY](https://github.com/MYusufY) for Turkish translation
 
 
