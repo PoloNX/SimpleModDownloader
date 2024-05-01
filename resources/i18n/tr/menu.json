@@ -1,0 +1,93 @@
+{
+    "main": {
+        "app_name": "SimpleModDownloader"
+    },
+
+    "title": {
+        "downloading_smm": "SimpleModManager İndiriliyor...",
+        "downloading_smd": "SimpleModDownloader İndiriliyor...",
+        "downloading": "İndiriliyor",
+        "extracting": "Çıkarılıyor"
+    },
+    
+    "tabs": {
+        "downloads": "İndirilenler",
+        "install": "İndirme",
+        "update": "Programı Güncelle",
+        "about": "Hakkında",
+        "settings": "Ayarlar"
+    },
+    
+    "notify": {
+        "no_games_gamebanana": "GameBanana database'inde oyun bulunamadı.",
+        "not_supported": "Bu format desteklenmiyor: ",
+        "string_to_short": "Aramanız en az 3 karakter uzunluğunda olmalıdır.",
+        "mod_unsupported": "SimpleModDownloader bu modu desteklemiyor.",
+        "smash_bros": "Super Smash Bros. Ultimate ARCropolis mod yöneticisini kullanıyor. SimpleModDownloader onu destekliyor, bu modu yüklemek için SimpleModManager'ı kullanmayın."
+    },
+    
+    "worker": {
+        "of": "of",
+        "cancel": "Vazgeç",
+        "install": "İndiriliyor",
+        "remaining": "Kalan tahmini süre"
+    },
+    
+    "about": {
+        "title": "SimpleModDownloader hakkında",
+        "description": "SimpleModDownloader Nintendo Switch oyunları için mod indirmenizi ve yüklemenizi sağlayan bir uygulamadır. PoloNX tarafından geliştirilmiştir.",
+        "thanks": "\u25c6 Teşekkürler @nadrino SimpleModManager için\n\u25c6 Teşekkürler Natinusala, xfangfang ve XITRIX borealis için\n\u25c6 Teşekkürler Pikatsuto logo için ve Teşekkürler SuperButterScotch typography için\n\u25c6 Teşekkürler NicholeMattera Simple-INI-Parser için.",
+        "translator": "\u25c6 Çevirmenlere de teşekkürler. Türkçe Çeviri: Yusuf YILDIRIM",
+        "_MESSAGE_TO_TRANSLATORS": "Put your name in about/translator please"
+    },
+    
+    "label": {
+        "no_games": "Switch'te oyun bulunamadı.",
+        "install": "İndirme",
+        "desc_install": "Modları yüklemek için, @nadrino tarafından yapılan SimpleModManager uygulamasını kullanmalısın.",
+        "extract": "Çıkarma tamamlandı. Modu yüklemek için, İndirme sekmesine gidin.",
+        "update": "Uygulamayı güncelle",
+        "new_update": "\u25c6 Yüklü sürüm :",
+        "available_version" : "\u25c6 Mevcut (yeni) sürüm :",
+        "restart_smd": "Güncellemeyi uygulamak için SimpleModDownloader'ı yeniden başlatın.",
+        "no_internet": "İnternet bağlantısı yok.",
+        "desc_smd": "\u25c6 Switch'inde kullandığın uygulamayı güncelleyebilirsin.",
+        "path": "Yol",
+        "url": "URL"
+    },
+    
+    "item": {
+        "launch_smm": "SimpleModManager'ı Aç",
+        "download_smm": "SimpleModManager'ı İndir",
+        "download_smd": "SimpleModDownloader'ı İndir",
+        "check_update": "Güncellemeleri denetle"
+    },
+    
+    "mods": {
+        "mods_list_title": "Mod Listesi",
+        "search": "Ara",
+        "search_placeholder": "Mod adını gir (en az 3 karakter:)",
+        "cancel": "Vazgeç",
+        "links": "İndirme Linkleri",
+        "size": "Boyut",
+        "date": "Tarih",
+        "screenshots" : "Resimler",
+        "description": "Açıklama",
+        "browser": "Tarayıcıda Aç",
+        "author": "Yapıcı",
+        "page": "Sayfa",
+        "download": "İndir",
+        "to": "şuna:",
+        "mods_for": "İçin modlar:",
+        "files": "Dosyalar"
+    },
+
+    "settings_tab" : {
+        "language" : "Dil seç",
+        "debug" : "Debug katmanı"
+    },
+
+    "crash" : {
+        "sd_full" : "SD kart dolu. Lütfen alan açın ve uygulamayı yeniden başlatın."
+    }
+}
