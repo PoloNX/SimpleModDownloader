@@ -66,8 +66,9 @@ if get_config("window") == "sdl" then
     end
 elseif get_config("window") == "glfw" then
     add_requires("xfangfang_glfw")
-elseif get_config("nanovg") then 
+elseif get_config("window") == "nanovg" then 
     add_requires("deko3d")
+    add_requires("nanovg")
 end
 
 target("borealis")
@@ -101,7 +102,8 @@ target("borealis")
             add_files("library/lib/extern/nanovg/nanovg.c")
             add_includedirs("library/include/borealis/extern/nanovg")
             add_packages("deko3d")
-            add_defines("BOREALIS_USE_DEKO3D", "__GLFW__")
+            add_packages("nanovg")
+            add_defines("BOREALIS_USE_DEKO3D")
         end 
         
         if driver == "opengl" then 
@@ -148,7 +150,7 @@ target("borealis")
         end
     end
     
-    add_packages("tinyxml2", "nlohmann_json", "nanovg", "fmt", "tweeny", "yoga", "stb")
+    add_packages("tinyxml2", "nlohmann_json","fmt", "tweeny", "yoga", "stb")
     add_defines("BOREALIS_USE_STD_THREAD")
 
     if get_config("unity_build") then

@@ -12,27 +12,30 @@
 void init();
 void exit();
 
-int main(int argc, char* argv[]) {
+int main(int argc, char* argv[]) {     
+    init();
+    
+    if(!brls::Application::init()) {
+        brls::Logger::error("Unable to init Borealis application");
+    }
+
     brls::Logger::setLogLevel(brls::LogLevel::LOG_DEBUG);
 
     std::filesystem::create_directories("sdmc:/config/SimpleModDownloader");
     // Using FILE* because brls::Logger::setLogOutput only takes FILE*, not std::ofstream
-    // FILE* logFile = fopen("sdmc:/config/SimpleModDownloader/log.log", "w");
-    // brls::Logger::setLogOutput(logFile);
+    FILE* logFile = fopen("sdmc:/config/SimpleModDownloader/log.log", "w");
+    brls::Logger::setLogOutput(logFile);
 
     {
         cfg::Config config;
+        brls::Logger::debug("Lang : {}", config.getAppLanguage());
+        brls::Logger::debug("Platform : {}", brls::Application::getPlatform()->getName());
         if(config.getAppLanguage() != "auto") {
             brls::Platform::APP_LOCALE_DEFAULT = config.getAppLanguage();
             brls::Logger::debug("Loaded translations for language {}", config.getAppLanguage());
         }
     }
 
-    if(!brls::Application::init()) {
-        brls::Logger::error("Unable to init Borealis application");
-    }
-
-    init();
 
     brls::loadTranslations();
 
@@ -74,12 +77,20 @@ void init() {
     splInitialize();
     fsInitialize();
     romfsInit();
+    setInitialize();
+    psmInitialize();
+    nifmInitialize(NifmServiceType_User);
+    lblInitialize();
     nxlinkStdio();
     socketInitializeDefault();
     curl_global_init(CURL_GLOBAL_ALL);
 }
 
 void exit() {
+    lblExit();
+    nifmExit();
+    psmExit();
+    setExit();
     romfsExit();
     splExit();
     pminfoExit();

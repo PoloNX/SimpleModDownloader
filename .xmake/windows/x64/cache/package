@@ -1,69 +1,69 @@
 {
     libcurl = {
-        sysincludedirs = { },
-        linkdirs = { },
+        envs = {
+            PATH = {
+                [[C:\Users\geyre\AppData\Local\.xmake\packages\s\switch-pacman\latest\10253c39aca14760ae4382272800b680\bin]]
+            }
+        },
         links = "curl",
         installdir = [[C:\Users\geyre\AppData\Local\.xmake\packages\l\libcurl\latest\aa5b10ad0d8240019aefb4c53e4568dc]],
+        sysincludedirs = { },
         __requirestr = "libcurl",
         __enabled = true,
-        envs = {
-            PATH = {
-                [[C:\Users\geyre\AppData\Local\.xmake\packages\s\switch-pacman\latest\10253c39aca14760ae4382272800b680\bin]]
-            }
-        },
+        linkdirs = { },
         version = "7.69.1"
     },
-    libarchive = {
-        sysincludedirs = { },
-        linkdirs = { },
-        links = { },
-        installdir = [[C:\Users\geyre\AppData\Local\.xmake\packages\l\libarchive\latest\aa5b10ad0d8240019aefb4c53e4568dc]],
-        __requirestr = "libarchive",
-        envs = {
-            PATH = {
-                [[C:\Users\geyre\AppData\Local\.xmake\packages\s\switch-pacman\latest\10253c39aca14760ae4382272800b680\bin]]
-            }
-        },
-        __enabled = true
-    },
     borealis = {
+        links = {
+            "borealis",
+            "yoga",
+            "fmt",
+            "tinyxml2",
+            "nanovg"
+        },
+        installdir = [[C:\Users\geyre\AppData\Local\.xmake\packages\b\borealis\2024.04.23-alpha\ceab365dc0c643359ad0af60d6cb2c1f]],
+        linkdirs = {
+            [[C:\Users\geyre\AppData\Local\.xmake\packages\b\borealis\2024.04.23-alpha\ceab365dc0c643359ad0af60d6cb2c1f\lib]],
+            [[C:\Users\geyre\AppData\Local\.xmake\packages\y\yoga\2.0.1\cf5af9a022b04068859b9030c61a0043\lib]],
+            [[C:\Users\geyre\AppData\Local\.xmake\packages\f\fmt\10.2.1\14c9df0f81e7414195951c4edce624bb\lib]],
+            [[C:\Users\geyre\AppData\Local\.xmake\packages\t\tinyxml2\10.0.0\13d38f031a9543538d06a4797b4f49ad\lib]],
+            [[C:\Users\geyre\AppData\Local\.xmake\packages\n\nanovg\2024.04.25-alpha\6b82f3d08f9f458d9156126b77e5d671\lib]]
+        },
+        __enabled = true,
+        license = "Apache-2.0",
+        static = true,
+        __requirestr = "borealis",
+        libfiles = {
+            [[C:\Users\geyre\AppData\Local\.xmake\packages\b\borealis\2024.04.23-alpha\ceab365dc0c643359ad0af60d6cb2c1f\lib\libborealis.a]],
+            [[C:\Users\geyre\AppData\Local\.xmake\packages\y\yoga\2.0.1\cf5af9a022b04068859b9030c61a0043\lib\libyoga.a]],
+            [[C:\Users\geyre\AppData\Local\.xmake\packages\f\fmt\10.2.1\14c9df0f81e7414195951c4edce624bb\lib\libfmt.a]],
+            [[C:\Users\geyre\AppData\Local\.xmake\packages\t\tinyxml2\10.0.0\13d38f031a9543538d06a4797b4f49ad\lib\libtinyxml2.a]],
+            [[C:\Users\geyre\AppData\Local\.xmake\packages\n\nanovg\2024.04.25-alpha\6b82f3d08f9f458d9156126b77e5d671\lib\libnanovg.a]]
+        },
         sysincludedirs = {
             [[C:\Users\geyre\AppData\Local\.xmake\packages\b\borealis\2024.04.23-alpha\ceab365dc0c643359ad0af60d6cb2c1f\include]],
-            [[C:\Users\geyre\AppData\Local\.xmake\packages\n\nanovg\2024.04.25-alpha\6b82f3d08f9f458d9156126b77e5d671\include]],
             [[C:\Users\geyre\AppData\Local\.xmake\packages\y\yoga\2.0.1\cf5af9a022b04068859b9030c61a0043\include]],
             [[C:\Users\geyre\AppData\Local\.xmake\packages\n\nlohmann_json\v3.11.3\4876c1244029452081abe19bdf7c05bc\include]],
             [[C:\Users\geyre\AppData\Local\.xmake\packages\f\fmt\10.2.1\14c9df0f81e7414195951c4edce624bb\include]],
             [[C:\Users\geyre\AppData\Local\.xmake\packages\t\tweeny\3.2.0\c0f4b2cd586c446ca261ef03993ead8b\include]],
             [[C:\Users\geyre\AppData\Local\.xmake\packages\s\stb\2024.02.13-alpha\4512c4cb5ecd4f19a385902a9ec1b1fb\include]],
             [[C:\Users\geyre\AppData\Local\.xmake\packages\s\stb\2024.02.13-alpha\4512c4cb5ecd4f19a385902a9ec1b1fb\include\stb]],
-            [[C:\Users\geyre\AppData\Local\.xmake\packages\t\tinyxml2\10.0.0\13d38f031a9543538d06a4797b4f49ad\include]]
+            [[C:\Users\geyre\AppData\Local\.xmake\packages\t\tinyxml2\10.0.0\13d38f031a9543538d06a4797b4f49ad\include]],
+            [[C:\Users\geyre\AppData\Local\.xmake\packages\n\nanovg\2024.04.25-alpha\6b82f3d08f9f458d9156126b77e5d671\include]]
         },
-        linkdirs = {
-            [[C:\Users\geyre\AppData\Local\.xmake\packages\b\borealis\2024.04.23-alpha\ceab365dc0c643359ad0af60d6cb2c1f\lib]],
-            [[C:\Users\geyre\AppData\Local\.xmake\packages\n\nanovg\2024.04.25-alpha\6b82f3d08f9f458d9156126b77e5d671\lib]],
-            [[C:\Users\geyre\AppData\Local\.xmake\packages\y\yoga\2.0.1\cf5af9a022b04068859b9030c61a0043\lib]],
-            [[C:\Users\geyre\AppData\Local\.xmake\packages\f\fmt\10.2.1\14c9df0f81e7414195951c4edce624bb\lib]],
-            [[C:\Users\geyre\AppData\Local\.xmake\packages\t\tinyxml2\10.0.0\13d38f031a9543538d06a4797b4f49ad\lib]]
+        version = "2024.04.23-alpha"
+    },
+    libarchive = {
+        envs = {
+            PATH = {
+                [[C:\Users\geyre\AppData\Local\.xmake\packages\s\switch-pacman\latest\10253c39aca14760ae4382272800b680\bin]]
+            }
         },
+        links = { },
+        installdir = [[C:\Users\geyre\AppData\Local\.xmake\packages\l\libarchive\latest\aa5b10ad0d8240019aefb4c53e4568dc]],
+        sysincludedirs = { },
+        __requirestr = "libarchive",
         __enabled = true,
-        __requirestr = "borealis",
-        license = "Apache-2.0",
-        version = "2024.04.23-alpha",
-        links = {
-            "borealis",
-            "nanovg",
-            "yoga",
-            "fmt",
-            "tinyxml2"
-        },
-        installdir = [[C:\Users\geyre\AppData\Local\.xmake\packages\b\borealis\2024.04.23-alpha\ceab365dc0c643359ad0af60d6cb2c1f]],
-        static = true,
-        libfiles = {
-            [[C:\Users\geyre\AppData\Local\.xmake\packages\b\borealis\2024.04.23-alpha\ceab365dc0c643359ad0af60d6cb2c1f\lib\libborealis.a]],
-            [[C:\Users\geyre\AppData\Local\.xmake\packages\n\nanovg\2024.04.25-alpha\6b82f3d08f9f458d9156126b77e5d671\lib\libnanovg.a]],
-            [[C:\Users\geyre\AppData\Local\.xmake\packages\y\yoga\2.0.1\cf5af9a022b04068859b9030c61a0043\lib\libyoga.a]],
-            [[C:\Users\geyre\AppData\Local\.xmake\packages\f\fmt\10.2.1\14c9df0f81e7414195951c4edce624bb\lib\libfmt.a]],
-            [[C:\Users\geyre\AppData\Local\.xmake\packages\t\tinyxml2\10.0.0\13d38f031a9543538d06a4797b4f49ad\lib\libtinyxml2.a]]
-        }
+        linkdirs = { }
     }
 }

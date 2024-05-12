@@ -1,15 +1,15 @@
 {
     recheck = false,
+    mtimes = {
+        ["xmake.lua"] = 1715520793,
+        ["toolchain\\check.lua"] = 1713527339,
+        ["toolchain\\switch.lua"] = 1713525188,
+        ["toolchain\\devkitA64.lua"] = 1715440635
+    },
     options = {
         toolchain = "devkita64",
-        arch = "aarch64",
+        mode = "debug",
         plat = "switch",
-        mode = "debug"
-    },
-    mtimes = {
-        ["toolchain\\check.lua"] = 1713527339,
-        ["toolchain\\devkitA64.lua"] = 1715440635,
-        ["toolchain\\switch.lua"] = 1713525188,
-        ["xmake.lua"] = 1715440280
+        arch = "aarch64"
     }
 }

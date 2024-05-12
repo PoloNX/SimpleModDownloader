@@ -30,7 +30,6 @@ package("borealis")
     add_configs("driver", {description = "use driver lib", default = "opengl", type = "string"})
     add_configs("winrt", {description = "use winrt api", default = false, type = "boolean"})
     add_deps(
-        "nanovg",
         "yoga =2.0.1",
         "nlohmann_json",
         "fmt",
@@ -51,6 +50,8 @@ package("borealis")
             package:add("deps", "glfw")
         elseif window == "sdl" then
             package:add("deps", "sdl2")
+        elseif window == "nanovg" then 
+            package:add("deps", "nanovg")
         end
         if driver == "opengl" then
             --package:add("deps", "glad =0.1.36")
