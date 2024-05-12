@@ -1,0 +1,15 @@
+{
+    recheck = false,
+    options = {
+        toolchain = "devkita64",
+        arch = "aarch64",
+        plat = "switch",
+        mode = "debug"
+    },
+    mtimes = {
+        ["toolchain\\check.lua"] = 1713527339,
+        ["toolchain\\devkitA64.lua"] = 1715440635,
+        ["toolchain\\switch.lua"] = 1713525188,
+        ["xmake.lua"] = 1715440280
+    }
+}

@@ -1,0 +1,451 @@
+{
+    ["detect.tools.gcc.has_ldflags"] = {
+        ["C:\\devkitPro\\devkitA64\\bin\\aarch64-none-elf-g++_25.1"] = {
+            ["-Bshareable"] = true,
+            ["--trace-symbol"] = true,
+            ["--remap-inputs"] = true,
+            ["--pic-executable"] = true,
+            ["--require-defined"] = true,
+            ["--relax"] = true,
+            ["--nmagic"] = true,
+            ["-Ur"] = true,
+            ["--pop-state"] = true,
+            ["--warn-textrel"] = true,
+            ["-Tldata-segment"] = true,
+            ["--discard-locals"] = true,
+            ["--dependency-file"] = true,
+            ["--no-wchar-size-warning"] = true,
+            ["-l"] = true,
+            ["--default-script"] = true,
+            ["--no-error-rwx-segments"] = true,
+            ["--no-map-whole-files"] = true,
+            ["--disable-multiple-abs-defs"] = true,
+            ["--enable-non-contiguous-regions"] = true,
+            ["--retain-symbols-file"] = true,
+            ["--no-merge-exidx-entries"] = true,
+            ["--no-allow-shlib-undefined"] = true,
+            ["--library-path"] = true,
+            ["-debug"] = true,
+            ["--no-strip-discarded"] = true,
+            ["--sort-section"] = true,
+            ["--allow-multiple-definition"] = true,
+            ["-EL"] = true,
+            ["--export-dynamic-symbol-list"] = true,
+            ["--dynamic-list-cpp-new"] = true,
+            ["--allow-shlib-undefined"] = true,
+            ["--enable-non-contiguous-regions-warnings"] = true,
+            ["--dynamic-list"] = true,
+            ["-V"] = true,
+            ["--warn-alternate-em"] = true,
+            ["--fix-v4bx"] = true,
+            ["-Bsymbolic"] = true,
+            ["-c"] = true,
+            ["--undefined"] = true,
+            ["--reduce-memory-overheads"] = true,
+            ["--oformat"] = true,
+            ["--as-needed"] = true,
+            ["--accept-unknown-input-arch"] = true,
+            ["-soname"] = true,
+            ["--gc-keep-exported"] = true,
+            ["--no-demangle"] = true,
+            ["-plugin"] = true,
+            ["--no-omagic"] = true,
+            ["--orphan-handling"] = true,
+            ["--no-define-common"] = true,
+            ["--split-by-reloc"] = true,
+            ["--ignore-unresolved-symbol"] = true,
+            ["--end-group"] = true,
+            ["-I"] = true,
+            ["-b"] = true,
+            ["--omagic"] = true,
+            ["--default-imported-symver"] = true,
+            ["--no-accept-unknown-input-arch"] = true,
+            ["--be8"] = true,
+            ["--fix-cortex-a53-835769"] = true,
+            ["-rpath"] = true,
+            ["--library"] = true,
+            ["--eh-frame-hdr"] = true,
+            ["--dynamic-list-data"] = true,
+            ["-dT"] = true,
+            ["--relocatable"] = true,
+            ["-rpath-link"] = true,
+            ["--filter"] = true,
+            ["-dp"] = true,
+            ["--no-print-map-discarded"] = true,
+            ["--target1-abs"] = true,
+            ["--mri-script"] = true,
+            ["--error-rwx-segments"] = true,
+            ["-no-pie"] = true,
+            ["--version-script"] = true,
+            ["-A"] = true,
+            ["-o"] = true,
+            ["--print-memory-usage"] = true,
+            ["--strip-all"] = true,
+            ["-nostdlib"] = true,
+            ["-Y"] = true,
+            ["--vfp11-denorm-fix"] = true,
+            ["--trace"] = true,
+            ["--warn-once"] = true,
+            ["--architecture"] = true,
+            ["--no-gc-sections"] = true,
+            ["-a"] = true,
+            ["--remap-inputs-file"] = true,
+            ["--warn-section-align"] = true,
+            ["--split-by-file"] = true,
+            ["--warn-unresolved-symbols"] = true,
+            ["--disable-linker-version"] = true,
+            ["--error-execstack"] = true,
+            ["--demangle"] = true,
+            ["--warn-common"] = true,
+            ["--whole-archive"] = true,
+            ["-f"] = true,
+            ["--ctf-variables"] = true,
+            ["--dynamic-list-cpp-typeinfo"] = true,
+            ["--no-whole-archive"] = true,
+            ["-Bno-symbolic"] = true,
+            ["--no-undefined"] = true,
+            ["--entry"] = true,
+            ["-P"] = true,
+            ["--no-undefined-version"] = true,
+            ["--export-dynamic-symbol"] = true,
+            ["--auxiliary"] = true,
+            ["-Ttext"] = true,
+            ["--no-warnings"] = true,
+            ["-h"] = true,
+            ["--no-dynamic-linker"] = true,
+            ["--print-map"] = true,
+            ["--script"] = true,
+            ["--dynamic-linker"] = true,
+            ["--verbose"] = true,
+            ["-init"] = true,
+            ["--no-keep-memory"] = true,
+            ["--stats"] = true,
+            ["-G"] = true,
+            ["--force-exe-suffix"] = true,
+            ["--gpsize"] = true,
+            ["--undefined-version"] = true,
+            ["--default-symver"] = true,
+            ["--no-error-execstack"] = true,
+            ["-assert"] = true,
+            ["-T"] = true,
+            ["--warn-multiple-gp"] = true,
+            ["--cref"] = true,
+            ["-EB"] = true,
+            ["--traditional-format"] = true,
+            ["-flto"] = true,
+            ["--no-apply-dynamic-relocs"] = true,
+            ["-m"] = true,
+            ["--discard-all"] = true,
+            ["--check-sections"] = true,
+            ["--print-output-format"] = true,
+            ["-O"] = true,
+            ["-L"] = true,
+            ["--no-enum-size-warning"] = true,
+            ["--out-implib"] = true,
+            ["--gc-sections"] = true,
+            ["--version-exports-section"] = true,
+            ["--use-blx"] = true,
+            ["--strip-debug"] = true,
+            ["-plugin-opt"] = true,
+            ["--error-handling-script"] = true,
+            ["--no-warn-execstack"] = true,
+            ["--help"] = true,
+            ["-R"] = true,
+            ["--no-as-needed"] = true,
+            ["--no-copy-dt-needed-entries"] = true,
+            ["-u"] = true,
+            ["--print-map-discarded"] = true,
+            ["--no-warn-search-mismatch"] = true,
+            ["--no-warn-rwx-segments"] = true,
+            ["--long-plt"] = true,
+            ["--warn-execstack-objects"] = true,
+            ["--enable-new-dtags"] = true,
+            ["--start-group"] = true,
+            ["-Ttext-segment"] = true,
+            ["--print-gc-sections"] = true,
+            ["--in-implib"] = true,
+            ["--no-check-sections"] = true,
+            ["-fini"] = true,
+            ["--copy-dt-needed-entries"] = true,
+            ["--no-fatal-warnings"] = true,
+            ["--no-eh-frame-hdr"] = true,
+            ["-z"] = true,
+            ["--map-whole-files"] = true,
+            ["--task-link"] = true,
+            ["--warn-execstack"] = true,
+            ["--wrap"] = true,
+            ["--cmse-implib"] = true,
+            ["--target-help"] = true,
+            ["--error-unresolved-symbols"] = true,
+            ["--output"] = true,
+            ["--strip-discarded"] = true,
+            ["--no-print-gc-sections"] = true,
+            ["--warn-rwx-segments"] = true,
+            ["--no-warn-mismatch"] = true,
+            ["--sort-common"] = true,
+            ["--just-symbols"] = true,
+            ["--defsym"] = true,
+            ["--print-map-locals"] = true,
+            ["--discard-none"] = true,
+            ["--pic-veneer"] = true,
+            ["--no-print-map-locals"] = true,
+            ["--no-export-dynamic"] = true,
+            ["--target1-rel"] = true,
+            ["--emit-relocs"] = true,
+            ["--fatal-warnings"] = true,
+            ["-Tdata"] = true,
+            ["--export-dynamic"] = true,
+            ["-Map"] = true,
+            ["--unique"] = true,
+            ["--enable-linker-version"] = true,
+            ["-Tbss"] = true,
+            ["--disable-new-dtags"] = true,
+            ["--force-group-allocation"] = true,
+            ["-Bgroup"] = true,
+            ["-static"] = true,
+            ["--no-ctf-variables"] = true,
+            ["-Bsymbolic-functions"] = true,
+            ["--fix-v4bx-interworking"] = true,
+            ["-F"] = true,
+            ["-qmagic"] = true,
+            ["-g"] = true,
+            ["--fix-stm32l4xx-629360"] = true,
+            ["--format"] = true,
+            ["--spare-dynamic-tags"] = true,
+            ["--print-sysroot"] = true,
+            ["-e"] = true,
+            ["-Qy"] = true,
+            ["--push-state"] = true,
+            ["--no-relax"] = true,
+            ["--version"] = true,
+            ["-Trodata-segment"] = true,
+            ["-y"] = true,
+            ["--section-start"] = true
+        }
+    },
+    find_program_devkita64_arch_aarch64_plat_switch_checktoolcc = {
+        ["aarch64-none-elf-gcc"] = [[C:\devkitPro\devkitA64\bin\aarch64-none-elf-gcc]]
+    },
+    find_programver = {
+        ["C:\\devkitPro\\devkitA64\\bin\\aarch64-none-elf-g++"] = "25.1",
+        ["C:\\devkitPro\\devkitA64\\bin\\aarch64-none-elf-gcc"] = "25.1"
+    },
+    find_program_devkita64_arch_aarch64_plat_switch_checktoolld = {
+        ["aarch64-none-elf-g++"] = [[C:\devkitPro\devkitA64\bin\aarch64-none-elf-g++]]
+    },
+    ["detect.tools.gcc.has_cflags"] = {
+        ["C:\\devkitPro\\devkitA64\\bin\\aarch64-none-elf-g++_25.1"] = {
+            ["-no-canonical-prefixes"] = true,
+            ["-E"] = true,
+            ["-shared"] = true,
+            ["-print-multi-lib"] = true,
+            ["-Xpreprocessor"] = true,
+            ["-v"] = true,
+            ["-Xassembler"] = true,
+            ["-pass-exit-codes"] = true,
+            ["-time"] = true,
+            ["-Xlinker"] = true,
+            ["-print-multiarch"] = true,
+            ["-pipe"] = true,
+            ["-print-sysroot-headers-suffix"] = true,
+            ["--param"] = true,
+            ["-x"] = true,
+            ["-print-multi-directory"] = true,
+            ["-save-temps"] = true,
+            ["-print-libgcc-file-name"] = true,
+            ["-B"] = true,
+            ["--help"] = true,
+            ["-pie"] = true,
+            ["-dumpversion"] = true,
+            ["-S"] = true,
+            ["-dumpspecs"] = true,
+            ["--target-help"] = true,
+            ["-print-multi-os-directory"] = true,
+            ["-c"] = true,
+            ["-print-sysroot"] = true,
+            ["--version"] = true,
+            ["-print-search-dirs"] = true,
+            ["-o"] = true,
+            ["-dumpmachine"] = true
+        },
+        ["C:\\devkitPro\\devkitA64\\bin\\aarch64-none-elf-gcc_25.1"] = {
+            ["-no-canonical-prefixes"] = true,
+            ["-E"] = true,
+            ["-shared"] = true,
+            ["-print-multi-lib"] = true,
+            ["-Xpreprocessor"] = true,
+            ["-v"] = true,
+            ["-Xassembler"] = true,
+            ["-pass-exit-codes"] = true,
+            ["-time"] = true,
+            ["-Xlinker"] = true,
+            ["-print-multiarch"] = true,
+            ["-pipe"] = true,
+            ["-print-sysroot-headers-suffix"] = true,
+            ["--param"] = true,
+            ["-x"] = true,
+            ["-print-multi-directory"] = true,
+            ["-save-temps"] = true,
+            ["-print-libgcc-file-name"] = true,
+            ["-B"] = true,
+            ["--help"] = true,
+            ["-pie"] = true,
+            ["-dumpversion"] = true,
+            ["-S"] = true,
+            ["-dumpspecs"] = true,
+            ["--target-help"] = true,
+            ["-print-multi-os-directory"] = true,
+            ["-c"] = true,
+            ["-print-sysroot"] = true,
+            ["--version"] = true,
+            ["-print-search-dirs"] = true,
+            ["-o"] = true,
+            ["-dumpmachine"] = true
+        }
+    },
+    find_program_fetch_package_system = {
+        pacman = "pacman"
+    },
+    find_programver_fetch_package_system = {
+        pacman = "6.0.2"
+    },
+    find_package_switch_aarch64_fetch_package_xmake = {
+        ["xmake::fmt_14c9df0f81e7414195951c4edce624bb_release_10.2.1_external"] = {
+            license = "MIT",
+            linkdirs = {
+                [[C:\Users\geyre\AppData\Local\.xmake\packages\f\fmt\10.2.1\14c9df0f81e7414195951c4edce624bb\lib]]
+            },
+            version = "10.2.1",
+            static = true,
+            sysincludedirs = {
+                [[C:\Users\geyre\AppData\Local\.xmake\packages\f\fmt\10.2.1\14c9df0f81e7414195951c4edce624bb\include]]
+            },
+            links = {
+                "fmt"
+            },
+            libfiles = {
+                [[C:\Users\geyre\AppData\Local\.xmake\packages\f\fmt\10.2.1\14c9df0f81e7414195951c4edce624bb\lib\libfmt.a]]
+            }
+        },
+        ["xmake::tinyxml2_13d38f031a9543538d06a4797b4f49ad_release_10.0.0_external"] = {
+            static = true,
+            linkdirs = {
+                [[C:\Users\geyre\AppData\Local\.xmake\packages\t\tinyxml2\10.0.0\13d38f031a9543538d06a4797b4f49ad\lib]]
+            },
+            version = "10.0.0",
+            sysincludedirs = {
+                [[C:\Users\geyre\AppData\Local\.xmake\packages\t\tinyxml2\10.0.0\13d38f031a9543538d06a4797b4f49ad\include]]
+            },
+            links = {
+                "tinyxml2"
+            },
+            libfiles = {
+                [[C:\Users\geyre\AppData\Local\.xmake\packages\t\tinyxml2\10.0.0\13d38f031a9543538d06a4797b4f49ad\lib\libtinyxml2.a]]
+            }
+        },
+        ["xmake::borealis_ceab365dc0c643359ad0af60d6cb2c1f_release_2024.04.23-alpha_external"] = {
+            license = "Apache-2.0",
+            linkdirs = {
+                [[C:\Users\geyre\AppData\Local\.xmake\packages\b\borealis\2024.04.23-alpha\ceab365dc0c643359ad0af60d6cb2c1f\lib]]
+            },
+            version = "2024.04.23-alpha",
+            static = true,
+            sysincludedirs = {
+                [[C:\Users\geyre\AppData\Local\.xmake\packages\b\borealis\2024.04.23-alpha\ceab365dc0c643359ad0af60d6cb2c1f\include]]
+            },
+            links = {
+                "borealis"
+            },
+            libfiles = {
+                [[C:\Users\geyre\AppData\Local\.xmake\packages\b\borealis\2024.04.23-alpha\ceab365dc0c643359ad0af60d6cb2c1f\lib\libborealis.a]]
+            }
+        },
+        ["xmake::nlohmann_json_4876c1244029452081abe19bdf7c05bc_release_v3.11.3_external"] = {
+            license = "MIT",
+            sysincludedirs = {
+                [[C:\Users\geyre\AppData\Local\.xmake\packages\n\nlohmann_json\v3.11.3\4876c1244029452081abe19bdf7c05bc\include]]
+            },
+            version = "v3.11.3"
+        },
+        ["xmake::tweeny_c0f4b2cd586c446ca261ef03993ead8b_release_3.2.0_external"] = {
+            license = "MIT",
+            sysincludedirs = {
+                [[C:\Users\geyre\AppData\Local\.xmake\packages\t\tweeny\3.2.0\c0f4b2cd586c446ca261ef03993ead8b\include]]
+            },
+            version = "3.2.0"
+        },
+        ["xmake::stb_4512c4cb5ecd4f19a385902a9ec1b1fb_release_2024.02.13-alpha_external"] = {
+            sysincludedirs = {
+                [[C:\Users\geyre\AppData\Local\.xmake\packages\s\stb\2024.02.13-alpha\4512c4cb5ecd4f19a385902a9ec1b1fb\include]],
+                [[C:\Users\geyre\AppData\Local\.xmake\packages\s\stb\2024.02.13-alpha\4512c4cb5ecd4f19a385902a9ec1b1fb\include\stb]]
+            },
+            version = "2024.02.13-alpha"
+        },
+        ["xmake::nanovg_6b82f3d08f9f458d9156126b77e5d671_release_2024.04.25-alpha_external"] = {
+            license = "zlib",
+            linkdirs = {
+                [[C:\Users\geyre\AppData\Local\.xmake\packages\n\nanovg\2024.04.25-alpha\6b82f3d08f9f458d9156126b77e5d671\lib]]
+            },
+            version = "2024.04.25-alpha",
+            static = true,
+            sysincludedirs = {
+                [[C:\Users\geyre\AppData\Local\.xmake\packages\n\nanovg\2024.04.25-alpha\6b82f3d08f9f458d9156126b77e5d671\include]]
+            },
+            links = {
+                "nanovg"
+            },
+            libfiles = {
+                [[C:\Users\geyre\AppData\Local\.xmake\packages\n\nanovg\2024.04.25-alpha\6b82f3d08f9f458d9156126b77e5d671\lib\libnanovg.a]]
+            }
+        },
+        ["xmake::yoga_cf5af9a022b04068859b9030c61a0043_release_2.0.1_external"] = {
+            license = "MIT",
+            linkdirs = {
+                [[C:\Users\geyre\AppData\Local\.xmake\packages\y\yoga\2.0.1\cf5af9a022b04068859b9030c61a0043\lib]]
+            },
+            version = "2.0.1",
+            static = true,
+            sysincludedirs = {
+                [[C:\Users\geyre\AppData\Local\.xmake\packages\y\yoga\2.0.1\cf5af9a022b04068859b9030c61a0043\include]]
+            },
+            links = {
+                "yoga"
+            },
+            libfiles = {
+                [[C:\Users\geyre\AppData\Local\.xmake\packages\y\yoga\2.0.1\cf5af9a022b04068859b9030c61a0043\lib\libyoga.a]]
+            }
+        },
+        ["xmake::zlib_de5267bcc80c444a9d5ba8302ce1f899_release_1.3.1_external"] = false
+    },
+    find_package_switch_aarch64_fetch_package_system = {
+        zlib_de5267bcc80c444a9d5ba8302ce1f899_release_external = false
+    },
+    find_program_devkita64_arch_aarch64_plat_switch_checktoolcxx = {
+        ["aarch64-none-elf-g++"] = [[C:\devkitPro\devkitA64\bin\aarch64-none-elf-g++]]
+    },
+    ["lib.detect.has_flags"] = {
+        ["switch_aarch64_C:\\devkitPro\\devkitA64\\bin\\aarch64-none-elf-g++_25.1_cxx_cxflags_-frtti -fexceptions -march=armv8-a+crc+crypto+simd -mcpu=cortex-a57 -mtune=cortex-a57 -ftls-model=local-exec -ffunction-sections -fdata-sections -fstack-protector-strong -fPIC -D__SWITCH__=1 -D__SWITCH=1 -DLIBNX_NO_DEPRECATION -D_GNU_SOURCE=1 -D_LIBC -D_NEWLIB_VERSION=4.3.0 -D__NEWLIB__=4 -march=armv8-a+crc+crypto -mtp=soft -fPIE_-MMD -MF"] = true,
+        ["switch_aarch64_C:\\devkitPro\\devkitA64\\bin\\aarch64-none-elf-g++_25.1_cxx_cxflags_-frtti -fexceptions -march=armv8-a+crc+crypto+simd -mcpu=cortex-a57 -mtune=cortex-a57 -ftls-model=local-exec -ffunction-sections -fdata-sections -fstack-protector-strong -fPIC -D__SWITCH__=1 -D__SWITCH=1 -DLIBNX_NO_DEPRECATION -D_GNU_SOURCE=1 -D_LIBC -D_NEWLIB_VERSION=4.3.0 -D__NEWLIB__=4 -march=armv8-a+crc+crypto -mtp=soft -fPIE_-fdiagnostics-color=always"] = true,
+        ["switch_aarch64_C:\\devkitPro\\devkitA64\\bin\\aarch64-none-elf-g++_25.1_ld__-Wl,-Bsymbolic -fPIE -Wl,-pie -Wl,--gc-sections -Wl,-z,text -Wl,--build-id=sha1 -Wl,--no-dynamic-linker -Wl,--as-needed -Wl,--eh-frame-hdr -fvisibility=hidden -specs=C:/devkitPro/libnx/switch.specs -g -W -fPIC  -Wl,-Bsymbolic -fPIE -Wl,-pie -Wl,--gc-sections -Wl,-z,text -Wl,--build-id=sha1 -Wl,--no-dynamic-linker -Wl,--as-needed -Wl,--eh-frame-hdr -fvisibility=hidden -specs=C:/devkitPro/libnx/switch.specs -g -W -fPIC _-fPIC"] = false,
+        ["switch_aarch64_C:\\devkitPro\\devkitA64\\bin\\aarch64-none-elf-gcc_25.1_cc_cxflags_-g -Wall -O2 -ffunction-sections -fdata-sections -march=armv8-a+crc+crypto+simd -mcpu=cortex-a57 -mtune=cortex-a57 -ftls-model=local-exec -ffunction-sections -fdata-sections -fstack-protector-strong -fPIC -D__SWITCH__=1 -D__SWITCH=1 -DLIBNX_NO_DEPRECATION -D_GNU_SOURCE=1 -D_LIBC -D_NEWLIB_VERSION=4.3.0 -D__NEWLIB__=4 -march=armv8-a+crc+crypto -mtp=soft -fPIE_-fdiagnostics-color=always"] = true,
+        ["switch_aarch64_C:\\devkitPro\\devkitA64\\bin\\aarch64-none-elf-g++_25.1_cxx__-frtti -fexceptions -march=armv8-a+crc+crypto+simd -mcpu=cortex-a57 -mtune=cortex-a57 -ftls-model=local-exec -ffunction-sections -fdata-sections -fstack-protector-strong -fPIC -D__SWITCH__=1 -D__SWITCH=1 -DLIBNX_NO_DEPRECATION -D_GNU_SOURCE=1 -D_LIBC -D_NEWLIB_VERSION=4.3.0 -D__NEWLIB__=4 -march=armv8-a+crc+crypto -mtp=soft -fPIE_-O0"] = true,
+        ["switch_aarch64_C:\\devkitPro\\devkitA64\\bin\\aarch64-none-elf-g++_25.1_cxx_cxflags_-frtti -fexceptions -march=armv8-a+crc+crypto+simd -mcpu=cortex-a57 -mtune=cortex-a57 -ftls-model=local-exec -ffunction-sections -fdata-sections -fstack-protector-strong -fPIC -D__SWITCH__=1 -D__SWITCH=1 -DLIBNX_NO_DEPRECATION -D_GNU_SOURCE=1 -D_LIBC -D_NEWLIB_VERSION=4.3.0 -D__NEWLIB__=4 -march=armv8-a+crc+crypto -mtp=soft -fPIE_-fvisibility-inlines-hidden"] = true,
+        ["switch_aarch64_C:\\devkitPro\\devkitA64\\bin\\aarch64-none-elf-g++_25.1_cxx__-frtti -fexceptions -march=armv8-a+crc+crypto+simd -mcpu=cortex-a57 -mtune=cortex-a57 -ftls-model=local-exec -ffunction-sections -fdata-sections -fstack-protector-strong -fPIC -D__SWITCH__=1 -D__SWITCH=1 -DLIBNX_NO_DEPRECATION -D_GNU_SOURCE=1 -D_LIBC -D_NEWLIB_VERSION=4.3.0 -D__NEWLIB__=4 -march=armv8-a+crc+crypto -mtp=soft -fPIE_-fPIC"] = true,
+        ["switch_aarch64_C:\\devkitPro\\devkitA64\\bin\\aarch64-none-elf-gcc_25.1_cc__-g -Wall -O2 -ffunction-sections -fdata-sections -march=armv8-a+crc+crypto+simd -mcpu=cortex-a57 -mtune=cortex-a57 -ftls-model=local-exec -ffunction-sections -fdata-sections -fstack-protector-strong -fPIC -D__SWITCH__=1 -D__SWITCH=1 -DLIBNX_NO_DEPRECATION -D_GNU_SOURCE=1 -D_LIBC -D_NEWLIB_VERSION=4.3.0 -D__NEWLIB__=4 -march=armv8-a+crc+crypto -mtp=soft -fPIE_-fPIC"] = true
+    },
+    find_program = {
+        gzip = "gzip",
+        tar = "tar",
+        unzip = "unzip",
+        git = "git",
+        ["pkg-config"] = "pkg-config",
+        ["C:\\devkitPro\\devkitA64\\bin\\aarch64-none-elf-gcc"] = [[C:\devkitPro\devkitA64\bin\aarch64-none-elf-gcc]],
+        ["C:\\devkitPro\\devkitA64\\bin\\aarch64-none-elf-g++"] = [[C:\devkitPro\devkitA64\bin\aarch64-none-elf-g++]],
+        ping = "ping"
+    },
+    find_program_fetch_package_xmake = {
+        ["switch-pacman"] = false,
+        pacman = false
+    },
+    ["detect.sdks.find_vcpkgdir"] = false
+}
