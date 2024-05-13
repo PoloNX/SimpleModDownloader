@@ -68,7 +68,7 @@ toolchain("devkita64")
 
     local DEVKITPRO = os.getenv("DEVKITPRO")
     if not DEVKITPRO then
-        echo("Please set DEVKITPRO var")
+        DEVKITPRO = "/opt/devkitpro"
         return
     end
 
