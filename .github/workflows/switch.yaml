@@ -45,7 +45,7 @@ jobs:
         run: wget https://apt.devkitpro.org/install-devkitpro-pacman && chmod +x ./install-devkitpro-pacman && sudo ./install-devkitpro-pacman
       
       - name: Install devkitA64
-        run: sudo dkp-pacman -Sg switch-dev
+        run: sudo dkp-pacman -Sg switch-dev --needed
 
       - name: Set xmake env
         run: echo "XMAKE_GLOBALDIR=${{ runner.workspace }}/xmake-global" >> $GITHUB_ENV
