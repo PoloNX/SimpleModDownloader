@@ -42,7 +42,7 @@ jobs:
       # Force xmake to a specific folder (for cache)
 
       - name: Setup Devkitpro
-        run: wget https://github.com/devkitPro/pacman/releases/download/devkitpro-pacman-1.0.1/devkitpro-pacman.deb && dpkg -i devkitpro-pacman.deb
+        run: wget https://apt.devkitpro.org/install-devkitpro-pacman && chmod +x ./install-devkitpro-pacman && sudo ./install-devkitpro-pacman
       
       - name: Install devkitA64
         run: dkp-pacman -S switch-dev
