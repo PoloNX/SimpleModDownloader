@@ -18,7 +18,7 @@ jobs:
   build-nx:
     strategy:
       matrix:
-        os: [windows-latest]
+        os: [ubuntu-latest]
         arch: [x64]
         mode: [debug, release]
     
