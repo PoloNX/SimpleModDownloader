@@ -49,17 +49,11 @@ jobs:
         id: dep_hash
         run: echo "HASH=$(xmake l utils.ci.packageskey)" >> $GITHUB\_ENV
 
-      - name: Retrieve cached xmake dependencies
-        uses: actions/cache@v3
-        with:
-          path: ${{ env.XMAKE_GLOBALDIR }}\.xmake\packages
-          key: MSVC-${{ matrix.arch }}-${{ matrix.mode }}-${{ steps.dep_hash.outputs.hash }}-W${{ steps.pkg_key.outputs.key }}
-
       - name: Configure xmake and install dependencies
-        run: xmake config --arch=${{ matrix.arch }} --mode=${{ matrix.mode }} --yes
+        run: xmake f --yes -p switch -m ${{ matrix.mode }} -a aarch64 --toolchain=devkita64 
 
       - name: Build SimpleModDownloader
-        run: xmake f --yes -p switch -m debug -a aarch64 --toolchain=devkita64 && xmake -vD
+        run: xmake -vD
 
       - uses: actions/upload-artifact@v2
         with:
