@@ -11,7 +11,7 @@ add_defines(
 
 add_rules("mode.debug", "mode.release")
 
-add_requires("borealis", {repo = "switch-repo"}, "libcurl", "libarchive", "bzip2", "zlib", "liblzma", "lz4", "libexpat", "libzstd")
+add_requires("borealis", {repo = "switch-repo"}, "deko3d", "libcurl", "libarchive", "bzip2", "zlib", "liblzma", "lz4", "libexpat", "libzstd")
 
 target("SimpleModDownloader")
     set_kind("binary")
@@ -36,4 +36,4 @@ target("SimpleModDownloader")
 
     add_files("source/**.cpp")
     add_includedirs("include")
-    add_packages("borealis", "libcurl", "libarchive", "bzip2", "zlib", "liblzma", "lz4", "libexpat", "libzstd")
+    add_packages("borealis", "deko3d", "libcurl", "libarchive", "bzip2", "zlib", "liblzma", "lz4", "libexpat", "libzstd")

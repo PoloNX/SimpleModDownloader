@@ -95,5 +95,5 @@ toolchain("devkita64")
 
         toolchain:add("linkdirs", "${DEVKITPRO}/libnx/lib", "${DEVKITPRO}/portlibs/switch/lib")
         toolchain:add("syslinks", "gcc", "c", "m", "nx")
-        toolchain:add("links", "nx", "deko3d", "EGL", "glapi", "glfw3", "archive")
+        toolchain:add("links", "nx", "deko3d")
     end)

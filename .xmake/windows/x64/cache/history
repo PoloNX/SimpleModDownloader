@@ -1,9 +1,0 @@
-{
-    cmdlines = {
-        "xmake f --yes -p switch -m debug -a aarch64 --toolchain=devkita64 -vD",
-        "xmake f --yes -p switch -m debug -a aarch64 --toolchain=devkita64",
-        "xmake f --yes -p switch -m debug -a aarch64 --toolchain=devkita64",
-        "xmake ",
-        [[xmake l c:\Users\geyre\.vscode\extensions\tboox.xmake-vscode-2.3.5\assets\explorer.lua]]
-    }
-}
