@@ -1,62 +1,62 @@
 {
-    tool_package_switch_aarch64_ld = {
-        program = [[C:\devkitPro\devkitA64\bin\aarch64-none-elf-g++]],
-        toolname = "gxx",
+    tool_platform_switch_aarch64_ld = {
         toolchain_info = {
             arch = "aarch64",
-            plat = "switch",
             name = "devkita64",
-            cachekey = "devkita64_arch_aarch64_plat_switch"
-        }
-    },
-    tool_target_SimpleModDownloader_switch_aarch64_ld = {
+            cachekey = "devkita64_arch_aarch64_plat_switch",
+            plat = "switch"
+        },
         program = [[C:\devkitPro\devkitA64\bin\aarch64-none-elf-g++]],
-        toolname = "gxx",
-        toolchain_info = {
-            arch = "aarch64",
-            plat = "switch",
-            name = "devkita64",
-            cachekey = "devkita64_arch_aarch64_plat_switch"
-        }
+        toolname = "gxx"
     },
     tool_target_SimpleModDownloader_switch_aarch64_cxx = {
-        program = [[C:\devkitPro\devkitA64\bin\aarch64-none-elf-g++]],
-        toolname = "gxx",
         toolchain_info = {
             arch = "aarch64",
-            plat = "switch",
             name = "devkita64",
+            plat = "switch",
             cachekey = "devkita64_arch_aarch64_plat_switch"
-        }
-    },
-    tool_package_switch_aarch64_cxx = {
+        },
         program = [[C:\devkitPro\devkitA64\bin\aarch64-none-elf-g++]],
-        toolname = "gxx",
-        toolchain_info = {
-            arch = "aarch64",
-            plat = "switch",
-            name = "devkita64",
-            cachekey = "devkita64_arch_aarch64_plat_switch"
-        }
+        toolname = "gxx"
     },
     tool_platform_switch_aarch64_cc = {
+        toolchain_info = {
+            arch = "aarch64",
+            name = "devkita64",
+            cachekey = "devkita64_arch_aarch64_plat_switch",
+            plat = "switch"
+        },
         program = [[C:\devkitPro\devkitA64\bin\aarch64-none-elf-gcc]],
-        toolname = "gcc",
-        toolchain_info = {
-            arch = "aarch64",
-            plat = "switch",
-            name = "devkita64",
-            cachekey = "devkita64_arch_aarch64_plat_switch"
-        }
+        toolname = "gcc"
     },
-    tool_platform_switch_aarch64_ld = {
-        program = [[C:\devkitPro\devkitA64\bin\aarch64-none-elf-g++]],
-        toolname = "gxx",
+    tool_target_SimpleModDownloader_switch_aarch64_ld = {
         toolchain_info = {
             arch = "aarch64",
-            plat = "switch",
             name = "devkita64",
+            plat = "switch",
             cachekey = "devkita64_arch_aarch64_plat_switch"
-        }
+        },
+        program = [[C:\devkitPro\devkitA64\bin\aarch64-none-elf-g++]],
+        toolname = "gxx"
+    },
+    tool_package_switch_aarch64_cxx = {
+        toolchain_info = {
+            arch = "aarch64",
+            name = "devkita64",
+            cachekey = "devkita64_arch_aarch64_plat_switch",
+            plat = "switch"
+        },
+        program = [[C:\devkitPro\devkitA64\bin\aarch64-none-elf-g++]],
+        toolname = "gxx"
+    },
+    tool_package_switch_aarch64_ld = {
+        toolchain_info = {
+            arch = "aarch64",
+            name = "devkita64",
+            cachekey = "devkita64_arch_aarch64_plat_switch",
+            plat = "switch"
+        },
+        program = [[C:\devkitPro\devkitA64\bin\aarch64-none-elf-g++]],
+        toolname = "gxx"
     }
 }

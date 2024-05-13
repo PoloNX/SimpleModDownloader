@@ -15,10 +15,6 @@ void exit();
 int main(int argc, char* argv[]) {     
     init();
     
-    if(!brls::Application::init()) {
-        brls::Logger::error("Unable to init Borealis application");
-    }
-
     brls::Logger::setLogLevel(brls::LogLevel::LOG_DEBUG);
 
     std::filesystem::create_directories("sdmc:/config/SimpleModDownloader");
@@ -28,12 +24,14 @@ int main(int argc, char* argv[]) {
 
     {
         cfg::Config config;
-        brls::Logger::debug("Lang : {}", config.getAppLanguage());
-        brls::Logger::debug("Platform : {}", brls::Application::getPlatform()->getName());
         if(config.getAppLanguage() != "auto") {
             brls::Platform::APP_LOCALE_DEFAULT = config.getAppLanguage();
             brls::Logger::debug("Loaded translations for language {}", config.getAppLanguage());
         }
+    }
+
+    if(!brls::Application::init()) {
+        brls::Logger::error("Unable to init Borealis application");
     }
 
 
