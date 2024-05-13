@@ -40,6 +40,13 @@ jobs:
           sudo apt-get update
           sudo apt-get -y install mesa-common-dev
       # Force xmake to a specific folder (for cache)
+
+      - name: Setup Devkitpro
+        run: wget https://github.com/devkitPro/pacman/releases/download/devkitpro-pacman-1.0.1/devkitpro-pacman.deb && dpkg -i devkitpro-pacman.deb
+      
+      - name: Install devkitA64
+        run: dkp-pacman -S switch-dev
+
       - name: Set xmake env
         run: echo "XMAKE_GLOBALDIR=${{ runner.workspace }}/xmake-global" >> $GITHUB_ENV
 
@@ -51,19 +58,6 @@ jobs:
 
       - name: Update xmake repository
         run: xmake repo --update
-
-              # Fetch xmake dephash
-      - name: Retrieve dependencies hash
-        id: dep_hash
-        run: echo "hash=$(xmake l utils.ci.packageskey)" >> $GITHUB_OUTPUT
-
-    # Cache xmake dependencies
-      - name: Restore cached xmake dependencies
-        id: restore-depcache
-        uses: actions/cache/restore@v4
-        with:
-          path: ${{ env.XMAKE_GLOBALDIR }}/.xmake/packages
-          key: Linux-${{ matrix.arch }}-${{ matrix.confs.mode }}${{ matrix.confs.cache_key }}-${{ steps.dep_hash.outputs.hash }}-W${{ steps.cache_key.outputs.key }}
 
       - name: Configure xmake and install dependencies
         run: xmake f --yes -p switch -m ${{ matrix.mode }} -a aarch64 --toolchain=devkita64 
