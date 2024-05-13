@@ -17,9 +17,10 @@ permissions:
 jobs:
   build-nx:
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest]
-        arch: [x64]
+        arch: [x86_64]
         mode: [debug, release]
     
     runs-on: ${{ matrix.os }}
@@ -28,11 +29,11 @@ jobs:
 
     steps:
       - name: Get current date as package key
-        id: pkg_key
-        run: echo "::set-output name=key::$(date +'%W')"
+        id: cache_key
+        run: echo "key=$(date +'%W')" >> $GITHUB_OUTPUT
 
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Install system dependencies
       - name: Install system dependencies
@@ -47,9 +48,23 @@ jobs:
         uses: xmake-io/github-action-setup-xmake@v1
         with:
           xmake-version: branch@dev
+          actions-cache-folder: .xmake-cache-W${{ steps.cache_key.outputs.key }}
 
       - name: Update xmake repository
         run: xmake repo --update
+
+              # Fetch xmake dephash
+      - name: Retrieve dependencies hash
+        id: dep_hash
+        run: echo "hash=$(xmake l utils.ci.packageskey)" >> $GITHUB_OUTPUT
+
+    # Cache xmake dependencies
+      - name: Restore cached xmake dependencies
+        id: restore-depcache
+        uses: actions/cache/restore@v4
+        with:
+          path: ${{ env.XMAKE_GLOBALDIR }}/.xmake/packages
+          key: Linux-${{ matrix.arch }}-${{ matrix.confs.mode }}${{ matrix.confs.cache_key }}-${{ steps.dep_hash.outputs.hash }}-W${{ steps.cache_key.outputs.key }}
 
       - name: Configure xmake and install dependencies
         run: xmake f --yes -p switch -m ${{ matrix.mode }} -a aarch64 --toolchain=devkita64 
