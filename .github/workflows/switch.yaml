@@ -34,8 +34,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      # Install system dependencies
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get -y install mesa-common-dev
+      # Force xmake to a specific folder (for cache)
       - name: Set xmake env
-        run: echo "XMAKE_GLOBALDIR=${{ runner.workspace }}/xmake-global" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+        run: echo "XMAKE_GLOBALDIR=${{ runner.workspace }}/xmake-global" >> $GITHUB_ENV
 
       - name: Setup xmake
         uses: xmake-io/github-action-setup-xmake@v1
