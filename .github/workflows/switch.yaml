@@ -47,7 +47,7 @@ jobs:
 
       - name: Retrieve dependencies hash
         id: dep_hash
-        run: echo "::set-output name=hash::$(xmake l utils.ci.packageskey)"
+        run: echo "HASH=$(xmake l utils.ci.packageskey)" >> $GITHUB\_ENV
 
       - name: Retrieve cached xmake dependencies
         uses: actions/cache@v3
