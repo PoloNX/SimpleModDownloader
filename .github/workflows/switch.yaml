@@ -21,10 +21,10 @@ jobs:
         os: [windows-latest]
         arch: [x64]
         mode: [debug, release]
-        container: [devkitpro/devkita64]
     
     runs-on: ${{ matrix.os }}
     if: "!contains(github.event.head_commit.message, 'ci skip')"
+    container: devkitpro/devkita64
 
     steps:
       - name: Get current date as package key
