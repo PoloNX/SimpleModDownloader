@@ -45,10 +45,6 @@ jobs:
       - name: Update xmake repository
         run: xmake repo --update
 
-      - name: Retrieve dependencies hash
-        id: dep_hash
-        run: echo "HASH=$(xmake l utils.ci.packageskey)" >> $GITHUB\_ENV
-
       - name: Configure xmake and install dependencies
         run: xmake f --yes -p switch -m ${{ matrix.mode }} -a aarch64 --toolchain=devkita64 
 
