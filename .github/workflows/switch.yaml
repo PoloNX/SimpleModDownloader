@@ -40,6 +40,8 @@ jobs:
 
       - name: Install xmake
         run: |
+          sudo apt-get update
+          sudo apt-get install -y git build-essential libreadline-dev
           wget https://xmake.io/shget.text -O - | bash
 
       - name: Setup xmake
