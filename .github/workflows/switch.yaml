@@ -25,6 +25,7 @@ jobs:
     
     runs-on: ${{ matrix.os }}
     if: "!contains(github.event.head_commit.message, 'ci skip')"
+    container: devkitpro/devkita64
 
     steps:
       - name: Get current date as package key
@@ -34,26 +35,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Force xmake to a specific folder (for cache)
-
-      - name: Setup Devkitpro Pacman
-        run: |
-          sudo apt-get update
-          sudo apt-get -y install wget
-          wget https://apt.devkitpro.org/install-devkitpro-pacman
-          chmod +x ./install-devkitpro-pacman
-          sudo ./install-devkitpro-pacman
-
-      - name: Install devkitA64
-        run: sudo dkp-pacman -Sg switch-dev
-
-      - name: Add Devkitpro to PATH
-        run: |
-          echo "export PATH=$PATH:/opt/devkitpro/devkitA64/aarch64-none-elf" >> $GITHUB_ENV
-          echo "export DEVKITPRO=/opt/devkitpro" >> $GITHUB_ENV
-
       - name: Set xmake env
         run: echo "XMAKE_GLOBALDIR=${{ runner.workspace }}/xmake-global" >> $GITHUB_ENV
+
+      - name: Install xmake
+        run: |
+          wget https://xmake.io/shget.text -O - | bash
 
       - name: Setup xmake
         uses: xmake-io/github-action-setup-xmake@v1
