@@ -38,11 +38,6 @@ jobs:
       - name: Set xmake env
         run: echo "XMAKE_GLOBALDIR=${{ runner.workspace }}/xmake-global" >> $GITHUB_ENV
 
-      - name: Install xmake
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y git build-essential libreadline-dev
-          wget https://xmake.io/shget.text -O - | bash
 
       - name: Setup xmake
         uses: xmake-io/github-action-setup-xmake@v1
@@ -51,13 +46,13 @@ jobs:
           actions-cache-folder: .xmake-cache-W${{ steps.cache_key.outputs.key }}
 
       - name: Update xmake repository
-        run: xmake repo --update
+        run: xmake repo --update --root
 
       - name: Configure xmake and install dependencies
-        run: xmake f --yes -p switch -m ${{ matrix.mode }} -a aarch64 --toolchain=devkita64  -vD
+        run: xmake f --yes -p switch -m ${{ matrix.mode }} -a aarch64 --toolchain=devkita64 -vD --root
 
       - name: Build SimpleModDownloader
-        run: xmake -vD
+        run: xmake -vD --root
 
       - uses: actions/upload-artifact@v2
         with:
