@@ -52,6 +52,9 @@ jobs:
           echo "export PATH=$PATH:/opt/devkitpro/devkita64/aarch64-none-elf" >> $GITHUB_ENV
           echo "export DEVKITPRO=/opt/devkitpro" >> $GITHUB_ENV
 
+      - name: Show Devkitpro directory structure
+        run: tree /opt/devkitpro
+
       - name: Set xmake env
         run: echo "XMAKE_GLOBALDIR=${{ runner.workspace }}/xmake-global" >> $GITHUB_ENV
 
