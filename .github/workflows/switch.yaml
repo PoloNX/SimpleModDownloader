@@ -45,7 +45,7 @@ jobs:
         run: wget https://apt.devkitpro.org/install-devkitpro-pacman && chmod +x ./install-devkitpro-pacman && sudo ./install-devkitpro-pacman
       
       - name: Install DevkitPro
-        run: sudo dkp-pacmn -Sy && sudo dkp-pacman -Sg dkp-libs && sudo dkp-pacman -Sg dkp-windows
+        run: sudo dkp-pacman -Sy && sudo dkp-pacman -Sg dkp-libs && sudo dkp-pacman -Sg dkp-windows
       
       - name: Install devkitA64
         run: sudo dkp-pacman -Sg switch-dev
