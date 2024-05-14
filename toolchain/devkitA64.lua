@@ -91,7 +91,7 @@ toolchain("devkita64")
         toolchain:add("cxxflags", "-frtti", "-fexceptions", {force = true})
         
         toolchain:add("asflags", "-g", "-march=armv8-a+crc+crypto", "-mtune=cortex-a57", "-mtp=soft", "-fPIE", {force = true})
-        toolchain:add("ldflags", "-specs=C:/devkitPro/libnx/switch.specs", "-g", "-W", "-fPIC","$(notdir $*.map)", {force = true})
+        toolchain:add("ldflags", "-specs=${DEVKITPRO}/libnx/switch.specs", "-g", "-W", "-fPIC","$(notdir $*.map)", {force = true})
 
         toolchain:add("linkdirs", "${DEVKITPRO}/libnx/lib", "${DEVKITPRO}/portlibs/switch/lib")
         toolchain:add("syslinks", "gcc", "c", "m", "nx")
