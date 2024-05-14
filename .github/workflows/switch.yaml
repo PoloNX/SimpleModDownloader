@@ -46,7 +46,7 @@ jobs:
           actions-cache-folder: .xmake-cache-W${{ steps.cache_key.outputs.key }}
 
       - name: Update xmake repository
-        run: xmake repo --update --root && xmake repo -u --root
+        run: xmake repo --update --root && xmake repo -u --root && dkp-pacman -Rs --noconfirm switch-tinyxml2
 
       - name: Configure xmake and install dependencies
         run: xmake f --yes -p switch -m ${{ matrix.mode }} -a aarch64 --toolchain=devkita64 -vD --root
