@@ -59,7 +59,7 @@ jobs:
         run: xmake repo --update
 
       - name: Configure xmake and install dependencies
-        run: xmake f --yes -p switch -m ${{ matrix.mode }} -a aarch64 --toolchain=devkita64 
+        run: xmake f --yes -p switch -m ${{ matrix.mode }} -a aarch64 --toolchain=devkita64  -vD
 
       - name: Build SimpleModDownloader
         run: xmake -vD
