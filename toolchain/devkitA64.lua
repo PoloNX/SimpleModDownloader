@@ -68,7 +68,7 @@ toolchain("devkita64")
 
     local DEVKITPRO = os.getenv("DEVKITPRO")
     if not DEVKITPRO then
-        echo("Please set DEVKITPRO var")
+        DEVKITPRO = "/opt/devkitpro"
         return
     end
 
@@ -81,6 +81,7 @@ toolchain("devkita64")
     add_links(path.join(DEVKITPRO, "/portlibs/switch/lib/liblz4.a"))
     add_links(path.join(DEVKITPRO, "/portlibs/switch/lib/libbz2.a"))
     add_links(path.join(DEVKITPRO, "/portlibs/switch/lib/libz.a"))
+    add_links(path.join(DEVKITPRO, "/portlibs/switch/lib/libcurl.a"))
 
     on_load(function(toolchain)
         toolchain:add("defines", "__SWITCH__", "SWITCH", "DEBUG", "DYG_ENABLE_EVENTS", "HAVE_LIBNX", "STBI_NO_THREAD_LOCALS", "BOREALIS_USE_DEKO3D")
@@ -91,9 +92,9 @@ toolchain("devkita64")
         toolchain:add("cxxflags", "-frtti", "-fexceptions", {force = true})
         
         toolchain:add("asflags", "-g", "-march=armv8-a+crc+crypto", "-mtune=cortex-a57", "-mtp=soft", "-fPIE", {force = true})
-        toolchain:add("ldflags", "-specs=C:/devkitPro/libnx/switch.specs", "-g", "-W", "-fPIC","$(notdir $*.map)", {force = true})
+        toolchain:add("ldflags", "-specs=" .. path.join(DEVKITPRO, "/libnx/switch.specs"), "-g", "-W", "-fPIC","$(notdir $*.map)", {force = true})
 
-        toolchain:add("linkdirs", "${DEVKITPRO}/libnx/lib", "${DEVKITPRO}/portlibs/switch/lib")
+        toolchain:add("linkdirs", path.join(DEVKITPRO, "/libnx/lib"), path.join(DEVKITPRO, "/portlibs/switch/lib"))
         toolchain:add("syslinks", "gcc", "c", "m", "nx")
-        toolchain:add("links", "nx", "deko3d")
+        toolchain:add("links", "nx", "deko3d", "curl")
     end)
