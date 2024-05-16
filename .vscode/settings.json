@@ -73,6 +73,7 @@
         "condition_variable": "cpp",
         "mutex": "cpp",
         "ranges": "cpp",
-        "typeindex": "cpp"
+        "typeindex": "cpp",
+        "filesystem": "cpp"
     }
 }

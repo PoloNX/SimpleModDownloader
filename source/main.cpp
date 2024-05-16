@@ -12,13 +12,15 @@
 void init();
 void exit();
 
-int main(int argc, char* argv[]) {
+int main(int argc, char* argv[]) {     
+    init();
+    
     brls::Logger::setLogLevel(brls::LogLevel::LOG_DEBUG);
 
     std::filesystem::create_directories("sdmc:/config/SimpleModDownloader");
-    //Using FILE* because brls::Logger::setLogOutput only takes FILE*, not std::ofstream
-    FILE* logFile = fopen("sdmc:/config/SimpleModDownloader/log.log", "w");
-    brls::Logger::setLogOutput(logFile);
+    // Using FILE* because brls::Logger::setLogOutput only takes FILE*, not std::ofstream
+    //FILE* logFile = fopen("sdmc:/config/SimpleModDownloader/log.log", "w");
+    //brls::Logger::setLogOutput(logFile);
 
     {
         cfg::Config config;
@@ -31,8 +33,6 @@ int main(int argc, char* argv[]) {
     if(!brls::Application::init()) {
         brls::Logger::error("Unable to init Borealis application");
     }
-
-    init();
 
     brls::loadTranslations();
 
@@ -74,10 +74,20 @@ void init() {
     splInitialize();
     fsInitialize();
     romfsInit();
+    setInitialize();
+    psmInitialize();
+    nifmInitialize(NifmServiceType_User);
+    lblInitialize();
+    nxlinkStdio();
+    socketInitializeDefault();
     curl_global_init(CURL_GLOBAL_ALL);
 }
 
 void exit() {
+    lblExit();
+    nifmExit();
+    psmExit();
+    setExit();
     romfsExit();
     splExit();
     pminfoExit();
@@ -86,5 +96,6 @@ void exit() {
     setsysExit();
     fsExit();
     plExit();
+    socketExit();
     curl_global_cleanup();
 }
