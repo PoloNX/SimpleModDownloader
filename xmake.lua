@@ -28,6 +28,7 @@ target("SimpleModDownloader")
     set_values("switch.author", "PoloNX")
     set_values("switch.version", "2.1.0")
     set_values("switch.romfs", "resources")
+    set_values("switch.icon", "resources/icon/icon-256.jpg")
 
     -- SimpleIniParser
     add_files("lib/ini/source/SimpleIniParser/*.cpp")

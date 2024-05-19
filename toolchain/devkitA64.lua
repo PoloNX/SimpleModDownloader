@@ -49,16 +49,22 @@ toolchain("devkita64")
 
     set_kind("standalone")
 
-    set_toolset("cc", "aarch64-none-elf-gcc")
-    set_toolset("cxx", "aarch64-none-elf-g++")
-    set_toolset("ld", "aarch64-none-elf-g++")
-    set_toolset("sh", "aarch64-none-elf-g++")
-    set_toolset("ar", "aarch64-none-elf-ar")
-    set_toolset("strip", "aarch64-none-elf-strip")
-    set_toolset("objcopy", "aarch64-none-elf-objcopy")
-    set_toolset("ranlib", "aarch64-none-elf-ranlib")
-    set_toolset("as", "aarch64-none-elf-gcc")
+    local DEVKITPRO = os.getenv("DEVKITPRO")
+    if not DEVKITPRO then
+        DEVKITPRO = "/opt/devkitpro"
+        return
+    end
 
+    set_toolset("cc", DEVKITPRO .. "/devkitA64/bin/" .. "aarch64-none-elf-gcc")
+    set_toolset("cxx", DEVKITPRO .. "/devkitA64/bin/" .. "aarch64-none-elf-g++")
+    set_toolset("ld", DEVKITPRO .. "/devkitA64/bin/" .. "aarch64-none-elf-g++")
+    set_toolset("sh", DEVKITPRO .. "/devkitA64/bin/" .. "aarch64-none-elf-g++")
+    set_toolset("ar", DEVKITPRO .. "/devkitA64/bin/" .. "aarch64-none-elf-ar")
+    set_toolset("strip", DEVKITPRO .. "/devkitA64/bin/" .. "aarch64-none-elf-strip")
+    set_toolset("objcopy", DEVKITPRO .. "/devkitA64/bin/" .. "aarch64-none-elf-objcopy")
+    set_toolset("ranlib", DEVKITPRO .. "/devkitA64/bin/" .. "aarch64-none-elf-ranlib")
+    set_toolset("as", DEVKITPRO .. "/devkitA64/bin/" .. "aarch64-none-elf-gcc")
+    
     add_cxflags(buildflags)
     add_asflags(buildflags)
     add_ldflags(executablelinkflags)
@@ -66,11 +72,7 @@ toolchain("devkita64")
 
     on_check("check")
 
-    local DEVKITPRO = os.getenv("DEVKITPRO")
-    if not DEVKITPRO then
-        DEVKITPRO = "/opt/devkitpro"
-        return
-    end
+
 
     add_linkdirs(path.join(DEVKITPRO, "/libnx/lib"), path.join(DEVKITPRO, "/portlibs/switch/lib"))
     add_includedirs(path.join(DEVKITPRO, "/libnx/include"), path.join(DEVKITPRO, "/portlibs/switch/include"))

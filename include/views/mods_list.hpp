@@ -20,6 +20,20 @@ class ModCell : public brls::RecyclerCell
     static ModCell* create();
 };
 
+class CategorieCell : public brls::RecyclerCell
+{
+  public:
+    CategorieCell();
+
+    BRLS_BIND(brls::Rectangle, accent, "brls/sidebar/item_accent");
+    BRLS_BIND(brls::Label, label, "categorie");
+    
+    //TODO : Multithreaded image loading
+    //BRLS_BIND(brls::Image, image, "image");
+
+    static CategorieCell* create();
+};
+
 class ModData : public brls::RecyclerDataSource 
 {
 public:

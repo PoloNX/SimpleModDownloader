@@ -9,6 +9,8 @@ Game::Game(const std::string& m_title, const std::string& m_tid) {
     tid = m_tid;
     searchGame();
     parseJson();
+    loadCategories();
+
 }
 
 void Game::searchGame() {
@@ -40,5 +42,22 @@ void Game::parseJson() {
 
     if(json.at("_aRecords")[0].find("_sBannerUrl") != json.at("_aRecords")[0].end()) {
         bannerURL = json.at("_aRecords")[0].at("_sBannerUrl").get<std::string>();
+    }
+
+
+
+}
+
+void Game::loadCategories() {
+    json_categories = net::downloadRequest(fmt::format("https://gamebanana.com/apiv11/Game/{}/ProfilePage", gamebananaID));
+
+    if(json_categories.empty()) {
+        brls::Logger::error("Failed to load tags for game: {}", title);
+    }
+
+    brls::Logger::debug("json : {}", json_categories.dump());
+    for(auto tag : json_categories.at("_aModRootCategories")) {
+        brls::Logger::debug("Tag: {}", tag.at("_sName").get<std::string>());
+        categories.push_back(tag.at("_sName").get<std::string>());
     }
 }
