@@ -6,13 +6,15 @@
 
 class Category {
 public:
-    Category(const std::string& name, const int& ID) : name(name), ID(ID) {}
+    Category(const std::string& name, const int& ID, const int& index) : name(name), ID(ID), index(index) {}
     Category() {}
     std::string getName() { return name; }
     int getID() { return ID; }
+    int getIndex() { return index; }
 private:
     std::string name = "";
     int ID = 0;
+    int index = 0;
 };
 
 class Game {

@@ -109,7 +109,8 @@ ModListTab::ModListTab(Game& game) {
     
     this->registerAction("menu/mods/categories"_i18n, brls::ControllerButton::BUTTON_X, [this, game](brls::View* view) mutable {
         brls::Logger::debug("Filters button pressed");
-        int selected = 0;
+        int selected = this->modData->getModList()->getCategory().getIndex();
+
         std::vector<std::string> categoriesNames = {};
         for (auto i : game.getCategories()) {
             categoriesNames.push_back(i.getName());

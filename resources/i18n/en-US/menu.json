@@ -79,7 +79,8 @@
         "download": "Download",
         "to": "to",
         "mods_for": "Mods for",
-        "files": "Files"
+        "files": "Files",
+        "categories": "Categories"
     },
 
     "settings_tab" : {

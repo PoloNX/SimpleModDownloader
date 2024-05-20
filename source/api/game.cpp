@@ -9,7 +9,8 @@ Game::Game(const std::string& m_title, const std::string& m_tid) {
     tid = m_tid;
     searchGame();
     parseJson();
-    loadCategories();
+    if (gamebananaID != 0)
+        loadCategories();
 
 }
 
@@ -55,10 +56,9 @@ void Game::loadCategories() {
         brls::Logger::error("Failed to load tags for game: {}", title);
     }
 
-    brls::Logger::debug("json : {}", json_categories.dump());
-    
+    int index = 0;
     for(auto tag : json_categories.at("_aModRootCategories")) {
-        brls::Logger::debug("Tag: {}", tag.at("_sName").get<std::string>());
-        categories.push_back(Category(tag.at("_sName").get<std::string>(), tag.at("_idRow").get<int>()));
+        categories.push_back(Category(tag.at("_sName").get<std::string>(), tag.at("_idRow").get<int>(), index));
+        index++;
     }
 }

@@ -81,6 +81,8 @@ class ModList {
         void previousPage();
         void search(const std::string& search);
         void setCategory(const Category& category);
+
+        Category getCategory() {return currentCategory;}
     private:
         void updatePage();
         
