@@ -110,9 +110,15 @@ ModListTab::ModListTab(Game& game) {
     this->registerAction("menu/mods/categories"_i18n, brls::ControllerButton::BUTTON_X, [this, game](brls::View* view) mutable {
         brls::Logger::debug("Filters button pressed");
         int selected = 0;
-        auto selector = new brls::Dropdown("menu/mods/categories"_i18n, game.getCategories(), [this, &selected, game](int _selected) mutable{
-            brls::Logger::debug("Selected categorie : {}", game.getCategories()[_selected]);
-           
+        std::vector<std::string> categoriesNames = {};
+        for (auto i : game.getCategories()) {
+            categoriesNames.push_back(i.getName());
+        }
+    
+        auto selector = new brls::Dropdown("menu/mods/categories"_i18n, categoriesNames, [this, &selected, game, categoriesNames](int _selected) mutable{
+            brls::Logger::debug("Selected categorie : {}", categoriesNames[_selected]);
+            this->modData->getModList()->setCategory(game.getCategories()[_selected]);
+            this->recycler->reloadData();
             return true;
         }, selected);
         brls::Application::pushActivity(new brls::Activity(selector));

@@ -125,8 +125,8 @@ void ModList::updatePage() {
     nlohmann::json mod_json;
     
 
-    if (currentCategorie != "") {
-        mod_json = net::downloadRequest(fmt::format("https://gamebanana.com/apiv11/Game/{}/Subfeed?_nPage={}&_nPerpage=50&_sName={}&_csvModelInclusions=Mod", game.getGamebananaID(), currentPage, currentSearch));
+    if (currentCategory.getName() != "") {
+        mod_json = net::downloadRequest(fmt::format("https://gamebanana.com/apiv11/Mod/Index?_nPerpage=15&_aFilters[Generic_Category]={}&_nPage={}", currentCategory.getID(), currentPage));
     }
     else if(currentSearch == "") {
         mod_json = net::downloadRequest(fmt::format("https://gamebanana.com/apiv11/Game/{}/Subfeed?_nPage={}?_nPerpage=50&_csvModelInclusions=Mod", game.getGamebananaID(), currentPage));
@@ -176,8 +176,8 @@ void ModList::search(const std::string& search) {
     updatePage();
 }
 
-void ModList::setCategorie(const std::string& categorie) {
-    this->currentCategorie = categorie;
+void ModList::setCategory(const Category& category) {
+    this->currentCategory = category;
     currentPage = 1;
     updatePage();
 }

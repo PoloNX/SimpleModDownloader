@@ -4,6 +4,17 @@
 #include <borealis.hpp>
 #include <nlohmann/json.hpp>
 
+class Category {
+public:
+    Category(const std::string& name, const int& ID) : name(name), ID(ID) {}
+    Category() {}
+    std::string getName() { return name; }
+    int getID() { return ID; }
+private:
+    std::string name = "";
+    int ID = 0;
+};
+
 class Game {
     public:
         Game(const std::string& title, const std::string& tid);
@@ -14,7 +25,7 @@ class Game {
         std::string getTid() { return tid; }
         brls::Image* getIcon() { return icon; }
         std::string getBannerUrl() { return bannerURL; }
-        std::vector<std::string> getCategories() { return categories; }
+        std::vector<Category> getCategories() { return categories; }
     private:
         void loadCategories();
         void searchGame();
@@ -27,6 +38,6 @@ class Game {
         std::string bannerURL;
         int gamebananaID = 0;
         std::string tid;
-        std::vector<std::string> categories;
+        std::vector<Category> categories;
         brls::Image* icon;
 };

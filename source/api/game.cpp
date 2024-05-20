@@ -56,8 +56,9 @@ void Game::loadCategories() {
     }
 
     brls::Logger::debug("json : {}", json_categories.dump());
+    
     for(auto tag : json_categories.at("_aModRootCategories")) {
         brls::Logger::debug("Tag: {}", tag.at("_sName").get<std::string>());
-        categories.push_back(tag.at("_sName").get<std::string>());
+        categories.push_back(Category(tag.at("_sName").get<std::string>(), tag.at("_idRow").get<int>()));
     }
 }
