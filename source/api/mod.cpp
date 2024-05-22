@@ -86,7 +86,7 @@ File::File(const std::string &name, const int &size, const std::string &url, con
 
 bool File::findRomfsRecursive(const nlohmann::json& obj) {
     for (const auto& item : obj.items()) {
-        if (item.key() == "romfs") {
+        if (item.key() == "romfs" || item.key() == "exefs"){
             brls::Logger::debug("found romfs");
             return true;
         }

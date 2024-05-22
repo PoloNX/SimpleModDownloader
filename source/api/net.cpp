@@ -124,19 +124,17 @@ namespace net {
         curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
         curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
 
+        std::ofstream ofs(path, std::ios::binary); 
+
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallbackFile);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &ofs);
+
         auto res = curl_easy_perform(curl);
 
         if(res != CURLE_OK) {
             brls::Logger::error(curl_easy_strerror(res));
             return; 
         }
-
-        std::ofstream ofs(path, std::ios::binary); 
-
-        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallbackFile);
-        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &ofs);
-
-        res = curl_easy_perform(curl); 
 
         ofs.close();
 

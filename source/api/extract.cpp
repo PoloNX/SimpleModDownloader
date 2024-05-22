@@ -99,9 +99,9 @@ bool extractEntry(const std::string& archiveFile, const std::string& outputDir, 
 
 
                     if (std::string(entryName).find("romfs/") != std::string::npos)
-                        outputFilePath = outputDir + "/" + std::string(entryName).substr(std::string(entryName).find("romfs/") + 6);
+                        outputFilePath = outputDir + "/" + std::string(entryName).substr(std::string(entryName).find("romfs/"));
                     else
-                        outputFilePath = outputDir + "/" + std::string(entryName).substr(std::string(entryName).find("exefs/") + 6);
+                        outputFilePath = outputDir + "/" + std::string(entryName).substr(std::string(entryName).find("exefs/"));
 
                     if (std::string(entryName).find("|") != std::string::npos)
                         outputFilePath = outputFilePath.substr(0, outputFilePath.find("|"));
