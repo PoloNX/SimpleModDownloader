@@ -21,11 +21,13 @@
             paddingLeft="@style/brls/sidebar/padding_left">
 
             <brls:SelectorCell
-            id="language_selector"/>
+                id="language_selector"/>
             
             <brls:BooleanCell
                 id="debug_cell"/>
-                
+            
+            <brls:BooleanCell
+                id="strict_cell"/>
 
         </brls:Box>
 

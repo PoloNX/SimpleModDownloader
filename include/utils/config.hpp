@@ -16,10 +16,13 @@ namespace cfg {
             std::string getAppLanguage();
             void setAppLanguage(const std::string& app_language);
 
+            bool getStrictSearch();
+            void setStringSearch(bool strict);
 
         private:
 
             std::string app_language;
+            bool is_strict;
 
             void loadConfig();
             void parseConfig();

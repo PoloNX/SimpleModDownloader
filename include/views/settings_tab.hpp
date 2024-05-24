@@ -10,4 +10,5 @@ public:
 private:
     BRLS_BIND(brls::SelectorCell, language_selector, "language_selector");
     BRLS_BIND(brls::BooleanCell, debug_cell, "debug_cell");
+    BRLS_BIND(brls::BooleanCell, strict_cell, "strict_cell");
 };
