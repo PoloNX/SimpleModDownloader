@@ -62,7 +62,7 @@ namespace cfg {
 
     void Config::parseConfig() {
         app_language = config.contains("language") ? config["language"].get<std::string>() : "en-US";
-        is_strict = config.contains("is_strict") ? config["is_strict"].get<bool>() : false;
+        is_strict = config.contains("is_strict") ? config["is_strict"].get<bool>() : true;
     }
 
     std::string Config::getAppLanguage() {
