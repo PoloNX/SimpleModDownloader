@@ -85,7 +85,8 @@
 
     "settings_tab" : {
         "language" : "Select language",
-        "debug" : "Debug layer"
+        "debug" : "Debug layer",
+        "strict": "Strict search when looking up games (no false positives)"
     },
 
     "crash" : {

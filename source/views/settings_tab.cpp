@@ -37,6 +37,11 @@ SettingsTab::SettingsTab() {
             brls::Logger::info("{} the debug layer", value ? "Open" : "Close");
         });
     });
+
+    this->strict_cell->init("menu/settings_tab/strict"_i18n, config.getStrictSearch(), [](bool value){
+        cfg::Config config;
+        config.setStringSearch(value);
+    });
 }
 
 brls::View* SettingsTab::create()
