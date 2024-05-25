@@ -120,16 +120,17 @@ void DownloadView::updateProgress() {
     ASYNC_RETAIN
     brls::sync([ASYNC_TOKEN]() {
         ASYNC_RELEASE
-        auto button = new brls::Button();
+        this->dismiss();
+        /*auto button = new brls::Button();
         button->setText("hints/back"_i18n);
         button->setFocusable(true);
         button->registerClickAction(brls::ActionListener([this](brls::View* view) {
-            this->dismiss();
+            
             return true;
         }));
         this->addView(button);
         brls::Application::giveFocus(button);
-        getAppletFrame()->setActionAvailable(brls::ControllerButton::BUTTON_B, true);
+        getAppletFrame()->setActionAvailable(brls::ControllerButton::BUTTON_B, true);*/
     });
 }
 
