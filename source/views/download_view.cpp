@@ -120,6 +120,8 @@ void DownloadView::updateProgress() {
     ASYNC_RETAIN
     brls::sync([ASYNC_TOKEN]() {
         ASYNC_RELEASE
+        getAppletFrame()->setHeaderVisibility(brls::Visibility::GONE);
+        getAppletFrame()->setActionAvailable(brls::ControllerButton::BUTTON_B, true);
         this->dismiss();
         /*auto button = new brls::Button();
         button->setText("hints/back"_i18n);
