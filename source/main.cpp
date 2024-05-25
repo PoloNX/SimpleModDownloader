@@ -20,10 +20,12 @@ int main(int argc, char* argv[]) {
 
     std::filesystem::create_directories("sdmc:/config/SimpleModDownloader");
 
-    //std::cout << "test nxlink" << std::endl;
-    // Using FILE* because brls::Logger::setLogOutput only takes FILE*, not std::ofstream
-    //FILE* logFile = fopen("sdmc:/config/SimpleModDownloader/log.log", "w");
-    //brls::Logger::setLogOutput(logFile);
+    #ifdef NDEBUG //release
+        // Using FILE* because brls::Logger::setLogOutput only takes FILE*, not std::ofstream
+        FILE* logFile = fopen("sdmc:/config/SimpleModDownloader/log.log", "w");
+        brls::Logger::setLogOutput(logFile);
+    #endif
+
 
     {
         cfg::Config config;

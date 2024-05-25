@@ -86,7 +86,7 @@ toolchain("devkita64")
     add_links(path.join(DEVKITPRO, "/portlibs/switch/lib/libcurl.a"))
 
     on_load(function(toolchain)
-        toolchain:add("defines", "__SWITCH__", "SWITCH", "DEBUG", "DYG_ENABLE_EVENTS", "HAVE_LIBNX", "STBI_NO_THREAD_LOCALS", "BOREALIS_USE_DEKO3D")
+        toolchain:add("defines", "SWITCH",  "HAVE_LIBNX", "STBI_NO_THREAD_LOCALS", "BOREALIS_USE_DEKO3D")
         toolchain:add("arch", "-march=armv8-a+crc+crypto", "-mtune=cortex-a57", "-mtp=soft", "-fPIE")
 
         toolchain:add("cflags", "-g", "-Wall", "-O2", "-ffunction-sections", "-fdata-sections", {force = true})
