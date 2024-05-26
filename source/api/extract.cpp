@@ -101,7 +101,7 @@ bool extractEntry(const std::string& archiveFile, const std::string& outputDir, 
                     if (std::string(entryName).find("romfs/") != std::string::npos) //romfs
                         outputFilePath = fmt::format("{}/contents/{}/{}", outputDir, tid, std::string(entryName).substr(std::string(entryName).find("romfs/")));
                     else if (std::string(entryName).find("exefs_patches/") != std::string::npos)//exefs_patches
-                        outputFilePath = fmt::format("{}/exefs_patches/{}", outputDir, std::string(entryName).substr(std::string(entryName).find("exefs_patches/")));
+                        outputFilePath = fmt::format("{}/{}", outputDir, std::string(entryName).substr(std::string(entryName).find("exefs_patches/")));
                     else //Exefs
                         outputFilePath = fmt::format("{}/contents/{}/{}", outputDir, tid, std::string(entryName).substr(std::string(entryName).find("exefs/")));
 
