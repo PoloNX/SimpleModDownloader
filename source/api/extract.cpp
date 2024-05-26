@@ -93,20 +93,22 @@ bool extractEntry(const std::string& archiveFile, const std::string& outputDir, 
             const char* entryName = archive_entry_pathname(entry);
             
             if ((tid != smash_tid)) {
-                if (std::string(entryName).find("romfs/") != std::string::npos || std::string(entryName).find("exefs/") != std::string::npos) {
+                if (std::string(entryName).find("romfs/") != std::string::npos || std::string(entryName).find("exefs/") != std::string::npos || std::string(entryName).find("exefs_patches/") != std::string::npos) {
                     
                     std::string outputFilePath;
 
 
-                    if (std::string(entryName).find("romfs/") != std::string::npos)
-                        outputFilePath = outputDir + "/" + std::string(entryName).substr(std::string(entryName).find("romfs/"));
-                    else
-                        outputFilePath = outputDir + "/" + std::string(entryName).substr(std::string(entryName).find("exefs/"));
+                    if (std::string(entryName).find("romfs/") != std::string::npos) //romfs
+                        outputFilePath = fmt::format("{}/contents/{}/{}", outputDir, tid, std::string(entryName).substr(std::string(entryName).find("romfs/")));
+                    else if (std::string(entryName).find("exefs_patches/") != std::string::npos)//exefs_patches
+                        outputFilePath = fmt::format("{}/exefs_patches/{}", outputDir, std::string(entryName).substr(std::string(entryName).find("exefs_patches/")));
+                    else //Exefs
+                        outputFilePath = fmt::format("{}/contents/{}/{}", outputDir, tid, std::string(entryName).substr(std::string(entryName).find("exefs/")));
 
                     if (std::string(entryName).find("|") != std::string::npos)
                         outputFilePath = outputFilePath.substr(0, outputFilePath.find("|"));
                   
-                    brls::Logger::debug("Extracting file: {}", outputFilePath);
+                    brls::Logger::debug("Extracting file {} to {}", entryName,outputFilePath);
                     std::filesystem::path outputPath(outputFilePath);
                     std::filesystem::create_directories(outputPath.parent_path());
 
