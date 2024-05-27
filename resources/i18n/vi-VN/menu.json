@@ -1,0 +1,95 @@
+{
+    "main": {
+        "app_name": "SimpleModDownloader"
+    },
+
+    "title": {
+        "downloading_smm": "Đang tải SimpleModManager",
+        "downloading_smd": "Đang tải SimpleModDownloader",
+        "downloading": "Đang tải",
+        "extracting": "Đang giải nén"
+    },
+    
+    "tabs": {
+        "downloads": "Tải xuống",
+        "install": "Cài đặt",
+        "update": "Cập nhật ứng dụng",
+        "about": "Thông tin",
+        "settings": "Tùy chỉnh"
+    },
+    
+    "notify": {
+        "no_games_gamebanana": "Không tìm thấy trò chơi nào trong cơ sở dữ liệu GameBanana",
+        "not_supported": "Định dạng này không được hỗ trợ: ",
+        "string_to_short": "Chuỗi tìm kiếm phải dài ít nhất 3 ký tự",
+        "mod_unsupported": "Bản mod không được hỗ trợ bởi SimpleModDownloader",
+        "smash_bros": "Super Smash Bros. Ultimate sử dụng trình quản lý mod ARCropolis. SimpleModDownloader ủng hộ điều này, không sử dụng SimpleModManager để cài đặt mod"
+    },
+    
+    "worker": {
+        "of": "của",
+        "cancel": "Hủy",
+        "install": "Cài",
+        "remaining": "Thời gian còn lại"
+    },
+    
+    "about": {
+        "title": "Thông tin SimpleModDownloader",
+        "description": "SimpleModDownloader là ứng dụng cho phép bạn tải xuống và cài đặt các bản mod cho trò chơi Nintendo Switch do PoloNX tạo ra.",
+        "thanks": "\u25c6 Cảm ơn @nadrino về SimpleModManager\n\u25c6 Cảm ơn Natinusala, xfangfang và XITRIX về borealis\n\u25c6 Cảm ơn Pikatsuto về logo và SuperButterScotch về kiểu chữ\n\u25c6 Cảm ơn NicholeMattera về Simple-INI-Parser",
+        "translator": "\u25c6 Cảm ơn traductors",
+        "_MESSAGE_TO_TRANSLATORS": "HyperVN https://t.me/HyperVN"
+    },
+    
+    "label": {
+        "no_games": "Không tìm thấy trò chơi nào trên Switch",
+        "install": "Cài đặt",
+        "desc_install": "Để cài đặt mod, bạn cần sử dụng ứng dụng SimpleModManager được tạo bởi @nadrino.",
+        "extract": "Quá trình trích xuất đã hoàn tất. Để cài đặt mod, hãy chuyển đến tab Cài đặt.",
+        "update": "Cập nhật ứng dụng",
+        "new_update": "\u25c6 Phiên bản hiện tại:",
+        "available_version" : "\u25c6 Phiên bản mới nhất:",
+        "restart_smd": "Khởi động lại SimpleModDownloader để áp dụng bản cập nhật.",
+        "no_internet": "Không có kết nối Internet.",
+        "desc_smd": "\u25c6 Bạn có thể cập nhật ứng dụng bạn đang sử dụng trên switch",
+        "path": "Đường dẫn",
+        "url": "Liên kết"
+    },
+    
+    "item": {
+        "launch_smm": "Khởi chạy SimpleModManager",
+        "download_smm": "Tải xuống SimpleModManager",
+        "download_smd": "Tải xuống SimpleModDownloader",
+        "check_update": "Kiểm tra cập nhật"
+    },
+    
+    "mods": {
+        "mods_list_title": "Danh sách mod",
+        "search": "Tìm kiếm",
+        "search_placeholder": "Nhập tên mod (tối thiểu 3 ký tự)",
+        "cancel": "Hủy bỏ",
+        "links": "Liên kết tải xuống",
+        "size": "Kích thước",
+        "date": "Ngày",
+        "screenshots" : "Ảnh chụp màn hình",
+        "description": "Miêu tả",
+        "browser": "Mở trong trình duyệt",
+        "author": "Tác giả",
+        "page": "Trang",
+        "download": "Tải xuống",
+        "to": "đến",
+        "mods_for": "Mods cho",
+        "files": "Tệp tin"
+		"categories": "Danh mục"
+    },
+
+    "settings_tab" : {
+        "language" : "Chọn ngôn ngữ",
+        "debug" : "Lớp gỡ lỗi"
+		"strict": "Tìm kiếm nghiêm ngặt khi tra cứu trò chơi (không nhận diện sai)"
+    },
+
+    "crash" : {
+        "sd_full" : "Thẻ SD đã đầy. Vui lòng giải phóng dung lượng và khởi động lại ứng dụng."
+    }
+}
