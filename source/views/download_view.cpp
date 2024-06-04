@@ -57,7 +57,9 @@ void DownloadView::downloadFile() {
 
     //Prevent incorrect chars in the path
     std::regex badChars("[:/\\<>|*]");
-    extract::extractEntry(this->file.getPath(), fmt::format("sdmc:/{}/{}/{}", utils::getModInstallPath(), std::regex_replace(this->file.getGame().getTitle(), badChars, "-"), std::regex_replace(this->file.getModName(), badChars, "-")), this->file.getGame().getTid());
+    std::regex accent("é");
+    extract::extractEntry(this->file.getPath(), fmt::format("sdmc:/{}/{}/{}", utils::getModInstallPath(), std::regex_replace(std::regex_replace(this->file.getGame().getTitle(), badChars, "-"), accent, "e"), std::regex_replace(this->file.getModName(), badChars, "-")), this->file.getGame().getTid());
+    
     this->extractFinished = true;
 }
 
