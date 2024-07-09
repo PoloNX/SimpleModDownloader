@@ -30,16 +30,6 @@ toolchain("devkita64")
         return
     end
 
-    add_linkdirs(path.join(DEVKITPRO, "/libnx/lib"), path.join(DEVKITPRO, "/portlibs/switch/lib"))
-    add_includedirs(path.join(DEVKITPRO, "/libnx/include"), path.join(DEVKITPRO, "/portlibs/switch/include"))
-
-    add_links(path.join(DEVKITPRO, "/portlibs/switch/lib/libarchive.a"))
-    add_links(path.join(DEVKITPRO, "/portlibs/switch/lib/libzstd.a"))
-    add_links(path.join(DEVKITPRO, "/portlibs/switch/lib/liblzma.a"))
-    add_links(path.join(DEVKITPRO, "/portlibs/switch/lib/liblz4.a"))
-    add_links(path.join(DEVKITPRO, "/portlibs/switch/lib/libbz2.a"))
-    add_links(path.join(DEVKITPRO, "/portlibs/switch/lib/libz.a"))
-
     on_load(function(toolchain)
         toolchain:add("defines", "SWITCH",  "HAVE_LIBNX")
         toolchain:add("arch", "-march=armv8-a+crc+crypto", "-mtune=cortex-a57", "-mtp=soft", "-fPIE")
@@ -51,7 +41,5 @@ toolchain("devkita64")
         toolchain:add("asflags", "-g", "-march=armv8-a+crc+crypto", "-mtune=cortex-a57", "-mtp=soft", "-fPIE", {force = true})
         toolchain:add("ldflags", "-specs=" .. path.join(DEVKITPRO, "/libnx/switch.specs"), "-g", "-W", "-fPIC","$(notdir $*.map)", {force = true})
 
-        toolchain:add("linkdirs", "${DEVKITPRO}/libnx/lib", "${DEVKITPRO}/portlibs/switch/lib")
-        toolchain:add("syslinks", "gcc", "c", "m", "nx")
-        toolchain:add("links", "nx", "deko3d")
+        toolchain:add("syslinks", "gcc", "c", "m")
     end)
