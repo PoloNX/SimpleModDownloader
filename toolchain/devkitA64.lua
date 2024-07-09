@@ -1,8 +1,7 @@
 local triple = "aarch64-unknown-none-elf"
 
 local buildflags = {
-    "-march=armv8-a+crc+crypto+simd",
-    "-mcpu=cortex-a57",
+    "-mcpu=cortex-a57",  -- Utiliser uniquement -mcpu
     "-mtune=cortex-a57",
     "-ftls-model=local-exec",
     "-ffunction-sections",
@@ -69,24 +68,18 @@ toolchain("devkita64")
     add_ldflags(executablelinkflags)
     add_shflags(sharedlinkflags)
 
-
-    --add_linkdirs(path.join(DEVKITPRO, "/libnx/lib"), path.join(DEVKITPRO, "/portlibs/switch/lib"))
-    --add_includedirs(path.join(DEVKITPRO, "/libnx/include"), path.join(DEVKITPRO, "/portlibs/switch/include"))
-
     on_check("check")
 
     on_load(function(toolchain)
         toolchain:add("defines", "SWITCH", "__SWITCH__",  "HAVE_LIBNX")
-        toolchain:add("arch", "-march=armv8-a+crc+crypto", "-mtune=cortex-a57", "-mtp=soft", "-fPIE")
+        toolchain:add("arch", "-mcpu=cortex-a57", "-mtune=cortex-a57", "-mtp=soft", "-fPIE")
 
         toolchain:add("cflags", "-g", "-Wall", "-O2", "-ffunction-sections", "-fdata-sections", {force = true})
-        toolchain:add("cxflags", "-march=armv8-a+crc+crypto", "-mtune=cortex-a57", "-mtp=soft", "-fPIE", {force = true})
+        toolchain:add("cxflags", "-mcpu=cortex-a57", "-mtune=cortex-a57", "-mtp=soft", "-fPIE", {force = true})
         toolchain:add("cxxflags", "-frtti", "-fexceptions", {force = true})
         
-        toolchain:add("asflags", "-g", "-march=armv8-a+crc+crypto", "-mtune=cortex-a57", "-mtp=soft", "-fPIE", {force = true})
+        toolchain:add("asflags", "-g", "-mcpu=cortex-a57", "-mtune=cortex-a57", "-mtp=soft", "-fPIE", {force = true})
         toolchain:add("ldflags", "-specs=" .. path.join(DEVKITPRO, "/libnx/switch.specs"), "-g", "-W", "-fPIC","$(notdir $*.map)", {force = true})
 
-        -- toolchain:add("linkdirs", path.join(DEVKITPRO, "/libnx/lib"), path.join(DEVKITPRO, "/portlibs/switch/lib"))
         toolchain:add("syslinks", "gcc", "c", "m")
-        -- toolchain:add("links", "deko3d")
     end)
