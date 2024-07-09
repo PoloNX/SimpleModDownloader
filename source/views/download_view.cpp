@@ -56,8 +56,10 @@ void DownloadView::downloadFile() {
     ProgressEvent::instance().reset();
 
     //Prevent incorrect chars in the path
-    std::regex badChars("[:/|*]");
-    extract::extractEntry(this->file.getPath(), fmt::format("sdmc:/{}/{}/{}/contents/{}/romfs", utils::getModInstallPath(), std::regex_replace(this->file.getGame().getTitle(), badChars, "-"), std::regex_replace(this->file.getModName(), badChars, "-"), std::regex_replace(this->file.getGame().getTid(), badChars, "-")), this->file.getGame().getTid());
+    std::regex badChars("[:/\\<>|*]");
+    std::regex accent("é");
+    extract::extractEntry(this->file.getPath(), fmt::format("sdmc:/{}/{}/{}", utils::getModInstallPath(), std::regex_replace(std::regex_replace(this->file.getGame().getTitle(), badChars, "-"), accent, "e"), std::regex_replace(this->file.getModName(), badChars, "-")), this->file.getGame().getTid());
+    
     this->extractFinished = true;
 }
 
@@ -120,16 +122,19 @@ void DownloadView::updateProgress() {
     ASYNC_RETAIN
     brls::sync([ASYNC_TOKEN]() {
         ASYNC_RELEASE
-        auto button = new brls::Button();
+        getAppletFrame()->setHeaderVisibility(brls::Visibility::GONE);
+        getAppletFrame()->setActionAvailable(brls::ControllerButton::BUTTON_B, true);
+        this->dismiss();
+        /*auto button = new brls::Button();
         button->setText("hints/back"_i18n);
         button->setFocusable(true);
         button->registerClickAction(brls::ActionListener([this](brls::View* view) {
-            this->dismiss();
+            
             return true;
         }));
         this->addView(button);
         brls::Application::giveFocus(button);
-        getAppletFrame()->setActionAvailable(brls::ControllerButton::BUTTON_B, true);
+        getAppletFrame()->setActionAvailable(brls::ControllerButton::BUTTON_B, true);*/
     });
 }
 

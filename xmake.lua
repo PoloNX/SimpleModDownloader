@@ -6,7 +6,9 @@ includes("toolchain/*.lua")
 
 add_defines(
     'BRLS_RESOURCES="romfs:/"',
-    "YG_ENABLE_EVENTS"
+    "YG_ENABLE_EVENTS",
+    "STBI_NO_THREAD_LOCALS", 
+    "BOREALIS_USE_DEKO3D"
 )
 
 add_rules("mode.debug", "mode.release")
@@ -28,6 +30,7 @@ target("SimpleModDownloader")
     set_values("switch.author", "PoloNX")
     set_values("switch.version", "2.1.0")
     set_values("switch.romfs", "resources")
+    set_values("switch.icon", "resources/icon/icon-256.jpg")
 
     -- SimpleIniParser
     add_files("lib/ini/source/SimpleIniParser/*.cpp")

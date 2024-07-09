@@ -80,6 +80,9 @@ class ModList {
         void nextPage();
         void previousPage();
         void search(const std::string& search);
+        void setCategory(const Category& category);
+
+        Category getCategory() {return currentCategory;}
     private:
         void updatePage();
         
@@ -87,4 +90,5 @@ class ModList {
         int currentPage = 1;
         std::string currentSearch = "";
         Game game;
+        Category currentCategory;
 };

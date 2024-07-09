@@ -2,6 +2,7 @@
 #include <switch.h>
 #include <curl/curl.h>
 #include <filesystem>
+#include <iostream>
 
 #include "views/game_list_tab.hpp"
 #include "views/installation_view.hpp"
@@ -18,9 +19,13 @@ int main(int argc, char* argv[]) {
     brls::Logger::setLogLevel(brls::LogLevel::LOG_DEBUG);
 
     std::filesystem::create_directories("sdmc:/config/SimpleModDownloader");
-    // Using FILE* because brls::Logger::setLogOutput only takes FILE*, not std::ofstream
-    //FILE* logFile = fopen("sdmc:/config/SimpleModDownloader/log.log", "w");
-    //brls::Logger::setLogOutput(logFile);
+
+    #ifdef NDEBUG //release
+        // Using FILE* because brls::Logger::setLogOutput only takes FILE*, not std::ofstream
+        FILE* logFile = fopen("sdmc:/config/SimpleModDownloader/log.log", "w");
+        brls::Logger::setLogOutput(logFile);
+    #endif
+
 
     {
         cfg::Config config;
@@ -67,6 +72,8 @@ int main(int argc, char* argv[]) {
 
 void init() {
     setsysInitialize();
+    socketInitializeDefault();
+    nxlinkStdio();
     plInitialize(PlServiceType_User);
     nsInitialize();
     pmdmntInitialize();
@@ -78,8 +85,6 @@ void init() {
     psmInitialize();
     nifmInitialize(NifmServiceType_User);
     lblInitialize();
-    nxlinkStdio();
-    socketInitializeDefault();
     curl_global_init(CURL_GLOBAL_ALL);
 }
 

@@ -70,11 +70,17 @@ rule("switch")
         import("core.base.option")
         import("core.project.config")
 
-        local ryujinx = "Ryujinx"
-        assert(ryujinx, "Ryujinx not in PATH")
+        if(os.isexec("Ryujinx")) then
+            ryujinx = "Ryujinx"
+        elseif(os.isexec("ryujinx")) then
+            ryujinx = "ryujinx"
+        else
+            cprint("${color.build.target}Please install Ryujinx first")
+            ryujinx = "ryujinx"
+        end
 
         local target_file = target:targetfile()
         local executable = target_file .. ".nro"
 
-        os.runv(ryujinx, {executable})
+        os.run(ryujinx, {executable})
     end)

@@ -17,6 +17,16 @@ ModCell* ModCell::create()
     return new ModCell();
 }
 
+CategorieCell::CategorieCell()
+{
+    this->inflateFromXMLRes("xml/cells/categorie_cell.xml");
+}
+
+CategorieCell* CategorieCell::create()
+{
+    return new CategorieCell();
+}
+
 brls::RecyclerCell* ModData::cellForRow(brls::RecyclerFrame* recycler, brls::IndexPath indexPath)
 {
     auto cell = (ModCell*)recycler->dequeueReusableCell("Cell");
@@ -93,6 +103,26 @@ ModListTab::ModListTab(Game& game) {
         }
         this->modData->getModList()->search(search);
         this->recycler->reloadData();
+        return true;
+    });
+
+    
+    this->registerAction("menu/mods/categories"_i18n, brls::ControllerButton::BUTTON_X, [this, game](brls::View* view) mutable {
+        brls::Logger::debug("Filters button pressed");
+        int selected = this->modData->getModList()->getCategory().getIndex();
+
+        std::vector<std::string> categoriesNames = {};
+        for (auto i : game.getCategories()) {
+            categoriesNames.push_back(i.getName());
+        }
+    
+        auto selector = new brls::Dropdown("menu/mods/categories"_i18n, categoriesNames, [this, &selected, game, categoriesNames](int _selected) mutable{
+            brls::Logger::debug("Selected categorie : {}", categoriesNames[_selected]);
+            this->modData->getModList()->setCategory(game.getCategories()[_selected]);
+            this->recycler->reloadData();
+            return true;
+        }, selected);
+        brls::Application::pushActivity(new brls::Activity(selector));
         return true;
     });
 

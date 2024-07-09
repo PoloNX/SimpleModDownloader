@@ -61,12 +61,8 @@ namespace cfg {
     }
 
     void Config::parseConfig() {
-        if(config.contains("language")) {
-            app_language = config["language"];
-        } else {
-            app_language = "en-US";
-        }
-
+        app_language = config.contains("language") ? config["language"].get<std::string>() : "en-US";
+        is_strict = config.contains("is_strict") ? config["is_strict"].get<bool>() : true;
     }
 
     std::string Config::getAppLanguage() {
@@ -77,8 +73,16 @@ namespace cfg {
         this->app_language = app_language;
     }
 
+    bool Config::getStrictSearch() {
+        return this->is_strict;
+    }
+    void Config::setStringSearch(bool strict) {
+        this->is_strict = strict;
+    }
+
     void Config::saveConfig() {
         this->config["language"] = app_language;
+        this->config["is_strict"] = is_strict;
 
         std::ofstream file("sdmc:/config/SimpleModDownloader/settings.json");
         file << this->config.dump(4);

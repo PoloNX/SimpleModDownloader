@@ -86,7 +86,7 @@ File::File(const std::string &name, const int &size, const std::string &url, con
 
 bool File::findRomfsRecursive(const nlohmann::json& obj) {
     for (const auto& item : obj.items()) {
-        if (item.key() == "romfs") {
+        if (item.key() == "romfs" || item.key() == "exefs" || item.key() == "exefs_patches"){
             brls::Logger::debug("found romfs");
             return true;
         }
@@ -124,9 +124,14 @@ void ModList::updatePage() {
     
     nlohmann::json mod_json;
     
-    if(currentSearch == "") {
+
+    if (currentCategory.getName() != "") {
+        mod_json = net::downloadRequest(fmt::format("https://gamebanana.com/apiv11/Mod/Index?_nPerpage=15&_aFilters[Generic_Category]={}&_nPage={}", currentCategory.getID(), currentPage));
+    }
+    else if(currentSearch == "") {
         mod_json = net::downloadRequest(fmt::format("https://gamebanana.com/apiv11/Game/{}/Subfeed?_nPage={}?_nPerpage=50&_csvModelInclusions=Mod", game.getGamebananaID(), currentPage));
-    } else {
+    } 
+    else {
         mod_json = net::downloadRequest(fmt::format("https://gamebanana.com/apiv11/Game/{}/Subfeed?_nPage={}&_nPerpage=50&_sName={}&_csvModelInclusions=Mod", game.getGamebananaID(), currentPage, currentSearch));
     }
 
@@ -167,6 +172,12 @@ void ModList::search(const std::string& search) {
         return;
     }
     this->currentSearch = search;
+    currentPage = 1;
+    updatePage();
+}
+
+void ModList::setCategory(const Category& category) {
+    this->currentCategory = category;
     currentPage = 1;
     updatePage();
 }

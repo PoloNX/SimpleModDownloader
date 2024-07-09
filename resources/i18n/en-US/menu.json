@@ -79,12 +79,14 @@
         "download": "Download",
         "to": "to",
         "mods_for": "Mods for",
-        "files": "Files"
+        "files": "Files",
+        "categories": "Categories"
     },
 
     "settings_tab" : {
         "language" : "Select language",
-        "debug" : "Debug layer"
+        "debug" : "Debug layer",
+        "strict": "Strict search when looking up games (no false positives)"
     },
 
     "crash" : {
