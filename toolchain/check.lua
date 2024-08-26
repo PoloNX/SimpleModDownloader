@@ -2,8 +2,8 @@
 -- import("lib.detect.find_tool")
 
 function main(toolchain)
-    if not is_plat("switch") then
-        cprint("Use switch platform")
+    if not is_plat("cross") then
+        cprint("Use cross platform")
         return
     end
 

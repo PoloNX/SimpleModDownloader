@@ -53,7 +53,7 @@ jobs:
         run: xmake repo --update --root && xmake repo -u --root && dkp-pacman -Rs --noconfirm switch-tinyxml2
 
       - name: Configure xmake and install dependencies
-        run: xmake f --yes -p switch -m ${{ matrix.mode }} -a aarch64 --toolchain=devkita64 -vD --root
+        run: xmake f --yes -p cross -m ${{ matrix.mode }} -a aarch64 --toolchain=devkita64 -vD --root
 
       - name: Build SimpleModDownloader
         run: xmake -vD --root
@@ -61,6 +61,6 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: SimpleModDownloader
-          path: build/switch/aarch64/debug/SimpleModDownloader.nro
+          path: build/cross/aarch64/debug/SimpleModDownloader.nro
       
       

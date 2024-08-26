@@ -17,7 +17,7 @@ add_requires("borealis", {repo = "switch-repo"}, "deko3d", "libcurl", "libarchiv
 
 target("SimpleModDownloader")
     set_kind("binary")
-    if not is_plat("switch") then 
+    if not is_plat("cross") then 
         return
     end
 

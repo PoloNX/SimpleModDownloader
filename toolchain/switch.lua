@@ -69,18 +69,54 @@ rule("switch")
 
         import("core.base.option")
         import("core.project.config")
+        import("lib.detect.find_program")
+        import("lib.detect.find_tool")
+        
+        local args = table.wrap(option.get("arguments"))
 
-        if(os.isexec("Ryujinx")) then
-            ryujinx = "Ryujinx"
-        elseif(os.isexec("ryujinx")) then
-            ryujinx = "ryujinx"
-        else
-            cprint("${color.build.target}Please install Ryujinx first")
-            ryujinx = "ryujinx"
+        if #args > 0 then
+            for i, arg in ipairs(args) do
+                cprint("${color.build.target}Argument[%d]: ${clear}%s", i, arg)
+                if arg:startswith("--nx=") then
+                    ip_addr = arg:sub(6)
+                    break
+                end
+            end
         end
+       
 
-        local target_file = target:targetfile()
-        local executable = target_file .. ".nro"
+        if ip_addr ~= nil and ip_addr ~= "" then
+            if find_tool("nxlink", {check = "--help"}) then
+                nxlink = "nxlink"
+            else
+                nxlink = "nxlink"
+                cprint("You must add nxlink to your PATH variable")
+            end
 
-        os.run(ryujinx, {executable})
+            local target_file = target:targetfile()
+            local executable = target_file .. ".nro"
+            local nxlink_args = {"-a", ip_addr, "-s", executable}
+
+            cprint("Launching from nxlink " .. executable)
+
+            local args_str = table.concat(nxlink_args, " ")
+        
+            os.execv(nxlink, nxlink_args)
+        else
+            if find_tool("ryujinx", {program = "ryujinx"}) then
+                ryujinx = "ryujinx"
+            elseif find_tool("Ryujinx", {program = "Ryujinx"}) then
+                ryujinx = "Ryujinx"
+            else
+                cprint("You must add ryujinx to your PATH variable")
+                return
+            end
+
+            local target_file = target:targetfile()
+            local executable = target_file .. ".nro"
+
+
+            cprint("Launching " .. executable)
+            os.execv(ryujinx, {executable})
+        end
     end)
