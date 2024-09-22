@@ -22,10 +22,12 @@
     "no_games_gamebanana": "GameBanana 데이터베이스에서 게임을 찾을 수 없습니다",
     "not_supported": "이 형식은 지원되지 않습니다: ",
     "string_to_short": "검색어는 최소 3자 이상이어야 합니다"
+	"mod_unsupported": "이 모드는 SimpleModDownloader에서 지원되지 않음",
+    "smash_bros": "Super Smash Bros. Ultimate는 ARCropolis 모드 관리자를 사용합니다. SimpleModDownloader가 지원하므로 SimpleModManager를 사용하여 모드를 설치하지 마세요"
   },
 
   "worker": {
-    "of": "중",
+    "of": "의",
     "cancel": "취소",
     "install": "설치 중",
     "remaining": "남은 시간"
@@ -36,6 +38,7 @@
     "description": "SimpleModDownloader는 PoloNX가 만든 닌텐도 스위치 게임을 위한 모드를 다운로드하고 설치할 수 있는 프로그램입니다.",
     "thanks": "\u25c6 SimpleModManager에 대한 감사를 표합니다. @nadrino\n\u25c6 Borealis에 대한 Natinusala 및 HamletDuFromage에게 감사를 표합니다\n\u25c6 로고에 대한 Pikatsuto 및 글꼴에 대한 SuperButterScotch에게 감사를 표합니다\n\u25c6 Simple-INI-Parser에 대한 NicholeMattera에게 감사를 표합니다",
     "translator": "\u25c6 번역에 감사드립니다. jshsakura님"
+	"_MESSAGE_TO_TRANSLATORS": "약/번역자에 대한 이름을 입력해주세요"
   },
 
   "label": {
@@ -72,11 +75,17 @@
     "browser": "브라우저에서 열기",
     "author": "제작자",
     "page": "페이지"
+	"download": "다운로드",
+    "to": "에게",
+    "mods_for": "Mod용",
+    "files": "파일",
+     "categories": "범주"
   },
 
   "settings_tab": {
     "language": "언어 선택",
-    "arc": "Smash 모드에 ARCropolis 사용"
+        "debug" : "디버그 레이어",
+        "strict": "게임을 찾을 때 엄격한 검색 (오진 없음)"
   },
 
   "crash": {
