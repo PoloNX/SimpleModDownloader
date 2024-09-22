@@ -1,15 +1,14 @@
 {
-    "hints": {
-        "ok": "확인",
-        "back": "뒤로가기",
-        "exit": "종료"
-    },
-
-    "crash_frame": {
-        "button": "확인"
-    },
-    
-    "thumbnail_sidebar": {
-        "save": "저장"
-    }
-}
+    "ok": "확인",
+    "cancel": "취소",
+    "back": "뒤로가기",
+    "exit": "나가기",
+    "exit_hint": "이 앱을 나갑니다...",
+    "open": "열기",
+    "on": "켬",
+    "off": "끔",
+    "delete": "삭제",
+    "save": "저장",
+    "input": "입력하세요...",
+    "submit": "제출"
+  }
