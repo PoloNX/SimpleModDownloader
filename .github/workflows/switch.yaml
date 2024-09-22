@@ -58,7 +58,7 @@ jobs:
       - name: Build SimpleModDownloader
         run: xmake -vD --root
 
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: SimpleModDownloader
           path: build/cross/aarch64/debug/SimpleModDownloader.nro
