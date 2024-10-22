@@ -58,7 +58,7 @@
 (sudo) pacman -S switch-curl switch-zlib switch-glfw switch-mesa switch-glm switch-libarchive  
 git clone --recursive https://github.com/PoloNX/SimpleModDownloader/
 cd SimpleModDownloader
-xmake f --yes -p switch -m release -a aarch64 --toolchain=devkita64
+xmake f --yes -p cross -m release -a aarch64 --toolchain=devkita64
 xmake
 ```
 
