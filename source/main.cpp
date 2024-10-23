@@ -44,7 +44,6 @@ int main(int argc, char* argv[]) {
     brls::Application::setGlobalQuit(false);
 
     brls::Application::createWindow(fmt::format("UpcomingSwitchGames"));
-    brls::Application::getPlatform()->setThemeVariant(brls::ThemeVariant::DARK);
     brls::Application::setGlobalQuit(false);
 
     //XML View
