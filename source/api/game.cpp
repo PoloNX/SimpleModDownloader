@@ -10,7 +10,7 @@ Game::Game(const std::string& m_title, const std::string& m_tid) {
     tid = m_tid;
     searchGame();
     parseJson();
-    if (gamebananaID != 0)
+    if (gamebananaID > 0)
         loadCategories();
 
 }
@@ -26,8 +26,15 @@ void Game::searchGame() {
         "https://gamebanana.com/apiv11/Util/Game/NameMatch?_sName={}" :
         "https://gamebanana.com/apiv11/Util/Search/Results?_sModelName=Game&_sOrder=best_match&_sSearchString={}%20%28Switch%29";
 
-    json = net::downloadRequest(fmt::format(endpoint, title_url));
-
+    try {
+        json = net::downloadRequest(fmt::format(endpoint, title_url));
+    } catch (const std::exception& e) {
+        brls::Logger::error("Failed to search for game: " + title + " - " + e.what());
+        gamebananaID = -1;
+        return;
+    }
+    
+    
     if(json.empty()) {
         brls::Logger::error("Failed to search for game: " + title);
     }

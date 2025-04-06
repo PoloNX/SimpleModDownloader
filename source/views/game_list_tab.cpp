@@ -36,6 +36,12 @@ void GameData::didSelectRowAt(brls::RecyclerFrame* recycler, brls::IndexPath ind
         dialog->open();
         return;
     }
+    if(game.getGamebananaID() == -1) {
+        auto dialog = new brls::Dialog("menu/notify/request_error"_i18n);
+        dialog->addButton("hints/ok"_i18n, []() {});
+        dialog->open();
+        return;
+    }
     auto modListTab = new ModListTab(game);
     recycler->present(modListTab);    
 }

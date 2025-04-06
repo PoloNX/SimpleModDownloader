@@ -23,7 +23,8 @@
         "not_supported": "This format is not supported: ",
         "string_to_short": "The search string must be at least 3 characters long",
         "mod_unsupported": "The mod isn't supported by SimpleModDownloader",
-        "smash_bros": "Super Smash Bros. Ultimate use ARCropolis mod manager. SimpleModDownloader support it, don't use SimpleModManager to install the mod"
+        "smash_bros": "Super Smash Bros. Ultimate use ARCropolis mod manager. SimpleModDownloader support it, don't use SimpleModManager to install the mod",
+        "request_error": "An error occurred while requesting the mod list. Please check your internet connection and try again. If the problem persists change in settings the strict search option."
     },
     
     "worker": {
