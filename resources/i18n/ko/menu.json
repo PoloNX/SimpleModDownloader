@@ -24,6 +24,7 @@
     "string_to_short": "검색어는 최소 3자 이상이어야 합니다"
 	"mod_unsupported": "이 모드는 SimpleModDownloader에서 지원되지 않음",
     "smash_bros": "Super Smash Bros. Ultimate는 ARCropolis 모드 관리자를 사용합니다. SimpleModDownloader가 지원하므로 SimpleModManager를 사용하여 모드를 설치하지 마세요"
+	"request_error": "모드 목록을 요청하는 중 오류가 발생했습니다. 인터넷 연결을 확인하고 다시 시도해 주세요. 문제가 지속되면 설정에서 엄격한 검색 옵션을 변경하세요."
   },
 
   "worker": {
@@ -71,7 +72,8 @@
     "links": "다운로드 링크",
     "size": "크기",
     "date": "날짜",
-    "images": "이미지 보기",
+    "screenshots" : "스크린샷",
+    "description": "설명",
     "browser": "브라우저에서 열기",
     "author": "제작자",
     "page": "페이지"
@@ -79,7 +81,7 @@
     "to": "에게",
     "mods_for": "Mod용",
     "files": "파일",
-     "categories": "범주"
+    "categories": "범주"
   },
 
   "settings_tab": {
