@@ -2,9 +2,10 @@ name: Switch build
 
 on:
   push:
-      branches: [ "*" ]
+    branches:
+      - master
   pull_request:
-    types: [opened, reopened]
+    types: [opened, reopened, synchronize]
   workflow_dispatch:
     inputs:
       nx:
