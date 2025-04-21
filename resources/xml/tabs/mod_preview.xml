@@ -80,26 +80,40 @@
                 <brls:Box
                     id="big_image_box"
                     height="auto"
-                    width = "80%"
+                    width = "auto"
                     alignItems = "center"
                     justifyContent = "center"
                     paddingRight="@style/brls/tab_frame/content_padding_sides"
                     paddingLeft="@style/brls/tab_frame/content_padding_sides"
                     marginBottom="30px">
-
-                    <brls:ProgressSpinner
-                        width="300"
-                        height="300"            
-                        margin="10"
-                        size="large"/>
                 
                 </brls:Box>
 
                 <!--small image box-->
                 <brls:Box
-                    id="small_image_box"
+                    id="small_image_box_1"
                     height="auto"
-                    width = "80%"
+                    width = "auto"
+                    alignItems="center"
+                    axis="row"
+                    paddingRight="@style/brls/tab_frame/content_padding_sides"
+                    paddingLeft="@style/brls/tab_frame/content_padding_sides">
+
+                </brls:Box>
+                <brls:Box
+                    id="small_image_box_2"
+                    height="auto"
+                    width = "auto"
+                    alignItems="center"
+                    axis="row"
+                    paddingRight="@style/brls/tab_frame/content_padding_sides"
+                    paddingLeft="@style/brls/tab_frame/content_padding_sides">
+
+                </brls:Box>
+                <brls:Box
+                    id="small_image_box_3"
+                    height="auto"
+                    width = "auto"
                     alignItems="center"
                     axis="row"
                     paddingRight="@style/brls/tab_frame/content_padding_sides"

@@ -3,6 +3,7 @@
 #include <borealis.hpp>
 
 #include "api/mod.hpp"
+#include "views/spinner_image_view.hpp"
 
 class FileBox : public brls::Box {
     public:
@@ -31,17 +32,27 @@ private:
 
     BRLS_BIND(brls::Box, files_box, "files_box");
     BRLS_BIND(brls::Box, big_image_box, "big_image_box");
-    BRLS_BIND(brls::Box, small_image_box, "small_image_box");
+    BRLS_BIND(brls::Box, small_image_box_1, "small_image_box_1");
+    BRLS_BIND(brls::Box, small_image_box_2, "small_image_box_2");
+    BRLS_BIND(brls::Box, small_image_box_3, "small_image_box_3");
 
     void loadImages();
+    bool shouldStopThread();
+    void processImageOnMainThread(size_t index, std::vector<unsigned char>& buffer);
+
     void loadButtons();
     void stopThread();
     std::thread secondThread;
     std::mutex threadMutex;
     std::condition_variable threadCondition;
-    bool stopThreadFlag = false;
+    
+    std::mutex bigImageMutex;
 
+    const int bigImageWidth = 1000;
+
+    bool stopThreadFlag = false;
+    bool isExiting = false;
     bool firstImageDownloaded = false;
 
-    brls::Image* bigImg = new brls::Image();
+    SpinnerImageView* bigSpinImg = new SpinnerImageView(1000, 563);
 };
