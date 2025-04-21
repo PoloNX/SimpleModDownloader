@@ -2,9 +2,10 @@ name: Switch build
 
 on:
   push:
-      branches: [ "*" ]
+    branches:
+      - master
   pull_request:
-    types: [opened, reopened]
+    types: [opened, reopened, synchronize]
   workflow_dispatch:
     inputs:
       nx:
@@ -21,7 +22,7 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         arch: [x86_64]
-        mode: [debug]
+        mode: [debug, release]
     
     runs-on: ${{ matrix.os }}
     if: "!contains(github.event.head_commit.message, 'ci skip')"
@@ -60,7 +61,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: SimpleModDownloader
-          path: build/cross/aarch64/debug/SimpleModDownloader.nro
+          name: SimpleModDownloader-${{ matrix.mode }}
+          path: build/cross/aarch64/${{ matrix.mode }}/SimpleModDownloader.nro
       
       
