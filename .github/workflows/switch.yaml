@@ -61,7 +61,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: SimpleModDownloader
-          path: build/cross/aarch64/debug/SimpleModDownloader.nro
+          name: SimpleModDownloader-${{ matrix.mode }}
+          path: build/cross/aarch64/${{ matrix.mode }}/SimpleModDownloader.nro
       
       
