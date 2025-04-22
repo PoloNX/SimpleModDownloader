@@ -1,10 +1,15 @@
 <brls:Box
-    width="auto"
-    height="auto">
+    width="1000"
+    height="auto"    
+    axis="row"
+    alignItems="spaceBetween"
+    justifyContent="spaceBetween">
+
     <brls:Box
         width="auto"
-        height="auto"    
+        height="auto"
         axis="column">
+
         <brls:Label
             id="title"
             width="auto"
@@ -40,10 +45,10 @@
                 marginLeft="@style/brls/sidebar/item_accent_margin_sides"
                 marginRight="@style/brls/sidebar/item_accent_margin_sides"/>
         </brls:Box>
-
-        <brls:Button
-            height="auto"
-            width="100%"
-            id="download"/>
     </brls:Box>
+
+    <brls:Button
+        height="auto"
+        width="20%"
+        id="download"/>
 </brls:Box>

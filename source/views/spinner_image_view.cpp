@@ -1,6 +1,6 @@
 #include "views/spinner_image_view.hpp"
 
-SpinnerImageView::SpinnerImageView(const int& width, const int& height) : width(width), height(height) {
+SpinnerImageView::SpinnerImageView(const int& width, const int& height, const int& margin) : width(width), height(height) {
     this->spinner = new brls::ProgressSpinner();
     this->image = new brls::Image();
 
@@ -13,27 +13,26 @@ SpinnerImageView::SpinnerImageView(const int& width, const int& height) : width(
     this->image->setScalingType(brls::ImageScalingType::FILL);
     this->image->setCornerRadius(10);
 
+    this->setMarginLeft(margin);
+    this->setMarginRight(margin);
+    this->setFocusable(true);
+
     this->addView(this->spinner);
 
-    #ifndef NDEBUG
-        this->setWireframeEnabled(true);
-    #endif
-    
     image->setVisibility(brls::Visibility::INVISIBLE);
 }
 
 void SpinnerImageView::setImage(const std::vector<unsigned char>& buffer) {
    
-        this->image->setImageFromMem(buffer.data(), buffer.size());
+    this->image->setImageFromMem(buffer.data(), buffer.size());
 
-        if (!isImageLoaded) {
-            this->image->setVisibility(brls::Visibility::VISIBLE);
-            this->spinner->setVisibility(brls::Visibility::INVISIBLE);
-            this->clearViews();
-            this->addView(this->image);
-            this->setFocusable(true);
-        }
+    if (!imageLoaded) {
+        this->image->setVisibility(brls::Visibility::VISIBLE);
+        this->spinner->setVisibility(brls::Visibility::INVISIBLE);
+        this->clearViews();
+        this->addView(this->image);
+    }
    
 
-    isImageLoaded = true;
+    imageLoaded = true;
 }

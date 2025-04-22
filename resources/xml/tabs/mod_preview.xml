@@ -69,6 +69,7 @@
 
             <!--SCREENSHOTS-->
             <brls:Box
+                id="screenshots_box"
                 width="auto"
                 height="auto"
                 axis="column"
@@ -90,7 +91,7 @@
                 </brls:Box>
 
                 <!--small image box-->
-                <brls:Box
+                <!-- <brls:Box
                     id="small_image_box_1"
                     height="auto"
                     width = "auto"
@@ -99,27 +100,7 @@
                     paddingRight="@style/brls/tab_frame/content_padding_sides"
                     paddingLeft="@style/brls/tab_frame/content_padding_sides">
 
-                </brls:Box>
-                <brls:Box
-                    id="small_image_box_2"
-                    height="auto"
-                    width = "auto"
-                    alignItems="center"
-                    axis="row"
-                    paddingRight="@style/brls/tab_frame/content_padding_sides"
-                    paddingLeft="@style/brls/tab_frame/content_padding_sides">
-
-                </brls:Box>
-                <brls:Box
-                    id="small_image_box_3"
-                    height="auto"
-                    width = "auto"
-                    alignItems="center"
-                    axis="row"
-                    paddingRight="@style/brls/tab_frame/content_padding_sides"
-                    paddingLeft="@style/brls/tab_frame/content_padding_sides">
-
-                </brls:Box>
+                </brls:Box> -->
 
             </brls:Box>
             
@@ -134,7 +115,7 @@
                 paddingLeft="@style/brls/tab_frame/content_padding_sides">
 
                 <brls:Header
-                    width="auto"
+                    width="100%"
                     height="auto"
                     title="@i18n/menu/mods/description"
                     marginBottom="30px"/>
@@ -156,7 +137,7 @@
                     singleLine="false"/>    
 
                 <brls:Header
-                    width="auto"
+                    width="100%"
                     height="auto"
                     title="@i18n/menu/mods/files"
                     marginTop="30px"/>

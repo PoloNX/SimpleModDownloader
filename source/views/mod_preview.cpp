@@ -3,6 +3,7 @@
 #include "views/spinner_image_view.hpp"
 #include "utils/utils.hpp"
 #include "utils/progress_event.hpp"
+#include "utils/config.hpp"
 
 #include <future>
 
@@ -11,6 +12,17 @@ using namespace brls::literals;
 FileBox::FileBox(File& file) {
     this->inflateFromXMLRes("xml/cells/file_cell.xml");
     this->setFocusable(false);
+
+    #ifndef NDEBUG
+    cfg::Config config;
+    if (config.getWireframe()) {
+        this->setWireframeEnabled(true);
+        for(auto& view : this->getChildren()) {
+            view->setWireframeEnabled(true);
+        }
+    }
+    #endif
+
     title->setText(file.getName());
     date->setText(fmt::format("{} : {}", "menu/mods/date"_i18n, utils::timestamp_to_date(static_cast<time_t>(file.getDate()))));
     size->setText(fmt::format("{} : {}", "menu/mods/size"_i18n, utils::file_size_to_string(file.getSize())));
@@ -79,6 +91,10 @@ void ModPreview::loadImages() {
         brls::Logger::debug("Thread stopped before starting.");
         return;
     }
+    size_t imageCount = this->mod.getImagesUrl().size();
+
+
+
 
     std::vector<SpinnerImageView*> spinnerViews;
 
@@ -86,31 +102,76 @@ void ModPreview::loadImages() {
     std::promise<void> spinnersAddedPromise;
     auto spinnersAddedFuture = spinnersAddedPromise.get_future();
 
-    brls::sync([this, &spinnerViews, &spinnersAddedPromise]() {
+    brls::sync([this, &spinnerViews, &spinnersAddedPromise, &imageCount]() {
         brls::Logger::debug("Adding spinners...");
-        size_t imageCount = this->mod.getImagesUrl().size();
         brls::Logger::debug("Number of image URLs: {}", imageCount);
 
-        for (size_t i = 0; i < std::min(imageCount, static_cast<size_t>(24)); i++) {
+        // create boxes for the images
+        for (auto i = 0; i < imageCount; i += 7) {
+            if (shouldStopThread()) {
+                brls::Logger::debug("Thread stopped while creating boxes.");
+                return;
+            }
+
+            auto box = new brls::Box();
+            box->setWidth(bigImageWidth);
+            box->setHeight(bigImageWidth/8 * 9/16);
+            box->setAxis(brls::Axis::ROW);
+            box->setJustifyContent(brls::JustifyContent::FLEX_START);
+            box->setAlignItems(brls::AlignItems::FLEX_START);
+            box->setWireframeEnabled(true);
+            screenshot_box->addView(box);
+            smallScreenshotsBoxs.push_back(box);
+        }
+
+        for (size_t i = 0; i < imageCount; i++) {
             if (shouldStopThread()) {
                 brls::Logger::debug("Thread stopped while adding spinners.");
                 return;
             }
 
-            auto spinnerImageView = new SpinnerImageView(bigImageWidth/8, bigImageWidth/8 * 9/16);
-            spinnerViews.push_back(spinnerImageView);
+            auto spinnerImageView = new SpinnerImageView(bigImageWidth/8, bigImageWidth/8 * 9/16, bigImageWidth/8/7/2);
+            this->smallScreenshotsBoxs[abs(i / 7)]->addView(spinnerImageView);
 
-            if (i < 8) {
-                small_image_box_1->addView(spinnerImageView);
-            } else if (i < 16) {
-                small_image_box_2->addView(spinnerImageView);
+            spinnerViews.push_back(spinnerImageView);
+        }
+
+        // set custom navidation route
+        for (size_t i = 0; i < spinnerViews.size(); i++) {
+            if (shouldStopThread()) {
+                brls::Logger::debug("Thread stopped while setting navigation route.");
+                return;
+            }
+            if (i < 7) {
+                spinnerViews[i]->setCustomNavigationRoute(brls::FocusDirection::DOWN, spinnerViews[i + 7]);
+            } else if (i >= 7 && i < spinnerViews.size() - 7) {
+                spinnerViews[i]->setCustomNavigationRoute(brls::FocusDirection::UP, spinnerViews[i - 7]);
+                spinnerViews[i]->setCustomNavigationRoute(brls::FocusDirection::DOWN, spinnerViews[i + 7]);
             } else {
-                small_image_box_3->addView(spinnerImageView);
+                spinnerViews[i]->setCustomNavigationRoute(brls::FocusDirection::UP, spinnerViews[i - 7]);
             }
         }
 
         big_image_box->addView(bigSpinImg);
         brls::Logger::debug("Spinners added.");
+
+        #ifndef NDEBUG
+        cfg::Config config;
+        if (config.getWireframe()) {
+            this->setWireframeEnabled(true);
+            for(auto& view : this->getChildren()) {
+                view->setWireframeEnabled(true);
+            }
+            for(auto& view : this->smallScreenshotsBoxs) {
+                view->setWireframeEnabled(true);
+            }
+            for(auto& view : this->scrolling->getChildren()) {
+                view->setWireframeEnabled(true);
+            }
+        }
+        #endif
+        
+
         spinnersAddedPromise.set_value();
     });
 
@@ -145,6 +206,7 @@ void ModPreview::loadImages() {
             // if it's the first image, set it to the big image
             if (i == 0) {
                 bigSpinImg->setImage(buffer);
+                loadButtons();
             }
 
             brls::Logger::debug("Replacing spinner with image {}", i);

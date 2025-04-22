@@ -11,6 +11,7 @@
         grow="1.0" >
         
         <brls:Box
+            id="settings_box"
             width="10000"
             height="auto"
             axis="column"
@@ -22,9 +23,6 @@
 
             <brls:SelectorCell
                 id="language_selector"/>
-            
-            <brls:BooleanCell
-                id="debug_cell"/>
             
             <brls:BooleanCell
                 id="strict_cell"/>

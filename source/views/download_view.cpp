@@ -3,6 +3,7 @@
 #include "api/extract.hpp"
 #include "utils/progress_event.hpp"
 #include "utils/utils.hpp"
+#include "utils/config.hpp"
 
 #include <regex>
 
@@ -31,6 +32,16 @@ DownloadView::DownloadView(File& file): file(file) {
         extract_text->setText(fmt::format("{} {} {} {}", "menu/title/extracting"_i18n, file.getName(), "menu/mods/to"_i18n, fmt::format("sdmc:/ultimate/mods/{}", file.getModName())));
 
     this->setActionAvailable(brls::ControllerButton::BUTTON_B, false);
+
+    #ifndef NDEBUG
+    cfg::Config config;
+    if (config.getWireframe()) {
+        this->setWireframeEnabled(true);
+        for(auto& view : this->getChildren()) {
+            view->setWireframeEnabled(true);
+        }
+    }
+    #endif
 
     this->setFocusable(true);
     this->setHideHighlightBackground(true);

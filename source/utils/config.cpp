@@ -5,6 +5,8 @@
 #include <fstream>
 #include <vector>
 
+#include <borealis.hpp>
+
 bool cp(char *filein, const char *fileout) {
     FILE *exein, *exeout;
     exein = fopen(filein, "rb");
@@ -61,8 +63,16 @@ namespace cfg {
     }
 
     void Config::parseConfig() {
-        app_language = config.contains("language") ? config["language"].get<std::string>() : "en-US";
-        is_strict = config.contains("is_strict") ? config["is_strict"].get<bool>() : true;
+        try {
+            app_language = config.contains("language") ? config["language"].get<std::string>() : "en-US";
+            is_strict = config.contains("is_strict") ? config["is_strict"].get<bool>() : true;
+            wireframe = config.contains("wireframe") ? config["wireframe"].get<bool>() : false;
+        } catch (const std::exception& e) {
+            brls::Logger::error("Error parsing config: {}", e.what());
+            app_language = "en-US";
+            is_strict = true;
+            wireframe = false;
+        }
     }
 
     std::string Config::getAppLanguage() {
@@ -83,6 +93,7 @@ namespace cfg {
     void Config::saveConfig() {
         this->config["language"] = app_language;
         this->config["is_strict"] = is_strict;
+        this->config["wireframe"] = wireframe;
 
         std::ofstream file("sdmc:/config/SimpleModDownloader/settings.json");
         file << this->config.dump(4);

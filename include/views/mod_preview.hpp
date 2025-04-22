@@ -32,9 +32,9 @@ private:
 
     BRLS_BIND(brls::Box, files_box, "files_box");
     BRLS_BIND(brls::Box, big_image_box, "big_image_box");
-    BRLS_BIND(brls::Box, small_image_box_1, "small_image_box_1");
-    BRLS_BIND(brls::Box, small_image_box_2, "small_image_box_2");
-    BRLS_BIND(brls::Box, small_image_box_3, "small_image_box_3");
+    BRLS_BIND(brls::Box, screenshot_box, "screenshots_box");
+
+    std::vector<brls::Box*> smallScreenshotsBoxs;
 
     void loadImages();
     bool shouldStopThread();
@@ -54,5 +54,5 @@ private:
     bool isExiting = false;
     bool firstImageDownloaded = false;
 
-    SpinnerImageView* bigSpinImg = new SpinnerImageView(1000, 563);
+    SpinnerImageView* bigSpinImg = new SpinnerImageView(bigImageWidth, bigImageWidth * 9/16);
 };

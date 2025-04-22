@@ -1,6 +1,7 @@
 #include "views/installation_view.hpp"
 #include "api/net.hpp"
 #include "utils/progress_event.hpp"
+#include "utils/config.hpp" 
 
 #include <filesystem>
 #include <switch.h>
@@ -26,6 +27,16 @@ InstallationView::InstallationView() {
             break;
         }
     }
+
+    #ifndef NDEBUG
+    cfg::Config config;
+    if (config.getWireframe()) {
+        this->setWireframeEnabled(true);
+        for(auto& view : this->getChildren()) {
+            view->setWireframeEnabled(true);
+        }
+    }
+    #endif
 
     if(!smm_path.empty()) {
         smm_radio->title->setText("menu/item/launch_smm"_i18n);

@@ -1,5 +1,6 @@
 #include "views/game_list_tab.hpp"
 #include "utils/utils.hpp"
+#include "utils/config.hpp"
 #include "views/mods_list.hpp"
 
 #include <borealis.hpp>
@@ -72,6 +73,16 @@ GameListTab::GameListTab() {
     recycler->estimatedRowHeight = 100;
     recycler->registerCell("Cell", []() { return GameCell::create();});
     recycler->setDataSource(gameData, false);
+
+    #ifndef NDEBUG
+    cfg::Config config;
+    if (config.getWireframe()) {
+        this->setWireframeEnabled(true);
+        for(auto& view : this->getChildren()) {
+            view->setWireframeEnabled(true);
+        }
+    }
+    #endif
 }
 
 brls::View* GameListTab::create() {

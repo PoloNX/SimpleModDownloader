@@ -7,12 +7,16 @@ private:
     brls::ProgressSpinner* spinner;
     brls::Image* image;
 
-    bool isImageLoaded = false;
+    bool imageLoaded = false;
 
     int width;
     int height;
 
 public:
-    SpinnerImageView(const int& width, const int& height);
+    SpinnerImageView(const int& width, const int& height, const int& margin = 0);
     void setImage(const std::vector<unsigned char>& buffer);
+
+    bool isImageLoaded() {
+        return imageLoaded;
+    }
 };
