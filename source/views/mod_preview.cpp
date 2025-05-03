@@ -91,133 +91,121 @@ void ModPreview::loadImages() {
         brls::Logger::debug("Thread stopped before starting.");
         return;
     }
+
     size_t imageCount = this->mod.getImagesUrl().size();
-
-
-
-
     std::vector<SpinnerImageView*> spinnerViews;
 
-    // add spinners to the boxes
     std::promise<void> spinnersAddedPromise;
     auto spinnersAddedFuture = spinnersAddedPromise.get_future();
 
-    brls::sync([this, &spinnerViews, &spinnersAddedPromise, &imageCount]() {
-        brls::Logger::debug("Adding spinners...");
-        brls::Logger::debug("Number of image URLs: {}", imageCount);
+    // Créer les composants UI dans le thread principal
+    brls::sync([this, &spinnerViews, &spinnersAddedPromise, imageCount]() {
+        try {
+            brls::Logger::debug("Adding spinners...");
+            brls::Logger::debug("Number of image URLs: {}", imageCount);
 
-        // create boxes for the images
-        for (auto i = 0; i < imageCount; i += 7) {
-            if (shouldStopThread()) {
-                brls::Logger::debug("Thread stopped while creating boxes.");
-                return;
+            // Créer les boîtes horizontales
+            size_t boxCount = (imageCount + 6) / 7;
+            for (size_t i = 0; i < boxCount; ++i) {
+                if (shouldStopThread()) {
+                    brls::Logger::debug("Thread stopped while creating boxes.");
+                    return;
+                }
+
+                auto box = new brls::Box();
+                box->setWidth(bigImageWidth);
+                box->setHeight(bigImageWidth / 8 * 9 / 16);
+                box->setAxis(brls::Axis::ROW);
+                box->setJustifyContent(brls::JustifyContent::FLEX_START);
+                box->setAlignItems(brls::AlignItems::FLEX_START);
+                box->setWireframeEnabled(true);
+                screenshot_box->addView(box);
+                smallScreenshotsBoxs.push_back(box);
             }
 
-            auto box = new brls::Box();
-            box->setWidth(bigImageWidth);
-            box->setHeight(bigImageWidth/8 * 9/16);
-            box->setAxis(brls::Axis::ROW);
-            box->setJustifyContent(brls::JustifyContent::FLEX_START);
-            box->setAlignItems(brls::AlignItems::FLEX_START);
-            box->setWireframeEnabled(true);
-            screenshot_box->addView(box);
-            smallScreenshotsBoxs.push_back(box);
+            // Ajouter les spinners dans les boîtes
+            for (size_t i = 0; i < imageCount; ++i) {
+                if (shouldStopThread()) {
+                    brls::Logger::debug("Thread stopped while adding spinners.");
+                    return;
+                }
+
+                auto spinner = new SpinnerImageView(
+                    bigImageWidth / 8, 
+                    bigImageWidth / 8 * 9 / 16, 
+                    bigImageWidth / 8 / 7 / 2
+                );
+                size_t boxIndex = i / 7;
+                smallScreenshotsBoxs[boxIndex]->addView(spinner);
+                spinnerViews.push_back(spinner);
+            }
+
+            // Navigation entre les spinners
+            for (size_t i = 0; i < spinnerViews.size(); ++i) {
+                if (shouldStopThread()) return;
+
+                if (i + 7 < spinnerViews.size())
+                    spinnerViews[i]->setCustomNavigationRoute(brls::FocusDirection::DOWN, spinnerViews[i + 7]);
+                if (i >= 7)
+                    spinnerViews[i]->setCustomNavigationRoute(brls::FocusDirection::UP, spinnerViews[i - 7]);
+            }
+
+            big_image_box->addView(bigSpinImg);
+            brls::Logger::debug("Spinners added.");
+
+            #ifndef NDEBUG
+            cfg::Config config;
+            if (config.getWireframe()) {
+                this->setWireframeEnabled(true);
+                for (auto* view : this->getChildren()) view->setWireframeEnabled(true);
+                for (auto* view : this->smallScreenshotsBoxs) view->setWireframeEnabled(true);
+                for (auto* view : this->scrolling->getChildren()) view->setWireframeEnabled(true);
+            }
+            #endif
+
+            spinnersAddedPromise.set_value();
+        } catch (const std::exception& e) {
+            brls::Logger::error("Exception while adding spinners: {}", e.what());
+            spinnersAddedPromise.set_value();
         }
-
-        for (size_t i = 0; i < imageCount; i++) {
-            if (shouldStopThread()) {
-                brls::Logger::debug("Thread stopped while adding spinners.");
-                return;
-            }
-
-            auto spinnerImageView = new SpinnerImageView(bigImageWidth/8, bigImageWidth/8 * 9/16, bigImageWidth/8/7/2);
-            this->smallScreenshotsBoxs[abs(i / 7)]->addView(spinnerImageView);
-
-            spinnerViews.push_back(spinnerImageView);
-        }
-
-        // set custom navidation route
-        for (size_t i = 0; i < spinnerViews.size(); i++) {
-            if (shouldStopThread()) {
-                brls::Logger::debug("Thread stopped while setting navigation route.");
-                return;
-            }
-            if (i < 7) {
-                spinnerViews[i]->setCustomNavigationRoute(brls::FocusDirection::DOWN, spinnerViews[i + 7]);
-            } else if (i >= 7 && i < spinnerViews.size() - 7) {
-                spinnerViews[i]->setCustomNavigationRoute(brls::FocusDirection::UP, spinnerViews[i - 7]);
-                spinnerViews[i]->setCustomNavigationRoute(brls::FocusDirection::DOWN, spinnerViews[i + 7]);
-            } else {
-                spinnerViews[i]->setCustomNavigationRoute(brls::FocusDirection::UP, spinnerViews[i - 7]);
-            }
-        }
-
-        big_image_box->addView(bigSpinImg);
-        brls::Logger::debug("Spinners added.");
-
-        #ifndef NDEBUG
-        cfg::Config config;
-        if (config.getWireframe()) {
-            this->setWireframeEnabled(true);
-            for(auto& view : this->getChildren()) {
-                view->setWireframeEnabled(true);
-            }
-            for(auto& view : this->smallScreenshotsBoxs) {
-                view->setWireframeEnabled(true);
-            }
-            for(auto& view : this->scrolling->getChildren()) {
-                view->setWireframeEnabled(true);
-            }
-        }
-        #endif
-        
-
-        spinnersAddedPromise.set_value();
     });
 
-    // wait for the spinners to be added before downloading images
     spinnersAddedFuture.wait();
 
-    brls::Logger::debug("SpinnerViews size: {}", spinnerViews.size());
-
-    for (size_t i = 0; i < spinnerViews.size(); i++) {
+    // Chargement des images
+    for (size_t i = 0; i < spinnerViews.size(); ++i) {
         if (shouldStopThread()) {
             brls::Logger::debug("Thread stopped during image download.");
             return;
         }
 
-        std::vector<unsigned char> buffer;
+        try {
+            std::vector<unsigned char> buffer = this->mod.downloadImage(i);
+            brls::Logger::debug("Downloaded image {} with size {}", i, buffer.size());
 
-        brls::Logger::debug("Downloading image {}", i);
-        buffer = this->mod.downloadImage(i);
-        brls::Logger::debug("Downloaded image {} with size {}", i, buffer.size());
+            if (shouldStopThread()) return;
 
-        if (shouldStopThread()) {
-            brls::Logger::debug("Thread stopped after downloading image {}.", i);
-            return;
+            // Mettre à jour l'UI dans le thread principal
+            brls::sync([this, spinnerView = spinnerViews[i], buffer = std::move(buffer), i]() mutable {
+                if (shouldStopThread()) return;
+
+                if (i == 0) {
+                    bigSpinImg->setImage(buffer);
+                    loadButtons();
+                }
+
+                spinnerView->setImage(buffer);
+                spinnerView->registerClickAction(brls::ActionListener([this, buffer](brls::View*) {
+                    this->bigSpinImg->setImage(buffer);
+                    return true;
+                }));
+            });
+        } catch (const std::exception& e) {
+            brls::Logger::error("Failed to download or set image {}: {}", i, e.what());
         }
-
-        brls::sync([this, spinnerView = spinnerViews[i], buffer, i]() mutable {
-            if (shouldStopThread()) {
-                brls::Logger::debug("Thread stopped while updating UI for image {}.", i);
-                return;
-            }
-
-            // if it's the first image, set it to the big image
-            if (i == 0) {
-                bigSpinImg->setImage(buffer);
-                loadButtons();
-            }
-
-            brls::Logger::debug("Replacing spinner with image {}", i);
-            spinnerView->setImage(buffer);
-            spinnerView->registerClickAction(brls::ActionListener([this, buffer](brls::View* view) {
-                this->bigSpinImg->setImage(buffer);
-                return true;
-            }));
-        });
     }
 }
+
 
 bool ModPreview::shouldStopThread() {
     std::unique_lock<std::mutex> lock(threadMutex);

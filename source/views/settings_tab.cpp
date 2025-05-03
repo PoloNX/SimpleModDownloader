@@ -47,7 +47,7 @@ SettingsTab::SettingsTab() {
     settings_box->addView(debug_cell);
 
     auto wireframe_cell = new brls::BooleanCell();
-    wireframe_cell->init("menu/settings_tab/debug"_i18n, brls::Application::isDebuggingViewEnabled(), [](bool value){
+    wireframe_cell->init("menu/settings_tab/wireframe"_i18n, config.getWireframe(), [](bool value){
         brls::sync([value](){
             brls::Logger::info("{} wireframe", value ? "Enable" : "Disable");
         });

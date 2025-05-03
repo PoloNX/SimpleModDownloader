@@ -2,10 +2,11 @@
 
 #include <borealis.hpp>
 
+#include "views/recycling_grid.hpp"
 #include "api/mod.hpp"
 #include "api/game.hpp"
 
-class ModCell : public brls::RecyclerCell
+class ModCell : public RecyclingGridItem
 {
   public:
     ModCell();
@@ -34,16 +35,21 @@ class CategorieCell : public brls::RecyclerCell
     static CategorieCell* create();
 };
 
-class ModData : public brls::RecyclerDataSource 
+class ModData : public RecyclingGridDataSource
 {
 public:
     ModData(Game game);
 
-    int numberOfSections(brls::RecyclerFrame* recycler) override;
-    int numberOfRows(brls::RecyclerFrame* recycler, int section) override;
-    brls::RecyclerCell* cellForRow(brls::RecyclerFrame* recycler, brls::IndexPath index) override;
-    void didSelectRowAt(brls::RecyclerFrame* recycler, brls::IndexPath indexPath) override;
-    std::string titleForHeader(brls::RecyclerFrame* recycler, int section) override;
+    // int numberOfSections(brls::RecyclerFrame* recycler) override;
+    // int numberOfRows(brls::RecyclerFrame* recycler, int section) override;
+    // brls::RecyclerCell* cellForRow(brls::RecyclerFrame* recycler, brls::IndexPath index) override;
+    // void didSelectRowAt(brls::RecyclerFrame* recycler, brls::IndexPath indexPath) override;
+    // std::string titleForHeader(brls::RecyclerFrame* recycler, int section) override;
+
+    RecyclingGridItem* cellForRow(RecyclingGrid* recycler, size_t index) override;
+    size_t getItemCount() override;
+    void onItemSelected(RecyclingGrid* recycler, size_t index) override;
+    void clearData() override;
 
     std::unique_ptr<ModList>& getModList() { return modList; }
 private:
@@ -57,11 +63,12 @@ class ModListTab : public brls::Box {
 public:
     ModListTab(Game& game);
     ModListTab();
+    ~ModListTab() override;
 
     //static brls::View* create();
 
 private:
-    BRLS_BIND(brls::RecyclerFrame, recycler, "modrecycler");
+    BRLS_BIND(RecyclingGrid, recycler, "modrecycler");
 
     std::unique_ptr<ModData> modData;
 };
