@@ -9,6 +9,7 @@
 #include "views/settings_tab.hpp"
 #include "activity/main_activity.hpp"
 #include "utils/config.hpp" 
+#include "views/recycling_grid.hpp"
 
 void init();
 void exit();
@@ -50,6 +51,7 @@ int main(int argc, char* argv[]) {
     brls::Application::registerXMLView("GameListTab", GameListTab::create);
     brls::Application::registerXMLView("InstallationTab", InstallationView::create);
     brls::Application::registerXMLView("SettingsTab", SettingsTab::create);
+    brls::Application::registerXMLView("RecyclingGrid", RecyclingGrid::create);
 
     // Add custom values to the theme
     brls::Theme::getLightTheme().addColor("captioned_image/caption", nvgRGB(2, 176, 183));

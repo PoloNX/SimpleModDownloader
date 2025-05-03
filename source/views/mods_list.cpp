@@ -38,22 +38,9 @@ CategorieCell* CategorieCell::create()
     return new CategorieCell();
 }
 
-brls::RecyclerCell* ModData::cellForRow(brls::RecyclerFrame* recycler, brls::IndexPath indexPath)
-{
-    auto cell = (ModCell*)recycler->dequeueReusableCell("Cell");
-    brls::Logger::debug("Mod name : {}", modList->getMods()[indexPath.row].getName());
-    cell->label->setText(modList->getMods()[indexPath.row].getName());
-    cell->subtitle->setText(fmt::format("{} : {}", "menu/mods/author"_i18n, modList->getMods()[indexPath.row].getAuthor()));
-    return cell;
-}
 
-void ModData::didSelectRowAt(brls::RecyclerFrame* recycler, brls::IndexPath indexPath)
-{ 
-    brls::Logger::debug("Mod name : {}", modList->getMods()[indexPath.row].getName());
-    recycler->present(new ModPreview(modList->getMods()[indexPath.row], bannerBuffer));
-    
-    //recycler->present(new ModPreview(modList->getMods()[indexPath.row]));
-}
+
+
 
 ModData::ModData(Game game): game(game)
 {
@@ -65,19 +52,61 @@ ModData::ModData(Game game): game(game)
 
 }
 
-int ModData::numberOfSections(brls::RecyclerFrame* recycler)
+// brls::RecyclerCell* ModData::cellForRow(brls::RecyclerFrame* recycler, brls::IndexPath indexPath)
+// {
+//     auto cell = (ModCell*)recycler->dequeueReusableCell("Cell");
+//     brls::Logger::debug("Mod name : {}", modList->getMods()[indexPath.row].getName());
+//     cell->label->setText(modList->getMods()[indexPath.row].getName());
+//     cell->subtitle->setText(fmt::format("{} : {}", "menu/mods/author"_i18n, modList->getMods()[indexPath.row].getAuthor()));
+//     return cell;
+// }
+
+// void ModData::didSelectRowAt(brls::RecyclerFrame* recycler, brls::IndexPath indexPath)
+// { 
+//     brls::Logger::debug("Mod name : {}", modList->getMods()[indexPath.row].getName());
+//     recycler->present(new ModPreview(modList->getMods()[indexPath.row], bannerBuffer));
+    
+//     //recycler->present(new ModPreview(modList->getMods()[indexPath.row]));
+// }
+
+// int ModData::numberOfSections(brls::RecyclerFrame* recycler)
+// {
+//     return 1;
+// }
+
+// int ModData::numberOfRows(brls::RecyclerFrame* recycler, int section)
+// {
+//     return modList->getMods().size();
+// }
+
+// std::string ModData::titleForHeader(brls::RecyclerFrame* recycler, int section)
+// {
+//     return "";
+// }
+
+RecyclingGridItem* ModData::cellForRow(RecyclingGrid* recycler, size_t index)
 {
-    return 1;
+    auto cell = (ModCell*)recycler->dequeueReusableCell("Cell");
+    brls::Logger::debug("Mod name : {}", modList->getMods()[index].getName());
+    cell->label->setText(modList->getMods()[index].getName());
+    cell->subtitle->setText(fmt::format("{} : {}", "menu/mods/author"_i18n, modList->getMods()[index].getAuthor()));
+    return cell;
 }
 
-int ModData::numberOfRows(brls::RecyclerFrame* recycler, int section)
+size_t ModData::getItemCount()
 {
     return modList->getMods().size();
 }
 
-std::string ModData::titleForHeader(brls::RecyclerFrame* recycler, int section)
+void ModData::onItemSelected(RecyclingGrid* recycler, size_t index)
 {
-    return "";
+    brls::Logger::debug("Mod name : {}", modList->getMods()[index].getName());
+    recycler->present(new ModPreview(modList->getMods()[index], bannerBuffer));
+}
+
+void ModData::clearData()
+{
+    modList->getMods().clear();
 }
 
 ModListTab::ModListTab(Game& game) {
@@ -139,7 +168,7 @@ ModListTab::ModListTab(Game& game) {
 
     recycler->estimatedRowHeight = 100;
     recycler->registerCell("Cell", []() { return ModCell::create();});
-    recycler->setDataSource(modData.get(), false);
+    recycler->setDataSource(modData.get());
 
     #ifndef NDEBUG
     cfg::Config config;
@@ -165,3 +194,9 @@ ModListTab::ModListTab(Game& game) {
 /*brls::View* ModListTab::create() {
     return new ModListTab();
 }*/
+
+ModListTab::~ModListTab() {
+    brls::Logger::debug("ModListTab destructor");
+    modData->clearData();
+    modData.reset();
+}

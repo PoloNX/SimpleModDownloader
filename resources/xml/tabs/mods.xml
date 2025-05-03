@@ -3,7 +3,7 @@
     height="auto"
     axis="column">
 
-    <brls:RecyclerFrame
+    <RecyclingGrid
         id="modrecycler"
         grow="1.0"
         width="auto"
