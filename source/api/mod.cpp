@@ -103,14 +103,24 @@ bool File::findRomfsRecursive(const nlohmann::json& obj) {
 
 void File::loadFile() {
     auto json = net::downloadRequest(fmt::format("https://gamebanana.com/apiv11/File/{}", fileID));
-    if(json.at("_aMetadata").at("_aArchiveFileTree").is_object()) {
-        auto archiveFileTree = json.at("_aMetadata").at("_aArchiveFileTree");
-        for (const auto& item : archiveFileTree.items()) {
-            if (item.value().is_object()) {
-                if (findRomfsRecursive(item.value())) {
-                    this->romfs = true;
-                    break;
-                }
+    nlohmann::json archiveFileTree = json;
+    // Check if the correct json object is present. 
+    if (json.contains("_aArchiveFileTree") && json["_aArchiveFileTree"].is_object()) {
+        archiveFileTree = json["_aArchiveFileTree"];
+    } else if (json.contains("_aMetadata") &&
+               json["_aMetadata"].contains("_aArchiveFileTree") &&
+               json["_aMetadata"]["_aArchiveFileTree"].is_object()) {
+        archiveFileTree = json["_aMetadata"]["_aArchiveFileTree"];
+    } else {
+        brls::Logger::error("Could not find correct JSON object: {}", json.dump(2));
+        return;
+    }
+
+    for (const auto& item : archiveFileTree.items()) {
+        if (item.value().is_object()) {
+            if (findRomfsRecursive(item.value())) {
+                this->romfs = true;
+                break;
             }
         }
     }
