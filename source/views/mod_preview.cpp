@@ -91,10 +91,7 @@ void ModPreview::loadImages() {
         brls::Logger::debug("Thread stopped before starting.");
         return;
     }
-    size_t imageCount = this->mod.getImagesUrl().size();
-
-
-
+    size_t imageCount = std::min(int(this->mod.getImagesUrl().size()), 7);
 
     std::vector<SpinnerImageView*> spinnerViews;
 
@@ -107,21 +104,25 @@ void ModPreview::loadImages() {
         brls::Logger::debug("Number of image URLs: {}", imageCount);
 
         // create boxes for the images
-        for (auto i = 0; i < imageCount; i += 7) {
+        for (auto i = 0; i < imageCount; i += 8) {
             if (shouldStopThread()) {
                 brls::Logger::debug("Thread stopped while creating boxes.");
                 return;
             }
 
+            brls::Logger::debug("Creating box for images {} to {}", i, imageCount);
             auto box = new brls::Box();
             box->setWidth(bigImageWidth);
             box->setHeight(bigImageWidth/8 * 9/16);
             box->setAxis(brls::Axis::ROW);
             box->setJustifyContent(brls::JustifyContent::FLEX_START);
             box->setAlignItems(brls::AlignItems::FLEX_START);
-            box->setWireframeEnabled(true);
+            //box->setWireframeEnabled(true);
+            brls::Logger::debug("Box created with width: {}, height: {}", bigImageWidth, bigImageWidth/8 * 9/16);
             screenshot_box->addView(box);
+            brls::Logger::debug("Box added to screenshot_box.");
             smallScreenshotsBoxs.push_back(box);
+            brls::Logger::debug("Box added to smallScreenshotsBoxs.");
         }
 
         for (size_t i = 0; i < imageCount; i++) {
@@ -130,13 +131,18 @@ void ModPreview::loadImages() {
                 return;
             }
 
-            auto spinnerImageView = new SpinnerImageView(bigImageWidth/8, bigImageWidth/8 * 9/16, bigImageWidth/8/7/2);
-            this->smallScreenshotsBoxs[abs(i / 7)]->addView(spinnerImageView);
+            try {
+                auto spinnerImageView = new SpinnerImageView(bigImageWidth/8, bigImageWidth/8 * 9/16, bigImageWidth/8/7/2);
+                this->smallScreenshotsBoxs[abs(i / 7)]->addView(spinnerImageView);
 
-            spinnerViews.push_back(spinnerImageView);
+                spinnerViews.push_back(spinnerImageView);
+            } catch (const std::exception& e) {
+                brls::Logger::error("Error while creating SpinnerImageView: {}", e.what());
+                return;
+            }
         }
 
-        // set custom navidation route
+        /*// set custom navidation route
         for (size_t i = 0; i < spinnerViews.size(); i++) {
             if (shouldStopThread()) {
                 brls::Logger::debug("Thread stopped while setting navigation route.");
@@ -150,7 +156,7 @@ void ModPreview::loadImages() {
             } else {
                 spinnerViews[i]->setCustomNavigationRoute(brls::FocusDirection::UP, spinnerViews[i - 7]);
             }
-        }
+        }*/
 
         big_image_box->addView(bigSpinImg);
         brls::Logger::debug("Spinners added.");
