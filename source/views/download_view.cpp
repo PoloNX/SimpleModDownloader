@@ -69,7 +69,7 @@ void DownloadView::downloadFile() {
     //Prevent incorrect chars in the path
     std::regex badChars("[:/\\<>|*]");
     std::regex accent("é");
-    extract::extractEntry(this->file.getPath(), fmt::format("sdmc:/{}/{}/{}", utils::getModInstallPath(), std::regex_replace(std::regex_replace(this->file.getGame().getTitle(), badChars, "-"), accent, "e"), std::regex_replace(this->file.getModName(), badChars, "-")), this->file.getGame().getTid());
+    this->extractSucceeded = extract::extractEntry(this->file.getPath(),fmt::format("sdmc:/{}/{}/{}", utils::getModInstallPath(), std::regex_replace(std::regex_replace(this->file.getGame().getTitle(), badChars, "-"), accent, "e"), std::regex_replace(this->file.getModName(), badChars, "-")), this->file.getGame().getTid());
     
     this->extractFinished = true;
 }
@@ -135,7 +135,13 @@ void DownloadView::updateProgress() {
         ASYNC_RELEASE
         getAppletFrame()->setHeaderVisibility(brls::Visibility::GONE);
         getAppletFrame()->setActionAvailable(brls::ControllerButton::BUTTON_B, true);
+        bool ok = this->extractSucceeded;
         this->dismiss();
+        if (!ok) {
+            auto dialog = new brls::Dialog("menu/notify/mod_unsupported"_i18n);
+            dialog->addButton("hints/ok"_i18n, []() {});
+            dialog->open();
+        }
         /*auto button = new brls::Button();
         button->setText("hints/back"_i18n);
         button->setFocusable(true);

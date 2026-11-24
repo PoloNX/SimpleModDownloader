@@ -52,7 +52,7 @@ void Mod::loadMod() {
             std::string name = file.at("_sFile");
             std::string url = file.at("_sDownloadUrl");
             int size = file.at("_nFilesize");
-            std::string checkSum = file.at("_sMd5Checksum");
+            std::string checkSum = file.at("_sMd5Checksum").is_string() ? file.at("_sMd5Checksum").get<std::string>() : "";
             int date = file.at("_tsDateAdded");
             std::string id = std::to_string(file.at("_idRow").get<int>());
 
@@ -102,17 +102,28 @@ bool File::findRomfsRecursive(const nlohmann::json& obj) {
 }
 
 void File::loadFile() {
-    auto json = net::downloadRequest(fmt::format("https://gamebanana.com/apiv11/File/{}", fileID));
+    nlohmann::json json;
+    try {
+        json = net::downloadRequest(fmt::format("https://gamebanana.com/apiv11/File/{}", fileID));
+    } catch (const std::exception& e) {
+        brls::Logger::error("Error in loadFile: {}", e.what());
+    }
+
     nlohmann::json archiveFileTree = json;
-    // Check if the correct json object is present. 
-    if (json.contains("_aArchiveFileTree") && json["_aArchiveFileTree"].is_object()) {
+    // Check if the correct json object is present.
+    if (json.is_object() && json.contains("_aArchiveFileTree") && json["_aArchiveFileTree"].is_object()) {
         archiveFileTree = json["_aArchiveFileTree"];
-    } else if (json.contains("_aMetadata") &&
+    } else if (json.is_object() && json.contains("_aMetadata") &&
+               json["_aMetadata"].is_object() &&
                json["_aMetadata"].contains("_aArchiveFileTree") &&
                json["_aMetadata"]["_aArchiveFileTree"].is_object()) {
         archiveFileTree = json["_aMetadata"]["_aArchiveFileTree"];
     } else {
-        brls::Logger::error("Could not find correct JSON object: {}", json.dump(2));
+        // GameBanana removed the file tree from its API. The archive layout is unknown
+        // beforehand, so allow the download: the extractor only keeps
+        // romfs/exefs/exefs_patches entries and reports when nothing usable was found.
+        brls::Logger::warning("No archive file tree from the API for file {}, checking the archive after download", fileID);
+        this->romfs = true;
         return;
     }
 
@@ -139,29 +150,35 @@ void ModList::updatePage() {
         mod_json = net::downloadRequest(fmt::format("https://gamebanana.com/apiv11/Mod/Index?_nPerpage=15&_aFilters[Generic_Category]={}&_nPage={}", currentCategory.getID(), currentPage));
     }
     else if(currentSearch == "") {
-        mod_json = net::downloadRequest(fmt::format("https://gamebanana.com/apiv11/Game/{}/Subfeed?_nPage={}?_nPerpage=50&_csvModelInclusions=Mod", game.getGamebananaID(), currentPage));
+        mod_json = net::downloadRequest(fmt::format("https://gamebanana.com/apiv11/Game/{}/Subfeed?_nPage={}&_nPerpage=50&_csvModelInclusions=Mod", game.getGamebananaID(), currentPage));
     } 
     else {
         mod_json = net::downloadRequest(fmt::format("https://gamebanana.com/apiv11/Game/{}/Subfeed?_nPage={}&_nPerpage=50&_sName={}&_csvModelInclusions=Mod", game.getGamebananaID(), currentPage, currentSearch));
     }
 
-    if(mod_json.empty()) {
+    if(mod_json.empty() || !mod_json.is_object() || !mod_json.contains("_aRecords") || !mod_json["_aRecords"].is_array()) {
         return;
     }
 
     mods.clear();
-    
+
     for(auto mod : mod_json.at("_aRecords")) {
-        std::string name = mod.at("_sName");
-        int ID = mod.at("_idRow");
-        
-        std::string author = mod.at("_aSubmitter").at("_sName");
+        try {
+            std::string name = mod.at("_sName");
+            int ID = mod.at("_idRow");
 
-        std::vector<std::string> images;
+            std::string author = "";
+            if (mod.contains("_aSubmitter") && mod["_aSubmitter"].is_object() && mod["_aSubmitter"].contains("_sName"))
+                author = mod["_aSubmitter"]["_sName"].get<std::string>();
 
-        Mod newMod(name, ID, images, author, game);
+            std::vector<std::string> images;
 
-        mods.push_back(newMod);
+            Mod newMod(name, ID, images, author, game);
+
+            mods.push_back(newMod);
+        } catch (const std::exception& e) {
+            brls::Logger::error("Skipping invalid mod record: {}", e.what());
+        }
     }
 }
 
