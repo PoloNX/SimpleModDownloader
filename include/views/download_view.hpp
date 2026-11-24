@@ -36,4 +36,5 @@ private:
 
     bool downloadFinished = false;
     bool extractFinished = false;
+    bool extractSucceeded = true;
 };

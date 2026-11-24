@@ -82,6 +82,7 @@ bool extractEntry(const std::string& archiveFile, const std::string& outputDir, 
             return false;
         }
 
+        int extractedCount = 0;
         while (archive_read_next_header(archive, &entry) == ARCHIVE_OK) {
             if (ProgressEvent::instance().getInterupt()) {
                 archive_read_close(archive);
@@ -137,6 +138,7 @@ bool extractEntry(const std::string& archiveFile, const std::string& outputDir, 
 
                     outputFile.close();
 
+                    extractedCount++;
                     ProgressEvent::instance().incrementStep(1);
                 } else {
                     brls::Logger::debug("Skipping {}", entryName);
@@ -182,6 +184,12 @@ bool extractEntry(const std::string& archiveFile, const std::string& outputDir, 
         archive_read_free(archive);
         std::filesystem::remove(archiveFile);
         ProgressEvent::instance().setStep(ProgressEvent::instance().getMax());
+        if (tid != smash_tid && extractedCount == 0) {
+            brls::Logger::error("No romfs/exefs/exefs_patches content found in {}", archiveFile);
+            std::error_code ec;
+            std::filesystem::remove_all(outputDir, ec);
+            return false;
+        }
         return true;
     }
 }

@@ -34,14 +34,31 @@ namespace net {
         curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
         curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
 
+        curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 15L);
+        curl_easy_setopt(curl, CURLOPT_TIMEOUT, 60L);
+
         auto res = curl_easy_perform(curl);
 
         nlohmann::json json;
 
+        long httpCode = 0;
+        curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &httpCode);
+
         if(res != CURLE_OK) {
             brls::Logger::error("Failed to perform request: " + std::string(curl_easy_strerror(res)));
+        } else if(response.empty()) {
+            // GameBanana now answers some removed routes (e.g. apiv11/File/{id}) with an empty 200
+            brls::Logger::error("Empty response (HTTP {}) for {}", httpCode, url);
         } else {
-            json = nlohmann::json::parse(response);
+            // Don't throw: an unexpected/invalid body used to crash the whole app
+            json = nlohmann::json::parse(response, nullptr, false);
+            if(json.is_discarded()) {
+                brls::Logger::error("Invalid JSON (HTTP {}) for {}", httpCode, url);
+                json = nlohmann::json();
+            } else if(httpCode >= 400) {
+                brls::Logger::error("HTTP {} for {}: {}", httpCode, url, response.substr(0, 200));
+                json = nlohmann::json();
+            }
         }
 
         curl_easy_cleanup(curl);
